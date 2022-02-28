@@ -256,11 +256,11 @@ reward_settings:
   # If true, a donate button will be displayed in every article by default.
   enable: true
   animation: true
-  #comment: Buy me a coffee
+  comment: 感谢支持，鼓励成就原创！
 
 reward:
-  #wechatpay: /images/wx.png
-  #alipay: /images/zfb.png
+  wechatpay: /images/wc.jpg
+  alipay: /images/zfb.jpg
   #paypal: /images/paypal.png
   #bitcoin: /images/bitcoin.png
 
@@ -829,7 +829,7 @@ mermaid:
 # Use Animate.css to animate everything.
 # For more information: https://animate.style
 motion:
-  enable: true
+  enable: false
   async: false
   transition:
     # All available transition variants: https://theme-next.js.org/animate/
