@@ -3,6 +3,7 @@ title: DGA简述
 date: 2022-02-22 22:22:22
 categories:
 	-网络安全
+	-攻击类型
 ---
 
 

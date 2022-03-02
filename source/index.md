@@ -4,4 +4,6 @@
 
 github:	https://github.com/sidney-neu
 
+csdn:	https://blog.csdn.net/u013769481
+
 slogan：人不能过得太安逸
