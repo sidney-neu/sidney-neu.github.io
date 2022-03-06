@@ -128,3 +128,26 @@
     padding: 10px $sidebar-offset;
   }
 }
+
+/* 分类页样式 began  新增内容，如果出bug可删除*/
+.category-list-link:hover{
+  transform: scale(1.1);
+  box-shadow: 10px 10px 15px 2px rgba(0,0,0,.12), 0 0 6px 0 rgba(104, 104, 105, 0.1);
+  border-radius: 15px;
+  padding: 6px 16px;
+  margin-left: 0px;
+  font-size: 16px;
+  transition-duration: 0.15s;
+  //display:flex;
+}
+a.category-list-link:before{
+  top: 10px;
+  width: 18px;
+  height: 18px;
+  content: "📚";
+  margin-right: 5px;
+  font: normal normal normal 14px/1 FontAwesome;
+  font-size: 15px;
+  line-height: 18px;
+}
+/* 分类页样式 end */

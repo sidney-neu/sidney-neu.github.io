@@ -5,7 +5,7 @@ categories:
 	-网络安全
 	-框架与架构
 ---
-### 1.ATT&CK的缔造者-Mitre
+### ATT&CK的缔造者-Mitre
 
 根据某安全公司的[资料](http://www.tdhxkj.com/news/651.html)，[MITRE](https://www.mitre.org/)（麻省理工学院研究与工程组）诞生于冷战时代，其前身是麻省理工学院的林肯实验室，当时美国空军为了能够精确掌握敌军战机的来袭动态，便请求麻省理工学院帮助他们建立一个防空系统，于是建立成了研究所，并提出半自动地面环境(SAGE)，通过解和雷达、无线电和网络通信等技术来检测敌机。该研究所管理者于1958年建立Mitre公司，并管理SAGE未来发展。SAGE于1963年开始运作，通过一次次技术的融入与进步，SAGE也成为了美国第一个现代化防空系统。
 
@@ -19,7 +19,7 @@ categories:
 
 在安全领域，代表美国研发国家队、更是美国军方的编外研究机构的Mitre建树颇多，例如大名鼎鼎的[CVE](https://cve.mitre.org/)（Common Vulnerabilities and Exposures）漏洞就所属他的麾下，除此之外还包括CWE、CPE、CAPEC、MAEC、STIX/TAXII、Cygraph、AYY&CK、Sheild等众多重要项目。今天主要介绍其中之一ATT&CK。
 
-### 2.关于ATT&CK
+### 关于ATT&CK
 
 [ATT&CK](https://attack.mitre.org/)首先要明确他是一个知识库，旨在从攻击者的视角归纳网络攻击行为的技战术，并为网络安全领域的威胁模型和方法论，官网上的定义如下：
 
@@ -39,7 +39,7 @@ categories:
 
 ​	3.ATT&CK系统化、层次化的知识库。相比于杀伤链，ATT&CK有着更丰富的内容，比如使用者可以对自己遭受的安全攻击进行后续的分析。明确每一个攻击动作对应的技术，包括了解常用这个攻击技术的黑客组织以及攻击事件、实施这个攻击技术的恶意软件或命令、明确攻击行为的缓解措施以及防御方法、指导这种攻击技术的检测方法和反制措施等。ATT&CK还贴心的使用者提供了[ATT&CK Navigator](https://mitre-attack.github.io/attack-navigator/)这一威胁可视化工具，可以帮助被攻击者明确当前攻击态势；通过[CAR](https://car.mitre.org/))可以检测和分析安全能力，甚至通过[SHIELD](https://shield.mitre.org/)实现通过攻击行为找到防御方法的魔法秘籍。
 
-### 3.ATT&CK的用途
+### ATT&CK的用途
 
 根据ATT&CK的主要架构设计者之一Blake Strom在2018年发布在[Mitre](https://www.mitre.org/capabilities/cybersecurity/overview/cybersecurity-blog/attck-101)上关于ATT&CK的介绍，ATT&CK框架旨在解决四个主要问题;
 
@@ -53,7 +53,7 @@ categories:
 
 ATT&CK还对具体的应用方向进行了指引，无论是关注信息安全的安全客户，还是关注提升安全能力的安全厂商，都可以通过使用ATTT&CK框架受益。ATT&CK总结了四个常见的应用场景：1.整合威胁情报；2.提高检测和分析能力；3.攻防模拟的红蓝对抗；4.安全评估与工程化应用。
 
-### 4.ATT&CK的应用举例
+### ATT&CK的应用举例
 
 微软：
 
@@ -81,7 +81,7 @@ Crowdstrike作为EDR与云安全的黑马独角兽安全企业，一直以Threat
 
 ![Crowdstrike的Falcon中ATT&CK框架的应用](../images/ATT&CK/图片7.png)
 
-### 5.ATT&CK使用的局限性
+### ATT&CK使用的局限性
 
 1.ATT&CK作为后来者，在应用的广泛性上与Syber Kill Chain存在明显差距，更多的安全厂商喜欢使用Syber Kill Chain作为主要手段分析攻击事件。例如笔者曾经在某一家安全公司介绍ATT&CK相关内容的时候，某资深的安全开发人员并不感冒，当讲到ATT&CK与Syber Kill Chain的关系和优劣的时候，他表示很感兴趣并希望后续了解。
 
@@ -89,6 +89,6 @@ Crowdstrike作为EDR与云安全的黑马独角兽安全企业，一直以Threat
 
 3.作为一种可以梳理安全能力的知识框架，很难在有限的时间内成为利润增长点，且需要要一定的开发投入，在安全行业内卷如斯的今天，有很多为了活下去或者为了业绩增长的安全公司会认为ATT&CK食之无味，弃之可惜。
 
-### 6.ATT&CK的前景
+### ATT&CK的前景
 
 笔者从事网络安全行业研究五年，作为一只能力平平的老鸟，我认为ATT&CK作为梳理安全能力和结构化网络威胁的利器，未来会爆发出极大的能量。作为网络安全行业的从业人员可以不必精通，但是一定需要了解。

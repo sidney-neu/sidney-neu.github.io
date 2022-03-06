@@ -7,13 +7,13 @@ categories:
 ---
 
 
-### 一、DGA的定义
+### DGA的定义
 
 根据某安全厂商的定义，Fast-Flux僵尸网络通信所采用的域名一般被称为DGA域名，即通过特定算法随机生成的域名，是一种通过输入一些种子，包含字符串、数字、特定英文字典中的单词以及日期，利用加密算法（比如异或操作等），从而产生一系列伪随机字符串生成的域名。DGA域名是随机生成的，用于逃避域名黑名单检测技术。
 
 DGA是英文Domain Generation Algorithm的缩写，中文翻译为域名生成算法。首先需要明确DGA指的是算法，这种算法的功能和目的就是可以生成域名，通过DGA生成的域名被称为AGD，英文Algorithmically-Generated Domain。根据[dgarchive](https://dgarchive.caad.fkie.fraunhofer.de/welcome/)的作者 [Daniel Plohmann](https://net.cs.uni-bonn.de/wg/cs/staff/daniel-plohmann/)2015年在第三届Botconf会议上的[报告](https://www.botconf.eu/wp-content/uploads/2015/12/OK-P06-Plohmann-DGArchive.pdf)内容，DGA最早在2008年被提出，当时被称为Domain Flux，到目前为止，DGA的家族种类已经超过70种，累计生成的域名超过1亿个。
 
-### 二、DGA的种类
+### DGA的种类
 
 参考绿盟的[相关研究](https://www.secrss.com/articles/14369#:~:text=DGA%E7%AE%97%E6%B3%95%E7%94%B1%E4%B8%A4%E9%83%A8%E5%88%86%E6%9E%84%E6%88%90%EF%BC%8C%E7%A7%8D%E5%AD%90%EF%BC%88%E7%AE%97%E6%B3%95%E8%BE%93%E5%85%A5%EF%BC%89%E5%92%8C%E7%AE%97%E6%B3%95%EF%BC%8C%E5%8F%AF%E4%BB%A5%E6%A0%B9%E6%8D%AE%E7%A7%8D%E5%AD%90%E5%92%8C%E7%AE%97%E6%B3%95%E5%AF%B9DGA%E5%9F%9F%E5%90%8D%E8%BF%9B%E8%A1%8C%E5%88%86%E7%B1%BB%EF%BC%8CDGA%E5%9F%9F%E5%90%8D%E5%8F%AF%E4%BB%A5%E8%A1%A8%E7%A4%BA%E4%B8%BAAGD%EF%BC%88Algorithmically-Generated%20Domains%EF%BC%89%E3%80%82,2.1%20%E6%8C%89%E7%85%A7%E7%A7%8D%E5%AD%90%E8%BF%9B%E8%A1%8C%E5%88%86%E7%B1%BB)并根据个人经验，DGA的主要有两部分组成，分别是种子（seed）和针对种子的DGA处理算法。通过这两步，就可以生成一个DGA域名。
 
@@ -39,7 +39,7 @@ Daniel Plohmann在[技术分享](https://www.botconf.eu/wp-content/uploads/2015/
 
 ![DGA家族的分类](../images/DGA简述/企业微信截图_16460268114223.png)
 
-### 三、DGA的用途
+### DGA的用途
 
 DGA的主要用于被恶意控制的被控端与黑客的控制端之间的C2通信。完成整个C2通信主要分为以下几个步骤：
 
@@ -51,12 +51,12 @@ DGA的主要用于被恶意控制的被控端与黑客的控制端之间的C2通
 
 在这个工程中，第一、因为DGA生成的域名具有很强的伪随机性且随着时间和seed等信息不断变化，因此很难通过黑名单的方法进行拦截；第二、而且通过提前注册DGA生成的域名，就可以将IP地址隐藏起来，降低IP地址被黑名单拦截的风险。第三、DGA生成算法可以进行不断的更新迭代，通过嵌入特定的英文单词作为seed，域名看上去更加正常且具备一定的语义信息，提高了检测难度。
 
-### 四、DGA的破绽
+### DGA的破绽
 
 虽然DGA算法可以规避黑名单等检测方法，但是由于其独特的生成方法和DNS查询特点，还是存在明显的破绽。第一点就是每一次DGA会生成多个DGA域名，因此在这个过程当中会产生多于正常时候的NXDomain类型的DNS查询次数；第二，因为DGA生成的域名的主要作用就是为了找到控制端对应的IP地址，因此DGA生成的域名地址很少还会有子域名，域名的级数和子域名的个数都较少；第三，相比于正常域名DGA域名的长度更长，可读性更差。第四，鉴于用户的上网习惯，一般常用的DNS查询都会历史记录，但是DGA很可能是初测注册，因此大概率会是首次出现的DNS查询；第五，DGA生成的域名一般临时快速的，因此注册时间和被控端DNS查询之间的时间差会很短；第六，DNS的存活时间很短，一般是在1到7天。
 
 以上的这些特点都可以通过不同的检测方法进行针对性的检测。其中包括机器学习的方法、异常检测的方法、以及阈值和正则的方法、以及DNS查询记录分析和Whois查询等多种方法。安全厂商可以根据不同安全产品的数据和计算能力，进行针对性分析。
 
-### 五、DGA的检测方法
+### DGA的检测方法
 
 后续更新。
