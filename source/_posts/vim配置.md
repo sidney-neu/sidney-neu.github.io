@@ -50,18 +50,30 @@ dd 删除（剪切）一行
 安装cscope和ctags:
 
 ```
- apt-get install cscope
- apt-get install exuberant-ctags
+apt-get install cscope
+apt-get install exuberant-ctags
 ```
 
  转到代码目录执行：
 
 ```
- cscope -Rbq; ctags -R
+cscope -Rbq; ctags -R
 ```
 
- 转到代码目录执行：
- cscope -Rbq; ctags -R
+当项目为C语言项目的时候不会出问题，如果操作python项目的时候可能会出现如下错误：
+
+```
+cscope: no source files found
+```
+
+这种是因为默认情况下cscope仅仅会在当前目录下针对c、iex和yacc（扩展名分别为.c、.h、.I、.y）程序文件进行解析（如果指定了-R参数则包含其自身的子目录）。py文件不在这个范畴之内，因此需要在代码路径中执行以下命令（以python为例）：
+
+```
+find . -name '*.py' > cscope.files
+cscope -Rbq; ctags -R
+```
+
+
 
 vim支持cscope的配置文件[vimcfg.tar.gz](https://pan.baidu.com/s/1JnMc5Ctz6_UjXdy6iiEUWw)(提取码：jqhm)解压到主目录
 
