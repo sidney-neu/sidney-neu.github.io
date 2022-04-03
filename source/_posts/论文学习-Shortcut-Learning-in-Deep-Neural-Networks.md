@@ -1,6 +1,6 @@
 ---
-title: 论文学习(Shortcut Learning in Deep Neural Networks)
-date: 2018-10-19 17:22:00
+title: 论文学习-Shortcut-Learning-in-Deep-Neural-Networks
+date: 2022-04-03 17:22:00
 categories:
 	-论文学习
 ---
@@ -18,7 +18,7 @@ categories:
 
 数学和物理等理论经过多个世纪的研究，已经有了很个经得住实际情况考验并且完全自洽的理论体系，但是深度学习的研究才刚刚兴起，因此并没有形成理论和原则。<font color=Tomato>因此很多时候深度学习的检测能力都是在一定数据集上进行检测指标的量化，这种结果导向的行为有些时候确实体现了模型的检测能力，但同时与当前所使用的数据集深深绑定。</font>
 
-![捷径学习示例](../images/论文学习(Shortcut Learning in Deep Neural Networks)/image-20220330234901368.png)
+![捷径学习示例](../images/论文学习-Shortcut-Learning-in-Deep-Neural-Networks/image-20220330234901368.png)
 
 深度学习的检测能力在达到人类的水平的同时也出现了图1中所显示的问题，第一个图中将绿色的山坡识别为放牧的羊，第二个图中识别出了茶壶，第三个图中深度学习无法识别肺炎，因为模型主要关注的特征是右上角的医院标识信息。第四个图中因为加入无关信息导致模型无法回答问题，因为模型主要关注的特征是一段文字中的最后一句话。
 
@@ -30,11 +30,11 @@ categories:
 
 捷径的定义是决策规则的分类。图2对结晶学习进行一个简单的举例，人类的学习的知识是方块中的图形，而神经网络学习的就可能是方块中图形的位置。神经网络关于位置信息的学习在有限的测试集中效果很好，但是更换了测试集后就会出现大量的误报。<font color=Tomato>捷径学习在深度学习中并不是一个新生的现象，作为原生特点，结晶学习的问题一直存在，只是在与传统机器学习方法的比较中被忽视了，并且在还没有走入工程化应用的研究阶段没有充分暴露出来。</font>
 
-![IID与OOD](../images/论文学习(Shortcut Learning in Deep Neural Networks)/image-20220331002429151.png)
+![IID与OOD](../images/论文学习-Shortcut-Learning-in-Deep-Neural-Networks/image-20220331002429151.png)
 
 这对这种情况，论文对模型对应的数据分布和特征权重进行了分析，结果如图3所示。可以看出不同的数据集会训练出不同的模型，并且检测模型在整个的数据分布中有明显的局限性。并且对比了不同数据集中的特征情况，这也很好的解释了模型在新的场景下新测试集检测结果糟糕的原因-给错误的特征以过高的权重。
 
-![数据分布与特征对模型的影响](../images/论文学习(Shortcut Learning in Deep Neural Networks)/image-20220331003342150.png)
+![数据分布与特征对模型的影响](../images/论文学习-Shortcut-Learning-in-Deep-Neural-Networks/image-20220331003342150.png)
 
 ### 捷径学习是如何形成的
 
@@ -42,23 +42,23 @@ categories:
 
 #### 数据中的捷径因素
 
-![勇敢牛牛](../images/论文学习(Shortcut Learning in Deep Neural Networks)/勇敢牛牛.jpg)
+![勇敢牛牛](../images/论文学习-Shortcut-Learning-in-Deep-Neural-Networks/勇敢牛牛.jpg)
 
 深度学习模型在训练的过程中，如果背景信息都是一样的，那么这些背景信息也会成为目标识别的重要特征。举例来说一个深度学习模型被训练来检测牛，但是这些牛都是在草原中 ，换句话说训练牛的数据集的背景信息都是蓝天绿草，而不是沙滩、海水等其他背景信息。这也就会导致蓝天绿草相对于沙滩海水有着更大的特征权重。在论文XXX中这种有问题的机器学习算法问题也被叫做数据偏差（dataset biases）。<font color=Tomato>即使在大数据的情况下数据的捷径因素依然存在，因为这不是数据的规模问题，而是数据产生的场景本身存在局限性。举例来说你在草原上无论拍多少张牛的照片，依然无法解决蓝天绿草的背景特征问题。这种训练数据集的有限性无法体现场景的实际数据分布，因此产生盲人摸象的效果。</font>                                                                                                                   
 
 #### 判别算法中的捷径因素
 
-![五种不同特征在多个算法中的检测结果](../images/论文学习(Shortcut Learning in Deep Neural Networks)/20190822172914544.png)
+![五种不同特征在多个算法中的检测结果](../images/论文学习-Shortcut-Learning-in-Deep-Neural-Networks/20190822172914544.png)
 
 根据论文[ImageNet-trained CNNs are biased towards texture; increasing shape bias improves accuracy](https://arxiv.org/pdf/1811.12231.pdf)，以及github代码路径[https://github.com/rgeirhos/texture-vs-shape](https://github.com/rgeirhos/texture-vs-shape)。
 
 由上面的论文中可以看出纹理特征的检测结果非常好，因此在CNN的各种卷积操作中，纹理特征获得权重也会更大，更重要的是，在端到端的训练工程中，这种纹理特征的权重是算法自己训练得出的，并非人类强加给深度学习模型的。但是这与人类视觉观察判断是不是猫存在明显不同，人眼会很重视目标的物体的外部轮廓特征，与此同时忽略了其他的重要特征信息。因此深度学习模型因为对纹理特征的较大权重，就导致对某些图片的误判，例如下面的这个猫就被识别成了大象。
 
-![大象还是猫](../images/论文学习(Shortcut Learning in Deep Neural Networks)/image-20220403103308129.png)
+![大象还是猫](../images/论文学习-Shortcut-Learning-in-Deep-Neural-Networks/image-20220403103308129.png)
 
 在不同的场景下，这种情况存在十分普遍，如下图所示。
 
-![深度学习算法的捷径因素导致误判](../images/论文学习(Shortcut Learning in Deep Neural Networks)/image-20220403103726550.png)
+![深度学习算法的捷径因素导致误判](../images/论文学习-Shortcut-Learning-in-Deep-Neural-Networks/image-20220403103726550.png)
 
 ### 深度学习中的捷径学习
 
@@ -92,7 +92,7 @@ categories:
 
 一个好的OOD数据集要有以下的条件，第一要有明确的分布变换，这种变化可以人为的区分也可以不是。第二，良好的OOD测试都应该存在让模型难以检测，比如在图像处理时，可以在OOD测试集的图像中添加一些白噪声。第三，测试数据集中可以包含训练中不包含的数据，也就是一些让模型难以检测的极具挑战的数据。以下是一些举例。
 
-![OOD测试集举例](../images/论文学习(Shortcut Learning in Deep Neural Networks)/image-20220403174856798.png)
+![OOD测试集举例](../images/论文学习-Shortcut-Learning-in-Deep-Neural-Networks/image-20220403174856798.png)
 
 #### 为什么会学习会变成敏捷学习
 
@@ -100,15 +100,11 @@ categories:
 
 为什么机器学习这么容易造成敏捷学习呢？有一个最小努力原则，就是说话的时候大家都喜欢说更小的词汇，比如用phone代替mobilephone，用plane代替airplane。学习也是一样，会用最简单最直接的特征进行学习。
 
-![最小努力原则举例](../images/论文学习(Shortcut Learning in Deep Neural Networks)/image-20220403181226990.png)
+![最小努力原则举例](../images/论文学习-Shortcut-Learning-in-Deep-Neural-Networks/image-20220403181226990.png)
 
 ##### 理解归纳偏差的影响
 
 机器学习的影响不仅仅依赖于数据，也会依赖机器学习算法的四个组成部分：架构、训练数据、损失函数、优化方法。通常训练过程从数据输入模型开始，这个模型包含固定的架构和随机的初始化参数，通过对比预测结果和ground truth，通过损失函数明确优化方向和预测的质量。综合这四个组成部分从算法层面明确了算法模型是否容易引起敏捷学习，而不是与其解决方案。
-
-
-
-同样，无论是解决方案  机器学习起来很容易，它不仅仅依赖于数据，还依赖于所有四个  机器学习算法的组成部分：架构、训练数据、损失函数和  优化。  通常，训练过程从将训练数据提供给模型开始  一个固定的架构和随机初始化的参数。  当模型的预测为  与ground truth相比，损失函数衡量了预测的质量。  这个超  优化器使用视觉信号来调整模型的内部参数，使得  模型下次做出更好的预测。  综合起来，这四个组件  （确定模型的归纳偏差）影响某些解决方案的多少  比其他人更容易学习，从而最终决定是否学习捷径  而不是预期的解决方案[122]。  方框 II 提供了连接概述  在快捷学习和归纳偏差之间。
 
 ### 如何优化敏捷学习
 
