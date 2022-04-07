@@ -18,17 +18,17 @@
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
 
-<script class="next-config" data-name="main" type="application/json">{"hostname":"sidney-neu.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.8.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.json","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
-<meta name="description" content="一、DGA的定义根据某安全厂商的定义，Fast-Flux僵尸网络通信所采用的域名一般被称为DGA域名，即通过特定算法随机生成的域名，是一种通过输入一些种子，包含字符串、数字、特定英文字典中的单词以及日期，利用加密算法（比如异或操作等），从而产生一系列伪随机字符串生成的域名。DGA域名是随机生成的，用于逃避域名黑名单检测技术。 DGA是英文Domain Generation Algorithm的缩写">
+<script class="next-config" data-name="main" type="application/json">{"hostname":"sidney-neu.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.8.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":{"gitalk":{"order":-1}},"activeClass":"gitalk"},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.json","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+<meta name="description" content="DGA的定义根据某安全厂商的定义，Fast-Flux僵尸网络通信所采用的域名一般被称为DGA域名，即通过特定算法随机生成的域名，是一种通过输入一些种子，包含字符串、数字、特定英文字典中的单词以及日期，利用加密算法（比如异或操作等），从而产生一系列伪随机字符串生成的域名。DGA域名是随机生成的，用于逃避域名黑名单检测技术。 DGA是英文Domain Generation Algorithm的缩写，中">
 <meta property="og:type" content="article">
 <meta property="og:title" content="DGA简述">
 <meta property="og:url" content="https://sidney-neu.github.io/2022/02/22/DGA%E7%AE%80%E8%BF%B0/index.html">
 <meta property="og:site_name" content="Yoo shen的博客">
-<meta property="og:description" content="一、DGA的定义根据某安全厂商的定义，Fast-Flux僵尸网络通信所采用的域名一般被称为DGA域名，即通过特定算法随机生成的域名，是一种通过输入一些种子，包含字符串、数字、特定英文字典中的单词以及日期，利用加密算法（比如异或操作等），从而产生一系列伪随机字符串生成的域名。DGA域名是随机生成的，用于逃避域名黑名单检测技术。 DGA是英文Domain Generation Algorithm的缩写">
+<meta property="og:description" content="DGA的定义根据某安全厂商的定义，Fast-Flux僵尸网络通信所采用的域名一般被称为DGA域名，即通过特定算法随机生成的域名，是一种通过输入一些种子，包含字符串、数字、特定英文字典中的单词以及日期，利用加密算法（比如异或操作等），从而产生一系列伪随机字符串生成的域名。DGA域名是随机生成的，用于逃避域名黑名单检测技术。 DGA是英文Domain Generation Algorithm的缩写，中">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://sidney-neu.github.io/images/DGA%E7%AE%80%E8%BF%B0/%E4%BC%81%E4%B8%9A%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_16460268114223.png">
 <meta property="article:published_time" content="2022-02-22T14:22:22.000Z">
-<meta property="article:modified_time" content="2022-03-02T09:00:19.388Z">
+<meta property="article:modified_time" content="2022-03-30T09:45:30.851Z">
 <meta property="article:author" content="Yoo Shen">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://sidney-neu.github.io/images/DGA%E7%AE%80%E8%BF%B0/%E4%BC%81%E4%B8%9A%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_16460268114223.png">
@@ -88,8 +88,8 @@
 <nav class="site-nav">
   <ul class="main-menu menu">
         <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
-        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">2</span></a></li>
-        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">6</span></a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">17</span></a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">28</span></a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -146,7 +146,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E3%80%81DGA%E7%9A%84%E5%AE%9A%E4%B9%89"><span class="nav-number">1.</span> <span class="nav-text">一、DGA的定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E3%80%81DGA%E7%9A%84%E7%A7%8D%E7%B1%BB"><span class="nav-number">2.</span> <span class="nav-text">二、DGA的种类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%89%E3%80%81DGA%E7%9A%84%E7%94%A8%E9%80%94"><span class="nav-number">3.</span> <span class="nav-text">三、DGA的用途</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9B%9B%E3%80%81DGA%E7%9A%84%E7%A0%B4%E7%BB%BD"><span class="nav-number">4.</span> <span class="nav-text">四、DGA的破绽</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%94%E3%80%81DGA%E7%9A%84%E6%A3%80%E6%B5%8B%E6%96%B9%E6%B3%95"><span class="nav-number">5.</span> <span class="nav-text">五、DGA的检测方法</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#DGA%E7%9A%84%E5%AE%9A%E4%B9%89"><span class="nav-number">1.</span> <span class="nav-text">DGA的定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DGA%E7%9A%84%E7%A7%8D%E7%B1%BB"><span class="nav-number">2.</span> <span class="nav-text">DGA的种类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DGA%E7%9A%84%E7%94%A8%E9%80%94"><span class="nav-number">3.</span> <span class="nav-text">DGA的用途</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DGA%E7%9A%84%E7%A0%B4%E7%BB%BD"><span class="nav-number">4.</span> <span class="nav-text">DGA的破绽</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DGA%E7%9A%84%E6%A3%80%E6%B5%8B%E6%96%B9%E6%B3%95"><span class="nav-number">5.</span> <span class="nav-text">DGA的检测方法</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -159,13 +159,13 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">6</span>
+          <span class="site-state-item-count">28</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-count">17</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
   </nav>
@@ -240,7 +240,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-03-02 17:00:19" itemprop="dateModified" datetime="2022-03-02T17:00:19+08:00">2022-03-02</time>
+      <time title="修改时间：2022-03-30 17:45:30" itemprop="dateModified" datetime="2022-03-30T17:45:30+08:00">2022-03-30</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -248,11 +248,18 @@
       </span>
       <span class="post-meta-item-text">分类于</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" itemprop="url" rel="index"><span itemprop="name">-网络安全</span></a>
+          <a href="/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8-%E6%94%BB%E5%87%BB%E7%B1%BB%E5%9E%8B/" itemprop="url" rel="index"><span itemprop="name">-网络安全 -攻击类型</span></a>
         </span>
     </span>
 
   
+    <span id="/2022/02/22/DGA%E7%AE%80%E8%BF%B0/" class="post-meta-item leancloud_visitors" data-flag-title="DGA简述" title="阅读次数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span class="leancloud-visitors-count"></span>
+    </span>
 </div>
 
         </div>
@@ -262,9 +269,9 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <h3 id="一、DGA的定义"><a href="#一、DGA的定义" class="headerlink" title="一、DGA的定义"></a>一、DGA的定义</h3><p>根据某安全厂商的定义，Fast-Flux僵尸网络通信所采用的域名一般被称为DGA域名，即通过特定算法随机生成的域名，是一种通过输入一些种子，包含字符串、数字、特定英文字典中的单词以及日期，利用加密算法（比如异或操作等），从而产生一系列伪随机字符串生成的域名。DGA域名是随机生成的，用于逃避域名黑名单检测技术。</p>
+        <h3 id="DGA的定义"><a href="#DGA的定义" class="headerlink" title="DGA的定义"></a>DGA的定义</h3><p>根据某安全厂商的定义，Fast-Flux僵尸网络通信所采用的域名一般被称为DGA域名，即通过特定算法随机生成的域名，是一种通过输入一些种子，包含字符串、数字、特定英文字典中的单词以及日期，利用加密算法（比如异或操作等），从而产生一系列伪随机字符串生成的域名。DGA域名是随机生成的，用于逃避域名黑名单检测技术。</p>
 <p>DGA是英文Domain Generation Algorithm的缩写，中文翻译为域名生成算法。首先需要明确DGA指的是算法，这种算法的功能和目的就是可以生成域名，通过DGA生成的域名被称为AGD，英文Algorithmically-Generated Domain。根据<a target="_blank" rel="noopener" href="https://dgarchive.caad.fkie.fraunhofer.de/welcome/">dgarchive</a>的作者 <a target="_blank" rel="noopener" href="https://net.cs.uni-bonn.de/wg/cs/staff/daniel-plohmann/">Daniel Plohmann</a>2015年在第三届Botconf会议上的<a target="_blank" rel="noopener" href="https://www.botconf.eu/wp-content/uploads/2015/12/OK-P06-Plohmann-DGArchive.pdf">报告</a>内容，DGA最早在2008年被提出，当时被称为Domain Flux，到目前为止，DGA的家族种类已经超过70种，累计生成的域名超过1亿个。</p>
-<h3 id="二、DGA的种类"><a href="#二、DGA的种类" class="headerlink" title="二、DGA的种类"></a>二、DGA的种类</h3><p>参考绿盟的<a target="_blank" rel="noopener" href="https://www.secrss.com/articles/14369#:~:text=DGA%E7%AE%97%E6%B3%95%E7%94%B1%E4%B8%A4%E9%83%A8%E5%88%86%E6%9E%84%E6%88%90%EF%BC%8C%E7%A7%8D%E5%AD%90%EF%BC%88%E7%AE%97%E6%B3%95%E8%BE%93%E5%85%A5%EF%BC%89%E5%92%8C%E7%AE%97%E6%B3%95%EF%BC%8C%E5%8F%AF%E4%BB%A5%E6%A0%B9%E6%8D%AE%E7%A7%8D%E5%AD%90%E5%92%8C%E7%AE%97%E6%B3%95%E5%AF%B9DGA%E5%9F%9F%E5%90%8D%E8%BF%9B%E8%A1%8C%E5%88%86%E7%B1%BB%EF%BC%8CDGA%E5%9F%9F%E5%90%8D%E5%8F%AF%E4%BB%A5%E8%A1%A8%E7%A4%BA%E4%B8%BAAGD%EF%BC%88Algorithmically-Generated%20Domains%EF%BC%89%E3%80%82,2.1%20%E6%8C%89%E7%85%A7%E7%A7%8D%E5%AD%90%E8%BF%9B%E8%A1%8C%E5%88%86%E7%B1%BB">相关研究</a>并根据个人经验，DGA的主要有两部分组成，分别是种子（seed）和针对种子的DGA处理算法。通过这两步，就可以生成一个DGA域名。</p>
+<h3 id="DGA的种类"><a href="#DGA的种类" class="headerlink" title="DGA的种类"></a>DGA的种类</h3><p>参考绿盟的<a target="_blank" rel="noopener" href="https://www.secrss.com/articles/14369#:~:text=DGA%E7%AE%97%E6%B3%95%E7%94%B1%E4%B8%A4%E9%83%A8%E5%88%86%E6%9E%84%E6%88%90%EF%BC%8C%E7%A7%8D%E5%AD%90%EF%BC%88%E7%AE%97%E6%B3%95%E8%BE%93%E5%85%A5%EF%BC%89%E5%92%8C%E7%AE%97%E6%B3%95%EF%BC%8C%E5%8F%AF%E4%BB%A5%E6%A0%B9%E6%8D%AE%E7%A7%8D%E5%AD%90%E5%92%8C%E7%AE%97%E6%B3%95%E5%AF%B9DGA%E5%9F%9F%E5%90%8D%E8%BF%9B%E8%A1%8C%E5%88%86%E7%B1%BB%EF%BC%8CDGA%E5%9F%9F%E5%90%8D%E5%8F%AF%E4%BB%A5%E8%A1%A8%E7%A4%BA%E4%B8%BAAGD%EF%BC%88Algorithmically-Generated%20Domains%EF%BC%89%E3%80%82,2.1%20%E6%8C%89%E7%85%A7%E7%A7%8D%E5%AD%90%E8%BF%9B%E8%A1%8C%E5%88%86%E7%B1%BB">相关研究</a>并根据个人经验，DGA的主要有两部分组成，分别是种子（seed）和针对种子的DGA处理算法。通过这两步，就可以生成一个DGA域名。</p>
 <p>第一部分是种子，种子是DGA算法中最重要的输入参数之一，不同的种子即使采用相同的DGA处理算法，也可以生成不同的DGA域名。种子可以分为三种类型：</p>
 <p>​    1.基于词典的种子，通过事先设定词典并通过一定的逻辑筛选其中的部分种子，通过排列组合就可以生成DGA域名；</p>
 <p>​    2.基于时间的种子，DGA算法可以将时间信息作为输入种子，通过感染主机的系统时间、HTTP的响应时间，以及其他控制与被控端可以同时明确的时间都可以作为输入，生成对应的DGA域名；</p>
@@ -276,14 +283,14 @@
 <p>4.TIN（time-independent and non-deterministic），与时间不相关，不可确定；</p>
 <p>Daniel Plohmann在<a target="_blank" rel="noopener" href="https://www.botconf.eu/wp-content/uploads/2015/12/OK-P06-Plohmann-DGArchive.pdf">技术分享</a>中，对多个DGA家族基于以上的分类进行归纳总结，归纳结果如下图：</p>
 <p><img src="/../images/DGA%E7%AE%80%E8%BF%B0/%E4%BC%81%E4%B8%9A%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_16460268114223.png" alt="DGA家族的分类"></p>
-<h3 id="三、DGA的用途"><a href="#三、DGA的用途" class="headerlink" title="三、DGA的用途"></a>三、DGA的用途</h3><p>DGA的主要用于被恶意控制的被控端与黑客的控制端之间的C2通信。完成整个C2通信主要分为以下几个步骤：</p>
+<h3 id="DGA的用途"><a href="#DGA的用途" class="headerlink" title="DGA的用途"></a>DGA的用途</h3><p>DGA的主要用于被恶意控制的被控端与黑客的控制端之间的C2通信。完成整个C2通信主要分为以下几个步骤：</p>
 <p>​    step1：黑客在DGA生成的大量域名中找一个进行域名XXX.biz注册；</p>
 <p>​    stdp2：被控端查询DGA生成的域名，通过查找碰撞找到域名XXX.biz对应的IP地址；</p>
 <p>​    step3：通过连接IP地址向被控端服务器发送保活包并接受C2命令.</p>
 <p>在这个工程中，第一、因为DGA生成的域名具有很强的伪随机性且随着时间和seed等信息不断变化，因此很难通过黑名单的方法进行拦截；第二、而且通过提前注册DGA生成的域名，就可以将IP地址隐藏起来，降低IP地址被黑名单拦截的风险。第三、DGA生成算法可以进行不断的更新迭代，通过嵌入特定的英文单词作为seed，域名看上去更加正常且具备一定的语义信息，提高了检测难度。</p>
-<h3 id="四、DGA的破绽"><a href="#四、DGA的破绽" class="headerlink" title="四、DGA的破绽"></a>四、DGA的破绽</h3><p>虽然DGA算法可以规避黑名单等检测方法，但是由于其独特的生成方法和DNS查询特点，还是存在明显的破绽。第一点就是每一次DGA会生成多个DGA域名，因此在这个过程当中会产生多于正常时候的NXDomain类型的DNS查询次数；第二，因为DGA生成的域名的主要作用就是为了找到控制端对应的IP地址，因此DGA生成的域名地址很少还会有子域名，域名的级数和子域名的个数都较少；第三，相比于正常域名DGA域名的长度更长，可读性更差。第四，鉴于用户的上网习惯，一般常用的DNS查询都会历史记录，但是DGA很可能是初测注册，因此大概率会是首次出现的DNS查询；第五，DGA生成的域名一般临时快速的，因此注册时间和被控端DNS查询之间的时间差会很短；第六，DNS的存活时间很短，一般是在1到7天。</p>
+<h3 id="DGA的破绽"><a href="#DGA的破绽" class="headerlink" title="DGA的破绽"></a>DGA的破绽</h3><p>虽然DGA算法可以规避黑名单等检测方法，但是由于其独特的生成方法和DNS查询特点，还是存在明显的破绽。第一点就是每一次DGA会生成多个DGA域名，因此在这个过程当中会产生多于正常时候的NXDomain类型的DNS查询次数；第二，因为DGA生成的域名的主要作用就是为了找到控制端对应的IP地址，因此DGA生成的域名地址很少还会有子域名，域名的级数和子域名的个数都较少；第三，相比于正常域名DGA域名的长度更长，可读性更差。第四，鉴于用户的上网习惯，一般常用的DNS查询都会历史记录，但是DGA很可能是初测注册，因此大概率会是首次出现的DNS查询；第五，DGA生成的域名一般临时快速的，因此注册时间和被控端DNS查询之间的时间差会很短；第六，DNS的存活时间很短，一般是在1到7天。</p>
 <p>以上的这些特点都可以通过不同的检测方法进行针对性的检测。其中包括机器学习的方法、异常检测的方法、以及阈值和正则的方法、以及DNS查询记录分析和Whois查询等多种方法。安全厂商可以根据不同安全产品的数据和计算能力，进行针对性分析。</p>
-<h3 id="五、DGA的检测方法"><a href="#五、DGA的检测方法" class="headerlink" title="五、DGA的检测方法"></a>五、DGA的检测方法</h3><p>后续更新。</p>
+<h3 id="DGA的检测方法"><a href="#DGA的检测方法" class="headerlink" title="DGA的检测方法"></a>DGA的检测方法</h3><p>后续更新。</p>
 
     </div>
 
@@ -310,18 +317,35 @@
   </div>
 </div>
 
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>Yoo Shen
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://sidney-neu.github.io/2022/02/22/DGA%E7%AE%80%E8%BF%B0/" title="DGA简述">https://sidney-neu.github.io/2022/02/22/DGA简述/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
 
         
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2021/12/31/hello-world%20-%20%E5%89%AF%E6%9C%AC/" rel="prev" title="Indigo版本的ROS使用openni获取Kinect彩色图像和深度图像">
-                  <i class="fa fa-chevron-left"></i> Indigo版本的ROS使用openni获取Kinect彩色图像和深度图像
+                <a href="/2022/02/22/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%9C%A8%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E5%BA%94%E7%94%A8%E9%9D%A2%E4%B8%B4%E7%9A%84%E6%8C%91%E6%88%98/" rel="prev" title="机器学习在网络安全应用面临的挑战">
+                  <i class="fa fa-chevron-left"></i> 机器学习在网络安全应用面临的挑战
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2022/02/23/hello-world/" rel="next" title="Hello World">
-                  Hello World <i class="fa fa-chevron-right"></i>
+                <a href="/2022/02/26/ATT&CK/" rel="next" title="ATT&CK简述">
+                  ATT&CK简述 <i class="fa fa-chevron-right"></i>
                 </a>
             </div>
           </div>
@@ -334,6 +358,7 @@
 
 
 
+    <div class="comments gitalk-container"></div>
 </div>
   </main>
 
@@ -370,8 +395,14 @@
   
 
 
+  <script class="next-config" data-name="leancloud_visitors" type="application/json">{"enable":true,"app_id":"nG09szIvM8x9ehgslCULWzg2-MdYXbMMI","app_key":"yHykoRL88ikgLTqsUC0xIMvY","server_url":null,"security":false}</script>
+  <script src="/js/third-party/statistics/lean-analytics.js"></script>
 
 
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
+
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"sidney-neu","repo":"sidney-neu.github.io","client_id":"04c1120504d2e421fa7d","client_secret":"389710c48c007c80cfbb7b9788d01e674ab31c00","admin_user":"sidney-neu","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":"zh-CN","js":{"url":"https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js","integrity":"sha256-Pmj85ojLaPOWwRtlMJwmezB/Qg8BzvJp5eTzvXaYAfA="},"path_md5":"09de7b7fd40bbc186c71308c9e8dbb3a"}</script>
+<script src="/js/third-party/comments/gitalk.js"></script>
 
 </body>
 </html>

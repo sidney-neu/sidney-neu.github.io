@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.0.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"sidney-neu.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.8.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":{"gitalk":{"order":-1}},"activeClass":"gitalk"},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.json","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+<meta name="description" content="安装tmux以下以ubuntu操作系统举例，其他linux系统区别不大。 1234sudo apt-get install tmuxtmux -V                       sudo apt-get install build-essential           sudo apt-get install libevent-dev libncurses5-dev">
+<meta property="og:type" content="article">
+<meta property="og:title" content="tmux教程">
+<meta property="og:url" content="https://sidney-neu.github.io/2021/10/19/tmux%E6%95%99%E7%A8%8B/index.html">
+<meta property="og:site_name" content="Yoo shen的博客">
+<meta property="og:description" content="安装tmux以下以ubuntu操作系统举例，其他linux系统区别不大。 1234sudo apt-get install tmuxtmux -V                       sudo apt-get install build-essential           sudo apt-get install libevent-dev libncurses5-dev">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-10-19T13:20:00.000Z">
+<meta property="article:modified_time" content="2022-03-30T09:45:30.857Z">
+<meta property="article:author" content="Yoo Shen">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://sidney-neu.github.io/2021/10/19/tmux%E6%95%99%E7%A8%8B/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://sidney-neu.github.io/2021/10/19/tmux%E6%95%99%E7%A8%8B/","path":"2021/10/19/tmux教程/","title":"tmux教程"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>tmux教程 | Yoo shen的博客</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Yoo shen的博客</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">sy071600sy@163.com</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">17</span></a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">28</span></a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%89%E8%A3%85tmux"><span class="nav-number">1.</span> <span class="nav-text">安装tmux</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%90%AF%E5%8A%A8tmux"><span class="nav-number">2.</span> <span class="nav-text">启动tmux</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AA%E5%91%BD%E5%90%8D%E7%9A%84session"><span class="nav-number">3.</span> <span class="nav-text">创建一个命名的session</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#session%E5%88%86%E7%A6%BB"><span class="nav-number">4.</span> <span class="nav-text">session分离</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%87%8D%E8%BF%9E%E4%B8%80%E4%B8%AA%E5%B7%B2%E6%9C%89session"><span class="nav-number">5.</span> <span class="nav-text">重连一个已有session</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B3%E9%97%ADsession"><span class="nav-number">6.</span> <span class="nav-text">关闭session</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8windows"><span class="nav-number">7.</span> <span class="nav-text">使用windows</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B3%E9%97%ADwindow"><span class="nav-number">8.</span> <span class="nav-text">关闭window</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B3%E9%97%ADpanes"><span class="nav-number">9.</span> <span class="nav-text">关闭panes</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Yoo Shen</p>
+  <div class="site-description" itemprop="description">学习、记录、分享</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">28</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/sidney-neu" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;sidney-neu" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://sidney-neu.github.io/2021/10/19/tmux%E6%95%99%E7%A8%8B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Yoo Shen">
+      <meta itemprop="description" content="学习、记录、分享">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Yoo shen的博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          tmux教程
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-10-19 21:20:00" itemprop="dateCreated datePublished" datetime="2021-10-19T21:20:00+08:00">2021-10-19</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-03-30 17:45:30" itemprop="dateModified" datetime="2022-03-30T17:45:30+08:00">2022-03-30</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Linux/" itemprop="url" rel="index"><span itemprop="name">-Linux</span></a>
+        </span>
+    </span>
+
+  
+    <span id="/2021/10/19/tmux%E6%95%99%E7%A8%8B/" class="post-meta-item leancloud_visitors" data-flag-title="tmux教程" title="阅读次数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span class="leancloud-visitors-count"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h3 id="安装tmux"><a href="#安装tmux" class="headerlink" title="安装tmux"></a>安装tmux</h3><p>以下以ubuntu操作系统举例，其他linux系统区别不大。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install tmux</span><br><span class="line">tmux -V                       </span><br><span class="line">sudo apt-get install build-essential           </span><br><span class="line">sudo apt-get install libevent-dev libncurses5-dev        </span><br></pre></td></tr></table></figure>
+
+<h3 id="启动tmux"><a href="#启动tmux" class="headerlink" title="启动tmux"></a>启动tmux</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">tmux                 （启动一个名为“session”的tmux）</span><br><span class="line">exit                     （退出当前tmux）</span><br></pre></td></tr></table></figure>
+
+<h3 id="创建一个命名的session"><a href="#创建一个命名的session" class="headerlink" title="创建一个命名的session"></a>创建一个命名的session</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">tmux new-session -s basic         （创建一个名为“basic”的session）</span><br><span class="line">tmux new -s basic           （简化创建一个名为“basic”的session）</span><br><span class="line">exit                     （退出当前tmux）</span><br></pre></td></tr></table></figure>
+
+<h3 id="session分离"><a href="#session分离" class="headerlink" title="session分离"></a>session分离</h3><p>Session的分离（Detaching）不会是session中的进程中断，而是仍在后台运行中。如果需要使用，可以连接到（Attaching）已经分离的session中。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">tmux new -s basic           （简化创建一个名为“basic”的session）</span><br><span class="line">top                 （监控内存与cpu用途）</span><br><span class="line">Ctrl+b ➷ ➹ d➷           （从当前的session分离，返回到主页面）</span><br></pre></td></tr></table></figure>
+
+<h3 id="重连一个已有session"><a href="#重连一个已有session" class="headerlink" title="重连一个已有session"></a>重连一个已有session</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">tmux list-sessions                 （列出已有的session）</span><br><span class="line">tmux ls                     （简化列出已有的session）</span><br><span class="line">tmux attach                 （仅有一个session存在时的连接命令）</span><br><span class="line">tmux new -s sessionname -d           （创建一个新tmux实例）</span><br><span class="line">tmux attach -t sessionname            （连接到sessionname实例）</span><br></pre></td></tr></table></figure>
+
+<h3 id="关闭session"><a href="#关闭session" class="headerlink" title="关闭session"></a>关闭session</h3><p>可以在进入session后使用exit关闭相关session，也可以在使用命令关闭。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&amp;      （关闭名为sessionname的session）</span><br></pre></td></tr></table></figure>
+
+<h3 id="使用windows"><a href="#使用windows" class="headerlink" title="使用windows"></a>使用windows</h3><p>windows是指在session中创建不同的窗口</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">tmux new -s windows -n shell         （创建名为windows的session，并且通过 –n 可以对window进行命名，以便于确认其身份）</span><br><span class="line">Ctrl+b ➷ ➹ c➷             （在当前session下创建新的window）</span><br><span class="line">Ctrl+b ➷ ➹ ，➷          （重命名当前window,“第三个按键为逗号”）</span><br><span class="line">Ctrl+b ➷ ➹ n➷           （进去当前session的下一个window）</span><br><span class="line">Ctrl+b ➷ ➹ p➷            （进入最近操作的那个window）</span><br><span class="line">Ctrl+b ➷ ➹ 0➷         （进去当前session下命名为“0”的window中）</span><br><span class="line">Ctrl+b ➷ ➹ f➷         （通过名字查找当前session下的window）</span><br><span class="line">Ctrl+b ➷ ➹ w➷        （将当前session下的window列出，并选择进入）</span><br></pre></td></tr></table></figure>
+
+<h3 id="关闭window"><a href="#关闭window" class="headerlink" title="关闭window"></a>关闭window</h3><p>关闭window可以计入相应的window中，并在其中运行exit关闭，也可以使用快捷键关闭。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Ctrl+b ➷ ➹ &amp;➷        （关闭当前window，其中&amp;=shift+7）</span><br></pre></td></tr></table></figure>
+
+<p>1.5.1使用panes</p>
+<p>创建名为panes的session，以便于理解panes是如何工作。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">tmux new -s panes                （创建一个名为panes的session）</span><br><span class="line">Ctrl+b ➷ ➹ %➷ tmux            （将panes切为左右两个，其中%=shift+5）</span><br><span class="line">Ctrl+b ➷ ➹ “➷            （将panes切为上下两个，其中%=shift+’）</span><br><span class="line">Ctrl+b ➷ ➹ 向上➷         （将panes切换到上面一个，可上下左右）</span><br><span class="line">Ctrl+b+向上➷               （将当前panes向上扩大，可上下左右）</span><br><span class="line">Ctrl+b ➷ ➹ o➷            （在当前window下的panes之间循环）</span><br><span class="line">Ctrl+b ➷ ➹ 空格➷          （在当前window下的panes进行自动布局）</span><br></pre></td></tr></table></figure>
+
+<h3 id="关闭panes"><a href="#关闭panes" class="headerlink" title="关闭panes"></a>关闭panes</h3><p>关闭panes可以计入相应的panes中，并在其中运行exit关闭，也可以使用快捷键关闭。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Ctrl+b ➷ ➹ x➷                 （关闭当前panes）</span><br></pre></td></tr></table></figure>
+
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="reward-container">
+  <div>感谢支持，鼓励成就原创！</div>
+  <button>
+    赞赏
+  </button>
+  <div class="post-reward">
+      <div>
+        <img src="/images/wc.jpg" alt="Yoo Shen 微信">
+        <span>微信</span>
+      </div>
+      <div>
+        <img src="/images/zfb.jpg" alt="Yoo Shen 支付宝">
+        <span>支付宝</span>
+      </div>
+
+  </div>
+</div>
+
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>Yoo Shen
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://sidney-neu.github.io/2021/10/19/tmux%E6%95%99%E7%A8%8B/" title="tmux教程">https://sidney-neu.github.io/2021/10/19/tmux教程/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2020/12/16/ubuntu%E5%86%85%E6%A0%B8%E7%89%88%E6%9C%AC%E5%9B%9E%E9%80%80/" rel="prev" title="ubuntu内核版本回退">
+                  <i class="fa fa-chevron-left"></i> ubuntu内核版本回退
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2021/12/31/2021%E5%B9%B4%E6%80%BB%E7%BB%93/" rel="next" title="2021年总结">
+                  2021年总结 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments gitalk-container"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Yoo Shen</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/next-boot.js"></script>
+
+  
+<script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.0/dist/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+
+
+  <script class="next-config" data-name="leancloud_visitors" type="application/json">{"enable":true,"app_id":"nG09szIvM8x9ehgslCULWzg2-MdYXbMMI","app_key":"yHykoRL88ikgLTqsUC0xIMvY","server_url":null,"security":false}</script>
+  <script src="/js/third-party/statistics/lean-analytics.js"></script>
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
+
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"sidney-neu","repo":"sidney-neu.github.io","client_id":"04c1120504d2e421fa7d","client_secret":"389710c48c007c80cfbb7b9788d01e674ab31c00","admin_user":"sidney-neu","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":"zh-CN","js":{"url":"https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js","integrity":"sha256-Pmj85ojLaPOWwRtlMJwmezB/Qg8BzvJp5eTzvXaYAfA="},"path_md5":"d52d87eefb00cc757cc7941c0716bede"}</script>
+<script src="/js/third-party/comments/gitalk.js"></script>
+
+</body>
+</html>

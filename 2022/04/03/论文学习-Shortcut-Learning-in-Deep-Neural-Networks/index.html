@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.0.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"sidney-neu.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.8.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":{"gitalk":{"order":-1}},"activeClass":"gitalk"},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.json","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+<meta name="description" content="论文名称：Shortcut Learning in Deep Neural Networks 论文下载地址：https:&#x2F;&#x2F;arxiv.org&#x2F;pdf&#x2F;2004.07780v3.pdf 黑色文字：文中观点 红色文字：笔者观点 深度学习没有捷径可走深度学习因为其优异的学习能力，是人工智能中当之无愧的主力军。深度学习在NLP和CV等领域都得到了很好的应用。但是深度学习统一存在一个无法忽视的问题：捷径学">
+<meta property="og:type" content="article">
+<meta property="og:title" content="论文学习-Shortcut-Learning-in-Deep-Neural-Networks">
+<meta property="og:url" content="https://sidney-neu.github.io/2022/04/03/%E8%AE%BA%E6%96%87%E5%AD%A6%E4%B9%A0-Shortcut-Learning-in-Deep-Neural-Networks/index.html">
+<meta property="og:site_name" content="Yoo shen的博客">
+<meta property="og:description" content="论文名称：Shortcut Learning in Deep Neural Networks 论文下载地址：https:&#x2F;&#x2F;arxiv.org&#x2F;pdf&#x2F;2004.07780v3.pdf 黑色文字：文中观点 红色文字：笔者观点 深度学习没有捷径可走深度学习因为其优异的学习能力，是人工智能中当之无愧的主力军。深度学习在NLP和CV等领域都得到了很好的应用。但是深度学习统一存在一个无法忽视的问题：捷径学">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://sidney-neu.github.io/images/%E8%AE%BA%E6%96%87%E5%AD%A6%E4%B9%A0-Shortcut-Learning-in-Deep-Neural-Networks/image-20220330234901368.png">
+<meta property="og:image" content="https://sidney-neu.github.io/images/%E8%AE%BA%E6%96%87%E5%AD%A6%E4%B9%A0-Shortcut-Learning-in-Deep-Neural-Networks/image-20220331002429151.png">
+<meta property="og:image" content="https://sidney-neu.github.io/images/%E8%AE%BA%E6%96%87%E5%AD%A6%E4%B9%A0-Shortcut-Learning-in-Deep-Neural-Networks/image-20220331003342150.png">
+<meta property="og:image" content="https://sidney-neu.github.io/images/%E8%AE%BA%E6%96%87%E5%AD%A6%E4%B9%A0-Shortcut-Learning-in-Deep-Neural-Networks/%E5%8B%87%E6%95%A2%E7%89%9B%E7%89%9B.jpg">
+<meta property="og:image" content="https://sidney-neu.github.io/images/%E8%AE%BA%E6%96%87%E5%AD%A6%E4%B9%A0-Shortcut-Learning-in-Deep-Neural-Networks/20190822172914544.png">
+<meta property="og:image" content="https://sidney-neu.github.io/images/%E8%AE%BA%E6%96%87%E5%AD%A6%E4%B9%A0-Shortcut-Learning-in-Deep-Neural-Networks/image-20220403103308129.png">
+<meta property="og:image" content="https://sidney-neu.github.io/images/%E8%AE%BA%E6%96%87%E5%AD%A6%E4%B9%A0-Shortcut-Learning-in-Deep-Neural-Networks/image-20220403103726550.png">
+<meta property="og:image" content="https://sidney-neu.github.io/images/%E8%AE%BA%E6%96%87%E5%AD%A6%E4%B9%A0-Shortcut-Learning-in-Deep-Neural-Networks/image-20220403174856798.png">
+<meta property="og:image" content="https://sidney-neu.github.io/images/%E8%AE%BA%E6%96%87%E5%AD%A6%E4%B9%A0-Shortcut-Learning-in-Deep-Neural-Networks/image-20220403181226990.png">
+<meta property="article:published_time" content="2022-04-03T09:22:00.000Z">
+<meta property="article:modified_time" content="2022-04-07T02:20:43.793Z">
+<meta property="article:author" content="Yoo Shen">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://sidney-neu.github.io/images/%E8%AE%BA%E6%96%87%E5%AD%A6%E4%B9%A0-Shortcut-Learning-in-Deep-Neural-Networks/image-20220330234901368.png">
+
+
+<link rel="canonical" href="https://sidney-neu.github.io/2022/04/03/%E8%AE%BA%E6%96%87%E5%AD%A6%E4%B9%A0-Shortcut-Learning-in-Deep-Neural-Networks/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://sidney-neu.github.io/2022/04/03/%E8%AE%BA%E6%96%87%E5%AD%A6%E4%B9%A0-Shortcut-Learning-in-Deep-Neural-Networks/","path":"2022/04/03/论文学习-Shortcut-Learning-in-Deep-Neural-Networks/","title":"论文学习-Shortcut-Learning-in-Deep-Neural-Networks"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>论文学习-Shortcut-Learning-in-Deep-Neural-Networks | Yoo shen的博客</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Yoo shen的博客</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">sy071600sy@163.com</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">17</span></a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">28</span></a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E6%B2%A1%E6%9C%89%E6%8D%B7%E5%BE%84%E5%8F%AF%E8%B5%B0"><span class="nav-number">1.</span> <span class="nav-text">深度学习没有捷径可走</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8D%B7%E5%BE%84%E5%AD%A6%E4%B9%A0%E6%98%AF%E5%A6%82%E4%BD%95%E5%BD%A2%E6%88%90%E7%9A%84"><span class="nav-number">2.</span> <span class="nav-text">捷径学习是如何形成的</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E4%B8%AD%E7%9A%84%E6%8D%B7%E5%BE%84%E5%9B%A0%E7%B4%A0"><span class="nav-number">2.1.</span> <span class="nav-text">数据中的捷径因素</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%A4%E5%88%AB%E7%AE%97%E6%B3%95%E4%B8%AD%E7%9A%84%E6%8D%B7%E5%BE%84%E5%9B%A0%E7%B4%A0"><span class="nav-number">2.2.</span> <span class="nav-text">判别算法中的捷径因素</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E4%B8%AD%E7%9A%84%E6%8D%B7%E5%BE%84%E5%AD%A6%E4%B9%A0"><span class="nav-number">3.</span> <span class="nav-text">深度学习中的捷径学习</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%90%86%E8%A7%A3%E5%92%8C%E8%AF%8A%E6%96%AD%E6%8D%B7%E5%BE%84%E5%AD%A6%E4%B9%A0"><span class="nav-number">4.</span> <span class="nav-text">理解和诊断捷径学习</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%AF%8A%E6%96%AD%E6%A3%80%E6%B5%8B%E7%BB%93%E6%9E%9C"><span class="nav-number">4.1.</span> <span class="nav-text">诊断检测结果</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%8C%BA%E5%88%86%E6%A8%A1%E5%9E%8B%E5%9C%A8%E6%B5%8B%E8%AF%95%E9%9B%86%E7%9A%84%E6%A3%80%E6%B5%8B%E8%83%BD%E5%8A%9B%E5%92%8C%E5%85%B6%E7%9C%9F%E5%AE%9E%E6%BD%9C%E5%8A%9B"><span class="nav-number">4.1.1.</span> <span class="nav-text">区分模型在测试集的检测能力和其真实潜力</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B8%AD%E7%9A%84%E6%91%A9%E6%A0%B9%E6%B3%95%E5%88%99"><span class="nav-number">4.1.2.</span> <span class="nav-text">机器学习中的摩根法则</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E9%80%9A%E8%BF%87%E6%9E%81%E9%99%90%E6%A8%A1%E5%9E%8B%E5%88%86%E6%9E%90%E6%8D%B7%E5%BE%84%E5%AD%A6%E4%B9%A0"><span class="nav-number">4.1.3.</span> <span class="nav-text">通过极限模型分析捷径学习</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%9D%A2%E5%90%91OOD%E7%9A%84%E6%B5%8B%E8%AF%95%E6%95%B0%E6%8D%AE%E9%9B%86"><span class="nav-number">4.2.</span> <span class="nav-text">面向OOD的测试数据集</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%B0%86OOD%E6%A3%80%E6%B5%8B%E4%BD%9C%E4%B8%BA%E8%83%BD%E5%8A%9B%E6%A3%80%E6%B5%8B%E7%9A%84%E6%A0%87%E5%87%86"><span class="nav-number">4.2.1.</span> <span class="nav-text">将OOD检测作为能力检测的标准</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E8%AE%BE%E8%AE%A1%E4%B8%80%E4%B8%AA%E5%A5%BD%E7%9A%84OOD%E6%95%B0%E6%8D%AE%E9%9B%86"><span class="nav-number">4.2.2.</span> <span class="nav-text">设计一个好的OOD数据集</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E4%BC%9A%E5%AD%A6%E4%B9%A0%E4%BC%9A%E5%8F%98%E6%88%90%E6%95%8F%E6%8D%B7%E5%AD%A6%E4%B9%A0"><span class="nav-number">4.3.</span> <span class="nav-text">为什么会学习会变成敏捷学习</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%9C%80%E5%B0%8F%E5%8A%AA%E5%8A%9B%E5%8E%9F%E5%88%99"><span class="nav-number">4.3.1.</span> <span class="nav-text">最小努力原则</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E7%90%86%E8%A7%A3%E5%BD%92%E7%BA%B3%E5%81%8F%E5%B7%AE%E7%9A%84%E5%BD%B1%E5%93%8D"><span class="nav-number">4.3.2.</span> <span class="nav-text">理解归纳偏差的影响</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E4%BC%98%E5%8C%96%E6%95%8F%E6%8D%B7%E5%AD%A6%E4%B9%A0"><span class="nav-number">5.</span> <span class="nav-text">如何优化敏捷学习</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%A0%94%E7%A9%B6%E9%A2%86%E5%9F%9F%E7%9A%84%E5%85%88%E9%AA%8C%E7%9F%A5%E8%AF%86"><span class="nav-number">5.1.</span> <span class="nav-text">研究领域的先验知识</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AF%B9%E6%8A%97%E6%A0%B7%E6%9C%AC%E5%92%8C%E9%B2%81%E6%A3%92%E6%80%A7"><span class="nav-number">5.2.</span> <span class="nav-text">对抗样本和鲁棒性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%80%82%E5%BA%94%E6%A0%B7%E6%9C%AC%E5%88%86%E5%B8%83"><span class="nav-number">5.3.</span> <span class="nav-text">适应样本分布</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A0%B7%E6%9C%AC%E5%9D%87%E8%A1%A1"><span class="nav-number">5.4.</span> <span class="nav-text">样本均衡</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%85%83%E5%AD%A6%E4%B9%A0"><span class="nav-number">5.5.</span> <span class="nav-text">元学习</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%94%9F%E6%88%90%E5%BC%8F%E5%BB%BA%E6%A8%A1%E5%92%8C%E8%A7%A3%E8%80%A6"><span class="nav-number">5.6.</span> <span class="nav-text">生成式建模和解耦</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BB%93%E8%AE%BA"><span class="nav-number">6.</span> <span class="nav-text">结论</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Yoo Shen</p>
+  <div class="site-description" itemprop="description">学习、记录、分享</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">28</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/sidney-neu" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;sidney-neu" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://sidney-neu.github.io/2022/04/03/%E8%AE%BA%E6%96%87%E5%AD%A6%E4%B9%A0-Shortcut-Learning-in-Deep-Neural-Networks/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Yoo Shen">
+      <meta itemprop="description" content="学习、记录、分享">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Yoo shen的博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          论文学习-Shortcut-Learning-in-Deep-Neural-Networks
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-04-03 17:22:00" itemprop="dateCreated datePublished" datetime="2022-04-03T17:22:00+08:00">2022-04-03</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-04-07 10:20:43" itemprop="dateModified" datetime="2022-04-07T10:20:43+08:00">2022-04-07</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E8%AE%BA%E6%96%87%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">-论文学习</span></a>
+        </span>
+    </span>
+
+  
+    <span id="/2022/04/03/%E8%AE%BA%E6%96%87%E5%AD%A6%E4%B9%A0-Shortcut-Learning-in-Deep-Neural-Networks/" class="post-meta-item leancloud_visitors" data-flag-title="论文学习-Shortcut-Learning-in-Deep-Neural-Networks" title="阅读次数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span class="leancloud-visitors-count"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>论文名称：Shortcut Learning in Deep Neural Networks</p>
+<p>论文下载地址：<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2004.07780v3.pdf">https://arxiv.org/pdf/2004.07780v3.pdf</a></p>
+<p>黑色文字：文中观点</p>
+<p>红色文字：笔者观点</p>
+<h3 id="深度学习没有捷径可走"><a href="#深度学习没有捷径可走" class="headerlink" title="深度学习没有捷径可走"></a>深度学习没有捷径可走</h3><p>深度学习因为其优异的学习能力，是人工智能中当之无愧的主力军。深度学习在NLP和CV等领域都得到了很好的应用。但是深度学习统一存在一个无法忽视的问题：捷径学习。这种捷径的具体表现是在标准数据集中表现优异，但是在更具挑战性的测试条件下表现就会大打折扣。基于这种情况论文一系列关于模型解释和基准测试的建议，以提高深度学习模型在实际场景中的可用性。</p>
+<p>数学和物理等理论经过多个世纪的研究，已经有了很个经得住实际情况考验并且完全自洽的理论体系，但是深度学习的研究才刚刚兴起，因此并没有形成理论和原则。<font color=Tomato>因此很多时候深度学习的检测能力都是在一定数据集上进行检测指标的量化，这种结果导向的行为有些时候确实体现了模型的检测能力，但同时与当前所使用的数据集深深绑定。</font></p>
+<p><img src="/../images/%E8%AE%BA%E6%96%87%E5%AD%A6%E4%B9%A0-Shortcut-Learning-in-Deep-Neural-Networks/image-20220330234901368.png" alt="捷径学习示例"></p>
+<p>深度学习的检测能力在达到人类的水平的同时也出现了图1中所显示的问题，第一个图中将绿色的山坡识别为放牧的羊，第二个图中识别出了茶壶，第三个图中深度学习无法识别肺炎，因为模型主要关注的特征是右上角的医院标识信息。第四个图中因为加入无关信息导致模型无法回答问题，因为模型主要关注的特征是一段文字中的最后一句话。</p>
+<p>随着深度学习在各个领域的应用，这种实际的问题让研究人员开始思考：深度学习什么时候可以发挥作用，当模型检测失败的时候，我们需要知道为什么？<font color=Tomato>这也是深度学习因为不可解释性的一个明显问题，当深度学习检测出现错误时，就很难反推失败原因，而这时候以结果为导向的特性和黑盒的特性并不能为纠正错误提供帮助。</font></p>
+<p>通过分析如图1中大量深度学习失败的案例，很多时候深度学的检测能力是超过人类本身的，但是有些时候对输入数据进行细小或者说人眼难以发现的修改，就会导致很大程度的影响检测结果。举例来说在人脸识别中，如果对图像进行镜面对称处理，这些经过镜面对称处理的图像就会使模型产生大量的误判。<font color=Tomato>这种微小的修改导致模型检测结果严重失准的特点也催生了一个针对深度学习的攻击行为：对抗攻击。</font></p>
+<p>捷径学习是所有学习过程中都存在的，无论是动物还是深度学习模型。比如说你熟读《水浒传》对小说里面的任务性格和故事都了如指掌。但是有一天有一个老师问你：水浒传中108将一共说了多少句脏话？这一下就难住了你了，因为你学习的《水浒传》内容与考试内容完全不相关。</p>
+<p>捷径的定义是决策规则的分类。图2对结晶学习进行一个简单的举例，人类的学习的知识是方块中的图形，而神经网络学习的就可能是方块中图形的位置。神经网络关于位置信息的学习在有限的测试集中效果很好，但是更换了测试集后就会出现大量的误报。<font color=Tomato>捷径学习在深度学习中并不是一个新生的现象，作为原生特点，结晶学习的问题一直存在，只是在与传统机器学习方法的比较中被忽视了，并且在还没有走入工程化应用的研究阶段没有充分暴露出来。</font></p>
+<p><img src="/../images/%E8%AE%BA%E6%96%87%E5%AD%A6%E4%B9%A0-Shortcut-Learning-in-Deep-Neural-Networks/image-20220331002429151.png" alt="IID与OOD"></p>
+<p>这对这种情况，论文对模型对应的数据分布和特征权重进行了分析，结果如图3所示。可以看出不同的数据集会训练出不同的模型，并且检测模型在整个的数据分布中有明显的局限性。并且对比了不同数据集中的特征情况，这也很好的解释了模型在新的场景下新测试集检测结果糟糕的原因-给错误的特征以过高的权重。</p>
+<p><img src="/../images/%E8%AE%BA%E6%96%87%E5%AD%A6%E4%B9%A0-Shortcut-Learning-in-Deep-Neural-Networks/image-20220331003342150.png" alt="数据分布与特征对模型的影响"></p>
+<h3 id="捷径学习是如何形成的"><a href="#捷径学习是如何形成的" class="headerlink" title="捷径学习是如何形成的"></a>捷径学习是如何形成的</h3><p>那么捷径学习是从何而来？为了缓解捷径学习如何缓解呢？第一种就是来自捷径特征，第二个是来自判别模型。二者在影响捷径学习的同时也在影响机器学习模型是否能脱离研究环境的重要因素。</p>
+<h4 id="数据中的捷径因素"><a href="#数据中的捷径因素" class="headerlink" title="数据中的捷径因素"></a>数据中的捷径因素</h4><p><img src="/../images/%E8%AE%BA%E6%96%87%E5%AD%A6%E4%B9%A0-Shortcut-Learning-in-Deep-Neural-Networks/%E5%8B%87%E6%95%A2%E7%89%9B%E7%89%9B.jpg" alt="勇敢牛牛"></p>
+<p>深度学习模型在训练的过程中，如果背景信息都是一样的，那么这些背景信息也会成为目标识别的重要特征。举例来说一个深度学习模型被训练来检测牛，但是这些牛都是在草原中 ，换句话说训练牛的数据集的背景信息都是蓝天绿草，而不是沙滩、海水等其他背景信息。这也就会导致蓝天绿草相对于沙滩海水有着更大的特征权重。在论文XXX中这种有问题的机器学习算法问题也被叫做数据偏差（dataset biases）。<font color=Tomato>即使在大数据的情况下数据的捷径因素依然存在，因为这不是数据的规模问题，而是数据产生的场景本身存在局限性。举例来说你在草原上无论拍多少张牛的照片，依然无法解决蓝天绿草的背景特征问题。这种训练数据集的有限性无法体现场景的实际数据分布，因此产生盲人摸象的效果。</font>                                                                                                                   </p>
+<h4 id="判别算法中的捷径因素"><a href="#判别算法中的捷径因素" class="headerlink" title="判别算法中的捷径因素"></a>判别算法中的捷径因素</h4><p><img src="/../images/%E8%AE%BA%E6%96%87%E5%AD%A6%E4%B9%A0-Shortcut-Learning-in-Deep-Neural-Networks/20190822172914544.png" alt="五种不同特征在多个算法中的检测结果"></p>
+<p>根据论文<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1811.12231.pdf">ImageNet-trained CNNs are biased towards texture; increasing shape bias improves accuracy</a>，以及github代码路径<a target="_blank" rel="noopener" href="https://github.com/rgeirhos/texture-vs-shape">https://github.com/rgeirhos/texture-vs-shape</a>。</p>
+<p>由上面的论文中可以看出纹理特征的检测结果非常好，因此在CNN的各种卷积操作中，纹理特征获得权重也会更大，更重要的是，在端到端的训练工程中，这种纹理特征的权重是算法自己训练得出的，并非人类强加给深度学习模型的。但是这与人类视觉观察判断是不是猫存在明显不同，人眼会很重视目标的物体的外部轮廓特征，与此同时忽略了其他的重要特征信息。因此深度学习模型因为对纹理特征的较大权重，就导致对某些图片的误判，例如下面的这个猫就被识别成了大象。</p>
+<p><img src="/../images/%E8%AE%BA%E6%96%87%E5%AD%A6%E4%B9%A0-Shortcut-Learning-in-Deep-Neural-Networks/image-20220403103308129.png" alt="大象还是猫"></p>
+<p>在不同的场景下，这种情况存在十分普遍，如下图所示。</p>
+<p><img src="/../images/%E8%AE%BA%E6%96%87%E5%AD%A6%E4%B9%A0-Shortcut-Learning-in-Deep-Neural-Networks/image-20220403103726550.png" alt="深度学习算法的捷径因素导致误判"></p>
+<h3 id="深度学习中的捷径学习"><a href="#深度学习中的捷径学习" class="headerlink" title="深度学习中的捷径学习"></a>深度学习中的捷径学习</h3><p>捷径学习在深度学习的多个场景下广泛存在：例如CV、NLP、增强学习、推荐系统等多个方面.</p>
+<h3 id="理解和诊断捷径学习"><a href="#理解和诊断捷径学习" class="headerlink" title="理解和诊断捷径学习"></a>理解和诊断捷径学习</h3><p>因为捷径学习一直存在，因此针对捷径学习的研究一直存在，答案是没有形成体系，接下来主要理解和诊断捷径学习。</p>
+<h4 id="诊断检测结果"><a href="#诊断检测结果" class="headerlink" title="诊断检测结果"></a>诊断检测结果</h4><h5 id="区分模型在测试集的检测能力和其真实潜力"><a href="#区分模型在测试集的检测能力和其真实潜力" class="headerlink" title="区分模型在测试集的检测能力和其真实潜力"></a>区分模型在测试集的检测能力和其真实潜力</h5><p>很多时候机器学习模型在IID上检测效果优异，但是在OOD中的性能很差。如果模型的在OOD的检测结果很好，那就说明模型的泛化能力较好，敏捷学习对该模型的影响较低。也就说模型在面对未知时是有潜力的。</p>
+<h5 id="机器学习中的摩根法则"><a href="#机器学习中的摩根法则" class="headerlink" title="机器学习中的摩根法则"></a>机器学习中的摩根法则</h5><p>有些观点认为神经网络是模拟动物神经网络的结构，但是我们不能倾向于神经网络的训练和测试的过程就是动物大脑的学习和应用的过程，这两者之间存在明显的区别。归纳来说就是类似人类的行为并不意味着类似人类的决策方式，在深度学习中，可以被捷径学习充分解释的情形就不要将其归纳为更高级的能力。</p>
+<h5 id="通过极限模型分析捷径学习"><a href="#通过极限模型分析捷径学习" class="headerlink" title="通过极限模型分析捷径学习"></a>通过极限模型分析捷径学习</h5><p>判断检测结果是否存在捷径学习，可以通过基线模型进行分析。可能基线模型和最终模型之间在检测能力上存在一些差异，但是通过基线模型也可以分析当前方法是否存在捷径学习的风险。最主要的一点，我们不能混淆检测检测模型在IID上的检测能力和在OOD上的检测能力。</p>
+<h4 id="面向OOD的测试数据集"><a href="#面向OOD的测试数据集" class="headerlink" title="面向OOD的测试数据集"></a>面向OOD的测试数据集</h4><h5 id="将OOD检测作为能力检测的标准"><a href="#将OOD检测作为能力检测的标准" class="headerlink" title="将OOD检测作为能力检测的标准"></a>将OOD检测作为能力检测的标准</h5><p>在评价模型的检测能力时，主要考虑模型对OOD的检测能力，不能考虑单纯参考IID的检测能力。</p>
+<h5 id="设计一个好的OOD数据集"><a href="#设计一个好的OOD数据集" class="headerlink" title="设计一个好的OOD数据集"></a>设计一个好的OOD数据集</h5><p>一个好的OOD数据集要有以下的条件，第一要有明确的分布变换，这种变化可以人为的区分也可以不是。第二，良好的OOD测试都应该存在让模型难以检测，比如在图像处理时，可以在OOD测试集的图像中添加一些白噪声。第三，测试数据集中可以包含训练中不包含的数据，也就是一些让模型难以检测的极具挑战的数据。以下是一些举例。</p>
+<p><img src="/../images/%E8%AE%BA%E6%96%87%E5%AD%A6%E4%B9%A0-Shortcut-Learning-in-Deep-Neural-Networks/image-20220403174856798.png" alt="OOD测试集举例"></p>
+<h4 id="为什么会学习会变成敏捷学习"><a href="#为什么会学习会变成敏捷学习" class="headerlink" title="为什么会学习会变成敏捷学习"></a>为什么会学习会变成敏捷学习</h4><h5 id="最小努力原则"><a href="#最小努力原则" class="headerlink" title="最小努力原则"></a>最小努力原则</h5><p>为什么机器学习这么容易造成敏捷学习呢？有一个最小努力原则，就是说话的时候大家都喜欢说更小的词汇，比如用phone代替mobilephone，用plane代替airplane。学习也是一样，会用最简单最直接的特征进行学习。</p>
+<p><img src="/../images/%E8%AE%BA%E6%96%87%E5%AD%A6%E4%B9%A0-Shortcut-Learning-in-Deep-Neural-Networks/image-20220403181226990.png" alt="最小努力原则举例"></p>
+<h5 id="理解归纳偏差的影响"><a href="#理解归纳偏差的影响" class="headerlink" title="理解归纳偏差的影响"></a>理解归纳偏差的影响</h5><p>机器学习的影响不仅仅依赖于数据，也会依赖机器学习算法的四个组成部分：架构、训练数据、损失函数、优化方法。通常训练过程从数据输入模型开始，这个模型包含固定的架构和随机的初始化参数，通过对比预测结果和ground truth，通过损失函数明确优化方向和预测的质量。综合这四个组成部分从算法层面明确了算法模型是否容易引起敏捷学习，而不是与其解决方案。</p>
+<h3 id="如何优化敏捷学习"><a href="#如何优化敏捷学习" class="headerlink" title="如何优化敏捷学习"></a>如何优化敏捷学习</h3><p>在整个机器学习过重，很难明确OOD的的泛化情况。由于对IID模型的过渡研究，就会导致明显的敏捷学习。接下来会提供一些优化敏捷学习的方法。</p>
+<h4 id="研究领域的先验知识"><a href="#研究领域的先验知识" class="headerlink" title="研究领域的先验知识"></a>研究领域的先验知识</h4><p>基于研究方向的先验知识，鼓励机器学习架构和数据增强的方法鼓励算法过于无关特征。可以通过白噪声或者切割、旋转增强检测模型在图像处检测中对无关特征的依赖。</p>
+<h4 id="对抗样本和鲁棒性"><a href="#对抗样本和鲁棒性" class="headerlink" title="对抗样本和鲁棒性"></a>对抗样本和鲁棒性</h4><p>通过对抗样本可以优化模型的泛化能力，对抗样本可以理解为模型中弱点。通过对抗样本测试模型，可以优化模型的泛化能力。</p>
+<h4 id="适应样本分布"><a href="#适应样本分布" class="headerlink" title="适应样本分布"></a>适应样本分布</h4><p>通常在训练过程后模型会模拟数据分布情况。对于模型，明确模型模拟的数据分布以外的数据泛化能力。</p>
+<h4 id="样本均衡"><a href="#样本均衡" class="headerlink" title="样本均衡"></a>样本均衡</h4><p>由于数据样本存在数据不均衡的情况，并且模型也会因为样本数据的不均衡会忽略样本较少的数据分布，因此需要通过数据增强或者算法优化实现对不同数据分布的公平处理。</p>
+<h4 id="元学习"><a href="#元学习" class="headerlink" title="元学习"></a>元学习</h4><p>我的理解元学习就是迁移学习，先训练一个模型使其拥有学习的能力，再用这个模型去学习另外一个问题。</p>
+<h4 id="生成式建模和解耦"><a href="#生成式建模和解耦" class="headerlink" title="生成式建模和解耦"></a>生成式建模和解耦</h4><p>分析模型检测结果，明确数据特征与检测结果之间的关系，目标就是在通过独立的因果机制从观察中回复数据分布的真实原因，这些信息主要是通过分析模型对不同特征的权重获得的。</p>
+<h3 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h3><p>1.敏捷学习无处不在，只能缓解不能去除。</p>
+<p>2.应对敏捷学习需要认真分析检测结果。</p>
+<p>3.检测模型的能力，需要构建合理的OOD测试集。</p>
+<p>4.对模型的理解会让其更好的学习，这个理解需要包括算法架构（结构）、数据（经验）、损失函数（目标）、优化方法（学习）。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="reward-container">
+  <div>感谢支持，鼓励成就原创！</div>
+  <button>
+    赞赏
+  </button>
+  <div class="post-reward">
+      <div>
+        <img src="/images/wc.jpg" alt="Yoo Shen 微信">
+        <span>微信</span>
+      </div>
+      <div>
+        <img src="/images/zfb.jpg" alt="Yoo Shen 支付宝">
+        <span>支付宝</span>
+      </div>
+
+  </div>
+</div>
+
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>Yoo Shen
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://sidney-neu.github.io/2022/04/03/%E8%AE%BA%E6%96%87%E5%AD%A6%E4%B9%A0-Shortcut-Learning-in-Deep-Neural-Networks/" title="论文学习-Shortcut-Learning-in-Deep-Neural-Networks">https://sidney-neu.github.io/2022/04/03/论文学习-Shortcut-Learning-in-Deep-Neural-Networks/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2022/03/29/Makefile%E6%95%99%E7%A8%8B/" rel="prev" title="Makefile教程">
+                  <i class="fa fa-chevron-left"></i> Makefile教程
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2022/04/07/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95-%E5%86%B3%E7%AD%96%E6%A0%91/" rel="next" title="机器学习算法-决策树">
+                  机器学习算法-决策树 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments gitalk-container"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Yoo Shen</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/next-boot.js"></script>
+
+  
+<script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.0/dist/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+
+
+  <script class="next-config" data-name="leancloud_visitors" type="application/json">{"enable":true,"app_id":"nG09szIvM8x9ehgslCULWzg2-MdYXbMMI","app_key":"yHykoRL88ikgLTqsUC0xIMvY","server_url":null,"security":false}</script>
+  <script src="/js/third-party/statistics/lean-analytics.js"></script>
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
+
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"sidney-neu","repo":"sidney-neu.github.io","client_id":"04c1120504d2e421fa7d","client_secret":"389710c48c007c80cfbb7b9788d01e674ab31c00","admin_user":"sidney-neu","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":"zh-CN","js":{"url":"https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js","integrity":"sha256-Pmj85ojLaPOWwRtlMJwmezB/Qg8BzvJp5eTzvXaYAfA="},"path_md5":"11410676ea772154d7a4397e502f0788"}</script>
+<script src="/js/third-party/comments/gitalk.js"></script>
+
+</body>
+</html>

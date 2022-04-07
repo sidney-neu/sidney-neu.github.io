@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.0.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"sidney-neu.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.8.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":{"gitalk":{"order":-1}},"activeClass":"gitalk"},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.json","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+<meta name="description" content="微服务微服务架构非常适合并发量大或者是业务复杂的场景，微服务的核心是高内聚、低耦合。将独立的大项目拆分成一个一个的服务，每个服务可以独立的开发、测试、构建、部署。微服务最大的好处是降低单个系统复杂性。为了能够顺利的进行微服务开发设计，首先需要了解明确微服务的组件与开发规范。 开发规范根据云原生的特点，微服务架构的核心就是拆分功能服务。 但是不同的服务是由不同的开发团队负责，如果大家都按照自己的开发">
+<meta property="og:type" content="article">
+<meta property="og:title" content="创建一个简单的微服务之一(微服务组件介绍)">
+<meta property="og:url" content="https://sidney-neu.github.io/2022/03/12/%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95%E7%9A%84%E5%BE%AE%E6%9C%8D%E5%8A%A1%E4%B9%8B%E4%B8%80(%E5%BE%AE%E6%9C%8D%E5%8A%A1%E7%BB%84%E4%BB%B6%E4%BB%8B%E7%BB%8D)/index.html">
+<meta property="og:site_name" content="Yoo shen的博客">
+<meta property="og:description" content="微服务微服务架构非常适合并发量大或者是业务复杂的场景，微服务的核心是高内聚、低耦合。将独立的大项目拆分成一个一个的服务，每个服务可以独立的开发、测试、构建、部署。微服务最大的好处是降低单个系统复杂性。为了能够顺利的进行微服务开发设计，首先需要了解明确微服务的组件与开发规范。 开发规范根据云原生的特点，微服务架构的核心就是拆分功能服务。 但是不同的服务是由不同的开发团队负责，如果大家都按照自己的开发">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-03-12T15:57:00.000Z">
+<meta property="article:modified_time" content="2022-03-30T09:45:30.861Z">
+<meta property="article:author" content="Yoo Shen">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://sidney-neu.github.io/2022/03/12/%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95%E7%9A%84%E5%BE%AE%E6%9C%8D%E5%8A%A1%E4%B9%8B%E4%B8%80(%E5%BE%AE%E6%9C%8D%E5%8A%A1%E7%BB%84%E4%BB%B6%E4%BB%8B%E7%BB%8D)/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://sidney-neu.github.io/2022/03/12/%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95%E7%9A%84%E5%BE%AE%E6%9C%8D%E5%8A%A1%E4%B9%8B%E4%B8%80(%E5%BE%AE%E6%9C%8D%E5%8A%A1%E7%BB%84%E4%BB%B6%E4%BB%8B%E7%BB%8D)/","path":"2022/03/12/创建一个简单的微服务之一(微服务组件介绍)/","title":"创建一个简单的微服务之一(微服务组件介绍)"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>创建一个简单的微服务之一(微服务组件介绍) | Yoo shen的博客</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Yoo shen的博客</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">sy071600sy@163.com</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">17</span></a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">28</span></a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%BE%AE%E6%9C%8D%E5%8A%A1"><span class="nav-number">1.</span> <span class="nav-text">微服务</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%80%E5%8F%91%E8%A7%84%E8%8C%83"><span class="nav-number">1.1.</span> <span class="nav-text">开发规范</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8E%A5%E5%8F%A3%E8%A7%84%E8%8C%83"><span class="nav-number">1.2.</span> <span class="nav-text">接口规范</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Flask%E6%A1%86%E6%9E%B6"><span class="nav-number">1.3.</span> <span class="nav-text">Flask框架</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Flask-%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%A1%86%E6%9E%B6"><span class="nav-number">1.4.</span> <span class="nav-text">Flask 微服务框架</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E8%B7%AF%E5%BE%84%E5%8F%8A%E5%85%B6%E5%90%AB%E4%B9%89%EF%BC%9A"><span class="nav-number">1.4.1.</span> <span class="nav-text">代码路径及其含义：</span></a></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Yoo Shen</p>
+  <div class="site-description" itemprop="description">学习、记录、分享</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">28</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/sidney-neu" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;sidney-neu" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://sidney-neu.github.io/2022/03/12/%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95%E7%9A%84%E5%BE%AE%E6%9C%8D%E5%8A%A1%E4%B9%8B%E4%B8%80(%E5%BE%AE%E6%9C%8D%E5%8A%A1%E7%BB%84%E4%BB%B6%E4%BB%8B%E7%BB%8D)/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Yoo Shen">
+      <meta itemprop="description" content="学习、记录、分享">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Yoo shen的博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          创建一个简单的微服务之一(微服务组件介绍)
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-03-12 23:57:00" itemprop="dateCreated datePublished" datetime="2022-03-12T23:57:00+08:00">2022-03-12</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-03-30 17:45:30" itemprop="dateModified" datetime="2022-03-30T17:45:30+08:00">2022-03-30</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E4%BA%91%E5%8E%9F%E7%94%9F-%E5%BE%AE%E6%9C%8D%E5%8A%A1/" itemprop="url" rel="index"><span itemprop="name">-云原生 -微服务</span></a>
+        </span>
+    </span>
+
+  
+    <span id="/2022/03/12/%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95%E7%9A%84%E5%BE%AE%E6%9C%8D%E5%8A%A1%E4%B9%8B%E4%B8%80(%E5%BE%AE%E6%9C%8D%E5%8A%A1%E7%BB%84%E4%BB%B6%E4%BB%8B%E7%BB%8D)/" class="post-meta-item leancloud_visitors" data-flag-title="创建一个简单的微服务之一(微服务组件介绍)" title="阅读次数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span class="leancloud-visitors-count"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1 id="微服务"><a href="#微服务" class="headerlink" title="微服务"></a>微服务</h1><p>微服务架构非常适合并发量大或者是业务复杂的场景，微服务的核心是高内聚、低耦合。将独立的大项目拆分成一个一个的服务，每个服务可以独立的开发、测试、构建、部署。微服务最大的好处是降低单个系统复杂性。为了能够顺利的进行微服务开发设计，首先需要了解明确微服务的组件与开发规范。</p>
+<h2 id="开发规范"><a href="#开发规范" class="headerlink" title="开发规范"></a>开发规范</h2><p>根据云原生的特点，微服务架构的核心就是拆分功能服务。</p>
+<p>但是不同的服务是由不同的开发团队负责，如果大家都按照自己的开发方式就会导致服务之间难以协同，微服务对开发成员之间的配合是有要求的，因此需要共同遵守同一个规范，本博客系列主要介绍以 <code>Python</code> 编程语言作为开发主语言，并介绍相关规范，各个厂商都有自己编码规范，大家可以作为参考。PEP8 是 Python 官方给定的标准编码规范，要求非常严格。但在团队正常开发中，如果所有人都严格的完全遵守 <code>PEP8</code>，对代码各种吹毛求疵，反而效率会变低。一般大家都会对在代码规范和开发效率中寻找平衡。这里推荐一份gitee<a target="_blank" rel="noopener" href="https://gitee.com/GeekDot/microservice-model/blob/master/doc/%E5%9B%A2%E9%98%9F%E7%BC%96%E7%A0%81%E8%A7%84%E8%8C%83.md">python编码规范</a>给大家。</p>
+<h2 id="接口规范"><a href="#接口规范" class="headerlink" title="接口规范"></a>接口规范</h2><p>除了编码规范以外，其实还有很多规范。微服务对外提供数据通常是以 API的方式提供，由于微服务之间以及微服务对外都有很多的数据交互，因此需要定义接口开发规范。接口开发的设计规范有很多，因为很多应用场景中服务需要通过网络对外提供服务，为了提高和网络的通用性，一般常用的 <a target="_blank" rel="noopener" href="https://www.jitao.tech/books/http-api-book/">HTTP 接口设计</a> 适合一般的架构。微服务通常都采用 <a target="_blank" rel="noopener" href="https://restfulapi.cn/">RESTful API 架构设计</a>，笔者相关微服务的应用中也会是完全遵循RESTful API架构设计思想和开发规范。数据传输采用Json的方法，当然也可以采用常见的数据传输格式有 XML、YAML或者是自定义数据格式。</p>
+<h2 id="Flask框架"><a href="#Flask框架" class="headerlink" title="Flask框架"></a>Flask框架</h2><p>本项目采用的核心框架是 Flask。Flask是Python的 Web开发框架，相比其他的框架如 Django具有轻量、快速、解耦合、无限制等优势。除了核心框架以外， Flask 还提供了相当庞大的组件库供你选择，本项目用到的重要组件有以下几个：Flask-RESTPlus 组件]、Flask-SQLAlchemy 组件、Flask-Script 组件、Flask-Migrate 组件。其中 Flask-RESTPlus&#96;组件是我们重点研究学习的组件，因为可以对微服务传输的RestAPI信息进行解析。除了上述几个主要的组件之外，还有很多辅助组件和依赖主键，这些组件可通过 <a href="https://gitee.com/link?target=https://palletsprojects.com/p/flask/">Flask 官网</a>、<a href="https://gitee.com/link?target=https://github.com/pallets/flask">Flask GitHub</a> 、<a href="https://gitee.com/link?target=https://pypi.org/">PyPi</a> 等网站自行查阅。</p>
+<h2 id="Flask-微服务框架"><a href="#Flask-微服务框架" class="headerlink" title="Flask 微服务框架"></a>Flask 微服务框架</h2><p>根据Flask和Flask-RESTPlus我们就可以开发微服务了。但是Flask由于是很灵活的微内核框架，每个项目的目录结构、目录层级、代码编排、依赖关系、架构设计等都是千差万别的。</p>
+<p>那么有没有一款类似Django或者是Vue的脚手架工具，一键生成我们需要的目录结构呢？很遗憾，到目前从市面上还没有找到。</p>
+<p>虽然还没有类似的轮子，但是我们可以自己造啊。经过长时间实际项目开发和经验积累，逐渐摸索出一套架构设计精巧、目录层次合理的框架，<a target="_blank" rel="noopener" href="https://gitee.com/GeekDot/microservice-model/blob/master/doc/Flask%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%A1%86%E6%9E%B6.md">Flask 微服务框架</a>（Flask microservices frame）简称FMSF。</p>
+<p>FMSF几乎涵盖了在开发过程中能遇到的所有问题，为了对FMSF能有清晰的认识，下列列出几项有关FMSF亮点：</p>
+<ul>
+<li>有着清晰的目录结构、目录层级、代码编排、依赖关系、架构设计等。</li>
+<li>具有四套环境（开发环境、测试环境、生成环境、单元测试），项目配置可通过环境变量进行自动配置，无需改动任何代码。</li>
+<li>扩展能力强，不受限于Flask的约束，可定制扩展项。</li>
+<li>开发速度快，将复杂繁琐的RESTful协议封装在底层，工程师无需了解底层的每个细节，只需要关注具体业务服务即可。</li>
+<li>详细的文档教程、代码详解、测试用例、设计思想和生命周期流程图。</li>
+</ul>
+<h3 id="代码路径及其含义："><a href="#代码路径及其含义：" class="headerlink" title="代码路径及其含义："></a>代码路径及其含义：</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">microservice-model</span><br><span class="line">├── README.md	#项目的说明文档或入门手册</span><br><span class="line">├── app	#微服务的核心功能</span><br><span class="line">│   ├── __init__.py	</span><br><span class="line">│   ├── api #不同路由路径下的不同功能</span><br><span class="line">│   │   └── ai_example</span><br><span class="line">│   │       └── example.py</span><br><span class="line">│   ├── config #配置路径</span><br><span class="line">│   │   ├── log_config.py</span><br><span class="line">│   │   └── other config py files</span><br><span class="line">│   ├── logs	#日志存储路径</span><br><span class="line">│   │   ├── ml_info.log</span><br><span class="line">│   │   └── other log files</span><br><span class="line">│   ├── modules	#不同功能的代码实现路径，包括基础功能和测试功能</span><br><span class="line">│   │   ├── ai_example</span><br><span class="line">│   │   │   └── example.py</span><br><span class="line">│   │   ├── base</span><br><span class="line">│   │   │   └── to do</span><br><span class="line">│   │   └── test</span><br><span class="line">│   │   │   └── to do</span><br><span class="line">│   ├── route	#路由配置路径</span><br><span class="line">│   │   └── __init__.py</span><br><span class="line">│   └── utils	#lib以及其他公用代码路径</span><br><span class="line">│       └── __init__.py</span><br><span class="line">├── manage.py	#服务启动代码</span><br><span class="line">├── gun.py 	#多进程启动代码</span><br><span class="line">└── requirements.txt	#依赖配置代码</span><br></pre></td></tr></table></figure>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="reward-container">
+  <div>感谢支持，鼓励成就原创！</div>
+  <button>
+    赞赏
+  </button>
+  <div class="post-reward">
+      <div>
+        <img src="/images/wc.jpg" alt="Yoo Shen 微信">
+        <span>微信</span>
+      </div>
+      <div>
+        <img src="/images/zfb.jpg" alt="Yoo Shen 支付宝">
+        <span>支付宝</span>
+      </div>
+
+  </div>
+</div>
+
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>Yoo Shen
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://sidney-neu.github.io/2022/03/12/%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95%E7%9A%84%E5%BE%AE%E6%9C%8D%E5%8A%A1%E4%B9%8B%E4%B8%80(%E5%BE%AE%E6%9C%8D%E5%8A%A1%E7%BB%84%E4%BB%B6%E4%BB%8B%E7%BB%8D)/" title="创建一个简单的微服务之一(微服务组件介绍)">https://sidney-neu.github.io/2022/03/12/创建一个简单的微服务之一(微服务组件介绍)/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2022/03/12/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E7%AE%80%E4%BB%8B/" rel="prev" title="微服务简介">
+                  <i class="fa fa-chevron-left"></i> 微服务简介
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2022/03/19/Docker%E5%AE%89%E8%A3%85/" rel="next" title="Docker安装">
+                  Docker安装 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments gitalk-container"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Yoo Shen</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/next-boot.js"></script>
+
+  
+<script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.0/dist/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+
+
+  <script class="next-config" data-name="leancloud_visitors" type="application/json">{"enable":true,"app_id":"nG09szIvM8x9ehgslCULWzg2-MdYXbMMI","app_key":"yHykoRL88ikgLTqsUC0xIMvY","server_url":null,"security":false}</script>
+  <script src="/js/third-party/statistics/lean-analytics.js"></script>
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
+
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"sidney-neu","repo":"sidney-neu.github.io","client_id":"04c1120504d2e421fa7d","client_secret":"389710c48c007c80cfbb7b9788d01e674ab31c00","admin_user":"sidney-neu","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":"zh-CN","js":{"url":"https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js","integrity":"sha256-Pmj85ojLaPOWwRtlMJwmezB/Qg8BzvJp5eTzvXaYAfA="},"path_md5":"3920c483369a28579301e939d2b8074e"}</script>
+<script src="/js/third-party/comments/gitalk.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.0.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"sidney-neu.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.8.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":{"gitalk":{"order":-1}},"activeClass":"gitalk"},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.json","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+<meta name="description" content="什么是渗透测试渗透测试是指测试者模拟攻击者使用的漏洞技术和攻击方法，对网络目标、系统、主机、应用的安全性做出按图案探测，发现系统中脆弱的环节。渗透测试一般需要对目标系统进行主动的探测分析，发现潜在的漏洞，包括但不限于不恰当的系统配置、已知或者未知的软硬件漏洞、以及在安全计划与响应过程中的操作性弱点等，甚至暴露在开源环境下的社工信息等。 渗透测试的分类针对渗透测试人员对被渗透测试目标的熟悉程度，渗透">
+<meta property="og:type" content="article">
+<meta property="og:title" content="渗透测试初探">
+<meta property="og:url" content="https://sidney-neu.github.io/2022/03/05/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/index.html">
+<meta property="og:site_name" content="Yoo shen的博客">
+<meta property="og:description" content="什么是渗透测试渗透测试是指测试者模拟攻击者使用的漏洞技术和攻击方法，对网络目标、系统、主机、应用的安全性做出按图案探测，发现系统中脆弱的环节。渗透测试一般需要对目标系统进行主动的探测分析，发现潜在的漏洞，包括但不限于不恰当的系统配置、已知或者未知的软硬件漏洞、以及在安全计划与响应过程中的操作性弱点等，甚至暴露在开源环境下的社工信息等。 渗透测试的分类针对渗透测试人员对被渗透测试目标的熟悉程度，渗透">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://sidney-neu.github.io/images/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/16331557-70700231f24367c2.png">
+<meta property="og:image" content="https://sidney-neu.github.io/images/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/16331557-3d358a7ade200651.png">
+<meta property="og:image" content="https://sidney-neu.github.io/images/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/16331557-8398c1d1436c5b8a.png">
+<meta property="og:image" content="https://sidney-neu.github.io/images/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/16331557-0f7487c511fb589a.png">
+<meta property="og:image" content="https://sidney-neu.github.io/images/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/16331557-badad40ad32e9c61.png">
+<meta property="og:image" content="https://sidney-neu.github.io/images/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/16331557-273c0b01fd1eee17.png">
+<meta property="og:image" content="https://sidney-neu.github.io/images/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/16331557-04ad3fc656c71420.png">
+<meta property="og:image" content="https://sidney-neu.github.io/images/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/16331557-6837d49e474dc7b3.png">
+<meta property="og:image" content="https://sidney-neu.github.io/images/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/16331557-9760b9c3975f6235.png">
+<meta property="og:image" content="https://sidney-neu.github.io/images/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/16331557-68b6fcb0fc4291c2.png">
+<meta property="og:image" content="https://sidney-neu.github.io/images/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/16331557-417732fcac44beb3.png">
+<meta property="og:image" content="https://sidney-neu.github.io/images/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/16331557-05ced0a08f59a553.png">
+<meta property="article:published_time" content="2022-03-05T09:05:00.000Z">
+<meta property="article:modified_time" content="2022-03-30T09:45:30.866Z">
+<meta property="article:author" content="Yoo Shen">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://sidney-neu.github.io/images/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/16331557-70700231f24367c2.png">
+
+
+<link rel="canonical" href="https://sidney-neu.github.io/2022/03/05/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://sidney-neu.github.io/2022/03/05/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/","path":"2022/03/05/渗透测试/","title":"渗透测试初探"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>渗透测试初探 | Yoo shen的博客</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Yoo shen的博客</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">sy071600sy@163.com</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">17</span></a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">28</span></a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95"><span class="nav-number">1.</span> <span class="nav-text">什么是渗透测试</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E7%9A%84%E5%88%86%E7%B1%BB"><span class="nav-number">2.</span> <span class="nav-text">渗透测试的分类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E7%9A%84%E6%B5%81%E7%A8%8B"><span class="nav-number">3.</span> <span class="nav-text">渗透测试的流程</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%98%8E%E7%A1%AE%E9%9C%80%E6%B1%82"><span class="nav-number">3.1.</span> <span class="nav-text">明确需求</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86"><span class="nav-number">3.2.</span> <span class="nav-text">信息收集</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E8%A2%AB%E5%8A%A8%E6%94%B6%E9%9B%86"><span class="nav-number">3.2.1.</span> <span class="nav-text">被动收集</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#google-hacking"><span class="nav-number">3.2.1.1.</span> <span class="nav-text">google hacking</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#shodan%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E"><span class="nav-number">3.2.1.2.</span> <span class="nav-text">shodan搜索引擎</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%B8%BB%E5%8A%A8%E6%94%B6%E9%9B%86"><span class="nav-number">3.2.2.</span> <span class="nav-text">主动收集</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#nmap%E5%B7%A5%E5%85%B7"><span class="nav-number">3.2.2.1.</span> <span class="nav-text">nmap工具</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A8%81%E8%83%81%E5%BB%BA%E6%A8%A1"><span class="nav-number">3.3.</span> <span class="nav-text">威胁建模</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%BC%8F%E6%B4%9E%E5%88%86%E6%9E%90"><span class="nav-number">3.4.</span> <span class="nav-text">漏洞分析</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#nessus%E5%B7%A5%E5%85%B7"><span class="nav-number">3.4.1.</span> <span class="nav-text">nessus工具</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#AWVS%E5%B7%A5%E5%85%B7"><span class="nav-number">3.4.2.</span> <span class="nav-text">AWVS工具</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8"><span class="nav-number">3.5.</span> <span class="nav-text">漏洞利用</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Metasploit%E5%B7%A5%E5%85%B7"><span class="nav-number">3.5.1.</span> <span class="nav-text">Metasploit工具</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%B7%B1%E5%BA%A6%E5%88%A9%E7%94%A8"><span class="nav-number">3.6.</span> <span class="nav-text">深度利用</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#meterpreter%E5%B7%A5%E5%85%B7"><span class="nav-number">3.6.1.</span> <span class="nav-text">meterpreter工具</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B9%A6%E9%9D%A2%E6%8A%A5%E5%91%8A"><span class="nav-number">3.7.</span> <span class="nav-text">书面报告</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E6%90%AD%E5%BB%BA"><span class="nav-number">4.</span> <span class="nav-text">渗透测试搭建</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%94%BB%E5%87%BB%E5%B9%B3%E5%8F%B0"><span class="nav-number">4.1.</span> <span class="nav-text">攻击平台</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#KALI"><span class="nav-number">4.1.1.</span> <span class="nav-text">KALI</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%9D%B6%E6%9C%BA%E5%B9%B3%E5%8F%B0"><span class="nav-number">4.2.</span> <span class="nav-text">靶机平台</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#phpStudy-DVWA"><span class="nav-number">4.2.1.</span> <span class="nav-text">phpStudy+DVWA</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#phpStudy"><span class="nav-number">4.2.1.1.</span> <span class="nav-text">phpStudy</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#DVWA"><span class="nav-number">4.2.1.2.</span> <span class="nav-text">DVWA</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#vulhub"><span class="nav-number">4.2.2.</span> <span class="nav-text">vulhub</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#metasploitable"><span class="nav-number">4.2.3.</span> <span class="nav-text">metasploitable</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E5%AE%9E%E4%BE%8B-%E6%B0%B8%E6%81%92%E4%B9%8B%E8%93%9D"><span class="nav-number">5.</span> <span class="nav-text">渗透测试实例-永恒之蓝</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%A4%E6%96%AD%E9%9D%B6%E6%9C%BA%E6%98%AF%E5%90%A6%E5%9C%A8%E7%BA%BF"><span class="nav-number">5.1.</span> <span class="nav-text">判断靶机是否在线</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8B%E7%AB%AF%E5%8F%A3%E5%BC%80%E6%94%BE%E6%83%85%E5%86%B5"><span class="nav-number">5.2.</span> <span class="nav-text">查看端口开放情况</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%90%AF%E7%94%A8MSF"><span class="nav-number">5.3.</span> <span class="nav-text">启用MSF</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E6%94%BB%E5%87%BB%E6%A8%A1%E5%9D%97%E8%BF%9B%E8%A1%8C%E6%B8%97%E9%80%8F"><span class="nav-number">5.4.</span> <span class="nav-text">使用攻击模块进行渗透</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%89%A7%E8%A1%8Cexploit%E8%BF%9B%E8%A1%8C%E6%94%BB%E5%87%BB"><span class="nav-number">5.5.</span> <span class="nav-text">执行exploit进行攻击</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%8E%B7%E5%8F%96%E7%9B%AE%E6%A0%87%E7%9A%84shell"><span class="nav-number">5.6.</span> <span class="nav-text">获取目标的shell</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%AE%BE%E7%BD%AEpayload%E8%8E%B7%E5%8F%96meterpreter%E5%9B%9E%E6%98%BE"><span class="nav-number">5.7.</span> <span class="nav-text">设置payload获取meterpreter回显</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#background%E5%90%8E%E5%8F%B0%E6%89%A7%E8%A1%8C"><span class="nav-number">5.8.</span> <span class="nav-text">background后台执行</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%8E%B7%E5%8F%96%E7%94%A8%E6%88%B7%E7%9A%84%E5%93%88%E5%B8%8C"><span class="nav-number">5.9.</span> <span class="nav-text">获取用户的哈希</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E4%B8%8B%E8%BD%BD"><span class="nav-number">5.10.</span> <span class="nav-text">文件下载</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%8E%B7%E5%8F%96winscp%E7%9A%84%E8%B4%A6%E5%8F%B7%E5%92%8C%E5%AF%86%E7%A0%81"><span class="nav-number">5.11.</span> <span class="nav-text">获取winscp的账号和密码</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Yoo Shen</p>
+  <div class="site-description" itemprop="description">学习、记录、分享</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">28</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/sidney-neu" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;sidney-neu" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://sidney-neu.github.io/2022/03/05/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Yoo Shen">
+      <meta itemprop="description" content="学习、记录、分享">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Yoo shen的博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          渗透测试初探
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-03-05 17:05:00" itemprop="dateCreated datePublished" datetime="2022-03-05T17:05:00+08:00">2022-03-05</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-03-30 17:45:30" itemprop="dateModified" datetime="2022-03-30T17:45:30+08:00">2022-03-30</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8-%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/" itemprop="url" rel="index"><span itemprop="name">-网络安全 -渗透测试</span></a>
+        </span>
+    </span>
+
+  
+    <span id="/2022/03/05/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/" class="post-meta-item leancloud_visitors" data-flag-title="渗透测试初探" title="阅读次数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span class="leancloud-visitors-count"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h3 id="什么是渗透测试"><a href="#什么是渗透测试" class="headerlink" title="什么是渗透测试"></a>什么是渗透测试</h3><p>渗透测试是指测试者模拟攻击者使用的漏洞技术和攻击方法，对网络目标、系统、主机、应用的安全性做出按图案探测，发现系统中脆弱的环节。渗透测试一般需要对目标系统进行主动的探测分析，发现潜在的漏洞，包括但不限于不恰当的系统配置、已知或者未知的软硬件漏洞、以及在安全计划与响应过程中的操作性弱点等，甚至暴露在开源环境下的社工信息等。</p>
+<h3 id="渗透测试的分类"><a href="#渗透测试的分类" class="headerlink" title="渗透测试的分类"></a>渗透测试的分类</h3><p>针对渗透测试人员对被渗透测试目标的熟悉程度，渗透测试可以分为三种：</p>
+<p>第一种：白盒测试，明确和熟悉被渗透测试的内部环境和技术细节，对内网的拓扑、网络结构等信息十分明确，在这种情况下进行的渗透测试就是白盒测试，在对目标进行内网加固、安全评级等工作是会使用到白盒测试。</p>
+<p>第二种：灰盒测试，只知道目标的部分网络信息，并没有完全掌握网络内部的所有情况，例如关键部件的架构版本、所有的网络结构不被掌握下进行渗透测试。</p>
+<p>第三种：黑盒渗透，就是对渗透测试目标的信息一无所知的情况下进行渗透测试，例如HW行动就会使用黑盒渗透测试。</p>
+<h3 id="渗透测试的流程"><a href="#渗透测试的流程" class="headerlink" title="渗透测试的流程"></a>渗透测试的流程</h3><p>渗透测试执行标准(PenetrationTesting Executjion Standard),这个标准由渗透测试7个阶段的标准组成，可在任意环境中进行富有成果的渗透测试。它的官方网站详细介绍了具体测试方法，有兴趣的读者可访问 <a target="_blank" rel="noopener" href="https://www.pentest-standard.org/index.php/Main_Page">https://www.pentest-standard.org/index.php/Main_Page</a>。根据该标准，标准的渗透测试可以分为七个阶段，分别为;</p>
+<h4 id="明确需求"><a href="#明确需求" class="headerlink" title="明确需求"></a>明确需求</h4><p>参与渗透测试的安全人员和客户进行商定，确定渗透测试的目标，包括测试需求、测试时间、测试范围等；</p>
+<h4 id="信息收集"><a href="#信息收集" class="headerlink" title="信息收集"></a>信息收集</h4><p>通过被动扫描和主动探测、社工收集等方法，对网络目标、服务器、应用等信息进行收集，完成对渗透目标的初步了解，可以利用各种信息来源与收集技术方法，获取更多关于目标组织网络拓扑，系统配置与安全防御措施的信息。公开来源的信息查询，google hacking，社会工程学，网络踩点，扫描探测，被动监听，服务检查等；</p>
+<p>信息收集根据分类可以分为被动收集和主动收集两种：</p>
+<h5 id="被动收集"><a href="#被动收集" class="headerlink" title="被动收集"></a>被动收集</h5><p>被动收集是指在不和网络目标中的网络设备进行连接的情况下，通过第三方网站等公开渠道进行信息收集，这样做的好处是可以保证不再目标主机留下任何痕迹的情况下进行信息收集，不会有被目标发现并被放入黑名单的风险。</p>
+<h6 id="google-hacking"><a href="#google-hacking" class="headerlink" title="google hacking"></a>google hacking</h6><p>通过使用google搜索引擎中的高级操作符，在搜索结果中定位特定的文字操作符，以此来发现网站配置和计算机代码中的安全漏洞。常用的语法如下：</p>
+<table>
+<thead>
+<tr>
+<th>语法</th>
+<th>描述</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>filetype</td>
+<td>搜索文件的后缀名或拓展名（目前国内搜索引擎一般不支持）</td>
+<td>filetype:php</td>
+</tr>
+<tr>
+<td>allintitle</td>
+<td>搜索所有关键字组成标题的网页</td>
+<td>alltitle:后台登录 管理员</td>
+</tr>
+<tr>
+<td>site</td>
+<td>制定搜索域名</td>
+<td>site:baidu.com</td>
+</tr>
+<tr>
+<td>intext</td>
+<td>搜索网页内容包含的文字（内容包含的文字）</td>
+<td>intext:登录</td>
+</tr>
+<tr>
+<td>intitle</td>
+<td>搜索网页标题包含的文字</td>
+<td>intitle:教务处</td>
+</tr>
+<tr>
+<td>inurl</td>
+<td>搜索url中包含的文字</td>
+<td>inurl:Login</td>
+</tr>
+</tbody></table>
+<p>以上六种语法可以通过空格作为分隔符进行组合使用。并且以上语法支持以下的基本逻辑：</p>
+<p>​    逻辑与：and &amp;</p>
+<p>​    逻辑或： or  ||</p>
+<p>​    逻辑非： -</p>
+<p>​    完整匹配：”关键词” </p>
+<p>​    通配符：* ?</p>
+<p>一些用例可以参考以下链接：</p>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/142832509">https://zhuanlan.zhihu.com/p/142832509</a></p>
+<h6 id="shodan搜索引擎"><a href="#shodan搜索引擎" class="headerlink" title="shodan搜索引擎"></a>shodan搜索引擎</h6><p>shodan是一个搜索引擎，是一个主要面向网络专业人员的现在漏洞评估工具，他和百度、谷歌一类的搜索引擎存在明显不同，shodan主要用来搜索所有接入互联网的设备，通过shodan用户可以查找带有网络地址的特定类型的设备，例如交换机、路由器、摄像头、收集、平板、工控设备、核工业设备等。</p>
+<p>shodan与传统搜索引擎不同，它主要收集各类设备的banners信息进行审核并产生搜索结果，所谓的banners信息，实际上就是服务在查询时返回的信息块，根据响应信息的不同，Banners可以包含软件版本、安装日期、IP地址、服务类型等不同的信息快。</p>
+<p>shodan的基本语法如下：</p>
+<table>
+<thead>
+<tr>
+<th>语法</th>
+<th>描述</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>net</td>
+<td>搜索制定的IP地址或范围以及子网</td>
+<td>net:”100.100.100.0&#x2F;24”</td>
+</tr>
+<tr>
+<td>version</td>
+<td>搜索指定的版本信息</td>
+<td>version:”1.8.8”</td>
+</tr>
+<tr>
+<td>city</td>
+<td>搜索指定的城市</td>
+<td>city:”Shanghai”</td>
+</tr>
+<tr>
+<td>country</td>
+<td>搜索指定的国家</td>
+<td>country:”CN”</td>
+</tr>
+<tr>
+<td>product</td>
+<td>搜索指定的软件、平台、系统</td>
+<td>product:”Apache httpd”</td>
+</tr>
+<tr>
+<td>port</td>
+<td>搜索指定的端口</td>
+<td>port:”22”</td>
+</tr>
+<tr>
+<td>hostname</td>
+<td>搜索指定的主机或域名</td>
+<td>hostname:”google”</td>
+</tr>
+</tbody></table>
+<p>需要特别注意的是JAWS是网络摄像头的关键字，也可以通过shodan进行搜索。此外Shodan还可以识别网络设备的类型，并且可以将部分蜜罐设备识别出来。</p>
+<h5 id="主动收集"><a href="#主动收集" class="headerlink" title="主动收集"></a>主动收集</h5><p>主动收集是安全渗透人员通过安全工具对目标设备进行主动连接，通过分析连接行为的响应信息分析网络设备的服务类型、端口开放、应用版本等信息的行为。</p>
+<h6 id="nmap工具"><a href="#nmap工具" class="headerlink" title="nmap工具"></a>nmap工具</h6><p>nmap是一种网络扫描和主机探测的网络工具，nmap不仅可以收集信息并枚举，同时还可以用来作为一个漏洞扫描器或者安全扫描器，它支持常见的所有操作系统。map的主要用途如下：</p>
+<p>1.检测在网络中的主机(主机发现)</p>
+<p>2.检测主机上的开发端口（端口发现或枚举）</p>
+<p>3.检测端口的软件以及软件本（服务发现）</p>
+<p>4.检测操作系统，硬件地址</p>
+<p>5.检测脆弱性的漏洞(nmap的脚本)</p>
+<p>相关细节可以参照以下两个链接:</p>
+<p><a target="_blank" rel="noopener" href="https://nmap.org/man/zh/">nmap官网</a></p>
+<p><a target="_blank" rel="noopener" href="http://www.nmap.com.cn/doc/manual.shtm">nmap中文站</a></p>
+<h4 id="威胁建模"><a href="#威胁建模" class="headerlink" title="威胁建模"></a>威胁建模</h4><p>根据收集到的信息来分析和识别目标网络系统中可能存在的安全漏洞和弱点，以攻击者的视角拟定渗透测试的攻击方法；</p>
+<h4 id="漏洞分析"><a href="#漏洞分析" class="headerlink" title="漏洞分析"></a>漏洞分析</h4><p>根据前面收集到的信息，利用漏扫等工具探测渗透目标网络系统中的安全漏洞，确定哪些攻击方法是可行的；</p>
+<h5 id="nessus工具"><a href="#nessus工具" class="headerlink" title="nessus工具"></a>nessus工具</h5><p>Nessus号称是世界上最流行的漏洞扫描工具，据称全世界有超过75000个组织（真的有这么多吗）在使用它，它收录了不同平台和不同协议的大量安全漏洞，不随时更新其漏洞数据库。Nessus不同于传统的漏洞扫描软件，Nessus可同时在本机或远端上遥控，进行系统的漏洞分析扫描。</p>
+<p>Nessus汇聚了每个漏洞的详细信息，这些详细信息披露了利用该漏洞的难易程度。同时Nessus显示出metasploit、core、impact和canvas等工具的利用情况。</p>
+<p>需要额外说明的是，该工具是收费的，而且价格不菲，相关的收益也保证了该工具的更新速度和实用性。</p>
+<p>官方使用教程文档：</p>
+<p><a target="_blank" rel="noopener" href="https://docs.tenable.com/Nessus.htm#Latest-Release-Notes">Nessus DOC</a></p>
+<h5 id="AWVS工具"><a href="#AWVS工具" class="headerlink" title="AWVS工具"></a>AWVS工具</h5><p>AWVS(Acunetix Acunetix Web Vulnerability Scanner)是一个自动化的web应用程序安全检测工具，该工具可以扫描任何遵循HTTP、HTTPS协议的web站点和web应用程序。AWVS可以通过网络爬虫、检查SQL注入攻击漏洞、XXS等风阀检测web应用程序的安全性。</p>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/iamver/p/7124718.html">使用方法相关blog</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.acunetix.com/download/fullver14/">官网文档</a></p>
+<h4 id="漏洞利用"><a href="#漏洞利用" class="headerlink" title="漏洞利用"></a>漏洞利用</h4><p>使用metasploit等工具，利用工具中发现的安全漏洞，力图获取渗透目标系统的访问权限；</p>
+<h5 id="Metasploit工具"><a href="#Metasploit工具" class="headerlink" title="Metasploit工具"></a>Metasploit工具</h5><p>Metasploit是渗透测试界的标准工具，可以查找、利用、验证漏洞，在这个框架下安全渗透人员可以进行一系列的渗透测试，利用现有的payload，如meterpreter等进一步获取目标信息。其中Exploit是实际发起攻击的软件组件。Auxiliary可以用来执行诸如扫描的攻击动作；payload攻击负荷是我们期望模板系统在被渗透攻击后去执行的代码。根据<a target="_blank" rel="noopener" href="https://www.cnblogs.com/zovt/p/15530376.html#:~:text=%E4%BD%BF%E7%94%A8Metasploit%E6%A1%86%E6%9E%B6%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%AD%A5%E9%AA%A4%E5%8C%85%E6%8B%AC%EF%BC%9A,1.%E6%89%AB%E6%8F%8F%E7%9B%AE%E6%A0%87%E4%B8%BB%E6%9C%BA%EF%BC%8C%E5%AF%BB%E6%89%BE%E5%8F%AF%E7%94%A8%E6%BC%8F%E6%B4%9E%202.%E9%80%89%E6%8B%A9%E5%B9%B6%E9%85%8D%E7%BD%AE%E4%B8%80%E4%B8%AA%E6%94%BB%E5%87%BB%E4%BB%A3%E7%A0%81%EF%BC%88Explolt%EF%BC%8C%E5%88%A9%E7%94%A8%E6%BC%8F%E6%B4%9E%E6%9D%A5%E8%BF%9B%E5%85%A5%E7%9B%AE%E6%A0%87%E7%B3%BB%E7%BB%9F%E7%9A%84%E4%BB%A3%E7%A0%81%EF%BC%89">相关博客</a>的归纳，各个模块的具体功能如下表所示:</p>
+<table>
+<thead>
+<tr>
+<th>模块</th>
+<th>功能简介</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Auxiliaries(辅助模块)</td>
+<td>辅助模块不会直接在测试者和目标之间建立访问，它们只负责执行扫描，嗅探，指纹识别等相关功能以辅助渗透测试</td>
+</tr>
+<tr>
+<td>Exploit（漏洞利用模块）</td>
+<td>漏洞利用是指由渗透测试者利用一个系统、应用或者服务中的安全漏洞进行的攻击行为。流行的渗透攻击技术包括缓冲区溢出、Web应用程序攻击以及利用配置错误等，其中包含攻击者或者测试人员针对系统中的漏洞而设计的各种POC验证程序，用于破坏系统安全的攻击代码，每个漏洞都有相应的攻击代码</td>
+</tr>
+<tr>
+<td>Payload（攻击载荷模块）</td>
+<td>攻击载荷是我们期望目标系统在被渗透攻击之后完成实际攻击功能的代码，成功渗透目标后，用于在目标系统上运行任意命令或者执行特定代码，在Metasploit框架中可以自由的选择、传送和植入。攻击载荷也可能是简单地在目标操作系统上执行一些命令，如添加用户账号等</td>
+</tr>
+<tr>
+<td>Post（后期渗透模块）</td>
+<td>后期渗透模块主要用于在取得目标系统远程控制权后，进行一些列的后期渗透攻击动作，如获取敏感信息，实施跳板攻击等</td>
+</tr>
+<tr>
+<td>Encoders（编码攻击模块）</td>
+<td>编码攻击模块在渗透测试中负责免杀，以防止被杀毒软件、防火墙、IDS、IPS及类似的安全软件及设备检测出来</td>
+</tr>
+</tbody></table>
+<p>其基本的使用步骤包括;</p>
+<p>1.扫描目标主机，寻找可用漏洞<br> 2.选择并配置一个攻击代码（Explolt，利用漏洞来进入目标系统的代码）<br> 3.检查目标系统是否会被此代码影响（可选）<br> 4.选择并配置一个有效负载（Payload，在成功进入后在目标系统上执行的代码）<br> 5.选择编码方式，使入侵防御系统忽略已被编码的有效负载，即绕过杀毒软件的查杀<br> 6.执行攻击代码</p>
+<h4 id="深度利用"><a href="#深度利用" class="headerlink" title="深度利用"></a>深度利用</h4><p>需要渗透测试团队根据目标组织的业务经营模式，保护资产形式与安全防御计划的不同特点，自主设计出攻击目标，识别关键基础设施，并寻找客户组织最具有价值和尝试安全保护的信息资产，最终达到能够对客户组织造成最重要业务影响的攻击途径；</p>
+<p>在这一阶段，我们关注末班系统的信息收集、提权提示以及内网横向移动。</p>
+<h5 id="meterpreter工具"><a href="#meterpreter工具" class="headerlink" title="meterpreter工具"></a>meterpreter工具</h5><p>meterpreter是Metasploit框架的一个拓展模块，是一种后渗透工具，在渗透攻击成功之后可以返回一个被渗透目标的控制通道。使用它可以作为作为攻击载荷能够获取目标系统的一个meterpreter shell连接。meterpreter shell作为一个渗透馍块有很多功能，可以实现对目标系统的多种控制，例如创建、修改、删除用户，捕捉键盘信息和屏幕信息、上传、下载和运行可执行文件。</p>
+<h4 id="书面报告"><a href="#书面报告" class="headerlink" title="书面报告"></a>书面报告</h4><p>这份报告体现出渗透测试流程中所有的信息，包括渗透测试执行过程，还要站在防御者角度上，帮助他们分析安全防御体系中的薄弱环节，存在的问题，以及修补与升级技术方案。</p>
+<p>关于安全报告的书写可以参考一下blog：</p>
+<p><a target="_blank" rel="noopener" href="https://www.malware-traffic-analysis.net/">https://www.malware-traffic-analysis.net/</a></p>
+<h3 id="渗透测试搭建"><a href="#渗透测试搭建" class="headerlink" title="渗透测试搭建"></a>渗透测试搭建</h3><h4 id="攻击平台"><a href="#攻击平台" class="headerlink" title="攻击平台"></a>攻击平台</h4><h5 id="KALI"><a href="#KALI" class="headerlink" title="KALI"></a>KALI</h5><p>KALI集成了信息收集、漏洞评估、web应用、密码攻击、漏洞利用、网络监听、访问维护、报告工具、系统服务和无线攻击等多种工具，是渗透测试人员必备的工具系统。</p>
+<p><a target="_blank" rel="noopener" href="https://www.kali.org/">kali官网</a></p>
+<h4 id="靶机平台"><a href="#靶机平台" class="headerlink" title="靶机平台"></a>靶机平台</h4><h5 id="phpStudy-DVWA"><a href="#phpStudy-DVWA" class="headerlink" title="phpStudy+DVWA"></a>phpStudy+DVWA</h5><h6 id="phpStudy"><a href="#phpStudy" class="headerlink" title="phpStudy"></a>phpStudy</h6><p>phpStudy是一个php调试环境的程序集成包，该集成包集成了最新的Apache、PHP、MySQL、PHPMyAdmin，一次性安装无需配置即可使用，是一个非常便捷的PHP调试环境。</p>
+<p><a target="_blank" rel="noopener" href="https://www.xp.cn/">phpStudy官网</a></p>
+<h6 id="DVWA"><a href="#DVWA" class="headerlink" title="DVWA"></a>DVWA</h6><p>DVWA（Damn Vulnerable Web Application）DVWA（Damn Vulnerable Web App）是一个基于PHP&#x2F;MySql搭建的Web应用程序，旨在为安全专业人员测试自己的专业技能和工具提供合法的 环境，帮助Web开发者更好的理解Web应用安全防范的过程。</p>
+<p>DVWA一共包含十个模块分别是：</p>
+<p>1.Bruce Force &#x2F;&#x2F;暴力破解</p>
+<p>2.Command Injection &#x2F;&#x2F;命令注入</p>
+<p>3.CSRF &#x2F;&#x2F;跨站请求伪造</p>
+<p>4.File Inclusion &#x2F;&#x2F;文件包含</p>
+<p>5.File Upload &#x2F;&#x2F;文件上传漏洞</p>
+<p>6.Insecure CAPTCHA &#x2F;&#x2F;不安全的验证</p>
+<p>7.SQL Injection &#x2F;&#x2F;sql注入</p>
+<p>8.SQL Injection（Blind） &#x2F;&#x2F;sql注入（盲注）</p>
+<p>9.XSS（Reflected） &#x2F;&#x2F;反射型XSS</p>
+<p>10.XSS（Stored） &#x2F;&#x2F;存储型XSS</p>
+<p>同时每个模块的代码都有4种安全等级：Low、Medium、High、Impossible。通过从低难度到高难度的测试并参考代码变化可帮助学习者更快的理解漏洞的原理。<br><a target="_blank" rel="noopener" href="https://dvwa.co.uk/">DVWA官网</a></p>
+<h5 id="vulhub"><a href="#vulhub" class="headerlink" title="vulhub"></a>vulhub</h5><p>vulhub是一个基于docker和docker-compose的漏洞环境集合，进入对应的目录可以通过执行一条命令就可以启动一个全新的漏洞环境，让漏洞复现更加简单，这样让安全研究者可以更加专注于漏洞原理本身。目前vulhub支持200左右的漏洞环境。</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/vulhub/vulhub">vulhub的github</a></p>
+<h5 id="metasploitable"><a href="#metasploitable" class="headerlink" title="metasploitable"></a>metasploitable</h5><p>metasploitable是一个特别制作的ubuntu操作系统，其设计本身是作为安全工具测试和演示常见漏洞攻击的环境。其中最重要的是可以用来作为MSF（The Metasploit Framework）攻击用的靶机。该靶机系统开放了很多高危端口如22、23、445等，并且具有很多未打补丁的高危漏洞，例如samba、MS-RPC、Shell命令注入漏洞等，而且对外开放了很多服务，允许数据外连等异常操作。</p>
+<p>该系统中的用户口令均为弱密码，系统打在了DMA、Mutillidae等web漏洞演练平台。目前为止metasploitable3包含以下漏洞应用或服务：</p>
+<table>
+<thead>
+<tr>
+<th>应用或服务</th>
+<th>应用或服务</th>
+<th>应用或服务</th>
+<th>应用或服务</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>GlassFish</td>
+<td>Apache Struts</td>
+<td>Tomcat</td>
+<td>jenkins</td>
+</tr>
+<tr>
+<td>IIS FTP</td>
+<td>IIS HTTP</td>
+<td>psexec SSH</td>
+<td>WinRM</td>
+</tr>
+<tr>
+<td>chinese caidao</td>
+<td>ManageEngine</td>
+<td>ElasticSearch</td>
+<td>Apache Axis2</td>
+</tr>
+<tr>
+<td>WebDAV</td>
+<td>SNMP</td>
+<td>MySQL</td>
+<td>JMX</td>
+</tr>
+<tr>
+<td>WordPress</td>
+<td>SMB</td>
+<td>Remote Desktop</td>
+<td>PHPMyAdmin</td>
+</tr>
+</tbody></table>
+<p><a target="_blank" rel="noopener" href="https://github.com/rapid7/metasploitable3">metasploitable的github</a></p>
+<h3 id="渗透测试实例-永恒之蓝"><a href="#渗透测试实例-永恒之蓝" class="headerlink" title="渗透测试实例-永恒之蓝"></a>渗透测试实例-永恒之蓝</h3><p>参考博客：<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/190186c96fc7">https://www.jianshu.com/p/190186c96fc7</a></p>
+<p>攻击机：kali  IP：192.168.222.153</p>
+<p>靶机 win7  IP：192.168.222.142</p>
+<h4 id="判断靶机是否在线"><a href="#判断靶机是否在线" class="headerlink" title="判断靶机是否在线"></a>判断靶机是否在线</h4><p>使用ping命令检测靶机是否存活</p>
+<p><img src="/../images/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/16331557-70700231f24367c2.png" alt="img"></p>
+<h4 id="查看端口开放情况"><a href="#查看端口开放情况" class="headerlink" title="查看端口开放情况"></a>查看端口开放情况</h4><p>使用nmap工具对靶机进行信息收集</p>
+<p><img src="/../images/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/16331557-3d358a7ade200651.png" alt="img"></p>
+<p>发现靶机开启445端口，并且是win7-win10系统，可以大胆的猜测存在‘永恒之蓝’漏洞，这一步可以使用以下命令扫描永恒之蓝漏洞是否存在：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmap -p 445 --script smb-vuln-ms17-010 192.168.222.142</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="启用MSF"><a href="#启用MSF" class="headerlink" title="启用MSF"></a>启用MSF</h4><p>使用search ms17-010进行搜索相关模块</p>
+<p><img src="/../images/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/16331557-8398c1d1436c5b8a.png" alt="img"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">auxiliary/scanner/smb/smb_ms17_010  #漏洞扫描模块</span><br><span class="line"></span><br><span class="line">exploit/windows/smb/ms17_010/eternalblue #渗透模块</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="使用攻击模块进行渗透"><a href="#使用攻击模块进行渗透" class="headerlink" title="使用攻击模块进行渗透"></a>使用攻击模块进行渗透</h4><p>调用模块，设置需要设置的参数</p>
+<p><img src="/../images/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/16331557-0f7487c511fb589a.png" alt="img"></p>
+<h4 id="执行exploit进行攻击"><a href="#执行exploit进行攻击" class="headerlink" title="执行exploit进行攻击"></a>执行exploit进行攻击</h4><p>exploit攻击时间有点长，稍微等待一下就可以</p>
+<p><img src="/../images/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/16331557-badad40ad32e9c61.png" alt="img"></p>
+<h4 id="获取目标的shell"><a href="#获取目标的shell" class="headerlink" title="获取目标的shell"></a>获取目标的shell</h4><p>渗透完成后，他会直接给你一个shell的回显，而不是meterpreter回显，因为没有设置payload</p>
+<p><img src="/../images/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/16331557-273c0b01fd1eee17.png" alt="img"></p>
+<h4 id="设置payload获取meterpreter回显"><a href="#设置payload获取meterpreter回显" class="headerlink" title="设置payload获取meterpreter回显"></a>设置payload获取meterpreter回显</h4><p>设置payload和攻击机IP</p>
+<p><img src="/../images/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/16331557-04ad3fc656c71420.png" alt="img"></p>
+<p>渗透完成后得到一个meterpreter回显</p>
+<p><img src="/../images/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/16331557-6837d49e474dc7b3.png" alt="img"></p>
+<h4 id="background后台执行"><a href="#background后台执行" class="headerlink" title="background后台执行"></a>background后台执行</h4><p>使用background命令，是放在后台运行如果在需要运行，则需要使用sessions命令，sessions +id即可</p>
+<p><img src="/../images/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/16331557-9760b9c3975f6235.png" alt="img"></p>
+<p>输入命令shell，是进入shell交互模式</p>
+<p><img src="/../images/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/16331557-68b6fcb0fc4291c2.png" alt="img"></p>
+<h4 id="获取用户的哈希"><a href="#获取用户的哈希" class="headerlink" title="获取用户的哈希"></a>获取用户的哈希</h4><p>输入命令hashdump命令，将所有用户的哈希值列举出来</p>
+<p><img src="/../images/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/16331557-417732fcac44beb3.png" alt="img"></p>
+<h4 id="文件下载"><a href="#文件下载" class="headerlink" title="文件下载"></a>文件下载</h4><p>输入命令download命令，下载文件。download命令后面需要加  ‘文件路径’</p>
+<p><img src="/../images/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/16331557-05ced0a08f59a553.png" alt="img"></p>
+<h4 id="获取winscp的账号和密码"><a href="#获取winscp的账号和密码" class="headerlink" title="获取winscp的账号和密码"></a>获取winscp的账号和密码</h4><p>利用meterpreter获取winscp保存的用户名和密码</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">run post/windows/gather/credentials/winscp</span><br></pre></td></tr></table></figure>
+
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="reward-container">
+  <div>感谢支持，鼓励成就原创！</div>
+  <button>
+    赞赏
+  </button>
+  <div class="post-reward">
+      <div>
+        <img src="/images/wc.jpg" alt="Yoo Shen 微信">
+        <span>微信</span>
+      </div>
+      <div>
+        <img src="/images/zfb.jpg" alt="Yoo Shen 支付宝">
+        <span>支付宝</span>
+      </div>
+
+  </div>
+</div>
+
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>Yoo Shen
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://sidney-neu.github.io/2022/03/05/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/" title="渗透测试初探">https://sidney-neu.github.io/2022/03/05/渗透测试/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2022/02/26/ATT&CK/" rel="prev" title="ATT&CK简述">
+                  <i class="fa fa-chevron-left"></i> ATT&CK简述
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2022/03/12/%E4%BA%91%E5%8E%9F%E7%94%9F%E7%AE%80%E4%BB%8B/" rel="next" title="云原生简介">
+                  云原生简介 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments gitalk-container"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Yoo Shen</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/next-boot.js"></script>
+
+  
+<script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.0/dist/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+
+
+  <script class="next-config" data-name="leancloud_visitors" type="application/json">{"enable":true,"app_id":"nG09szIvM8x9ehgslCULWzg2-MdYXbMMI","app_key":"yHykoRL88ikgLTqsUC0xIMvY","server_url":null,"security":false}</script>
+  <script src="/js/third-party/statistics/lean-analytics.js"></script>
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
+
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"sidney-neu","repo":"sidney-neu.github.io","client_id":"04c1120504d2e421fa7d","client_secret":"389710c48c007c80cfbb7b9788d01e674ab31c00","admin_user":"sidney-neu","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":"zh-CN","js":{"url":"https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js","integrity":"sha256-Pmj85ojLaPOWwRtlMJwmezB/Qg8BzvJp5eTzvXaYAfA="},"path_md5":"7b1ed6ec33bf53e4bfd3d521aecf7991"}</script>
+<script src="/js/third-party/comments/gitalk.js"></script>
+
+</body>
+</html>
