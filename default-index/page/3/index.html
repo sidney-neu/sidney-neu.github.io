@@ -85,7 +85,7 @@
   <ul class="main-menu menu">
         <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
         <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">17</span></a></li>
-        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">28</span></a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">29</span></a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -154,7 +154,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">28</span>
+          <span class="site-state-item-count">29</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -194,6 +194,97 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://sidney-neu.github.io/2020/05/09/%E5%A6%82%E4%BD%95%E5%9C%A8C%E8%AF%AD%E8%A8%80%E4%B8%AD%E4%BD%BF%E7%94%A8tensorflow%EF%BC%88%E4%B8%80%EF%BC%89%E6%A6%82%E8%BF%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Yoo Shen">
+      <meta itemprop="description" content="学习、记录、分享">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Yoo shen的博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2020/05/09/%E5%A6%82%E4%BD%95%E5%9C%A8C%E8%AF%AD%E8%A8%80%E4%B8%AD%E4%BD%BF%E7%94%A8tensorflow%EF%BC%88%E4%B8%80%EF%BC%89%E6%A6%82%E8%BF%B0/" class="post-title-link" itemprop="url">如何在C语言中使用tensorflow（一）概述</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-05-09 11:38:00" itemprop="dateCreated datePublished" datetime="2020-05-09T11:38:00+08:00">2020-05-09</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-03-03 09:47:12" itemprop="dateModified" datetime="2022-03-03T09:47:12+08:00">2022-03-03</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E5%B7%A5%E7%A8%8B%E5%8C%96/" itemprop="url" rel="index"><span itemprop="name">-机器学习 -工程化</span></a>
+        </span>
+    </span>
+
+  
+    <span id="/2020/05/09/%E5%A6%82%E4%BD%95%E5%9C%A8C%E8%AF%AD%E8%A8%80%E4%B8%AD%E4%BD%BF%E7%94%A8tensorflow%EF%BC%88%E4%B8%80%EF%BC%89%E6%A6%82%E8%BF%B0/" class="post-meta-item leancloud_visitors" data-flag-title="如何在C语言中使用tensorflow（一）概述" title="阅读次数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span class="leancloud-visitors-count"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>Tensorflow是当前广泛使用的机器学习框架。Tensorflow提供了C语言的lib库接口，但是对应的应用文档较少，这里我将结合自己的使用情况做一下分享。</p>
+<p>先说一些我对机器学习实际应用的理解。一般来说机器学习功能的工程化应用分为线下训练和线上部署两个部分。线下训练推荐采用Python脚本语言进行快速开发，实现对模型的高效迭代训练、模型性能评价与验证。这一部分由于Python语言以及对应开源代码的迭代完善，这一部分已经逐渐变得成熟。</p>
+<p>线上部署这部分内容因为要受到后端开发语言以及性能要求等因素的影响，逐渐成为机器学习功能工程化应用的一个重要瓶颈。虽然云计算平台的广泛应用以及离线分析功能可以解决一部分部署问题。但是由于成本和安全等方面的考量，这两种方式并不能完全解决广泛的部署瓶颈问题。如果在Tensorflow中可以很好的C语言中广泛部署应用，这就对机器学习功能的工程化落地推进了一小步。</p>
+<p>libtensorflow的生成方法主要有两种,一种是通过源码自己编译,另一种是在google下载已经编译好的动态库.两种使用方法各有优劣。通过源码编译的方法较复杂,这里就不做介绍了,我们采用官方已经编译好的libtensorflow.so动态库.</p>
+<p>libtensorflow的版本最高为1.15.0，tensorflow2.0及起以上版本并没有提供C语言的接口，因此需要注意版本的搭配。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -601,110 +692,6 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://sidney-neu.github.io/2018/10/19/sed%E6%88%96perl%E5%AE%9E%E7%8E%B0%E8%B4%AA%E5%A9%AA%E5%8C%B9%E9%85%8D%E5%92%8C%E6%9C%80%E5%B0%8F%E5%8C%B9%E9%85%8D/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Yoo Shen">
-      <meta itemprop="description" content="学习、记录、分享">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Yoo shen的博客">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2018/10/19/sed%E6%88%96perl%E5%AE%9E%E7%8E%B0%E8%B4%AA%E5%A9%AA%E5%8C%B9%E9%85%8D%E5%92%8C%E6%9C%80%E5%B0%8F%E5%8C%B9%E9%85%8D/" class="post-title-link" itemprop="url">sed或perl实现贪婪匹配和最小匹配</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2018-10-19 17:20:00" itemprop="dateCreated datePublished" datetime="2018-10-19T17:20:00+08:00">2018-10-19</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-03-03 09:47:12" itemprop="dateModified" datetime="2022-03-03T09:47:12+08:00">2022-03-03</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Linux-shell/" itemprop="url" rel="index"><span itemprop="name">-Linux -shell</span></a>
-        </span>
-    </span>
-
-  
-    <span id="/2018/10/19/sed%E6%88%96perl%E5%AE%9E%E7%8E%B0%E8%B4%AA%E5%A9%AA%E5%8C%B9%E9%85%8D%E5%92%8C%E6%9C%80%E5%B0%8F%E5%8C%B9%E9%85%8D/" class="post-meta-item leancloud_visitors" data-flag-title="sed或perl实现贪婪匹配和最小匹配" title="阅读次数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-eye"></i>
-      </span>
-      <span class="post-meta-item-text">阅读次数：</span>
-      <span class="leancloud-visitors-count"></span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h3 id="1-sed默认使用贪婪匹配"><a href="#1-sed默认使用贪婪匹配" class="headerlink" title="1.sed默认使用贪婪匹配"></a>1.sed默认使用贪婪匹配</h3><p>最近在shell对文本进行操作，遇到了需要对字符串进行最小匹配的问题，但是使用sed默认的匹配规则是贪婪匹配，这里我们就对Linux shell实现最小匹配进行研究。</p>
-<p>sed默认是贪婪匹配，使用如下字符串进行举例：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(aa)bb(cc)</span><br></pre></td></tr></table></figure>
-
-
-<p>使用sed匹配:</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">echo &quot;(aa)bb(cc)&quot; | sed &#x27;s/(.*)*//g&#x27;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>以上命令的输出结果为空。也就是说sed将最大范围的(str)都进行了替换，因此sed的匹配模式是贪婪匹配。</p>
-<h3 id="2-最小匹配"><a href="#2-最小匹配" class="headerlink" title="2.最小匹配"></a>2.最小匹配</h3><p>最小匹配的结果是获取满足匹配规则的最小内容，如果采用最小匹配，sed的匹配结果应该如下：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bb</span><br></pre></td></tr></table></figure>
-
-<h3 id="3-使用sed实现最小匹配"><a href="#3-使用sed实现最小匹配" class="headerlink" title="3.使用sed实现最小匹配"></a>3.使用sed实现最小匹配</h3><p>sed实现最小匹配的命令如下:</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">echo &#x27;(aa)bb(cc)&#x27; | sed &#x27;s/([^)]*)*//g&#x27;</span><br><span class="line">bb</span><br></pre></td></tr></table></figure>
-
-<h3 id="4-使用perl实现最小匹配"><a href="#4-使用perl实现最小匹配" class="headerlink" title="4.使用perl实现最小匹配"></a>4.使用perl实现最小匹配</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">echo &quot;(aa)bb(cc)&quot; | perl -pe &#x27;s/\(.*?\)//g&#x27;</span><br><span class="line">bb</span><br></pre></td></tr></table></figure>
-
-<p>另外，sed支持的匹配规则与perl不同，关于字符是否需要转义也是不一样。例如，举例中的 “(“ 和 “)” 在sed中不需要转义，在perl中则需要转义。</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
     <link itemprop="mainEntityOfPage" href="https://sidney-neu.github.io/2018/10/19/Linux%E7%A6%BB%E7%BA%BF%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%AE%89%E8%A3%85scikit-learning(python2.7)/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -809,6 +796,110 @@
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mount -a</span><br></pre></td></tr></table></figure>
 
 <p>重新运行测试程序即可。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://sidney-neu.github.io/2018/10/19/sed%E6%88%96perl%E5%AE%9E%E7%8E%B0%E8%B4%AA%E5%A9%AA%E5%8C%B9%E9%85%8D%E5%92%8C%E6%9C%80%E5%B0%8F%E5%8C%B9%E9%85%8D/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Yoo Shen">
+      <meta itemprop="description" content="学习、记录、分享">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Yoo shen的博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2018/10/19/sed%E6%88%96perl%E5%AE%9E%E7%8E%B0%E8%B4%AA%E5%A9%AA%E5%8C%B9%E9%85%8D%E5%92%8C%E6%9C%80%E5%B0%8F%E5%8C%B9%E9%85%8D/" class="post-title-link" itemprop="url">sed或perl实现贪婪匹配和最小匹配</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2018-10-19 17:20:00" itemprop="dateCreated datePublished" datetime="2018-10-19T17:20:00+08:00">2018-10-19</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-03-03 09:47:12" itemprop="dateModified" datetime="2022-03-03T09:47:12+08:00">2022-03-03</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Linux-shell/" itemprop="url" rel="index"><span itemprop="name">-Linux -shell</span></a>
+        </span>
+    </span>
+
+  
+    <span id="/2018/10/19/sed%E6%88%96perl%E5%AE%9E%E7%8E%B0%E8%B4%AA%E5%A9%AA%E5%8C%B9%E9%85%8D%E5%92%8C%E6%9C%80%E5%B0%8F%E5%8C%B9%E9%85%8D/" class="post-meta-item leancloud_visitors" data-flag-title="sed或perl实现贪婪匹配和最小匹配" title="阅读次数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span class="leancloud-visitors-count"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h3 id="1-sed默认使用贪婪匹配"><a href="#1-sed默认使用贪婪匹配" class="headerlink" title="1.sed默认使用贪婪匹配"></a>1.sed默认使用贪婪匹配</h3><p>最近在shell对文本进行操作，遇到了需要对字符串进行最小匹配的问题，但是使用sed默认的匹配规则是贪婪匹配，这里我们就对Linux shell实现最小匹配进行研究。</p>
+<p>sed默认是贪婪匹配，使用如下字符串进行举例：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(aa)bb(cc)</span><br></pre></td></tr></table></figure>
+
+
+<p>使用sed匹配:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">echo &quot;(aa)bb(cc)&quot; | sed &#x27;s/(.*)*//g&#x27;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>以上命令的输出结果为空。也就是说sed将最大范围的(str)都进行了替换，因此sed的匹配模式是贪婪匹配。</p>
+<h3 id="2-最小匹配"><a href="#2-最小匹配" class="headerlink" title="2.最小匹配"></a>2.最小匹配</h3><p>最小匹配的结果是获取满足匹配规则的最小内容，如果采用最小匹配，sed的匹配结果应该如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bb</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-使用sed实现最小匹配"><a href="#3-使用sed实现最小匹配" class="headerlink" title="3.使用sed实现最小匹配"></a>3.使用sed实现最小匹配</h3><p>sed实现最小匹配的命令如下:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">echo &#x27;(aa)bb(cc)&#x27; | sed &#x27;s/([^)]*)*//g&#x27;</span><br><span class="line">bb</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-使用perl实现最小匹配"><a href="#4-使用perl实现最小匹配" class="headerlink" title="4.使用perl实现最小匹配"></a>4.使用perl实现最小匹配</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">echo &quot;(aa)bb(cc)&quot; | perl -pe &#x27;s/\(.*?\)//g&#x27;</span><br><span class="line">bb</span><br></pre></td></tr></table></figure>
+
+<p>另外，sed支持的匹配规则与perl不同，关于字符是否需要转义也是不一样。例如，举例中的 “(“ 和 “)” 在sed中不需要转义，在perl中则需要转义。</p>
 
       
     </div>

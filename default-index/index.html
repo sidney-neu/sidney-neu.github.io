@@ -85,7 +85,7 @@
   <ul class="main-menu menu">
         <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
         <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">17</span></a></li>
-        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">28</span></a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">29</span></a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -154,7 +154,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">28</span>
+          <span class="site-state-item-count">29</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -194,6 +194,128 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://sidney-neu.github.io/2022/04/08/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95-%E9%9B%86%E6%88%90%E5%AD%A6%E4%B9%A0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Yoo Shen">
+      <meta itemprop="description" content="学习、记录、分享">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Yoo shen的博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2022/04/08/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95-%E9%9B%86%E6%88%90%E5%AD%A6%E4%B9%A0/" class="post-title-link" itemprop="url">机器学习算法-集成学习</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2022-04-08 21:45:00 / 修改时间：18:18:38" itemprop="dateCreated datePublished" datetime="2022-04-08T21:45:00+08:00">2022-04-08</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%AE%97%E6%B3%95%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">-算法学习</span></a>
+        </span>
+    </span>
+
+  
+    <span id="/2022/04/08/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95-%E9%9B%86%E6%88%90%E5%AD%A6%E4%B9%A0/" class="post-meta-item leancloud_visitors" data-flag-title="机器学习算法-集成学习" title="阅读次数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span class="leancloud-visitors-count"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h3 id="集成学习概述"><a href="#集成学习概述" class="headerlink" title="集成学习概述"></a>集成学习概述</h3><p>集成学习（ensemble learning）本身不是一个单独的机器学习算法，是一种机器学习的范式，通过构架并组合多个机器学习算法模型来完成学习任务。集成学习属于一种策略，通过组合若干个个体学习器（individual learner），通过一定的组合策略，最终形成一个强学习器模型。</p>
+<h3 id="集成学习的分类"><a href="#集成学习的分类" class="headerlink" title="集成学习的分类"></a>集成学习的分类</h3><h4 id="根据个体学习器的组合关系分类"><a href="#根据个体学习器的组合关系分类" class="headerlink" title="根据个体学习器的组合关系分类"></a>根据个体学习器的组合关系分类</h4><p>根据个体学习器的组合关系，可以将集成学习分为串行集成学习和并行集成学习。</p>
+<h5 id="串行集成学习"><a href="#串行集成学习" class="headerlink" title="串行集成学习"></a>串行集成学习</h5><p>串行集成学习的原理是将上一个 个体学习器的分类错误的样本给一个较大的权重输入给下一个个体学习器。通过后续的个体学习器对之前分类错误的纠正，来提高模型的整体性能。</p>
+<p>个体学习器1 ——————————-&gt;个体学习器2 ——————————-&gt;个体学习器3——-&gt;检测结果</p>
+<p>​                         分类错误的样本加权                            分类错误的样本加权</p>
+<h5 id="并行集成学习"><a href="#并行集成学习" class="headerlink" title="并行集成学习"></a>并行集成学习</h5><p>并行集成学习是通过样本和特征的bootstrapping的方法来保证各个个体学习器之间的独立性和差异性，然后通过投票的方法给出最终分类结果，并通过个体学习器之间的独立性和差异性提高模型的抗过拟合能力。</p>
+<p>个体学习器1—————|</p>
+<p>个体学习器2—————|—————-&gt;投票给出检测结果</p>
+<p>个体学习器3—————|</p>
+<h4 id="根据个体学习器的异同分类"><a href="#根据个体学习器的异同分类" class="headerlink" title="根据个体学习器的异同分类"></a>根据个体学习器的异同分类</h4><h5 id="同质集成学习"><a href="#同质集成学习" class="headerlink" title="同质集成学习"></a>同质集成学习</h5><p>各个个体学习器都是通过同一个基础算法生成的。</p>
+<h5 id="异质集成学习"><a href="#异质集成学习" class="headerlink" title="异质集成学习"></a>异质集成学习</h5><p>各个个体学习器是通过不同的基础算法生成的。</p>
+<h3 id="集成学习框架"><a href="#集成学习框架" class="headerlink" title="集成学习框架"></a>集成学习框架</h3><h4 id="Bagging框架"><a href="#Bagging框架" class="headerlink" title="Bagging框架"></a>Bagging框架</h4><p>Bagging可以理解为聚合引导的意思。通过bootstrap的方法将训练集划分为多个子训练集，并将每一个子训练集用来训练一个个体学习器，最终通过投票的方法获得最终预测结果。</p>
+<h5 id="Bagging的处理流程"><a href="#Bagging的处理流程" class="headerlink" title="Bagging的处理流程"></a>Bagging的处理流程</h5><p>如图：</p>
+<p><img src="/../images/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95-%E9%9B%86%E6%88%90%E5%AD%A6%E4%B9%A0/Bagging%E7%9A%84%E7%AE%97%E6%B3%95%E6%B5%81%E7%A8%8B.PNG" alt="Bagging的算法流程"></p>
+<h5 id="Bagging的处理框架"><a href="#Bagging的处理框架" class="headerlink" title="Bagging的处理框架"></a>Bagging的处理框架</h5><p>如图：</p>
+<p><img src="/../images/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95-%E9%9B%86%E6%88%90%E5%AD%A6%E4%B9%A0/Bagging%E7%9A%84%E7%AE%97%E6%B3%95%E6%A1%86%E6%9E%B6.jpg" alt="Bagging的算法框架"></p>
+<h5 id="Bagging的特点"><a href="#Bagging的特点" class="headerlink" title="Bagging的特点"></a>Bagging的特点</h5><p>因为Bagging通过bootstrap的方法构建了存在明显差异的个体学习器，因此这种架构可以有效的解决模型的方差问题。可以很好的缓解过拟合的问题。并且每个个体学习器都是强模型，有独立的分类能力，因此会Bagging会出现高偏差低方差的现象。</p>
+<h4 id="Boosting框架"><a href="#Boosting框架" class="headerlink" title="Boosting框架"></a>Boosting框架</h4><p>Boosting可以理解为是通过结合多个弱分类器的结果，形成一个强分类器。这里提到的弱分类器是指仅仅比随机猜测好一点点的模型，比如一个较小的决策树，或者一个简单的线性分割器。Boosting和Bagging的区别就是Bagging可以对个体学习器进行并行的训练；而Boosting需要利用加权后的数据对多个弱分类器依次的串行训练。</p>
+<h5 id="AdaBoost的处理流程"><a href="#AdaBoost的处理流程" class="headerlink" title="AdaBoost的处理流程"></a>AdaBoost的处理流程</h5><p>如图：</p>
+<p><img src="/../images/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95-%E9%9B%86%E6%88%90%E5%AD%A6%E4%B9%A0/Adaboost%E5%A4%84%E7%90%86%E6%B5%81%E7%A8%8B.PNG" alt="Adaboost处理流程"></p>
+<h5 id="Boosting的处理框架"><a href="#Boosting的处理框架" class="headerlink" title="Boosting的处理框架"></a>Boosting的处理框架</h5><p>如图：</p>
+<p><img src="/../images/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95-%E9%9B%86%E6%88%90%E5%AD%A6%E4%B9%A0/Boosting%E7%9A%84%E5%A4%84%E7%90%86%E6%A1%86%E6%9E%B6.jpg" alt="Boosting的处理框架"></p>
+<h5 id="Boosting的特点"><a href="#Boosting的特点" class="headerlink" title="Boosting的特点"></a>Boosting的特点</h5><p>因为Bagging通过弱分类器的方法可以有很好的检测精度，因此这种架构可以有效的解决模型的偏差问题。可以很好的缓解欠拟合的问题。并且每个个体学习器都是弱模型，并没有独立的分类能力，因此会Bagging会出现低偏差高方差的现象。</p>
+<h4 id="Stacking框架"><a href="#Stacking框架" class="headerlink" title="Stacking框架"></a>Stacking框架</h4><p>Stacking框架与Bagging框架有一些类似，比如个体学习器都是强分类器，并且各个体学习器可以并行训练得出。不同的地方在于bagging的检测结果是对个体学习器检测结果的综合，但是Stacking框架是将个体学习器的检测结果作为最终检测模型的输入。简而言之，stacking把投票变成了另一个模型。</p>
+<h5 id="Stacking的处理流程"><a href="#Stacking的处理流程" class="headerlink" title="Stacking的处理流程"></a>Stacking的处理流程</h5><p>如图：</p>
+<img src="../images/机器学习算法-集成学习/Stacking的处理流程.PNG" alt="Stacking的处理流程" style="zoom:60%;" />
+
+<h5 id="Stacking的处理框架"><a href="#Stacking的处理框架" class="headerlink" title="Stacking的处理框架"></a>Stacking的处理框架</h5><p>如图：</p>
+<p><img src="/../images/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95-%E9%9B%86%E6%88%90%E5%AD%A6%E4%B9%A0/Stacking%E7%9A%84%E5%A4%84%E7%90%86%E6%A1%86%E6%9E%B6.jpg" alt="Stacking的处理框架"></p>
+<h5 id="Stacking的特点"><a href="#Stacking的特点" class="headerlink" title="Stacking的特点"></a>Stacking的特点</h5><p>Stacking其实更符合大家对集成学习的猜想，相较于Bagging，它在个体学习器的检测结果之后，并没有简单的进行综合，而是将多个检测结果作为输入，训练一个新的元模型作为最终的分类器。基模型（个体学习器）其实更像是一种介于特征处理和检测模型中间的一种装置。</p>
+<h4 id="Blending框架"><a href="#Blending框架" class="headerlink" title="Blending框架"></a>Blending框架</h4><p>blending框架是对Stacking框架的一种优化，主要是将基模型的训练数据和原模型的训练数据分开，这样就可以提高元模型与基模型的关联程度。更好的把基模型从一个检测模型转化成一个特征处理方式。而且这种处理方式可以降低人为的参与程度。</p>
+<h5 id="Blending的处理流程"><a href="#Blending的处理流程" class="headerlink" title="Blending的处理流程"></a>Blending的处理流程</h5><p>流程如下：</p>
+<p>1.将原始训练集T分为训练集T<sub>train</sub>和验证集T<sub>valid</sub></p>
+<p>2.用T<sub>train</sub>训练多个基模型</p>
+<p>3.用多个基模型预测验证集T<sub>valid</sub>，将预测结果作为新的训练数据T<sub>mate</sub></p>
+<p>4.用T<sub>mate</sub>训练一个元模型</p>
+<p>5.使用多个基模型对测试集进行预测，生成新的测试集</p>
+<p>6.使用元模型对新生成的测试集预测，得出最终的结果。</p>
+<h5 id="Blend的处理架构"><a href="#Blend的处理架构" class="headerlink" title="Blend的处理架构"></a>Blend的处理架构</h5><p>如图：</p>
+<p><img src="/../images/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95-%E9%9B%86%E6%88%90%E5%AD%A6%E4%B9%A0/Blending%E7%9A%84%E5%A4%84%E7%90%86%E6%9E%B6%E6%9E%84.jpg" alt="Blending的处理架构"></p>
+<p>Blend的特点</p>
+<p>对Stacking的优化，原始训练数据集分成训练数据集和验证数据集，通过训练数据集训练基模型，并将基模型作为特征处理方法对验证数据集进行进一步的特征处理。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1833,130 +1955,6 @@ clean:
 <h4 id="获取winscp的账号和密码"><a href="#获取winscp的账号和密码" class="headerlink" title="获取winscp的账号和密码"></a>获取winscp的账号和密码</h4><p>利用meterpreter获取winscp保存的用户名和密码</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">run post/windows/gather/credentials/winscp</span><br></pre></td></tr></table></figure>
 
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://sidney-neu.github.io/2022/02/26/ATT&CK/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Yoo Shen">
-      <meta itemprop="description" content="学习、记录、分享">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Yoo shen的博客">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/02/26/ATT&CK/" class="post-title-link" itemprop="url">ATT&CK简述</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2022-02-26 17:05:00" itemprop="dateCreated datePublished" datetime="2022-02-26T17:05:00+08:00">2022-02-26</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-03-30 17:45:30" itemprop="dateModified" datetime="2022-03-30T17:45:30+08:00">2022-03-30</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8-%E6%A1%86%E6%9E%B6%E4%B8%8E%E6%9E%B6%E6%9E%84/" itemprop="url" rel="index"><span itemprop="name">-网络安全 -框架与架构</span></a>
-        </span>
-    </span>
-
-  
-    <span id="/2022/02/26/ATT&CK/" class="post-meta-item leancloud_visitors" data-flag-title="ATT&CK简述" title="阅读次数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-eye"></i>
-      </span>
-      <span class="post-meta-item-text">阅读次数：</span>
-      <span class="leancloud-visitors-count"></span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h3 id="ATT-amp-CK的缔造者-Mitre"><a href="#ATT-amp-CK的缔造者-Mitre" class="headerlink" title="ATT&amp;CK的缔造者-Mitre"></a>ATT&amp;CK的缔造者-Mitre</h3><p>根据某安全公司的<a target="_blank" rel="noopener" href="http://www.tdhxkj.com/news/651.html">资料</a>，<a target="_blank" rel="noopener" href="https://www.mitre.org/">MITRE</a>（麻省理工学院研究与工程组）诞生于冷战时代，其前身是麻省理工学院的林肯实验室，当时美国空军为了能够精确掌握敌军战机的来袭动态，便请求麻省理工学院帮助他们建立一个防空系统，于是建立成了研究所，并提出半自动地面环境(SAGE)，通过解和雷达、无线电和网络通信等技术来检测敌机。该研究所管理者于1958年建立Mitre公司，并管理SAGE未来发展。SAGE于1963年开始运作，通过一次次技术的融入与进步，SAGE也成为了美国第一个现代化防空系统。</p>
-<p>　　1970进入下一个主要计划：国防部情报信息系统，至今仍在使用;</p>
-<p>　　1990与美国联邦航空局首次合作，建立一个心得FFRDCs(军方编外研究机构);</p>
-<p>　　2010-2014 Mitre成为三个FFRDCs的管理者;</p>
-<p>　　至今：他们在与美国疾控中心合作，共同对抗新型冠状病毒，通过创建模型来追踪流行病，并且研发出远程医疗套件等来帮助人们对抗流行病。纵观MITRE的发展史，以对空领域为起点，横向的发展之广，捣毁过暗网市场，研究过生物科技，网络安全，研发过嵌入式入侵检测系统，抵抗过新冠病毒，参与国防建设等等，但从纵向发展来看，他们的深度依旧很深，掌握着核心技术，引领世界潮流，这就是MITRE在技术领域的庞大“帝国”。</p>
-<p>在安全领域，代表美国研发国家队、更是美国军方的编外研究机构的Mitre建树颇多，例如大名鼎鼎的<a target="_blank" rel="noopener" href="https://cve.mitre.org/">CVE</a>（Common Vulnerabilities and Exposures）漏洞就所属他的麾下，除此之外还包括CWE、CPE、CAPEC、MAEC、STIX&#x2F;TAXII、Cygraph、AYY&amp;CK、Sheild等众多重要项目。今天主要介绍其中之一ATT&amp;CK。</p>
-<h3 id="关于ATT-amp-CK"><a href="#关于ATT-amp-CK" class="headerlink" title="关于ATT&amp;CK"></a>关于ATT&amp;CK</h3><p><a target="_blank" rel="noopener" href="https://attack.mitre.org/">ATT&amp;CK</a>首先要明确他是一个知识库，旨在从攻击者的视角归纳网络攻击行为的技战术，并为网络安全领域的威胁模型和方法论，官网上的定义如下：</p>
-<p><strong>MITRE ATT&amp;CK® is a globally-accessible knowledge base of adversary tactics and techniques based on real-world observations. The ATT&amp;CK knowledge base is used as a foundation for the development of specific threat models and methodologies in the private sector, in government, and in the cybersecurity product and service community.</strong></p>
-<p><strong>With the creation of ATT&amp;CK, MITRE is fulfilling its mission to solve problems for a safer world — by bringing communities together to develop more effective cybersecurity. ATT&amp;CK is open and available to any person or organization for use at no charge.</strong></p>
-<p>笔者认为ATT&amp;CK的主要特点主要有几点：</p>
-<p>​    1.ATT&amp;CK采用的是攻击者的视角，也就是说在ATT&amp;CK的矩阵框架中所陈列的每一种技战术，都可以和现实中对应，比如永恒之蓝攻击，从扫描行为到漏洞利用，从提权操作到持久化，从C2连接到最后的造成影响，都可以在ATT&amp;CK中找到对应的动作。我们通过某恶意软件的攻击行为举个例子（笔者个人原创，如有不准确之处欢迎发邮件指正）。</p>
-<p><img src="/../images/ATT&CK/%E5%9B%BE%E7%89%871.png" alt="ATT&amp;CK框架与某一种APT攻击的对应关系"></p>
-<p>​    2.ATT&amp;CK可以将攻击事件细化到每一个攻击动作，更新于2021年10月21日的V10.1版本的ATT&amp;CK，包含14个战术，188个技术，以及379个自技术。其中14个战术与洛马提出的杀伤链（<a target="_blank" rel="noopener" href="https://www.lockheedmartin.com/en-us/capabilities/cyber/cyber-kill-chain.html">syber kill chain</a>）存在相关性，但是对APT攻击的攻击步骤从七个细化到了14个。188个技术以及379个自技术对应的都是攻击者常用的攻击动作。国内如天融信、安天等安全公司已经完成自己安全产品的威胁警告与ATT&amp;CK之间的联动，青藤云也在自己的Threat Hunting产品中应用了ATT&amp;CK的相关技术。</p>
-<p><img src="/../images/ATT&CK/THE-CYBER-KILL-CHAIN-body.png" alt="Syber kill chain流程"></p>
-<p>​    3.ATT&amp;CK系统化、层次化的知识库。相比于杀伤链，ATT&amp;CK有着更丰富的内容，比如使用者可以对自己遭受的安全攻击进行后续的分析。明确每一个攻击动作对应的技术，包括了解常用这个攻击技术的黑客组织以及攻击事件、实施这个攻击技术的恶意软件或命令、明确攻击行为的缓解措施以及防御方法、指导这种攻击技术的检测方法和反制措施等。ATT&amp;CK还贴心的使用者提供了<a target="_blank" rel="noopener" href="https://mitre-attack.github.io/attack-navigator/">ATT&amp;CK Navigator</a>这一威胁可视化工具，可以帮助被攻击者明确当前攻击态势；通过<a target="_blank" rel="noopener" href="https://car.mitre.org/">CAR</a>)可以检测和分析安全能力，甚至通过<a target="_blank" rel="noopener" href="https://shield.mitre.org/">SHIELD</a>实现通过攻击行为找到防御方法的魔法秘籍。</p>
-<h3 id="ATT-amp-CK的用途"><a href="#ATT-amp-CK的用途" class="headerlink" title="ATT&amp;CK的用途"></a>ATT&amp;CK的用途</h3><p>根据ATT&amp;CK的主要架构设计者之一Blake Strom在2018年发布在<a target="_blank" rel="noopener" href="https://www.mitre.org/capabilities/cybersecurity/overview/cybersecurity-blog/attck-101">Mitre</a>上关于ATT&amp;CK的介绍，ATT&amp;CK框架旨在解决四个主要问题;</p>
-<p>第一，关注攻击者的行为，通过分析攻击者的技战术，以实现针对攻击技战术的具体检测和分析方法。攻击者可以域名、IP、HASH等表象，但是无法改变其攻击手法以及与被攻击者之间的交互方式。举例来说，一个攻击者可能会因为动态IP地址的方法常常更改其攻击源的IP地址，但是他使用的nmap扫描方法不会变。另一个攻击者可能会常常更改其僵尸网络的控制端IP地址，但是其DGA的内在逻辑不会变。</p>
-<p>第二，杀伤链等生命周期模型因为过于概括与笼统，导致其无法具体的攻防行为相关联，基于技战术的TTPS则可以。举例来说，同样是命令与控制（C2），相比于杀伤链，ATT&amp;CK会将其细分为包括DGA在内的16个技术。</p>
-<p>第三，可以应用于实际环境。基于技战术的TTPS可以与具象的攻防行为建立联系，每一个技术都可见且可用。举例来说，包括端口扫描、漏洞利用、邮件钓鱼、网站水坑、暴力破解在内的常见攻击方法都可以在aTT&amp;CK内找到对用的技术点。</p>
-<p>第四，更加通用的排列组合，通过不同战术中的技术点，可以实现对攻击事件的具体描述。既可以描述熊猫烧香，也可以描述永恒之蓝。</p>
-<p>ATT&amp;CK还对具体的应用方向进行了指引，无论是关注信息安全的安全客户，还是关注提升安全能力的安全厂商，都可以通过使用ATTT&amp;CK框架受益。ATT&amp;CK总结了四个常见的应用场景：1.整合威胁情报；2.提高检测和分析能力；3.攻防模拟的红蓝对抗；4.安全评估与工程化应用。</p>
-<h3 id="ATT-amp-CK的应用举例"><a href="#ATT-amp-CK的应用举例" class="headerlink" title="ATT&amp;CK的应用举例"></a>ATT&amp;CK的应用举例</h3><p>微软：</p>
-<p>微软情报中心主管John Lambert认为信息安全的持续性由一下四个部分组成，其中结构性知识分析，微软采用了ATT&amp;CK Navigator 分析工具。</p>
-<p><img src="/../images/ATT&CK/%E5%9B%BE%E7%89%872.png" alt="信息安全可持续的四个组成部分"></p>
-<p>同时，微软的商用杀毒产品Defender Advanced Threat Protection (ATP)的安全告警日志类别与MITER ATT&amp;CK框架实现映射，以便在安全告警日志中展示MITER ATT&amp;CK框架内的Tactic、 Techniques信息。方便其Microsoft Azure Sentinel产品进行系统性分析以及ATT&amp;CK的适配。</p>
-<p><img src="/../images/ATT&CK/%E5%9B%BE%E7%89%873.png" alt="微软ATP产品日志告警细节"></p>
-<p>作为微软安全的重要产品，Microsoft Azure Sentinel是可缩放的云原生的安全信息事件管理 (SIEM) 和 安全业务流程自动响应 (SOAR) 解决方案。</p>
-<p><img src="/../images/ATT&CK/%E5%9B%BE%E7%89%874.png" alt="Azure的核心能力"></p>
-<p>在其“高级多阶段攻击检测分类”以及“通过REST API 创建和管理搜寻查询”以及“<a target="_blank" rel="noopener" href="https://docs.microsoft.com/zh-cn/rest/api/securitycenter/alerts/list">Alerts</a>的日志分类”以及“响应安全警报”中都采用了ATT&amp;CK框架的Tactics以及Techniques的内容。</p>
-<p><img src="/../images/ATT&CK/%E5%9B%BE%E7%89%875.png" alt="Azure的REST API检索信息"></p>
-<p><img src="/../images/ATT&CK/%E5%9B%BE%E7%89%876.png" alt="Azure中日志警报与ATT&amp;CK关联"></p>
-<p>Crowdstrike：</p>
-<p>Crowdstrike作为EDR与云安全的黑马独角兽安全企业，一直以Threat Graph的形式对攻击行为进行可视化展示，并作为其三个核心技术之一。与此同时Threat Graph中的具体攻击行为会与ATT&amp;CK框架中的Tactic和Technique进行映射，提高将检测到的攻击行为进行系统性的的可视化展示。同时在MITRE ATT&amp;CK评估中CrowdStrike Falcon优势明显，在所有19个攻击阶段检测率为100%。</p>
-<p><img src="/../images/ATT&CK/%E5%9B%BE%E7%89%877.png" alt="Crowdstrike的Falcon中ATT&amp;CK框架的应用"></p>
-<h3 id="ATT-amp-CK使用的局限性"><a href="#ATT-amp-CK使用的局限性" class="headerlink" title="ATT&amp;CK使用的局限性"></a>ATT&amp;CK使用的局限性</h3><p>1.ATT&amp;CK作为后来者，在应用的广泛性上与Syber Kill Chain存在明显差距，更多的安全厂商喜欢使用Syber Kill Chain作为主要手段分析攻击事件。例如笔者曾经在某一家安全公司介绍ATT&amp;CK相关内容的时候，某资深的安全开发人员并不感冒，当讲到ATT&amp;CK与Syber Kill Chain的关系和优劣的时候，他表示很感兴趣并希望后续了解。</p>
-<p>2.安全能力的历史积累大部分是基于Syber Kill Chain等早期框架，因此实现与ATT&amp;CK的关联与匹配需要很繁重的修改工作，历史的能力积累在这一刻成为了历史的包袱，且很多安全功能对应的Signature需要很资深的安全人员进行分析和修改。</p>
-<p>3.作为一种可以梳理安全能力的知识框架，很难在有限的时间内成为利润增长点，且需要要一定的开发投入，在安全行业内卷如斯的今天，有很多为了活下去或者为了业绩增长的安全公司会认为ATT&amp;CK食之无味，弃之可惜。</p>
-<h3 id="ATT-amp-CK的前景"><a href="#ATT-amp-CK的前景" class="headerlink" title="ATT&amp;CK的前景"></a>ATT&amp;CK的前景</h3><p>笔者从事网络安全行业研究五年，作为一只能力平平的老鸟，我认为ATT&amp;CK作为梳理安全能力和结构化网络威胁的利器，未来会爆发出极大的能量。作为网络安全行业的从业人员可以不必精通，但是一定需要了解。</p>
 
       
     </div>

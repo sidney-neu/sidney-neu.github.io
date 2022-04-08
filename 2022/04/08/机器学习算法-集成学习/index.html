@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.0.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"sidney-neu.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.8.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":{"gitalk":{"order":-1}},"activeClass":"gitalk"},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.json","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+<meta name="description" content="集成学习概述集成学习（ensemble learning）本身不是一个单独的机器学习算法，是一种机器学习的范式，通过构架并组合多个机器学习算法模型来完成学习任务。集成学习属于一种策略，通过组合若干个个体学习器（individual learner），通过一定的组合策略，最终形成一个强学习器模型。 集成学习的分类根据个体学习器的组合关系分类根据个体学习器的组合关系，可以将集成学习分为串行集成学习和并">
+<meta property="og:type" content="article">
+<meta property="og:title" content="机器学习算法-集成学习">
+<meta property="og:url" content="https://sidney-neu.github.io/2022/04/08/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95-%E9%9B%86%E6%88%90%E5%AD%A6%E4%B9%A0/index.html">
+<meta property="og:site_name" content="Yoo shen的博客">
+<meta property="og:description" content="集成学习概述集成学习（ensemble learning）本身不是一个单独的机器学习算法，是一种机器学习的范式，通过构架并组合多个机器学习算法模型来完成学习任务。集成学习属于一种策略，通过组合若干个个体学习器（individual learner），通过一定的组合策略，最终形成一个强学习器模型。 集成学习的分类根据个体学习器的组合关系分类根据个体学习器的组合关系，可以将集成学习分为串行集成学习和并">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://sidney-neu.github.io/images/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95-%E9%9B%86%E6%88%90%E5%AD%A6%E4%B9%A0/Bagging%E7%9A%84%E7%AE%97%E6%B3%95%E6%B5%81%E7%A8%8B.PNG">
+<meta property="og:image" content="https://sidney-neu.github.io/images/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95-%E9%9B%86%E6%88%90%E5%AD%A6%E4%B9%A0/Bagging%E7%9A%84%E7%AE%97%E6%B3%95%E6%A1%86%E6%9E%B6.jpg">
+<meta property="og:image" content="https://sidney-neu.github.io/images/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95-%E9%9B%86%E6%88%90%E5%AD%A6%E4%B9%A0/Adaboost%E5%A4%84%E7%90%86%E6%B5%81%E7%A8%8B.PNG">
+<meta property="og:image" content="https://sidney-neu.github.io/images/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95-%E9%9B%86%E6%88%90%E5%AD%A6%E4%B9%A0/Boosting%E7%9A%84%E5%A4%84%E7%90%86%E6%A1%86%E6%9E%B6.jpg">
+<meta property="og:image" content="https://sidney-neu.github.io/2022/04/08/images/机器学习算法-集成学习/Stacking的处理流程.PNG">
+<meta property="og:image" content="https://sidney-neu.github.io/images/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95-%E9%9B%86%E6%88%90%E5%AD%A6%E4%B9%A0/Stacking%E7%9A%84%E5%A4%84%E7%90%86%E6%A1%86%E6%9E%B6.jpg">
+<meta property="og:image" content="https://sidney-neu.github.io/images/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95-%E9%9B%86%E6%88%90%E5%AD%A6%E4%B9%A0/Blending%E7%9A%84%E5%A4%84%E7%90%86%E6%9E%B6%E6%9E%84.jpg">
+<meta property="article:published_time" content="2022-04-08T13:45:00.000Z">
+<meta property="article:modified_time" content="2022-04-08T10:18:38.145Z">
+<meta property="article:author" content="Yoo Shen">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://sidney-neu.github.io/images/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95-%E9%9B%86%E6%88%90%E5%AD%A6%E4%B9%A0/Bagging%E7%9A%84%E7%AE%97%E6%B3%95%E6%B5%81%E7%A8%8B.PNG">
+
+
+<link rel="canonical" href="https://sidney-neu.github.io/2022/04/08/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95-%E9%9B%86%E6%88%90%E5%AD%A6%E4%B9%A0/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://sidney-neu.github.io/2022/04/08/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95-%E9%9B%86%E6%88%90%E5%AD%A6%E4%B9%A0/","path":"2022/04/08/机器学习算法-集成学习/","title":"机器学习算法-集成学习"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>机器学习算法-集成学习 | Yoo shen的博客</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Yoo shen的博客</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">sy071600sy@163.com</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">17</span></a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">29</span></a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9B%86%E6%88%90%E5%AD%A6%E4%B9%A0%E6%A6%82%E8%BF%B0"><span class="nav-number">1.</span> <span class="nav-text">集成学习概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9B%86%E6%88%90%E5%AD%A6%E4%B9%A0%E7%9A%84%E5%88%86%E7%B1%BB"><span class="nav-number">2.</span> <span class="nav-text">集成学习的分类</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A0%B9%E6%8D%AE%E4%B8%AA%E4%BD%93%E5%AD%A6%E4%B9%A0%E5%99%A8%E7%9A%84%E7%BB%84%E5%90%88%E5%85%B3%E7%B3%BB%E5%88%86%E7%B1%BB"><span class="nav-number">2.1.</span> <span class="nav-text">根据个体学习器的组合关系分类</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%B8%B2%E8%A1%8C%E9%9B%86%E6%88%90%E5%AD%A6%E4%B9%A0"><span class="nav-number">2.1.1.</span> <span class="nav-text">串行集成学习</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%B9%B6%E8%A1%8C%E9%9B%86%E6%88%90%E5%AD%A6%E4%B9%A0"><span class="nav-number">2.1.2.</span> <span class="nav-text">并行集成学习</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A0%B9%E6%8D%AE%E4%B8%AA%E4%BD%93%E5%AD%A6%E4%B9%A0%E5%99%A8%E7%9A%84%E5%BC%82%E5%90%8C%E5%88%86%E7%B1%BB"><span class="nav-number">2.2.</span> <span class="nav-text">根据个体学习器的异同分类</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%90%8C%E8%B4%A8%E9%9B%86%E6%88%90%E5%AD%A6%E4%B9%A0"><span class="nav-number">2.2.1.</span> <span class="nav-text">同质集成学习</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%BC%82%E8%B4%A8%E9%9B%86%E6%88%90%E5%AD%A6%E4%B9%A0"><span class="nav-number">2.2.2.</span> <span class="nav-text">异质集成学习</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9B%86%E6%88%90%E5%AD%A6%E4%B9%A0%E6%A1%86%E6%9E%B6"><span class="nav-number">3.</span> <span class="nav-text">集成学习框架</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Bagging%E6%A1%86%E6%9E%B6"><span class="nav-number">3.1.</span> <span class="nav-text">Bagging框架</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Bagging%E7%9A%84%E5%A4%84%E7%90%86%E6%B5%81%E7%A8%8B"><span class="nav-number">3.1.1.</span> <span class="nav-text">Bagging的处理流程</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Bagging%E7%9A%84%E5%A4%84%E7%90%86%E6%A1%86%E6%9E%B6"><span class="nav-number">3.1.2.</span> <span class="nav-text">Bagging的处理框架</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Bagging%E7%9A%84%E7%89%B9%E7%82%B9"><span class="nav-number">3.1.3.</span> <span class="nav-text">Bagging的特点</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Boosting%E6%A1%86%E6%9E%B6"><span class="nav-number">3.2.</span> <span class="nav-text">Boosting框架</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#AdaBoost%E7%9A%84%E5%A4%84%E7%90%86%E6%B5%81%E7%A8%8B"><span class="nav-number">3.2.1.</span> <span class="nav-text">AdaBoost的处理流程</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Boosting%E7%9A%84%E5%A4%84%E7%90%86%E6%A1%86%E6%9E%B6"><span class="nav-number">3.2.2.</span> <span class="nav-text">Boosting的处理框架</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Boosting%E7%9A%84%E7%89%B9%E7%82%B9"><span class="nav-number">3.2.3.</span> <span class="nav-text">Boosting的特点</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Stacking%E6%A1%86%E6%9E%B6"><span class="nav-number">3.3.</span> <span class="nav-text">Stacking框架</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Stacking%E7%9A%84%E5%A4%84%E7%90%86%E6%B5%81%E7%A8%8B"><span class="nav-number">3.3.1.</span> <span class="nav-text">Stacking的处理流程</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Stacking%E7%9A%84%E5%A4%84%E7%90%86%E6%A1%86%E6%9E%B6"><span class="nav-number">3.3.2.</span> <span class="nav-text">Stacking的处理框架</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Stacking%E7%9A%84%E7%89%B9%E7%82%B9"><span class="nav-number">3.3.3.</span> <span class="nav-text">Stacking的特点</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Blending%E6%A1%86%E6%9E%B6"><span class="nav-number">3.4.</span> <span class="nav-text">Blending框架</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Blending%E7%9A%84%E5%A4%84%E7%90%86%E6%B5%81%E7%A8%8B"><span class="nav-number">3.4.1.</span> <span class="nav-text">Blending的处理流程</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Blend%E7%9A%84%E5%A4%84%E7%90%86%E6%9E%B6%E6%9E%84"><span class="nav-number">3.4.2.</span> <span class="nav-text">Blend的处理架构</span></a></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Yoo Shen</p>
+  <div class="site-description" itemprop="description">学习、记录、分享</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">29</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/sidney-neu" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;sidney-neu" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://sidney-neu.github.io/2022/04/08/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95-%E9%9B%86%E6%88%90%E5%AD%A6%E4%B9%A0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Yoo Shen">
+      <meta itemprop="description" content="学习、记录、分享">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Yoo shen的博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          机器学习算法-集成学习
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2022-04-08 21:45:00 / 修改时间：18:18:38" itemprop="dateCreated datePublished" datetime="2022-04-08T21:45:00+08:00">2022-04-08</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%AE%97%E6%B3%95%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">-算法学习</span></a>
+        </span>
+    </span>
+
+  
+    <span id="/2022/04/08/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95-%E9%9B%86%E6%88%90%E5%AD%A6%E4%B9%A0/" class="post-meta-item leancloud_visitors" data-flag-title="机器学习算法-集成学习" title="阅读次数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span class="leancloud-visitors-count"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h3 id="集成学习概述"><a href="#集成学习概述" class="headerlink" title="集成学习概述"></a>集成学习概述</h3><p>集成学习（ensemble learning）本身不是一个单独的机器学习算法，是一种机器学习的范式，通过构架并组合多个机器学习算法模型来完成学习任务。集成学习属于一种策略，通过组合若干个个体学习器（individual learner），通过一定的组合策略，最终形成一个强学习器模型。</p>
+<h3 id="集成学习的分类"><a href="#集成学习的分类" class="headerlink" title="集成学习的分类"></a>集成学习的分类</h3><h4 id="根据个体学习器的组合关系分类"><a href="#根据个体学习器的组合关系分类" class="headerlink" title="根据个体学习器的组合关系分类"></a>根据个体学习器的组合关系分类</h4><p>根据个体学习器的组合关系，可以将集成学习分为串行集成学习和并行集成学习。</p>
+<h5 id="串行集成学习"><a href="#串行集成学习" class="headerlink" title="串行集成学习"></a>串行集成学习</h5><p>串行集成学习的原理是将上一个 个体学习器的分类错误的样本给一个较大的权重输入给下一个个体学习器。通过后续的个体学习器对之前分类错误的纠正，来提高模型的整体性能。</p>
+<p>个体学习器1 ——————————-&gt;个体学习器2 ——————————-&gt;个体学习器3——-&gt;检测结果</p>
+<p>​                         分类错误的样本加权                            分类错误的样本加权</p>
+<h5 id="并行集成学习"><a href="#并行集成学习" class="headerlink" title="并行集成学习"></a>并行集成学习</h5><p>并行集成学习是通过样本和特征的bootstrapping的方法来保证各个个体学习器之间的独立性和差异性，然后通过投票的方法给出最终分类结果，并通过个体学习器之间的独立性和差异性提高模型的抗过拟合能力。</p>
+<p>个体学习器1—————|</p>
+<p>个体学习器2—————|—————-&gt;投票给出检测结果</p>
+<p>个体学习器3—————|</p>
+<h4 id="根据个体学习器的异同分类"><a href="#根据个体学习器的异同分类" class="headerlink" title="根据个体学习器的异同分类"></a>根据个体学习器的异同分类</h4><h5 id="同质集成学习"><a href="#同质集成学习" class="headerlink" title="同质集成学习"></a>同质集成学习</h5><p>各个个体学习器都是通过同一个基础算法生成的。</p>
+<h5 id="异质集成学习"><a href="#异质集成学习" class="headerlink" title="异质集成学习"></a>异质集成学习</h5><p>各个个体学习器是通过不同的基础算法生成的。</p>
+<h3 id="集成学习框架"><a href="#集成学习框架" class="headerlink" title="集成学习框架"></a>集成学习框架</h3><h4 id="Bagging框架"><a href="#Bagging框架" class="headerlink" title="Bagging框架"></a>Bagging框架</h4><p>Bagging可以理解为聚合引导的意思。通过bootstrap的方法将训练集划分为多个子训练集，并将每一个子训练集用来训练一个个体学习器，最终通过投票的方法获得最终预测结果。</p>
+<h5 id="Bagging的处理流程"><a href="#Bagging的处理流程" class="headerlink" title="Bagging的处理流程"></a>Bagging的处理流程</h5><p>如图：</p>
+<p><img src="/../images/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95-%E9%9B%86%E6%88%90%E5%AD%A6%E4%B9%A0/Bagging%E7%9A%84%E7%AE%97%E6%B3%95%E6%B5%81%E7%A8%8B.PNG" alt="Bagging的算法流程"></p>
+<h5 id="Bagging的处理框架"><a href="#Bagging的处理框架" class="headerlink" title="Bagging的处理框架"></a>Bagging的处理框架</h5><p>如图：</p>
+<p><img src="/../images/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95-%E9%9B%86%E6%88%90%E5%AD%A6%E4%B9%A0/Bagging%E7%9A%84%E7%AE%97%E6%B3%95%E6%A1%86%E6%9E%B6.jpg" alt="Bagging的算法框架"></p>
+<h5 id="Bagging的特点"><a href="#Bagging的特点" class="headerlink" title="Bagging的特点"></a>Bagging的特点</h5><p>因为Bagging通过bootstrap的方法构建了存在明显差异的个体学习器，因此这种架构可以有效的解决模型的方差问题。可以很好的缓解过拟合的问题。并且每个个体学习器都是强模型，有独立的分类能力，因此会Bagging会出现高偏差低方差的现象。</p>
+<h4 id="Boosting框架"><a href="#Boosting框架" class="headerlink" title="Boosting框架"></a>Boosting框架</h4><p>Boosting可以理解为是通过结合多个弱分类器的结果，形成一个强分类器。这里提到的弱分类器是指仅仅比随机猜测好一点点的模型，比如一个较小的决策树，或者一个简单的线性分割器。Boosting和Bagging的区别就是Bagging可以对个体学习器进行并行的训练；而Boosting需要利用加权后的数据对多个弱分类器依次的串行训练。</p>
+<h5 id="AdaBoost的处理流程"><a href="#AdaBoost的处理流程" class="headerlink" title="AdaBoost的处理流程"></a>AdaBoost的处理流程</h5><p>如图：</p>
+<p><img src="/../images/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95-%E9%9B%86%E6%88%90%E5%AD%A6%E4%B9%A0/Adaboost%E5%A4%84%E7%90%86%E6%B5%81%E7%A8%8B.PNG" alt="Adaboost处理流程"></p>
+<h5 id="Boosting的处理框架"><a href="#Boosting的处理框架" class="headerlink" title="Boosting的处理框架"></a>Boosting的处理框架</h5><p>如图：</p>
+<p><img src="/../images/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95-%E9%9B%86%E6%88%90%E5%AD%A6%E4%B9%A0/Boosting%E7%9A%84%E5%A4%84%E7%90%86%E6%A1%86%E6%9E%B6.jpg" alt="Boosting的处理框架"></p>
+<h5 id="Boosting的特点"><a href="#Boosting的特点" class="headerlink" title="Boosting的特点"></a>Boosting的特点</h5><p>因为Bagging通过弱分类器的方法可以有很好的检测精度，因此这种架构可以有效的解决模型的偏差问题。可以很好的缓解欠拟合的问题。并且每个个体学习器都是弱模型，并没有独立的分类能力，因此会Bagging会出现低偏差高方差的现象。</p>
+<h4 id="Stacking框架"><a href="#Stacking框架" class="headerlink" title="Stacking框架"></a>Stacking框架</h4><p>Stacking框架与Bagging框架有一些类似，比如个体学习器都是强分类器，并且各个体学习器可以并行训练得出。不同的地方在于bagging的检测结果是对个体学习器检测结果的综合，但是Stacking框架是将个体学习器的检测结果作为最终检测模型的输入。简而言之，stacking把投票变成了另一个模型。</p>
+<h5 id="Stacking的处理流程"><a href="#Stacking的处理流程" class="headerlink" title="Stacking的处理流程"></a>Stacking的处理流程</h5><p>如图：</p>
+<img src="../images/机器学习算法-集成学习/Stacking的处理流程.PNG" alt="Stacking的处理流程" style="zoom:60%;" />
+
+<h5 id="Stacking的处理框架"><a href="#Stacking的处理框架" class="headerlink" title="Stacking的处理框架"></a>Stacking的处理框架</h5><p>如图：</p>
+<p><img src="/../images/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95-%E9%9B%86%E6%88%90%E5%AD%A6%E4%B9%A0/Stacking%E7%9A%84%E5%A4%84%E7%90%86%E6%A1%86%E6%9E%B6.jpg" alt="Stacking的处理框架"></p>
+<h5 id="Stacking的特点"><a href="#Stacking的特点" class="headerlink" title="Stacking的特点"></a>Stacking的特点</h5><p>Stacking其实更符合大家对集成学习的猜想，相较于Bagging，它在个体学习器的检测结果之后，并没有简单的进行综合，而是将多个检测结果作为输入，训练一个新的元模型作为最终的分类器。基模型（个体学习器）其实更像是一种介于特征处理和检测模型中间的一种装置。</p>
+<h4 id="Blending框架"><a href="#Blending框架" class="headerlink" title="Blending框架"></a>Blending框架</h4><p>blending框架是对Stacking框架的一种优化，主要是将基模型的训练数据和原模型的训练数据分开，这样就可以提高元模型与基模型的关联程度。更好的把基模型从一个检测模型转化成一个特征处理方式。而且这种处理方式可以降低人为的参与程度。</p>
+<h5 id="Blending的处理流程"><a href="#Blending的处理流程" class="headerlink" title="Blending的处理流程"></a>Blending的处理流程</h5><p>流程如下：</p>
+<p>1.将原始训练集T分为训练集T<sub>train</sub>和验证集T<sub>valid</sub></p>
+<p>2.用T<sub>train</sub>训练多个基模型</p>
+<p>3.用多个基模型预测验证集T<sub>valid</sub>，将预测结果作为新的训练数据T<sub>mate</sub></p>
+<p>4.用T<sub>mate</sub>训练一个元模型</p>
+<p>5.使用多个基模型对测试集进行预测，生成新的测试集</p>
+<p>6.使用元模型对新生成的测试集预测，得出最终的结果。</p>
+<h5 id="Blend的处理架构"><a href="#Blend的处理架构" class="headerlink" title="Blend的处理架构"></a>Blend的处理架构</h5><p>如图：</p>
+<p><img src="/../images/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95-%E9%9B%86%E6%88%90%E5%AD%A6%E4%B9%A0/Blending%E7%9A%84%E5%A4%84%E7%90%86%E6%9E%B6%E6%9E%84.jpg" alt="Blending的处理架构"></p>
+<p>Blend的特点</p>
+<p>对Stacking的优化，原始训练数据集分成训练数据集和验证数据集，通过训练数据集训练基模型，并将基模型作为特征处理方法对验证数据集进行进一步的特征处理。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="reward-container">
+  <div>感谢支持，鼓励成就原创！</div>
+  <button>
+    赞赏
+  </button>
+  <div class="post-reward">
+      <div>
+        <img src="/images/wc.jpg" alt="Yoo Shen 微信">
+        <span>微信</span>
+      </div>
+      <div>
+        <img src="/images/zfb.jpg" alt="Yoo Shen 支付宝">
+        <span>支付宝</span>
+      </div>
+
+  </div>
+</div>
+
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>Yoo Shen
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://sidney-neu.github.io/2022/04/08/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95-%E9%9B%86%E6%88%90%E5%AD%A6%E4%B9%A0/" title="机器学习算法-集成学习">https://sidney-neu.github.io/2022/04/08/机器学习算法-集成学习/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2022/04/07/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95-%E5%86%B3%E7%AD%96%E6%A0%91/" rel="prev" title="机器学习算法-决策树">
+                  <i class="fa fa-chevron-left"></i> 机器学习算法-决策树
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments gitalk-container"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Yoo Shen</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/next-boot.js"></script>
+
+  
+<script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.0/dist/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+
+
+  <script class="next-config" data-name="leancloud_visitors" type="application/json">{"enable":true,"app_id":"nG09szIvM8x9ehgslCULWzg2-MdYXbMMI","app_key":"yHykoRL88ikgLTqsUC0xIMvY","server_url":null,"security":false}</script>
+  <script src="/js/third-party/statistics/lean-analytics.js"></script>
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
+
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"sidney-neu","repo":"sidney-neu.github.io","client_id":"04c1120504d2e421fa7d","client_secret":"389710c48c007c80cfbb7b9788d01e674ab31c00","admin_user":"sidney-neu","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":"zh-CN","js":{"url":"https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js","integrity":"sha256-Pmj85ojLaPOWwRtlMJwmezB/Qg8BzvJp5eTzvXaYAfA="},"path_md5":"6802dde4baf73efbea673d50f83efb3a"}</script>
+<script src="/js/third-party/comments/gitalk.js"></script>
+
+</body>
+</html>
