@@ -8,7 +8,7 @@ categories:
 
 下一代防护墙（Next Generation Firewall, 简称 NGFW），在2007年Gartner提出了这一概念。两年后的2009年，Gartner正式发布了《[Defining the Next-Generation Firewall](https://www.gartner.com/en/documents/1204914/defining-the-next-generation-firewall)》，对下一代防火墙的定义做了明确说明。相对于IPS、VPN等当时现有安全产品，NGFW给人的感觉就是：我全都要！
 
-![20201212162217968](../images/什么是下一代防火墙NGFW(Next Generation Firewall)？/20201212162217968.jpeg)
+![20201212162217968](什么是下一代防火墙NGFW(Next Generation Firewall)？/20201212162217968.jpeg)
 
 NGFW在诞生之初作为一个全新的概念和产品形态，为边界类的安全产品的发展指明了方向。然而这个为安全厂商指明发展方向的标准却是有一个咨询公司定义，不仅是一个由一个咨询公司定义还收到了国内外安全厂商的普遍认可。随着相关技术的不断成熟和完善，已经不在是一个概念。很多国内安全大厂已经在参照的等报的合规标准逐渐完善标准和安全功能和检测性能。并逐渐依托自身的特点完成产品的孵化和发展。目前国内的安全大厂已经完成了NGFW的产品化。
 

@@ -6,7 +6,7 @@ categories:
 	-调试工具
 ---
 
-gperftools是google出品的一个性能分析工具.它既可以将程序运行的内存情况输出到终端,也可以以流程图的形式展示程序运行中内存占用情况.
+gperftools是google出品的一个性能分析工具.它既可以将程序运行的内存情况输出到终端,也可以以流程图的形式展示程序运行中内存占用情况. 
 
 1.下载并安装libunwind+gperftools+graphviz
 

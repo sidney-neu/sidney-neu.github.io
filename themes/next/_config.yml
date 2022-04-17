@@ -504,7 +504,8 @@ math:
   every_page: false
 
   mathjax:
-    enable: false
+    enable: true
+    #enable: false
     # Available values: none | ams | all
     tags: none
 
@@ -882,3 +883,7 @@ vendors:
 css: css
 js: js
 images: images
+
+#pandoc:
+#  extensions:
+#    - '-implicit_figures'

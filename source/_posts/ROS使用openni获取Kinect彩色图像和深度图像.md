@@ -7,7 +7,7 @@ categories:
 ### 1.操作系统与软件版本
 
 本实验使用Ubuntu14.04的64bit版本，ROS使用Indigo版本，图像获取使用OpenNI1(因为OpenNI2中未找到彩色图像和深度图像对齐功能，台湾的一代大神Heresy已经实现这一功能，但是我更喜欢OpenNI1官方对齐方法)，图像处理使用OpenCV2，因其更好的通用性。
-![img](../images/ROS使用openni获取Kinect彩色图像和深度图像/20160516204932422.jpg)
+![img](ROS使用openni获取Kinect彩色图像和深度图像/20160516204932422.jpg)
 
 ### 2.配置OpenNI
 
@@ -50,4 +50,3 @@ sudo make install
 使用OpenNI获取获取深度图像和彩色图像可以参考另一篇博客:
 
 [https://www.cnblogs.com/tornadomeet/archive/2012/10/01/2709851.html](https://www.cnblogs.com/tornadomeet/archive/2012/10/01/2709851.html)
-

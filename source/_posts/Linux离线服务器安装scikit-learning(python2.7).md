@@ -106,4 +106,4 @@ tmpfs /dev/shm    tmpfs   defaults,noexec,nosuid     0     0
 mount -a
 ```
 
-重新运行测试程序即可。
+重新运行测试程序即可。 

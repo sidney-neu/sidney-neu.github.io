@@ -71,4 +71,4 @@ Hello from TensorFlow C library version 1.15.0
 ```
 
 
-至此，动态库版本与硬件版本匹配完成。
+至此，动态库版本与硬件版本匹配完成。 

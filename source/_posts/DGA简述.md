@@ -37,7 +37,7 @@ DGA是英文Domain Generation Algorithm的缩写，中文翻译为域名生成�
 
 Daniel Plohmann在[技术分享](https://www.botconf.eu/wp-content/uploads/2015/12/OK-P06-Plohmann-DGArchive.pdf)中，对多个DGA家族基于以上的分类进行归纳总结，归纳结果如下图：
 
-![DGA家族的分类](../images/DGA简述/企业微信截图_16460268114223.png)
+![DGA家族的分类](DGA简述/企业微信截图_16460268114223.png)
 
 ### DGA的用途
 
