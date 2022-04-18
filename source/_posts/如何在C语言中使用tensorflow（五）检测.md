@@ -2,8 +2,7 @@
 title: 如何在C语言中使用tensorflow（五）检测
 date: 2020-05-16 20:21:00
 categories:
-	-机器学习
-	-工程化
+	-AI工程化框架
 ---
 
 本期主要以[Sophos的ai项目](https://github.com/sophos-ai/tensorflow-cmake/blob/master/inference/c/inference_c.c)为例子，对机器学习读入pb模型以及检测流程进行分析。

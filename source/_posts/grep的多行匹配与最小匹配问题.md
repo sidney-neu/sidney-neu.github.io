@@ -3,7 +3,6 @@ title: grep的多行匹配与最小匹配问题
 date: 2018-10-19 17:22:00
 categories:
 	-Linux
-	-shell
 ---
 grep匹配是linux的最常用的shell命令之一，grep的匹配的默认匹配为单行匹配和贪婪匹配，因此需要特殊的技巧将其转化为多行匹配和最小匹配。
 

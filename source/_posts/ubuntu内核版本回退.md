@@ -3,7 +3,6 @@ title: ubuntu内核版本回退
 date: 2020-12-16 21:26:00
 categories:
 	-Linux
-	-内核
 ---
 
 查看当前内核：

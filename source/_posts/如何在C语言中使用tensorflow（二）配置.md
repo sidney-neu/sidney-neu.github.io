@@ -2,8 +2,7 @@
 title: 如何在C语言中使用tensorflow（二）配置
 date: 2020-05-09 11:38:00
 categories:
-	-机器学习
-	-工程化
+	-AI工程化框架
 ---
 
 本文主要介绍tensorflow的cpu版本的C语言使用方法。

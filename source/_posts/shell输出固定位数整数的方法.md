@@ -3,7 +3,6 @@ title: shell输出固定位数整数的方法
 date: 2018-10-19 17:22:00
 categories:
 	-Linux
-	-shell
 ---
 Qos:
 

@@ -2,8 +2,7 @@
 title: 如何在C语言中使用tensorflow（一）概述
 date: 2020-05-09 11:38:00
 categories:
-	-机器学习
-	-工程化
+	-AI工程化框架
 ---
 
 Tensorflow是当前广泛使用的机器学习框架。Tensorflow提供了C语言的lib库接口，但是对应的应用文档较少，这里我将结合自己的使用情况做一下分享。

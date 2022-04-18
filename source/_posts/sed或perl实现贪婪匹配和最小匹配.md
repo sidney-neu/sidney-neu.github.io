@@ -3,7 +3,6 @@ title: sed或perl实现贪婪匹配和最小匹配
 date: 2018-10-19 17:20:00
 categories:
 	-Linux
-	-shell
 ---
 ### 1.sed默认使用贪婪匹配
 

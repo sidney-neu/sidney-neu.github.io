@@ -2,8 +2,7 @@
 title: 如何在C语言中使用tensorflow（四）实例
 date: 2020-05-16 20:21:00
 categories:
-	-机器学习
-	-工程化
+	-AI工程化框架
 ---
 
 本文主要通过TF_SessionRun的方式输出字符串内容：

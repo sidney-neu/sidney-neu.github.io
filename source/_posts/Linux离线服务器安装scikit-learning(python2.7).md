@@ -3,7 +3,6 @@ title: Linux离线服务器安装scikit-learning(python2.7)
 date: 2018-10-19 17:20:00
 categories:
 	-Linux
-	-others
 ---
 
 1.提前下载pip

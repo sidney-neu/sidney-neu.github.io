@@ -3,7 +3,7 @@ title: 为什么LSTM检测DGA是无用功(转载)
 date: 2022-03-22 21:05:00
 categories:
 	-网络安全
-	-AI工程化
+	-AI检测
 ---
 （本文转载自：https://toooold.com/2021/07/12/dga_detection.html，感谢作者原创，侵删！）
 
