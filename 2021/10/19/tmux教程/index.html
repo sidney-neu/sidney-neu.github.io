@@ -19,12 +19,12 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"sidney-neu.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.8.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":{"gitalk":{"order":-1}},"activeClass":"gitalk"},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.json","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
-<meta name="description" content="安装tmux以下以ubuntu操作系统举例，其他linux系统区别不大。 1234sudo apt-get install tmuxtmux -V                       sudo apt-get install build-essential           sudo apt-get install libevent-dev libncurses5-dev">
+<meta name="description" content="&amp;#x5B89;&amp;#x88C5;tmux &amp;#x4EE5;&amp;#x4E0B;&amp;#x4EE5;ubuntu&amp;#x64CD;&amp;#x4F5C;&amp;#x7CFB;&amp;#x7EDF;&amp;#x4E3E;&amp;#x4F8B;&amp;#xFF0C;&amp;#x5176;&amp;#x4ED6;linux&amp;#x7CFB;&amp;#x7EDF;&amp;#x533A;&amp;#x522B;&amp;#x4E0D;&amp;#x5927;&amp;#x3002; 1234sudo apt-ge">
 <meta property="og:type" content="article">
 <meta property="og:title" content="tmux教程">
 <meta property="og:url" content="https://sidney-neu.github.io/2021/10/19/tmux%E6%95%99%E7%A8%8B/index.html">
 <meta property="og:site_name" content="Yoo shen的博客">
-<meta property="og:description" content="安装tmux以下以ubuntu操作系统举例，其他linux系统区别不大。 1234sudo apt-get install tmuxtmux -V                       sudo apt-get install build-essential           sudo apt-get install libevent-dev libncurses5-dev">
+<meta property="og:description" content="&amp;#x5B89;&amp;#x88C5;tmux &amp;#x4EE5;&amp;#x4E0B;&amp;#x4EE5;ubuntu&amp;#x64CD;&amp;#x4F5C;&amp;#x7CFB;&amp;#x7EDF;&amp;#x4E3E;&amp;#x4F8B;&amp;#xFF0C;&amp;#x5176;&amp;#x4ED6;linux&amp;#x7CFB;&amp;#x7EDF;&amp;#x533A;&amp;#x522B;&amp;#x4E0D;&amp;#x5927;&amp;#x3002; 1234sudo apt-ge">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-10-19T13:20:00.000Z">
 <meta property="article:modified_time" content="2022-03-30T09:45:30.857Z">
@@ -86,8 +86,8 @@
 <nav class="site-nav">
   <ul class="main-menu menu">
         <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
-        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">17</span></a></li>
-        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">29</span></a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">12</span></a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">32</span></a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -157,13 +157,13 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">29</span>
+          <span class="site-state-item-count">32</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-count">12</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
   </nav>
@@ -267,34 +267,33 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <h3 id="安装tmux"><a href="#安装tmux" class="headerlink" title="安装tmux"></a>安装tmux</h3><p>以下以ubuntu操作系统举例，其他linux系统区别不大。</p>
+        <h3 id="&#x5B89;&#x88C5;tmux">&#x5B89;&#x88C5;tmux</h3>
+<p>&#x4EE5;&#x4E0B;&#x4EE5;ubuntu&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#x4E3E;&#x4F8B;&#xFF0C;&#x5176;&#x4ED6;linux&#x7CFB;&#x7EDF;&#x533A;&#x522B;&#x4E0D;&#x5927;&#x3002;</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install tmux</span><br><span class="line">tmux -V                       </span><br><span class="line">sudo apt-get install build-essential           </span><br><span class="line">sudo apt-get install libevent-dev libncurses5-dev        </span><br></pre></td></tr></table></figure>
-
-<h3 id="启动tmux"><a href="#启动tmux" class="headerlink" title="启动tmux"></a>启动tmux</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">tmux                 （启动一个名为“session”的tmux）</span><br><span class="line">exit                     （退出当前tmux）</span><br></pre></td></tr></table></figure>
-
-<h3 id="创建一个命名的session"><a href="#创建一个命名的session" class="headerlink" title="创建一个命名的session"></a>创建一个命名的session</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">tmux new-session -s basic         （创建一个名为“basic”的session）</span><br><span class="line">tmux new -s basic           （简化创建一个名为“basic”的session）</span><br><span class="line">exit                     （退出当前tmux）</span><br></pre></td></tr></table></figure>
-
-<h3 id="session分离"><a href="#session分离" class="headerlink" title="session分离"></a>session分离</h3><p>Session的分离（Detaching）不会是session中的进程中断，而是仍在后台运行中。如果需要使用，可以连接到（Attaching）已经分离的session中。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">tmux new -s basic           （简化创建一个名为“basic”的session）</span><br><span class="line">top                 （监控内存与cpu用途）</span><br><span class="line">Ctrl+b ➷ ➹ d➷           （从当前的session分离，返回到主页面）</span><br></pre></td></tr></table></figure>
-
-<h3 id="重连一个已有session"><a href="#重连一个已有session" class="headerlink" title="重连一个已有session"></a>重连一个已有session</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">tmux list-sessions                 （列出已有的session）</span><br><span class="line">tmux ls                     （简化列出已有的session）</span><br><span class="line">tmux attach                 （仅有一个session存在时的连接命令）</span><br><span class="line">tmux new -s sessionname -d           （创建一个新tmux实例）</span><br><span class="line">tmux attach -t sessionname            （连接到sessionname实例）</span><br></pre></td></tr></table></figure>
-
-<h3 id="关闭session"><a href="#关闭session" class="headerlink" title="关闭session"></a>关闭session</h3><p>可以在进入session后使用exit关闭相关session，也可以在使用命令关闭。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&amp;      （关闭名为sessionname的session）</span><br></pre></td></tr></table></figure>
-
-<h3 id="使用windows"><a href="#使用windows" class="headerlink" title="使用windows"></a>使用windows</h3><p>windows是指在session中创建不同的窗口</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">tmux new -s windows -n shell         （创建名为windows的session，并且通过 –n 可以对window进行命名，以便于确认其身份）</span><br><span class="line">Ctrl+b ➷ ➹ c➷             （在当前session下创建新的window）</span><br><span class="line">Ctrl+b ➷ ➹ ，➷          （重命名当前window,“第三个按键为逗号”）</span><br><span class="line">Ctrl+b ➷ ➹ n➷           （进去当前session的下一个window）</span><br><span class="line">Ctrl+b ➷ ➹ p➷            （进入最近操作的那个window）</span><br><span class="line">Ctrl+b ➷ ➹ 0➷         （进去当前session下命名为“0”的window中）</span><br><span class="line">Ctrl+b ➷ ➹ f➷         （通过名字查找当前session下的window）</span><br><span class="line">Ctrl+b ➷ ➹ w➷        （将当前session下的window列出，并选择进入）</span><br></pre></td></tr></table></figure>
-
-<h3 id="关闭window"><a href="#关闭window" class="headerlink" title="关闭window"></a>关闭window</h3><p>关闭window可以计入相应的window中，并在其中运行exit关闭，也可以使用快捷键关闭。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Ctrl+b ➷ ➹ &amp;➷        （关闭当前window，其中&amp;=shift+7）</span><br></pre></td></tr></table></figure>
-
-<p>1.5.1使用panes</p>
-<p>创建名为panes的session，以便于理解panes是如何工作。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">tmux new -s panes                （创建一个名为panes的session）</span><br><span class="line">Ctrl+b ➷ ➹ %➷ tmux            （将panes切为左右两个，其中%=shift+5）</span><br><span class="line">Ctrl+b ➷ ➹ “➷            （将panes切为上下两个，其中%=shift+’）</span><br><span class="line">Ctrl+b ➷ ➹ 向上➷         （将panes切换到上面一个，可上下左右）</span><br><span class="line">Ctrl+b+向上➷               （将当前panes向上扩大，可上下左右）</span><br><span class="line">Ctrl+b ➷ ➹ o➷            （在当前window下的panes之间循环）</span><br><span class="line">Ctrl+b ➷ ➹ 空格➷          （在当前window下的panes进行自动布局）</span><br></pre></td></tr></table></figure>
-
-<h3 id="关闭panes"><a href="#关闭panes" class="headerlink" title="关闭panes"></a>关闭panes</h3><p>关闭panes可以计入相应的panes中，并在其中运行exit关闭，也可以使用快捷键关闭。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Ctrl+b ➷ ➹ x➷                 （关闭当前panes）</span><br></pre></td></tr></table></figure>
-
+<h3 id="&#x542F;&#x52A8;tmux">&#x542F;&#x52A8;tmux</h3>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">tmux                 &#xFF08;&#x542F;&#x52A8;&#x4E00;&#x4E2A;&#x540D;&#x4E3A;&#x201C;session&#x201D;&#x7684;tmux&#xFF09;</span><br><span class="line">exit                     &#xFF08;&#x9000;&#x51FA;&#x5F53;&#x524D;tmux&#xFF09;</span><br></pre></td></tr></table></figure>
+<h3 id="&#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x547D;&#x540D;&#x7684;session">&#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x547D;&#x540D;&#x7684;session</h3>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">tmux new-session -s basic         &#xFF08;&#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x540D;&#x4E3A;&#x201C;basic&#x201D;&#x7684;session&#xFF09;</span><br><span class="line">tmux new -s basic           &#xFF08;&#x7B80;&#x5316;&#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x540D;&#x4E3A;&#x201C;basic&#x201D;&#x7684;session&#xFF09;</span><br><span class="line">exit                     &#xFF08;&#x9000;&#x51FA;&#x5F53;&#x524D;tmux&#xFF09;</span><br></pre></td></tr></table></figure>
+<h3 id="session&#x5206;&#x79BB;">session&#x5206;&#x79BB;</h3>
+<p>Session&#x7684;&#x5206;&#x79BB;&#xFF08;Detaching&#xFF09;&#x4E0D;&#x4F1A;&#x662F;session&#x4E2D;&#x7684;&#x8FDB;&#x7A0B;&#x4E2D;&#x65AD;&#xFF0C;&#x800C;&#x662F;&#x4ECD;&#x5728;&#x540E;&#x53F0;&#x8FD0;&#x884C;&#x4E2D;&#x3002;&#x5982;&#x679C;&#x9700;&#x8981;&#x4F7F;&#x7528;&#xFF0C;&#x53EF;&#x4EE5;&#x8FDE;&#x63A5;&#x5230;&#xFF08;Attaching&#xFF09;&#x5DF2;&#x7ECF;&#x5206;&#x79BB;&#x7684;session&#x4E2D;&#x3002;</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">tmux new -s basic           &#xFF08;&#x7B80;&#x5316;&#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x540D;&#x4E3A;&#x201C;basic&#x201D;&#x7684;session&#xFF09;</span><br><span class="line">top                 &#xFF08;&#x76D1;&#x63A7;&#x5185;&#x5B58;&#x4E0E;cpu&#x7528;&#x9014;&#xFF09;</span><br><span class="line">Ctrl+b &#x27B7; &#x27B9; d&#x27B7;           &#xFF08;&#x4ECE;&#x5F53;&#x524D;&#x7684;session&#x5206;&#x79BB;&#xFF0C;&#x8FD4;&#x56DE;&#x5230;&#x4E3B;&#x9875;&#x9762;&#xFF09;</span><br></pre></td></tr></table></figure>
+<h3 id="&#x91CD;&#x8FDE;&#x4E00;&#x4E2A;&#x5DF2;&#x6709;session">&#x91CD;&#x8FDE;&#x4E00;&#x4E2A;&#x5DF2;&#x6709;session</h3>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">tmux list-sessions                 &#xFF08;&#x5217;&#x51FA;&#x5DF2;&#x6709;&#x7684;session&#xFF09;</span><br><span class="line">tmux ls                     &#xFF08;&#x7B80;&#x5316;&#x5217;&#x51FA;&#x5DF2;&#x6709;&#x7684;session&#xFF09;</span><br><span class="line">tmux attach                 &#xFF08;&#x4EC5;&#x6709;&#x4E00;&#x4E2A;session&#x5B58;&#x5728;&#x65F6;&#x7684;&#x8FDE;&#x63A5;&#x547D;&#x4EE4;&#xFF09;</span><br><span class="line">tmux new -s sessionname -d           &#xFF08;&#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x65B0;tmux&#x5B9E;&#x4F8B;&#xFF09;</span><br><span class="line">tmux attach -t sessionname            &#xFF08;&#x8FDE;&#x63A5;&#x5230;sessionname&#x5B9E;&#x4F8B;&#xFF09;</span><br></pre></td></tr></table></figure>
+<h3 id="&#x5173;&#x95ED;session">&#x5173;&#x95ED;session</h3>
+<p>&#x53EF;&#x4EE5;&#x5728;&#x8FDB;&#x5165;session&#x540E;&#x4F7F;&#x7528;exit&#x5173;&#x95ED;&#x76F8;&#x5173;session&#xFF0C;&#x4E5F;&#x53EF;&#x4EE5;&#x5728;&#x4F7F;&#x7528;&#x547D;&#x4EE4;&#x5173;&#x95ED;&#x3002;</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&amp;      &#xFF08;&#x5173;&#x95ED;&#x540D;&#x4E3A;sessionname&#x7684;session&#xFF09;</span><br></pre></td></tr></table></figure>
+<h3 id="&#x4F7F;&#x7528;windows">&#x4F7F;&#x7528;windows</h3>
+<p>windows&#x662F;&#x6307;&#x5728;session&#x4E2D;&#x521B;&#x5EFA;&#x4E0D;&#x540C;&#x7684;&#x7A97;&#x53E3;</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">tmux new -s windows -n shell         &#xFF08;&#x521B;&#x5EFA;&#x540D;&#x4E3A;windows&#x7684;session&#xFF0C;&#x5E76;&#x4E14;&#x901A;&#x8FC7; &#x2013;n &#x53EF;&#x4EE5;&#x5BF9;window&#x8FDB;&#x884C;&#x547D;&#x540D;&#xFF0C;&#x4EE5;&#x4FBF;&#x4E8E;&#x786E;&#x8BA4;&#x5176;&#x8EAB;&#x4EFD;&#xFF09;</span><br><span class="line">Ctrl+b &#x27B7; &#x27B9; c&#x27B7;             &#xFF08;&#x5728;&#x5F53;&#x524D;session&#x4E0B;&#x521B;&#x5EFA;&#x65B0;&#x7684;window&#xFF09;</span><br><span class="line">Ctrl+b &#x27B7; &#x27B9; &#xFF0C;&#x27B7;          &#xFF08;&#x91CD;&#x547D;&#x540D;&#x5F53;&#x524D;window,&#x201C;&#x7B2C;&#x4E09;&#x4E2A;&#x6309;&#x952E;&#x4E3A;&#x9017;&#x53F7;&#x201D;&#xFF09;</span><br><span class="line">Ctrl+b &#x27B7; &#x27B9; n&#x27B7;           &#xFF08;&#x8FDB;&#x53BB;&#x5F53;&#x524D;session&#x7684;&#x4E0B;&#x4E00;&#x4E2A;window&#xFF09;</span><br><span class="line">Ctrl+b &#x27B7; &#x27B9; p&#x27B7;            &#xFF08;&#x8FDB;&#x5165;&#x6700;&#x8FD1;&#x64CD;&#x4F5C;&#x7684;&#x90A3;&#x4E2A;window&#xFF09;</span><br><span class="line">Ctrl+b &#x27B7; &#x27B9; 0&#x27B7;         &#xFF08;&#x8FDB;&#x53BB;&#x5F53;&#x524D;session&#x4E0B;&#x547D;&#x540D;&#x4E3A;&#x201C;0&#x201D;&#x7684;window&#x4E2D;&#xFF09;</span><br><span class="line">Ctrl+b &#x27B7; &#x27B9; f&#x27B7;         &#xFF08;&#x901A;&#x8FC7;&#x540D;&#x5B57;&#x67E5;&#x627E;&#x5F53;&#x524D;session&#x4E0B;&#x7684;window&#xFF09;</span><br><span class="line">Ctrl+b &#x27B7; &#x27B9; w&#x27B7;        &#xFF08;&#x5C06;&#x5F53;&#x524D;session&#x4E0B;&#x7684;window&#x5217;&#x51FA;&#xFF0C;&#x5E76;&#x9009;&#x62E9;&#x8FDB;&#x5165;&#xFF09;</span><br></pre></td></tr></table></figure>
+<h3 id="&#x5173;&#x95ED;window">&#x5173;&#x95ED;window</h3>
+<p>&#x5173;&#x95ED;window&#x53EF;&#x4EE5;&#x8BA1;&#x5165;&#x76F8;&#x5E94;&#x7684;window&#x4E2D;&#xFF0C;&#x5E76;&#x5728;&#x5176;&#x4E2D;&#x8FD0;&#x884C;exit&#x5173;&#x95ED;&#xFF0C;&#x4E5F;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x5FEB;&#x6377;&#x952E;&#x5173;&#x95ED;&#x3002;</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Ctrl+b &#x27B7; &#x27B9; &amp;&#x27B7;        &#xFF08;&#x5173;&#x95ED;&#x5F53;&#x524D;window&#xFF0C;&#x5176;&#x4E2D;&amp;=shift+7&#xFF09;</span><br></pre></td></tr></table></figure>
+<p>1.5.1&#x4F7F;&#x7528;panes</p>
+<p>&#x521B;&#x5EFA;&#x540D;&#x4E3A;panes&#x7684;session&#xFF0C;&#x4EE5;&#x4FBF;&#x4E8E;&#x7406;&#x89E3;panes&#x662F;&#x5982;&#x4F55;&#x5DE5;&#x4F5C;&#x3002;</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">tmux new -s panes                &#xFF08;&#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x540D;&#x4E3A;panes&#x7684;session&#xFF09;</span><br><span class="line">Ctrl+b &#x27B7; &#x27B9; %&#x27B7; tmux            &#xFF08;&#x5C06;panes&#x5207;&#x4E3A;&#x5DE6;&#x53F3;&#x4E24;&#x4E2A;&#xFF0C;&#x5176;&#x4E2D;%=shift+5&#xFF09;</span><br><span class="line">Ctrl+b &#x27B7; &#x27B9; &#x201C;&#x27B7;            &#xFF08;&#x5C06;panes&#x5207;&#x4E3A;&#x4E0A;&#x4E0B;&#x4E24;&#x4E2A;&#xFF0C;&#x5176;&#x4E2D;%=shift+&#x2019;&#xFF09;</span><br><span class="line">Ctrl+b &#x27B7; &#x27B9; &#x5411;&#x4E0A;&#x27B7;         &#xFF08;&#x5C06;panes&#x5207;&#x6362;&#x5230;&#x4E0A;&#x9762;&#x4E00;&#x4E2A;&#xFF0C;&#x53EF;&#x4E0A;&#x4E0B;&#x5DE6;&#x53F3;&#xFF09;</span><br><span class="line">Ctrl+b+&#x5411;&#x4E0A;&#x27B7;               &#xFF08;&#x5C06;&#x5F53;&#x524D;panes&#x5411;&#x4E0A;&#x6269;&#x5927;&#xFF0C;&#x53EF;&#x4E0A;&#x4E0B;&#x5DE6;&#x53F3;&#xFF09;</span><br><span class="line">Ctrl+b &#x27B7; &#x27B9; o&#x27B7;            &#xFF08;&#x5728;&#x5F53;&#x524D;window&#x4E0B;&#x7684;panes&#x4E4B;&#x95F4;&#x5FAA;&#x73AF;&#xFF09;</span><br><span class="line">Ctrl+b &#x27B7; &#x27B9; &#x7A7A;&#x683C;&#x27B7;          &#xFF08;&#x5728;&#x5F53;&#x524D;window&#x4E0B;&#x7684;panes&#x8FDB;&#x884C;&#x81EA;&#x52A8;&#x5E03;&#x5C40;&#xFF09;</span><br></pre></td></tr></table></figure>
+<h3 id="&#x5173;&#x95ED;panes">&#x5173;&#x95ED;panes</h3>
+<p>&#x5173;&#x95ED;panes&#x53EF;&#x4EE5;&#x8BA1;&#x5165;&#x76F8;&#x5E94;&#x7684;panes&#x4E2D;&#xFF0C;&#x5E76;&#x5728;&#x5176;&#x4E2D;&#x8FD0;&#x884C;exit&#x5173;&#x95ED;&#xFF0C;&#x4E5F;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x5FEB;&#x6377;&#x952E;&#x5173;&#x95ED;&#x3002;</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Ctrl+b &#x27B7; &#x27B9; x&#x27B7;                 &#xFF08;&#x5173;&#x95ED;&#x5F53;&#x524D;panes&#xFF09;</span><br></pre></td></tr></table></figure>
 
     </div>
 
@@ -401,6 +400,12 @@
 
   <script class="next-config" data-name="leancloud_visitors" type="application/json">{"enable":true,"app_id":"nG09szIvM8x9ehgslCULWzg2-MdYXbMMI","app_key":"yHykoRL88ikgLTqsUC0xIMvY","server_url":null,"security":false}</script>
   <script src="/js/third-party/statistics/lean-analytics.js"></script>
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdn.jsdelivr.net/npm/mathjax@3.2.0/es5/tex-mml-chtml.js","integrity":"sha256-r+3itOMtGGjap0x+10hu6jW/gZCzxHsoKrOd7gyRSGY="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
 
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">

@@ -19,19 +19,19 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"sidney-neu.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.8.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":{"gitalk":{"order":-1}},"activeClass":"gitalk"},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.json","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
-<meta name="description" content="1.操作系统与软件版本本实验使用Ubuntu14.04的64bit版本，ROS使用Indigo版本，图像获取使用OpenNI1(因为OpenNI2中未找到彩色图像和深度图像对齐功能，台湾的一代大神Heresy已经实现这一功能，但是我更喜欢OpenNI1官方对齐方法)，图像处理使用OpenCV2，因其更好的通用性。 2.配置OpenNIopenni的配置参考链接中的blog，根据功课教程可以提取Ki">
+<meta name="description" content="1.&amp;#x64CD;&amp;#x4F5C;&amp;#x7CFB;&amp;#x7EDF;&amp;#x4E0E;&amp;#x8F6F;&amp;#x4EF6;&amp;#x7248;&amp;#x672C; &amp;#x672C;&amp;#x5B9E;&amp;#x9A8C;&amp;#x4F7F;&amp;#x7528;Ubuntu14.04&amp;#x7684;64bit&amp;#x7248;&amp;#x672C;&amp;#xFF0C;ROS&amp;#x4F7F;&amp;#x7528;Indigo&amp;#x7248;&amp;#x6">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ROS使用openni获取Kinect彩色图像和深度图像">
 <meta property="og:url" content="https://sidney-neu.github.io/2016/05/16/ROS%E4%BD%BF%E7%94%A8openni%E8%8E%B7%E5%8F%96Kinect%E5%BD%A9%E8%89%B2%E5%9B%BE%E5%83%8F%E5%92%8C%E6%B7%B1%E5%BA%A6%E5%9B%BE%E5%83%8F/index.html">
 <meta property="og:site_name" content="Yoo shen的博客">
-<meta property="og:description" content="1.操作系统与软件版本本实验使用Ubuntu14.04的64bit版本，ROS使用Indigo版本，图像获取使用OpenNI1(因为OpenNI2中未找到彩色图像和深度图像对齐功能，台湾的一代大神Heresy已经实现这一功能，但是我更喜欢OpenNI1官方对齐方法)，图像处理使用OpenCV2，因其更好的通用性。 2.配置OpenNIopenni的配置参考链接中的blog，根据功课教程可以提取Ki">
+<meta property="og:description" content="1.&amp;#x64CD;&amp;#x4F5C;&amp;#x7CFB;&amp;#x7EDF;&amp;#x4E0E;&amp;#x8F6F;&amp;#x4EF6;&amp;#x7248;&amp;#x672C; &amp;#x672C;&amp;#x5B9E;&amp;#x9A8C;&amp;#x4F7F;&amp;#x7528;Ubuntu14.04&amp;#x7684;64bit&amp;#x7248;&amp;#x672C;&amp;#xFF0C;ROS&amp;#x4F7F;&amp;#x7528;Indigo&amp;#x7248;&amp;#x6">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://sidney-neu.github.io/images/ROS%E4%BD%BF%E7%94%A8openni%E8%8E%B7%E5%8F%96Kinect%E5%BD%A9%E8%89%B2%E5%9B%BE%E5%83%8F%E5%92%8C%E6%B7%B1%E5%BA%A6%E5%9B%BE%E5%83%8F/20160516204932422.jpg">
+<meta property="og:image" content="https://sidney-neu.github.io/2016/05/16/ROS%E4%BD%BF%E7%94%A8openni%E8%8E%B7%E5%8F%96Kinect%E5%BD%A9%E8%89%B2%E5%9B%BE%E5%83%8F%E5%92%8C%E6%B7%B1%E5%BA%A6%E5%9B%BE%E5%83%8F/20160516204932422.jpg">
 <meta property="article:published_time" content="2016-05-16T12:55:00.000Z">
-<meta property="article:modified_time" content="2022-03-03T01:47:12.965Z">
+<meta property="article:modified_time" content="2022-04-18T03:14:00.093Z">
 <meta property="article:author" content="Yoo Shen">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://sidney-neu.github.io/images/ROS%E4%BD%BF%E7%94%A8openni%E8%8E%B7%E5%8F%96Kinect%E5%BD%A9%E8%89%B2%E5%9B%BE%E5%83%8F%E5%92%8C%E6%B7%B1%E5%BA%A6%E5%9B%BE%E5%83%8F/20160516204932422.jpg">
+<meta name="twitter:image" content="https://sidney-neu.github.io/2016/05/16/ROS%E4%BD%BF%E7%94%A8openni%E8%8E%B7%E5%8F%96Kinect%E5%BD%A9%E8%89%B2%E5%9B%BE%E5%83%8F%E5%92%8C%E6%B7%B1%E5%BA%A6%E5%9B%BE%E5%83%8F/20160516204932422.jpg">
 
 
 <link rel="canonical" href="https://sidney-neu.github.io/2016/05/16/ROS%E4%BD%BF%E7%94%A8openni%E8%8E%B7%E5%8F%96Kinect%E5%BD%A9%E8%89%B2%E5%9B%BE%E5%83%8F%E5%92%8C%E6%B7%B1%E5%BA%A6%E5%9B%BE%E5%83%8F/">
@@ -88,8 +88,8 @@
 <nav class="site-nav">
   <ul class="main-menu menu">
         <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
-        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">17</span></a></li>
-        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">29</span></a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">12</span></a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">32</span></a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -146,7 +146,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%B8%8E%E8%BD%AF%E4%BB%B6%E7%89%88%E6%9C%AC"><span class="nav-number">1.</span> <span class="nav-text">1.操作系统与软件版本</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E9%85%8D%E7%BD%AEOpenNI"><span class="nav-number">2.</span> <span class="nav-text">2.配置OpenNI</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E5%AE%89%E8%A3%85OpenCV2"><span class="nav-number">3.</span> <span class="nav-text">3.安装OpenCV2</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-%E5%AE%89%E8%A3%85ROS"><span class="nav-number">4.</span> <span class="nav-text">4.安装ROS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-%E8%8E%B7%E5%8F%96kinect%E7%9A%84%E5%BD%A9%E8%89%B2%E5%9B%BE%E5%83%8F%E5%92%8C%E6%B7%B1%E5%BA%A6%E5%9B%BE%E5%83%8F"><span class="nav-number">5.</span> <span class="nav-text">5.获取kinect的彩色图像和深度图像</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%B8%8E%E8%BD%AF%E4%BB%B6%E7%89%88%E6%9C%AC"><span class="nav-number">1.</span> <span class="nav-text">1.操作系统与软件版本</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%85%8D%E7%BD%AEopenni"><span class="nav-number">2.</span> <span class="nav-text">2.配置OpenNI</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%89%E8%A3%85opencv2"><span class="nav-number">3.</span> <span class="nav-text">3.安装OpenCV2</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%89%E8%A3%85ros"><span class="nav-number">4.</span> <span class="nav-text">4.安装ROS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%8E%B7%E5%8F%96kinect%E7%9A%84%E5%BD%A9%E8%89%B2%E5%9B%BE%E5%83%8F%E5%92%8C%E6%B7%B1%E5%BA%A6%E5%9B%BE%E5%83%8F"><span class="nav-number">5.</span> <span class="nav-text">5.获取kinect的彩色图像和深度图像</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -159,13 +159,13 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">29</span>
+          <span class="site-state-item-count">32</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-count">12</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
   </nav>
@@ -240,7 +240,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-03-03 09:47:12" itemprop="dateModified" datetime="2022-03-03T09:47:12+08:00">2022-03-03</time>
+      <time title="修改时间：2022-04-18 11:14:00" itemprop="dateModified" datetime="2022-04-18T11:14:00+08:00">2022-04-18</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -269,21 +269,25 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <h3 id="1-操作系统与软件版本"><a href="#1-操作系统与软件版本" class="headerlink" title="1.操作系统与软件版本"></a>1.操作系统与软件版本</h3><p>本实验使用Ubuntu14.04的64bit版本，ROS使用Indigo版本，图像获取使用OpenNI1(因为OpenNI2中未找到彩色图像和深度图像对齐功能，台湾的一代大神Heresy已经实现这一功能，但是我更喜欢OpenNI1官方对齐方法)，图像处理使用OpenCV2，因其更好的通用性。<br><img src="/../images/ROS%E4%BD%BF%E7%94%A8openni%E8%8E%B7%E5%8F%96Kinect%E5%BD%A9%E8%89%B2%E5%9B%BE%E5%83%8F%E5%92%8C%E6%B7%B1%E5%BA%A6%E5%9B%BE%E5%83%8F/20160516204932422.jpg" alt="img"></p>
-<h3 id="2-配置OpenNI"><a href="#2-配置OpenNI" class="headerlink" title="2.配置OpenNI"></a>2.配置OpenNI</h3><p>openni的配置参考链接中的blog，根据功课教程可以提取Kinect的彩色图像和深度图像：</p>
+        <h3 id="&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#x4E0E;&#x8F6F;&#x4EF6;&#x7248;&#x672C;">1.&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#x4E0E;&#x8F6F;&#x4EF6;&#x7248;&#x672C;</h3>
+<p>&#x672C;&#x5B9E;&#x9A8C;&#x4F7F;&#x7528;Ubuntu14.04&#x7684;64bit&#x7248;&#x672C;&#xFF0C;ROS&#x4F7F;&#x7528;Indigo&#x7248;&#x672C;&#xFF0C;&#x56FE;&#x50CF;&#x83B7;&#x53D6;&#x4F7F;&#x7528;OpenNI1(&#x56E0;&#x4E3A;OpenNI2&#x4E2D;&#x672A;&#x627E;&#x5230;&#x5F69;&#x8272;&#x56FE;&#x50CF;&#x548C;&#x6DF1;&#x5EA6;&#x56FE;&#x50CF;&#x5BF9;&#x9F50;&#x529F;&#x80FD;&#xFF0C;&#x53F0;&#x6E7E;&#x7684;&#x4E00;&#x4EE3;&#x5927;&#x795E;Heresy&#x5DF2;&#x7ECF;&#x5B9E;&#x73B0;&#x8FD9;&#x4E00;&#x529F;&#x80FD;&#xFF0C;&#x4F46;&#x662F;&#x6211;&#x66F4;&#x559C;&#x6B22;OpenNI1&#x5B98;&#x65B9;&#x5BF9;&#x9F50;&#x65B9;&#x6CD5;)&#xFF0C;&#x56FE;&#x50CF;&#x5904;&#x7406;&#x4F7F;&#x7528;OpenCV2&#xFF0C;&#x56E0;&#x5176;&#x66F4;&#x597D;&#x7684;&#x901A;&#x7528;&#x6027;&#x3002;
+<img src="/2016/05/16/ROS%E4%BD%BF%E7%94%A8openni%E8%8E%B7%E5%8F%96Kinect%E5%BD%A9%E8%89%B2%E5%9B%BE%E5%83%8F%E5%92%8C%E6%B7%B1%E5%BA%A6%E5%9B%BE%E5%83%8F/20160516204932422.jpg" alt="img"></p>
+<h3 id="&#x914D;&#x7F6E;openni">2.&#x914D;&#x7F6E;OpenNI</h3>
+<p>openni&#x7684;&#x914D;&#x7F6E;&#x53C2;&#x8003;&#x94FE;&#x63A5;&#x4E2D;&#x7684;blog&#xFF0C;&#x6839;&#x636E;&#x529F;&#x8BFE;&#x6559;&#x7A0B;&#x53EF;&#x4EE5;&#x63D0;&#x53D6;Kinect&#x7684;&#x5F69;&#x8272;&#x56FE;&#x50CF;&#x548C;&#x6DF1;&#x5EA6;&#x56FE;&#x50CF;&#xFF1A;</p>
 <p><a target="_blank" rel="noopener" href="http://www.20papercups.net/programming/kinect-on-ubuntu-with-openni/">http://www.20papercups.net/programming/kinect-on-ubuntu-with-openni/</a></p>
-<h3 id="3-安装OpenCV2"><a href="#3-安装OpenCV2" class="headerlink" title="3.安装OpenCV2"></a>3.安装OpenCV2</h3><p>首先在OpenCV2的官方网站选择对应版本的源代码：</p>
+<h3 id="&#x5B89;&#x88C5;opencv2">3.&#x5B89;&#x88C5;OpenCV2</h3>
+<p>&#x9996;&#x5148;&#x5728;OpenCV2&#x7684;&#x5B98;&#x65B9;&#x7F51;&#x7AD9;&#x9009;&#x62E9;&#x5BF9;&#x5E94;&#x7248;&#x672C;&#x7684;&#x6E90;&#x4EE3;&#x7801;&#xFF1A;</p>
 <p><a target="_blank" rel="noopener" href="http://opencv.org/downloads.html">http://opencv.org/downloads.html</a></p>
-<p>同时安装依赖：</p>
+<p>&#x540C;&#x65F6;&#x5B89;&#x88C5;&#x4F9D;&#x8D56;&#xFF1A;</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install build-essential libgtk2.0-dev libjpeg-dev libtiff4-dev libjasper-dev libopenexr-dev cmake python-dev python-numpy python-tk libtbb-dev libeigen2-dev yasm libfaac-dev libopencore-amrnb-dev libopencore-amrwb-dev libtheora-dev libvorbis-dev libxvidcore-dev libx264-dev libqt4-dev libqt4-opengl-dev sphinx-common texlive-latex-extra libv4l-dev libdc1394-22-dev libavcodec-dev libavformat-dev libswscale-dev</span><br></pre></td></tr></table></figure>
-
-<p>当依赖安装完成后，安装OpenCV,首先解压OpenCV压缩包并进入OpenCV目录，进行如下操作：</p>
+<p>&#x5F53;&#x4F9D;&#x8D56;&#x5B89;&#x88C5;&#x5B8C;&#x6210;&#x540E;&#xFF0C;&#x5B89;&#x88C5;OpenCV,&#x9996;&#x5148;&#x89E3;&#x538B;OpenCV&#x538B;&#x7F29;&#x5305;&#x5E76;&#x8FDB;&#x5165;OpenCV&#x76EE;&#x5F55;&#xFF0C;&#x8FDB;&#x884C;&#x5982;&#x4E0B;&#x64CD;&#x4F5C;&#xFF1A;</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">mkdir build</span><br><span class="line">cd build</span><br><span class="line">cmake ..</span><br><span class="line">make</span><br><span class="line">sudo make install</span><br></pre></td></tr></table></figure>
-
-<h3 id="4-安装ROS"><a href="#4-安装ROS" class="headerlink" title="4.安装ROS"></a>4.安装ROS</h3><p>安装ROS可以参考<a target="_blank" rel="noopener" href="http://wiki.ros.org/kinetic/Installation">ROS官网的安装教程</a>，由于ROS的版本更新速度较快，在ROS的Groovy版本之后，ROS采用catkin来取代之前的rosbuild的包编译方式,但总体上来说是对CMake的又一层封装.因此不必担心，如果熟悉CMake可以使用他来编译ROS，ROS的一些功能包的接口可能会因为版本变化而发生变化,需要注意。</p>
-<h3 id="5-获取kinect的彩色图像和深度图像"><a href="#5-获取kinect的彩色图像和深度图像" class="headerlink" title="5.获取kinect的彩色图像和深度图像"></a>5.获取kinect的彩色图像和深度图像</h3><p>使用ROS自带的Package获取彩色图像和深度图像，可以参考古月居的blog：</p>
+<h3 id="&#x5B89;&#x88C5;ros">4.&#x5B89;&#x88C5;ROS</h3>
+<p>&#x5B89;&#x88C5;ROS&#x53EF;&#x4EE5;&#x53C2;&#x8003;<a target="_blank" rel="noopener" href="http://wiki.ros.org/kinetic/Installation">ROS&#x5B98;&#x7F51;&#x7684;&#x5B89;&#x88C5;&#x6559;&#x7A0B;</a>&#xFF0C;&#x7531;&#x4E8E;ROS&#x7684;&#x7248;&#x672C;&#x66F4;&#x65B0;&#x901F;&#x5EA6;&#x8F83;&#x5FEB;&#xFF0C;&#x5728;ROS&#x7684;Groovy&#x7248;&#x672C;&#x4E4B;&#x540E;&#xFF0C;ROS&#x91C7;&#x7528;catkin&#x6765;&#x53D6;&#x4EE3;&#x4E4B;&#x524D;&#x7684;rosbuild&#x7684;&#x5305;&#x7F16;&#x8BD1;&#x65B9;&#x5F0F;,&#x4F46;&#x603B;&#x4F53;&#x4E0A;&#x6765;&#x8BF4;&#x662F;&#x5BF9;CMake&#x7684;&#x53C8;&#x4E00;&#x5C42;&#x5C01;&#x88C5;.&#x56E0;&#x6B64;&#x4E0D;&#x5FC5;&#x62C5;&#x5FC3;&#xFF0C;&#x5982;&#x679C;&#x719F;&#x6089;CMake&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x4ED6;&#x6765;&#x7F16;&#x8BD1;ROS&#xFF0C;ROS&#x7684;&#x4E00;&#x4E9B;&#x529F;&#x80FD;&#x5305;&#x7684;&#x63A5;&#x53E3;&#x53EF;&#x80FD;&#x4F1A;&#x56E0;&#x4E3A;&#x7248;&#x672C;&#x53D8;&#x5316;&#x800C;&#x53D1;&#x751F;&#x53D8;&#x5316;,&#x9700;&#x8981;&#x6CE8;&#x610F;&#x3002;</p>
+<h3 id="&#x83B7;&#x53D6;kinect&#x7684;&#x5F69;&#x8272;&#x56FE;&#x50CF;&#x548C;&#x6DF1;&#x5EA6;&#x56FE;&#x50CF;">5.&#x83B7;&#x53D6;kinect&#x7684;&#x5F69;&#x8272;&#x56FE;&#x50CF;&#x548C;&#x6DF1;&#x5EA6;&#x56FE;&#x50CF;</h3>
+<p>&#x4F7F;&#x7528;ROS&#x81EA;&#x5E26;&#x7684;Package&#x83B7;&#x53D6;&#x5F69;&#x8272;&#x56FE;&#x50CF;&#x548C;&#x6DF1;&#x5EA6;&#x56FE;&#x50CF;&#xFF0C;&#x53EF;&#x4EE5;&#x53C2;&#x8003;&#x53E4;&#x6708;&#x5C45;&#x7684;blog&#xFF1A;</p>
 <p><a target="_blank" rel="noopener" href="http://www.guyuehome.com/262">http://www.guyuehome.com/262</a></p>
-<p>使用OpenNI获取获取深度图像和彩色图像可以参考另一篇博客:</p>
+<p>&#x4F7F;&#x7528;OpenNI&#x83B7;&#x53D6;&#x83B7;&#x53D6;&#x6DF1;&#x5EA6;&#x56FE;&#x50CF;&#x548C;&#x5F69;&#x8272;&#x56FE;&#x50CF;&#x53EF;&#x4EE5;&#x53C2;&#x8003;&#x53E6;&#x4E00;&#x7BC7;&#x535A;&#x5BA2;:</p>
 <p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/tornadomeet/archive/2012/10/01/2709851.html">https://www.cnblogs.com/tornadomeet/archive/2012/10/01/2709851.html</a></p>
 
     </div>
@@ -388,6 +392,12 @@
 
   <script class="next-config" data-name="leancloud_visitors" type="application/json">{"enable":true,"app_id":"nG09szIvM8x9ehgslCULWzg2-MdYXbMMI","app_key":"yHykoRL88ikgLTqsUC0xIMvY","server_url":null,"security":false}</script>
   <script src="/js/third-party/statistics/lean-analytics.js"></script>
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdn.jsdelivr.net/npm/mathjax@3.2.0/es5/tex-mml-chtml.js","integrity":"sha256-r+3itOMtGGjap0x+10hu6jW/gZCzxHsoKrOd7gyRSGY="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
 
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">

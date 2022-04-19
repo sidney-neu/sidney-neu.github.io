@@ -19,15 +19,15 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"sidney-neu.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.8.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":{"gitalk":{"order":-1}},"activeClass":"gitalk"},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.json","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
-<meta name="description" content="Tensorflow是当前广泛使用的机器学习框架。Tensorflow提供了C语言的lib库接口，但是对应的应用文档较少，这里我将结合自己的使用情况做一下分享。 先说一些我对机器学习实际应用的理解。一般来说机器学习功能的工程化应用分为线下训练和线上部署两个部分。线下训练推荐采用Python脚本语言进行快速开发，实现对模型的高效迭代训练、模型性能评价与验证。这一部分由于Python语言以及对应开源代">
+<meta name="description" content="Tensorflow&amp;#x662F;&amp;#x5F53;&amp;#x524D;&amp;#x5E7F;&amp;#x6CDB;&amp;#x4F7F;&amp;#x7528;&amp;#x7684;&amp;#x673A;&amp;#x5668;&amp;#x5B66;&amp;#x4E60;&amp;#x6846;&amp;#x67B6;&amp;#x3002;Tensorflow&amp;#x63D0;&amp;#x4F9B;&amp;#x4E86;C&amp;#x8BED;&amp;#x8A00;&amp;#x7684;lib&amp;#x5E93;">
 <meta property="og:type" content="article">
 <meta property="og:title" content="如何在C语言中使用tensorflow（一）概述">
 <meta property="og:url" content="https://sidney-neu.github.io/2020/05/09/%E5%A6%82%E4%BD%95%E5%9C%A8C%E8%AF%AD%E8%A8%80%E4%B8%AD%E4%BD%BF%E7%94%A8tensorflow%EF%BC%88%E4%B8%80%EF%BC%89%E6%A6%82%E8%BF%B0/index.html">
 <meta property="og:site_name" content="Yoo shen的博客">
-<meta property="og:description" content="Tensorflow是当前广泛使用的机器学习框架。Tensorflow提供了C语言的lib库接口，但是对应的应用文档较少，这里我将结合自己的使用情况做一下分享。 先说一些我对机器学习实际应用的理解。一般来说机器学习功能的工程化应用分为线下训练和线上部署两个部分。线下训练推荐采用Python脚本语言进行快速开发，实现对模型的高效迭代训练、模型性能评价与验证。这一部分由于Python语言以及对应开源代">
+<meta property="og:description" content="Tensorflow&amp;#x662F;&amp;#x5F53;&amp;#x524D;&amp;#x5E7F;&amp;#x6CDB;&amp;#x4F7F;&amp;#x7528;&amp;#x7684;&amp;#x673A;&amp;#x5668;&amp;#x5B66;&amp;#x4E60;&amp;#x6846;&amp;#x67B6;&amp;#x3002;Tensorflow&amp;#x63D0;&amp;#x4F9B;&amp;#x4E86;C&amp;#x8BED;&amp;#x8A00;&amp;#x7684;lib&amp;#x5E93;">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-05-09T03:38:00.000Z">
-<meta property="article:modified_time" content="2022-03-03T01:47:12.969Z">
+<meta property="article:modified_time" content="2022-04-19T01:21:56.846Z">
 <meta property="article:author" content="Yoo Shen">
 <meta name="twitter:card" content="summary">
 
@@ -86,8 +86,8 @@
 <nav class="site-nav">
   <ul class="main-menu menu">
         <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
-        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">17</span></a></li>
-        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">29</span></a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">12</span></a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">32</span></a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -156,13 +156,13 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">29</span>
+          <span class="site-state-item-count">32</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-count">12</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
   </nav>
@@ -237,7 +237,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-03-03 09:47:12" itemprop="dateModified" datetime="2022-03-03T09:47:12+08:00">2022-03-03</time>
+      <time title="修改时间：2022-04-19 09:21:56" itemprop="dateModified" datetime="2022-04-19T09:21:56+08:00">2022-04-19</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -245,7 +245,7 @@
       </span>
       <span class="post-meta-item-text">分类于</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E5%B7%A5%E7%A8%8B%E5%8C%96/" itemprop="url" rel="index"><span itemprop="name">-机器学习 -工程化</span></a>
+          <a href="/categories/AI%E5%B7%A5%E7%A8%8B%E5%8C%96%E6%A1%86%E6%9E%B6/" itemprop="url" rel="index"><span itemprop="name">-AI工程化框架</span></a>
         </span>
     </span>
 
@@ -266,11 +266,11 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <p>Tensorflow是当前广泛使用的机器学习框架。Tensorflow提供了C语言的lib库接口，但是对应的应用文档较少，这里我将结合自己的使用情况做一下分享。</p>
-<p>先说一些我对机器学习实际应用的理解。一般来说机器学习功能的工程化应用分为线下训练和线上部署两个部分。线下训练推荐采用Python脚本语言进行快速开发，实现对模型的高效迭代训练、模型性能评价与验证。这一部分由于Python语言以及对应开源代码的迭代完善，这一部分已经逐渐变得成熟。</p>
-<p>线上部署这部分内容因为要受到后端开发语言以及性能要求等因素的影响，逐渐成为机器学习功能工程化应用的一个重要瓶颈。虽然云计算平台的广泛应用以及离线分析功能可以解决一部分部署问题。但是由于成本和安全等方面的考量，这两种方式并不能完全解决广泛的部署瓶颈问题。如果在Tensorflow中可以很好的C语言中广泛部署应用，这就对机器学习功能的工程化落地推进了一小步。</p>
-<p>libtensorflow的生成方法主要有两种,一种是通过源码自己编译,另一种是在google下载已经编译好的动态库.两种使用方法各有优劣。通过源码编译的方法较复杂,这里就不做介绍了,我们采用官方已经编译好的libtensorflow.so动态库.</p>
-<p>libtensorflow的版本最高为1.15.0，tensorflow2.0及起以上版本并没有提供C语言的接口，因此需要注意版本的搭配。</p>
+        <p>Tensorflow&#x662F;&#x5F53;&#x524D;&#x5E7F;&#x6CDB;&#x4F7F;&#x7528;&#x7684;&#x673A;&#x5668;&#x5B66;&#x4E60;&#x6846;&#x67B6;&#x3002;Tensorflow&#x63D0;&#x4F9B;&#x4E86;C&#x8BED;&#x8A00;&#x7684;lib&#x5E93;&#x63A5;&#x53E3;&#xFF0C;&#x4F46;&#x662F;&#x5BF9;&#x5E94;&#x7684;&#x5E94;&#x7528;&#x6587;&#x6863;&#x8F83;&#x5C11;&#xFF0C;&#x8FD9;&#x91CC;&#x6211;&#x5C06;&#x7ED3;&#x5408;&#x81EA;&#x5DF1;&#x7684;&#x4F7F;&#x7528;&#x60C5;&#x51B5;&#x505A;&#x4E00;&#x4E0B;&#x5206;&#x4EAB;&#x3002;</p>
+<p>&#x5148;&#x8BF4;&#x4E00;&#x4E9B;&#x6211;&#x5BF9;&#x673A;&#x5668;&#x5B66;&#x4E60;&#x5B9E;&#x9645;&#x5E94;&#x7528;&#x7684;&#x7406;&#x89E3;&#x3002;&#x4E00;&#x822C;&#x6765;&#x8BF4;&#x673A;&#x5668;&#x5B66;&#x4E60;&#x529F;&#x80FD;&#x7684;&#x5DE5;&#x7A0B;&#x5316;&#x5E94;&#x7528;&#x5206;&#x4E3A;&#x7EBF;&#x4E0B;&#x8BAD;&#x7EC3;&#x548C;&#x7EBF;&#x4E0A;&#x90E8;&#x7F72;&#x4E24;&#x4E2A;&#x90E8;&#x5206;&#x3002;&#x7EBF;&#x4E0B;&#x8BAD;&#x7EC3;&#x63A8;&#x8350;&#x91C7;&#x7528;Python&#x811A;&#x672C;&#x8BED;&#x8A00;&#x8FDB;&#x884C;&#x5FEB;&#x901F;&#x5F00;&#x53D1;&#xFF0C;&#x5B9E;&#x73B0;&#x5BF9;&#x6A21;&#x578B;&#x7684;&#x9AD8;&#x6548;&#x8FED;&#x4EE3;&#x8BAD;&#x7EC3;&#x3001;&#x6A21;&#x578B;&#x6027;&#x80FD;&#x8BC4;&#x4EF7;&#x4E0E;&#x9A8C;&#x8BC1;&#x3002;&#x8FD9;&#x4E00;&#x90E8;&#x5206;&#x7531;&#x4E8E;Python&#x8BED;&#x8A00;&#x4EE5;&#x53CA;&#x5BF9;&#x5E94;&#x5F00;&#x6E90;&#x4EE3;&#x7801;&#x7684;&#x8FED;&#x4EE3;&#x5B8C;&#x5584;&#xFF0C;&#x8FD9;&#x4E00;&#x90E8;&#x5206;&#x5DF2;&#x7ECF;&#x9010;&#x6E10;&#x53D8;&#x5F97;&#x6210;&#x719F;&#x3002;</p>
+<p>&#x7EBF;&#x4E0A;&#x90E8;&#x7F72;&#x8FD9;&#x90E8;&#x5206;&#x5185;&#x5BB9;&#x56E0;&#x4E3A;&#x8981;&#x53D7;&#x5230;&#x540E;&#x7AEF;&#x5F00;&#x53D1;&#x8BED;&#x8A00;&#x4EE5;&#x53CA;&#x6027;&#x80FD;&#x8981;&#x6C42;&#x7B49;&#x56E0;&#x7D20;&#x7684;&#x5F71;&#x54CD;&#xFF0C;&#x9010;&#x6E10;&#x6210;&#x4E3A;&#x673A;&#x5668;&#x5B66;&#x4E60;&#x529F;&#x80FD;&#x5DE5;&#x7A0B;&#x5316;&#x5E94;&#x7528;&#x7684;&#x4E00;&#x4E2A;&#x91CD;&#x8981;&#x74F6;&#x9888;&#x3002;&#x867D;&#x7136;&#x4E91;&#x8BA1;&#x7B97;&#x5E73;&#x53F0;&#x7684;&#x5E7F;&#x6CDB;&#x5E94;&#x7528;&#x4EE5;&#x53CA;&#x79BB;&#x7EBF;&#x5206;&#x6790;&#x529F;&#x80FD;&#x53EF;&#x4EE5;&#x89E3;&#x51B3;&#x4E00;&#x90E8;&#x5206;&#x90E8;&#x7F72;&#x95EE;&#x9898;&#x3002;&#x4F46;&#x662F;&#x7531;&#x4E8E;&#x6210;&#x672C;&#x548C;&#x5B89;&#x5168;&#x7B49;&#x65B9;&#x9762;&#x7684;&#x8003;&#x91CF;&#xFF0C;&#x8FD9;&#x4E24;&#x79CD;&#x65B9;&#x5F0F;&#x5E76;&#x4E0D;&#x80FD;&#x5B8C;&#x5168;&#x89E3;&#x51B3;&#x5E7F;&#x6CDB;&#x7684;&#x90E8;&#x7F72;&#x74F6;&#x9888;&#x95EE;&#x9898;&#x3002;&#x5982;&#x679C;&#x5728;Tensorflow&#x4E2D;&#x53EF;&#x4EE5;&#x5F88;&#x597D;&#x7684;C&#x8BED;&#x8A00;&#x4E2D;&#x5E7F;&#x6CDB;&#x90E8;&#x7F72;&#x5E94;&#x7528;&#xFF0C;&#x8FD9;&#x5C31;&#x5BF9;&#x673A;&#x5668;&#x5B66;&#x4E60;&#x529F;&#x80FD;&#x7684;&#x5DE5;&#x7A0B;&#x5316;&#x843D;&#x5730;&#x63A8;&#x8FDB;&#x4E86;&#x4E00;&#x5C0F;&#x6B65;&#x3002;</p>
+<p>libtensorflow&#x7684;&#x751F;&#x6210;&#x65B9;&#x6CD5;&#x4E3B;&#x8981;&#x6709;&#x4E24;&#x79CD;,&#x4E00;&#x79CD;&#x662F;&#x901A;&#x8FC7;&#x6E90;&#x7801;&#x81EA;&#x5DF1;&#x7F16;&#x8BD1;,&#x53E6;&#x4E00;&#x79CD;&#x662F;&#x5728;google&#x4E0B;&#x8F7D;&#x5DF2;&#x7ECF;&#x7F16;&#x8BD1;&#x597D;&#x7684;&#x52A8;&#x6001;&#x5E93;.&#x4E24;&#x79CD;&#x4F7F;&#x7528;&#x65B9;&#x6CD5;&#x5404;&#x6709;&#x4F18;&#x52A3;&#x3002;&#x901A;&#x8FC7;&#x6E90;&#x7801;&#x7F16;&#x8BD1;&#x7684;&#x65B9;&#x6CD5;&#x8F83;&#x590D;&#x6742;,&#x8FD9;&#x91CC;&#x5C31;&#x4E0D;&#x505A;&#x4ECB;&#x7ECD;&#x4E86;,&#x6211;&#x4EEC;&#x91C7;&#x7528;&#x5B98;&#x65B9;&#x5DF2;&#x7ECF;&#x7F16;&#x8BD1;&#x597D;&#x7684;libtensorflow.so&#x52A8;&#x6001;&#x5E93;.</p>
+<p>libtensorflow&#x7684;&#x7248;&#x672C;&#x6700;&#x9AD8;&#x4E3A;1.15.0&#xFF0C;tensorflow2.0&#x53CA;&#x8D77;&#x4EE5;&#x4E0A;&#x7248;&#x672C;&#x5E76;&#x6CA1;&#x6709;&#x63D0;&#x4F9B;C&#x8BED;&#x8A00;&#x7684;&#x63A5;&#x53E3;&#xFF0C;&#x56E0;&#x6B64;&#x9700;&#x8981;&#x6CE8;&#x610F;&#x7248;&#x672C;&#x7684;&#x642D;&#x914D;&#x3002;</p>
 
     </div>
 
@@ -377,6 +377,12 @@
 
   <script class="next-config" data-name="leancloud_visitors" type="application/json">{"enable":true,"app_id":"nG09szIvM8x9ehgslCULWzg2-MdYXbMMI","app_key":"yHykoRL88ikgLTqsUC0xIMvY","server_url":null,"security":false}</script>
   <script src="/js/third-party/statistics/lean-analytics.js"></script>
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdn.jsdelivr.net/npm/mathjax@3.2.0/es5/tex-mml-chtml.js","integrity":"sha256-r+3itOMtGGjap0x+10hu6jW/gZCzxHsoKrOd7gyRSGY="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
 
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">

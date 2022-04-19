@@ -19,25 +19,25 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"sidney-neu.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.8.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":{"gitalk":{"order":-1}},"activeClass":"gitalk"},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.json","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
-<meta name="description" content="决策树决策树是一种非常常用的传统机器学习算法，相较于贝叶斯、svm等其他算法，决策树具有一些明显的优势，就是在构建决策树的过程中不需要任何的领域知识，也不需要复杂的参数设置。这就使得决策树更适合于探测式的知识发现。 决策树的算法思想通俗版参考一篇文章的介绍，决策树的分类思想可以类比成相亲，比如说一个女孩子的妈妈托七大姑八大姨要给自己介绍一个男朋友，便有了下面的对话： 123456789女儿：多大年">
+<meta name="description" content="&amp;#x51B3;&amp;#x7B56;&amp;#x6811; &amp;#x51B3;&amp;#x7B56;&amp;#x6811;&amp;#x662F;&amp;#x4E00;&amp;#x79CD;&amp;#x975E;&amp;#x5E38;&amp;#x5E38;&amp;#x7528;&amp;#x7684;&amp;#x4F20;&amp;#x7EDF;&amp;#x673A;&amp;#x5668;&amp;#x5B66;&amp;#x4E60;&amp;#x7B97;&amp;#x6CD5;&amp;#xFF0C;&amp;#x76F8;&amp;#x8F83">
 <meta property="og:type" content="article">
 <meta property="og:title" content="机器学习算法-决策树">
 <meta property="og:url" content="https://sidney-neu.github.io/2022/04/07/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95-%E5%86%B3%E7%AD%96%E6%A0%91/index.html">
 <meta property="og:site_name" content="Yoo shen的博客">
-<meta property="og:description" content="决策树决策树是一种非常常用的传统机器学习算法，相较于贝叶斯、svm等其他算法，决策树具有一些明显的优势，就是在构建决策树的过程中不需要任何的领域知识，也不需要复杂的参数设置。这就使得决策树更适合于探测式的知识发现。 决策树的算法思想通俗版参考一篇文章的介绍，决策树的分类思想可以类比成相亲，比如说一个女孩子的妈妈托七大姑八大姨要给自己介绍一个男朋友，便有了下面的对话： 123456789女儿：多大年">
+<meta property="og:description" content="&amp;#x51B3;&amp;#x7B56;&amp;#x6811; &amp;#x51B3;&amp;#x7B56;&amp;#x6811;&amp;#x662F;&amp;#x4E00;&amp;#x79CD;&amp;#x975E;&amp;#x5E38;&amp;#x5E38;&amp;#x7528;&amp;#x7684;&amp;#x4F20;&amp;#x7EDF;&amp;#x673A;&amp;#x5668;&amp;#x5B66;&amp;#x4E60;&amp;#x7B97;&amp;#x6CD5;&amp;#xFF0C;&amp;#x76F8;&amp;#x8F83">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://sidney-neu.github.io/images/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95-%E5%86%B3%E7%AD%96%E6%A0%91/%E7%9B%B8%E4%BA%B2.png">
-<meta property="og:image" content="https://sidney-neu.github.io/images/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95-%E5%86%B3%E7%AD%96%E6%A0%91/%E7%86%B5.PNG">
-<meta property="og:image" content="https://sidney-neu.github.io/images/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95-%E5%86%B3%E7%AD%96%E6%A0%91/%E4%BF%A1%E6%81%AF%E5%A2%9E%E7%9B%8A.PNG">
-<meta property="og:image" content="https://sidney-neu.github.io/images/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95-%E5%86%B3%E7%AD%96%E6%A0%91/%E4%BF%A1%E6%81%AF%E5%A2%9E%E7%9B%8A%E6%AF%94.png">
-<meta property="og:image" content="https://sidney-neu.github.io/images/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95-%E5%86%B3%E7%AD%96%E6%A0%91/%E6%95%B0%E6%8D%AE%E9%9B%86%E5%88%86%E5%89%B2%E7%9A%84%E4%BF%A1%E6%81%AF%E7%86%B5.png">
-<meta property="og:image" content="https://sidney-neu.github.io/images/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95-%E5%86%B3%E7%AD%96%E6%A0%91/%E5%9F%BA%E5%B0%BC%E7%B3%BB%E6%95%B0%E4%B8%8E%E7%86%B5%E7%9A%84%E6%AF%94%E8%BE%83.jpg">
-<meta property="og:image" content="https://sidney-neu.github.io/images/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95-%E5%86%B3%E7%AD%96%E6%A0%91/%E6%B3%B0%E5%8B%92%E5%B1%95%E5%BC%80.PNG">
+<meta property="og:image" content="https://sidney-neu.github.io/2022/04/07/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95-%E5%86%B3%E7%AD%96%E6%A0%91/&#x76F8;&#x4EB2;.png">
+<meta property="og:image" content="https://sidney-neu.github.io/2022/04/07/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95-%E5%86%B3%E7%AD%96%E6%A0%91/&#x71B5;.PNG">
+<meta property="og:image" content="https://sidney-neu.github.io/2022/04/07/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95-%E5%86%B3%E7%AD%96%E6%A0%91/&#x4FE1;&#x606F;&#x589E;&#x76CA;.PNG">
+<meta property="og:image" content="https://sidney-neu.github.io/2022/04/07/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95-%E5%86%B3%E7%AD%96%E6%A0%91/&#x4FE1;&#x606F;&#x589E;&#x76CA;&#x6BD4;.png">
+<meta property="og:image" content="https://sidney-neu.github.io/2022/04/07/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95-%E5%86%B3%E7%AD%96%E6%A0%91/&#x6570;&#x636E;&#x96C6;&#x5206;&#x5272;&#x7684;&#x4FE1;&#x606F;&#x71B5;.png">
+<meta property="og:image" content="https://sidney-neu.github.io/2022/04/07/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95-%E5%86%B3%E7%AD%96%E6%A0%91/&#x57FA;&#x5C3C;&#x7CFB;&#x6570;&#x4E0E;&#x71B5;&#x7684;&#x6BD4;&#x8F83;.jpg">
+<meta property="og:image" content="https://sidney-neu.github.io/2022/04/07/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95-%E5%86%B3%E7%AD%96%E6%A0%91/&#x6CF0;&#x52D2;&#x5C55;&#x5F00;.PNG">
 <meta property="article:published_time" content="2022-04-07T14:45:00.000Z">
-<meta property="article:modified_time" content="2022-04-07T10:30:25.520Z">
+<meta property="article:modified_time" content="2022-04-18T03:14:00.117Z">
 <meta property="article:author" content="Yoo Shen">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://sidney-neu.github.io/images/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95-%E5%86%B3%E7%AD%96%E6%A0%91/%E7%9B%B8%E4%BA%B2.png">
+<meta name="twitter:image" content="https://sidney-neu.github.io/2022/04/07/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95-%E5%86%B3%E7%AD%96%E6%A0%91/&#x76F8;&#x4EB2;.png">
 
 
 <link rel="canonical" href="https://sidney-neu.github.io/2022/04/07/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95-%E5%86%B3%E7%AD%96%E6%A0%91/">
@@ -94,8 +94,8 @@
 <nav class="site-nav">
   <ul class="main-menu menu">
         <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
-        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">17</span></a></li>
-        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">29</span></a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">12</span></a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">32</span></a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -165,13 +165,13 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">29</span>
+          <span class="site-state-item-count">32</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-count">12</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
   </nav>
@@ -238,9 +238,15 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
-      
 
-      <time title="创建时间：2022-04-07 22:45:00 / 修改时间：18:30:25" itemprop="dateCreated datePublished" datetime="2022-04-07T22:45:00+08:00">2022-04-07</time>
+      <time title="创建时间：2022-04-07 22:45:00" itemprop="dateCreated datePublished" datetime="2022-04-07T22:45:00+08:00">2022-04-07</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-04-18 11:14:00" itemprop="dateModified" datetime="2022-04-18T11:14:00+08:00">2022-04-18</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -269,56 +275,77 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <h3 id="决策树"><a href="#决策树" class="headerlink" title="决策树"></a>决策树</h3><p>决策树是一种非常常用的传统机器学习算法，相较于贝叶斯、svm等其他算法，决策树具有一些明显的优势，就是在构建决策树的过程中不需要任何的领域知识，也不需要复杂的参数设置。这就使得决策树更适合于探测式的知识发现。</p>
-<h3 id="决策树的算法思想"><a href="#决策树的算法思想" class="headerlink" title="决策树的算法思想"></a>决策树的算法思想</h3><h4 id="通俗版"><a href="#通俗版" class="headerlink" title="通俗版"></a>通俗版</h4><p>参考<a target="_blank" rel="noopener" href="https://aaaedu.blog.csdn.net/article/details/105190163">一篇文章</a>的介绍，决策树的分类思想可以类比成相亲，比如说一个女孩子的妈妈托七大姑八大姨要给自己介绍一个男朋友，便有了下面的对话：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">女儿：多大年纪了？</span><br><span class="line">母亲：26</span><br><span class="line">女儿：长的帅不帅？</span><br><span class="line">母亲：挺帅的。</span><br><span class="line">女儿：收入高不？</span><br><span class="line">母亲：不算很高，中等情况。</span><br><span class="line">女儿：是公务员吗？</span><br><span class="line">母亲：是，公务员，在税务局上班呢。</span><br><span class="line">女儿：那好，我去见见。</span><br></pre></td></tr></table></figure>
-
-<p>这这段对话就完整表达了一个决策过程，形成一个典型的分类树决策。</p>
-<p><img src="/../images/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95-%E5%86%B3%E7%AD%96%E6%A0%91/%E7%9B%B8%E4%BA%B2.png" alt="相亲"></p>
-<p>对于女孩决定是否见约会对象的策略中：</p>
-<p>绿色代表判断条件</p>
-<p>橙色代表决策结果</p>
-<p>箭头表示决策途径</p>
-<p>图中红色箭头表示了上面例子中女孩的决策过程。这幅图基本可以算是一颗决策树，说它”基本可以算“是因为图中的判定条件没有量化，如收入高中低等等，还不能算是严格意义上的决策树，如果将所有条件量化，则就变成真正的决策树了。</p>
-<h4 id="概念版"><a href="#概念版" class="headerlink" title="概念版"></a>概念版</h4><p>从定义上来说，决策树是一个树结构（可以是而二叉树或非二叉树），其中每一个非叶子节点表示一个特征属性的判断，每一个分支表示这个特征属性的判断的分支，而每一个叶子存放一个类别。使用决策树进行决策的过程，就是从根节点开始，对待决策问题的特征属性进行判断，直到到达叶子节点，将叶子节点存放的类别作为决策结果。</p>
-<h3 id="决策树的构建"><a href="#决策树的构建" class="headerlink" title="决策树的构建"></a>决策树的构建</h3><p>我们知道决策树会通过对特征属性的判断，形成分支，最后形成一个树状结构。但这里有一个问题，就是特征分割的前后顺序是怎样决定的。我们还是以女孩子相亲为例，年龄、长相、收入、职业等特征属性到底谁先判断谁后判断呢？</p>
-<p>我们内心有一个标准就是：重要的评价标准肯定要先问。决策树也会为每次对特征的判断分割进行计算，找到一个最优解，并以这个最优的特征分割点作为当前的分割点。还是以相亲为例子，女孩子想了一下对相亲对象最重要的要求就是年龄不能超过30岁！所以就会将这个分割点放在最前面。</p>
-<h4 id="决策树的分割点选择"><a href="#决策树的分割点选择" class="headerlink" title="决策树的分割点选择"></a>决策树的分割点选择</h4><p>决策树的每次分割，都是采用贪婪策略，就是选择特征分割的最优解进行划分。这个最优解的量化方法主要有熵、信息增益、信息增益比、基尼系数等多种方法。对于具体的分割方法，我们一起CART举例，通过伪代码的方法展示分割点的选择过程：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">每个特征维度D：</span><br><span class="line"></span><br><span class="line">​	每个特征值V：</span><br><span class="line"></span><br><span class="line">​		将数据根据D-V分成两半</span><br><span class="line"></span><br><span class="line">​		计算当前分割点的基尼系数</span><br><span class="line"></span><br><span class="line">​		如果基尼系数小于当前最小基尼系数，那么就更新最小基尼系数，并设定当前分割点为最佳分割点</span><br><span class="line"></span><br><span class="line">返回最佳分割的特征维度和特征值</span><br></pre></td></tr></table></figure>
-
-<h5 id="熵"><a href="#熵" class="headerlink" title="熵"></a>熵</h5><p>熵一种信息论的概念，代表信息的期望。熵不能直接作为特征分割的量化标准。</p>
-<p><img src="/../images/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95-%E5%86%B3%E7%AD%96%E6%A0%91/%E7%86%B5.PNG" alt="熵"></p>
-<p>S：表示一个数据集<br>t&#x3D;p+n<br>p：正样本<br>n：负样本</p>
-<h5 id="信息增益"><a href="#信息增益" class="headerlink" title="信息增益"></a>信息增益</h5><p>信息增益是熵与条件熵的差值。条件熵是指将数据集进行分割成多个子数据集。并按照各个子数据集占数据集的比例作为权重，计算信息熵和加权和。信息增益是<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/ID3%E7%AE%97%E6%B3%95/5522381#:~:text=ID3%E7%AE%97%E6%B3%95%E9%80%9A%E8%BF%87%E8%AE%A1%E7%AE%97%E6%AF%8F%E4%B8%AA%E5%B1%9E%E6%80%A7%E7%9A%84%E4%BF%A1%E6%81%AF%E5%A2%9E%E7%9B%8A%EF%BC%8C%E8%AE%A4%E4%B8%BA%E4%BF%A1%E6%81%AF%E5%A2%9E%E7%9B%8A%E9%AB%98%E7%9A%84%E6%98%AF%E5%A5%BD%E5%B1%9E%E6%80%A7%EF%BC%8C%E6%AF%8F%E6%AC%A1%E5%88%92%E5%88%86%E9%80%89%E5%8F%96%E4%BF%A1%E6%81%AF%E5%A2%9E%E7%9B%8A%E6%9C%80%E9%AB%98%E7%9A%84%E5%B1%9E%E6%80%A7%E4%B8%BA%E5%88%92%E5%88%86%E6%A0%87%E5%87%86%EF%BC%8C%E9%87%8D%E5%A4%8D%E8%BF%99%E4%B8%AA%E8%BF%87%E7%A8%8B%EF%BC%8C%E7%9B%B4%E8%87%B3%E7%94%9F%E6%88%90%E4%B8%80%E4%B8%AA%E8%83%BD%E5%AE%8C%E7%BE%8E%E5%88%86%E7%B1%BB%E8%AE%AD%E7%BB%83%E6%A0%B7%E4%BE%8B%E7%9A%84%E5%86%B3%E7%AD%96%E6%A0%91%E3%80%82%20%E5%86%B3%E7%AD%96%E6%A0%91,%E6%98%AF%E5%AF%B9%E6%95%B0%E6%8D%AE%E8%BF%9B%E8%A1%8C%E5%88%86%E7%B1%BB%EF%BC%8C%E4%BB%A5%E6%AD%A4%E8%BE%BE%E5%88%B0%20%E9%A2%84%E6%B5%8B%20%E7%9A%84%E7%9B%AE%E7%9A%84%E3%80%82">ID3</a>型决策树的分割标准。</p>
-<p><img src="/../images/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95-%E5%86%B3%E7%AD%96%E6%A0%91/%E4%BF%A1%E6%81%AF%E5%A2%9E%E7%9B%8A.PNG" alt="信息增益"></p>
-<p>D:表示一个数据集<br>D<sup>v</sup>:按照条件将数据集D划分成V个子数据集，其中的第v个子数据集<br>V：子数据集个数<br>Ent(D)：D这个数据集的信息熵</p>
-<h5 id="信息增益比"><a href="#信息增益比" class="headerlink" title="信息增益比"></a>信息增益比</h5><p>当一个数据集被划分成非常多个子数据集，并且每个子数据集中的样本数都非常少时，信息增益中的条件熵就会变得非常小，导致信息增益有偏向性，为了应对这个问题，提出了信息增益比的分割标准。这个标准会引入数据集分割的信息熵，以平衡偏向性的影响。这个分割标准主要用于<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/C4.5%E7%AE%97%E6%B3%95/20814636">C4.5</a>决策树中。</p>
-<p><img src="/../images/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95-%E5%86%B3%E7%AD%96%E6%A0%91/%E4%BF%A1%E6%81%AF%E5%A2%9E%E7%9B%8A%E6%AF%94.png" alt="信息增益比"></p>
-<p><img src="/../images/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95-%E5%86%B3%E7%AD%96%E6%A0%91/%E6%95%B0%E6%8D%AE%E9%9B%86%E5%88%86%E5%89%B2%E7%9A%84%E4%BF%A1%E6%81%AF%E7%86%B5.png" alt="数据集分割的信息熵"></p>
-<p>a：表示数据集的分割方法</p>
-<h5 id="基尼系数"><a href="#基尼系数" class="headerlink" title="基尼系数"></a>基尼系数</h5><p>基尼系数是一种在经济上衡量居民收入差距的常用指标。由于其与熵模型的度量方式非常相近，并且计算简单，因此被用来代替熵的方法。</p>
-<p><img src="/../images/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95-%E5%86%B3%E7%AD%96%E6%A0%91/%E5%9F%BA%E5%B0%BC%E7%B3%BB%E6%95%B0%E4%B8%8E%E7%86%B5%E7%9A%84%E6%AF%94%E8%BE%83.jpg" alt="基尼系数与熵的比较"></p>
-<p>采用基尼系数作为分割标准的决策树是CART，也是目前主要是使用的决策树，普遍应用于bagging和boosting等集成学习的方法当中。同时基尼系数可以看成是信息增益的一阶泰勒展开。</p>
-<p><img src="/../images/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95-%E5%86%B3%E7%AD%96%E6%A0%91/%E6%B3%B0%E5%8B%92%E5%B1%95%E5%BC%80.PNG" alt="泰勒展开"></p>
-<p>需要注意的一点是，基尼系数追求的是最小值，熵相关的分割标准追求的是最大值（加不加负号的区别）。</p>
-<h4 id="决策树的分割停止"><a href="#决策树的分割停止" class="headerlink" title="决策树的分割停止"></a>决策树的分割停止</h4><p>如果让决策树一直分割下去，最终的结果就是每个叶子节点只有一个样本。这样显然会导致模型复杂度过高以及模型过拟合的问题。因此需要制定策略作为决策树停止分割的条件。</p>
-<h5 id="最小样本数阈值"><a href="#最小样本数阈值" class="headerlink" title="最小样本数阈值"></a>最小样本数阈值</h5><p>当该分支的样本集个数小于最小样本数时，分支停止分裂。</p>
-<h5 id="熵的阈值"><a href="#熵的阈值" class="headerlink" title="熵的阈值"></a>熵的阈值</h5><p>熵过小时，如果数据复杂度不大，就不需要继续分裂了。极端情况就是待分裂的样本都是同一类，这时候熵为0。</p>
-<h5 id="决策树深度阈值"><a href="#决策树深度阈值" class="headerlink" title="决策树深度阈值"></a>决策树深度阈值</h5><p>决策树的深度，决策树的深度就是所有叶子节点的最大深度，子节点比父节点深度加1，当某一分支的深度达到深度阈值，该分支停止分裂。</p>
-<h5 id="无可分裂特征"><a href="#无可分裂特征" class="headerlink" title="无可分裂特征"></a>无可分裂特征</h5><p>当所有特征都是用完时，没有可以继续分裂的属性，就将当前节点作为叶子节点，并停止该分支的分裂。</p>
-<h4 id="决策树的剪枝"><a href="#决策树的剪枝" class="headerlink" title="决策树的剪枝"></a>决策树的剪枝</h4><p>决策树的剪枝一般分为两种方法，分别是预剪枝和后剪枝。</p>
-<h5 id="预剪枝"><a href="#预剪枝" class="headerlink" title="预剪枝"></a>预剪枝</h5><p>预剪枝就是在决策树的构建过程中进行剪枝，在构造的过程中对节点进行评估，如果对某个节点进行划分时不能带来准确性的提升（损失函数的降低），那么对这个节点进行划分就没有意义，这时就会把当前节点作为叶节点，不对其进行划分。预剪枝容易导致欠拟合。</p>
-<p>这里需要明确的是准确性的提升，就是对比未分割数据集和已经分割完成后，验证集之间的准确性。</p>
-<p>   （0 1 0 1 1） –&gt;验证集</p>
-<p>​      (1 1 1 0 0)   –&gt;训练集</p>
-<p>​          &#x2F;      \</p>
-<p>​      &#x2F;              \</p>
-<p>(0 0 1)          (1  1)    –&gt;验证子集</p>
-<p>(0 0 0)          (1  1)    –&gt;测试子集</p>
-<p>划分前验证集的准确率：五个样本中，因为“1”样本较多，因此验证集的准确率&#x3D;3&#x2F;5&#x3D;60%</p>
-<p>划分后验证集的准确率：左子集有两个判断正确，右子集有两个判断正确，因此验证集的准确率&#x3D;4&#x2F;5&#x3D;80%</p>
-<h5 id="后剪枝"><a href="#后剪枝" class="headerlink" title="后剪枝"></a>后剪枝</h5><p>后剪枝就是在生成决策树之后再进行剪枝。通常会从决策树的叶子节点开始，逐层向上对每个节点进行评估。如果剪掉这个节点子树，与保留该节点子树在分类准确性上差别不大，或者剪掉该节点子树，能在验证集中带来准确性的提升，那么就可以把该节点子树进行剪枝。</p>
-<h3 id="决策时的实现方法"><a href="#决策时的实现方法" class="headerlink" title="决策时的实现方法"></a>决策时的实现方法</h3><p>可以使用sklearn，或者自己写。</p>
+        <h3 id="&#x51B3;&#x7B56;&#x6811;">&#x51B3;&#x7B56;&#x6811;</h3>
+<p>&#x51B3;&#x7B56;&#x6811;&#x662F;&#x4E00;&#x79CD;&#x975E;&#x5E38;&#x5E38;&#x7528;&#x7684;&#x4F20;&#x7EDF;&#x673A;&#x5668;&#x5B66;&#x4E60;&#x7B97;&#x6CD5;&#xFF0C;&#x76F8;&#x8F83;&#x4E8E;&#x8D1D;&#x53F6;&#x65AF;&#x3001;svm&#x7B49;&#x5176;&#x4ED6;&#x7B97;&#x6CD5;&#xFF0C;&#x51B3;&#x7B56;&#x6811;&#x5177;&#x6709;&#x4E00;&#x4E9B;&#x660E;&#x663E;&#x7684;&#x4F18;&#x52BF;&#xFF0C;&#x5C31;&#x662F;&#x5728;&#x6784;&#x5EFA;&#x51B3;&#x7B56;&#x6811;&#x7684;&#x8FC7;&#x7A0B;&#x4E2D;&#x4E0D;&#x9700;&#x8981;&#x4EFB;&#x4F55;&#x7684;&#x9886;&#x57DF;&#x77E5;&#x8BC6;&#xFF0C;&#x4E5F;&#x4E0D;&#x9700;&#x8981;&#x590D;&#x6742;&#x7684;&#x53C2;&#x6570;&#x8BBE;&#x7F6E;&#x3002;&#x8FD9;&#x5C31;&#x4F7F;&#x5F97;&#x51B3;&#x7B56;&#x6811;&#x66F4;&#x9002;&#x5408;&#x4E8E;&#x63A2;&#x6D4B;&#x5F0F;&#x7684;&#x77E5;&#x8BC6;&#x53D1;&#x73B0;&#x3002;</p>
+<h3 id="&#x51B3;&#x7B56;&#x6811;&#x7684;&#x7B97;&#x6CD5;&#x601D;&#x60F3;">&#x51B3;&#x7B56;&#x6811;&#x7684;&#x7B97;&#x6CD5;&#x601D;&#x60F3;</h3>
+<h4 id="&#x901A;&#x4FD7;&#x7248;">&#x901A;&#x4FD7;&#x7248;</h4>
+<p>&#x53C2;&#x8003;<a target="_blank" rel="noopener" href="https://aaaedu.blog.csdn.net/article/details/105190163">&#x4E00;&#x7BC7;&#x6587;&#x7AE0;</a>&#x7684;&#x4ECB;&#x7ECD;&#xFF0C;&#x51B3;&#x7B56;&#x6811;&#x7684;&#x5206;&#x7C7B;&#x601D;&#x60F3;&#x53EF;&#x4EE5;&#x7C7B;&#x6BD4;&#x6210;&#x76F8;&#x4EB2;&#xFF0C;&#x6BD4;&#x5982;&#x8BF4;&#x4E00;&#x4E2A;&#x5973;&#x5B69;&#x5B50;&#x7684;&#x5988;&#x5988;&#x6258;&#x4E03;&#x5927;&#x59D1;&#x516B;&#x5927;&#x59E8;&#x8981;&#x7ED9;&#x81EA;&#x5DF1;&#x4ECB;&#x7ECD;&#x4E00;&#x4E2A;&#x7537;&#x670B;&#x53CB;&#xFF0C;&#x4FBF;&#x6709;&#x4E86;&#x4E0B;&#x9762;&#x7684;&#x5BF9;&#x8BDD;&#xFF1A;</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&#x5973;&#x513F;&#xFF1A;&#x591A;&#x5927;&#x5E74;&#x7EAA;&#x4E86;&#xFF1F;</span><br><span class="line">&#x6BCD;&#x4EB2;&#xFF1A;26</span><br><span class="line">&#x5973;&#x513F;&#xFF1A;&#x957F;&#x7684;&#x5E05;&#x4E0D;&#x5E05;&#xFF1F;</span><br><span class="line">&#x6BCD;&#x4EB2;&#xFF1A;&#x633A;&#x5E05;&#x7684;&#x3002;</span><br><span class="line">&#x5973;&#x513F;&#xFF1A;&#x6536;&#x5165;&#x9AD8;&#x4E0D;&#xFF1F;</span><br><span class="line">&#x6BCD;&#x4EB2;&#xFF1A;&#x4E0D;&#x7B97;&#x5F88;&#x9AD8;&#xFF0C;&#x4E2D;&#x7B49;&#x60C5;&#x51B5;&#x3002;</span><br><span class="line">&#x5973;&#x513F;&#xFF1A;&#x662F;&#x516C;&#x52A1;&#x5458;&#x5417;&#xFF1F;</span><br><span class="line">&#x6BCD;&#x4EB2;&#xFF1A;&#x662F;&#xFF0C;&#x516C;&#x52A1;&#x5458;&#xFF0C;&#x5728;&#x7A0E;&#x52A1;&#x5C40;&#x4E0A;&#x73ED;&#x5462;&#x3002;</span><br><span class="line">&#x5973;&#x513F;&#xFF1A;&#x90A3;&#x597D;&#xFF0C;&#x6211;&#x53BB;&#x89C1;&#x89C1;&#x3002;</span><br></pre></td></tr></table></figure>
+<p>&#x8FD9;&#x8FD9;&#x6BB5;&#x5BF9;&#x8BDD;&#x5C31;&#x5B8C;&#x6574;&#x8868;&#x8FBE;&#x4E86;&#x4E00;&#x4E2A;&#x51B3;&#x7B56;&#x8FC7;&#x7A0B;&#xFF0C;&#x5F62;&#x6210;&#x4E00;&#x4E2A;&#x5178;&#x578B;&#x7684;&#x5206;&#x7C7B;&#x6811;&#x51B3;&#x7B56;&#x3002;</p>
+<p><img src="/2022/04/07/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95-%E5%86%B3%E7%AD%96%E6%A0%91/&#x76F8;&#x4EB2;.png" alt="&#x76F8;&#x4EB2;"></p>
+<p>&#x5BF9;&#x4E8E;&#x5973;&#x5B69;&#x51B3;&#x5B9A;&#x662F;&#x5426;&#x89C1;&#x7EA6;&#x4F1A;&#x5BF9;&#x8C61;&#x7684;&#x7B56;&#x7565;&#x4E2D;&#xFF1A;</p>
+<p>&#x7EFF;&#x8272;&#x4EE3;&#x8868;&#x5224;&#x65AD;&#x6761;&#x4EF6;</p>
+<p>&#x6A59;&#x8272;&#x4EE3;&#x8868;&#x51B3;&#x7B56;&#x7ED3;&#x679C;</p>
+<p>&#x7BAD;&#x5934;&#x8868;&#x793A;&#x51B3;&#x7B56;&#x9014;&#x5F84;</p>
+<p>&#x56FE;&#x4E2D;&#x7EA2;&#x8272;&#x7BAD;&#x5934;&#x8868;&#x793A;&#x4E86;&#x4E0A;&#x9762;&#x4F8B;&#x5B50;&#x4E2D;&#x5973;&#x5B69;&#x7684;&#x51B3;&#x7B56;&#x8FC7;&#x7A0B;&#x3002;&#x8FD9;&#x5E45;&#x56FE;&#x57FA;&#x672C;&#x53EF;&#x4EE5;&#x7B97;&#x662F;&#x4E00;&#x9897;&#x51B3;&#x7B56;&#x6811;&#xFF0C;&#x8BF4;&#x5B83;&#x201D;&#x57FA;&#x672C;&#x53EF;&#x4EE5;&#x7B97;&#x201C;&#x662F;&#x56E0;&#x4E3A;&#x56FE;&#x4E2D;&#x7684;&#x5224;&#x5B9A;&#x6761;&#x4EF6;&#x6CA1;&#x6709;&#x91CF;&#x5316;&#xFF0C;&#x5982;&#x6536;&#x5165;&#x9AD8;&#x4E2D;&#x4F4E;&#x7B49;&#x7B49;&#xFF0C;&#x8FD8;&#x4E0D;&#x80FD;&#x7B97;&#x662F;&#x4E25;&#x683C;&#x610F;&#x4E49;&#x4E0A;&#x7684;&#x51B3;&#x7B56;&#x6811;&#xFF0C;&#x5982;&#x679C;&#x5C06;&#x6240;&#x6709;&#x6761;&#x4EF6;&#x91CF;&#x5316;&#xFF0C;&#x5219;&#x5C31;&#x53D8;&#x6210;&#x771F;&#x6B63;&#x7684;&#x51B3;&#x7B56;&#x6811;&#x4E86;&#x3002;</p>
+<h4 id="&#x6982;&#x5FF5;&#x7248;">&#x6982;&#x5FF5;&#x7248;</h4>
+<p>&#x4ECE;&#x5B9A;&#x4E49;&#x4E0A;&#x6765;&#x8BF4;&#xFF0C;&#x51B3;&#x7B56;&#x6811;&#x662F;&#x4E00;&#x4E2A;&#x6811;&#x7ED3;&#x6784;&#xFF08;&#x53EF;&#x4EE5;&#x662F;&#x800C;&#x4E8C;&#x53C9;&#x6811;&#x6216;&#x975E;&#x4E8C;&#x53C9;&#x6811;&#xFF09;&#xFF0C;&#x5176;&#x4E2D;&#x6BCF;&#x4E00;&#x4E2A;&#x975E;&#x53F6;&#x5B50;&#x8282;&#x70B9;&#x8868;&#x793A;&#x4E00;&#x4E2A;&#x7279;&#x5F81;&#x5C5E;&#x6027;&#x7684;&#x5224;&#x65AD;&#xFF0C;&#x6BCF;&#x4E00;&#x4E2A;&#x5206;&#x652F;&#x8868;&#x793A;&#x8FD9;&#x4E2A;&#x7279;&#x5F81;&#x5C5E;&#x6027;&#x7684;&#x5224;&#x65AD;&#x7684;&#x5206;&#x652F;&#xFF0C;&#x800C;&#x6BCF;&#x4E00;&#x4E2A;&#x53F6;&#x5B50;&#x5B58;&#x653E;&#x4E00;&#x4E2A;&#x7C7B;&#x522B;&#x3002;&#x4F7F;&#x7528;&#x51B3;&#x7B56;&#x6811;&#x8FDB;&#x884C;&#x51B3;&#x7B56;&#x7684;&#x8FC7;&#x7A0B;&#xFF0C;&#x5C31;&#x662F;&#x4ECE;&#x6839;&#x8282;&#x70B9;&#x5F00;&#x59CB;&#xFF0C;&#x5BF9;&#x5F85;&#x51B3;&#x7B56;&#x95EE;&#x9898;&#x7684;&#x7279;&#x5F81;&#x5C5E;&#x6027;&#x8FDB;&#x884C;&#x5224;&#x65AD;&#xFF0C;&#x76F4;&#x5230;&#x5230;&#x8FBE;&#x53F6;&#x5B50;&#x8282;&#x70B9;&#xFF0C;&#x5C06;&#x53F6;&#x5B50;&#x8282;&#x70B9;&#x5B58;&#x653E;&#x7684;&#x7C7B;&#x522B;&#x4F5C;&#x4E3A;&#x51B3;&#x7B56;&#x7ED3;&#x679C;&#x3002;</p>
+<h3 id="&#x51B3;&#x7B56;&#x6811;&#x7684;&#x6784;&#x5EFA;">&#x51B3;&#x7B56;&#x6811;&#x7684;&#x6784;&#x5EFA;</h3>
+<p>&#x6211;&#x4EEC;&#x77E5;&#x9053;&#x51B3;&#x7B56;&#x6811;&#x4F1A;&#x901A;&#x8FC7;&#x5BF9;&#x7279;&#x5F81;&#x5C5E;&#x6027;&#x7684;&#x5224;&#x65AD;&#xFF0C;&#x5F62;&#x6210;&#x5206;&#x652F;&#xFF0C;&#x6700;&#x540E;&#x5F62;&#x6210;&#x4E00;&#x4E2A;&#x6811;&#x72B6;&#x7ED3;&#x6784;&#x3002;&#x4F46;&#x8FD9;&#x91CC;&#x6709;&#x4E00;&#x4E2A;&#x95EE;&#x9898;&#xFF0C;&#x5C31;&#x662F;&#x7279;&#x5F81;&#x5206;&#x5272;&#x7684;&#x524D;&#x540E;&#x987A;&#x5E8F;&#x662F;&#x600E;&#x6837;&#x51B3;&#x5B9A;&#x7684;&#x3002;&#x6211;&#x4EEC;&#x8FD8;&#x662F;&#x4EE5;&#x5973;&#x5B69;&#x5B50;&#x76F8;&#x4EB2;&#x4E3A;&#x4F8B;&#xFF0C;&#x5E74;&#x9F84;&#x3001;&#x957F;&#x76F8;&#x3001;&#x6536;&#x5165;&#x3001;&#x804C;&#x4E1A;&#x7B49;&#x7279;&#x5F81;&#x5C5E;&#x6027;&#x5230;&#x5E95;&#x8C01;&#x5148;&#x5224;&#x65AD;&#x8C01;&#x540E;&#x5224;&#x65AD;&#x5462;&#xFF1F;</p>
+<p>&#x6211;&#x4EEC;&#x5185;&#x5FC3;&#x6709;&#x4E00;&#x4E2A;&#x6807;&#x51C6;&#x5C31;&#x662F;&#xFF1A;&#x91CD;&#x8981;&#x7684;&#x8BC4;&#x4EF7;&#x6807;&#x51C6;&#x80AF;&#x5B9A;&#x8981;&#x5148;&#x95EE;&#x3002;&#x51B3;&#x7B56;&#x6811;&#x4E5F;&#x4F1A;&#x4E3A;&#x6BCF;&#x6B21;&#x5BF9;&#x7279;&#x5F81;&#x7684;&#x5224;&#x65AD;&#x5206;&#x5272;&#x8FDB;&#x884C;&#x8BA1;&#x7B97;&#xFF0C;&#x627E;&#x5230;&#x4E00;&#x4E2A;&#x6700;&#x4F18;&#x89E3;&#xFF0C;&#x5E76;&#x4EE5;&#x8FD9;&#x4E2A;&#x6700;&#x4F18;&#x7684;&#x7279;&#x5F81;&#x5206;&#x5272;&#x70B9;&#x4F5C;&#x4E3A;&#x5F53;&#x524D;&#x7684;&#x5206;&#x5272;&#x70B9;&#x3002;&#x8FD8;&#x662F;&#x4EE5;&#x76F8;&#x4EB2;&#x4E3A;&#x4F8B;&#x5B50;&#xFF0C;&#x5973;&#x5B69;&#x5B50;&#x60F3;&#x4E86;&#x4E00;&#x4E0B;&#x5BF9;&#x76F8;&#x4EB2;&#x5BF9;&#x8C61;&#x6700;&#x91CD;&#x8981;&#x7684;&#x8981;&#x6C42;&#x5C31;&#x662F;&#x5E74;&#x9F84;&#x4E0D;&#x80FD;&#x8D85;&#x8FC7;30&#x5C81;&#xFF01;&#x6240;&#x4EE5;&#x5C31;&#x4F1A;&#x5C06;&#x8FD9;&#x4E2A;&#x5206;&#x5272;&#x70B9;&#x653E;&#x5728;&#x6700;&#x524D;&#x9762;&#x3002;</p>
+<h4 id="&#x51B3;&#x7B56;&#x6811;&#x7684;&#x5206;&#x5272;&#x70B9;&#x9009;&#x62E9;">&#x51B3;&#x7B56;&#x6811;&#x7684;&#x5206;&#x5272;&#x70B9;&#x9009;&#x62E9;</h4>
+<p>&#x51B3;&#x7B56;&#x6811;&#x7684;&#x6BCF;&#x6B21;&#x5206;&#x5272;&#xFF0C;&#x90FD;&#x662F;&#x91C7;&#x7528;&#x8D2A;&#x5A6A;&#x7B56;&#x7565;&#xFF0C;&#x5C31;&#x662F;&#x9009;&#x62E9;&#x7279;&#x5F81;&#x5206;&#x5272;&#x7684;&#x6700;&#x4F18;&#x89E3;&#x8FDB;&#x884C;&#x5212;&#x5206;&#x3002;&#x8FD9;&#x4E2A;&#x6700;&#x4F18;&#x89E3;&#x7684;&#x91CF;&#x5316;&#x65B9;&#x6CD5;&#x4E3B;&#x8981;&#x6709;&#x71B5;&#x3001;&#x4FE1;&#x606F;&#x589E;&#x76CA;&#x3001;&#x4FE1;&#x606F;&#x589E;&#x76CA;&#x6BD4;&#x3001;&#x57FA;&#x5C3C;&#x7CFB;&#x6570;&#x7B49;&#x591A;&#x79CD;&#x65B9;&#x6CD5;&#x3002;&#x5BF9;&#x4E8E;&#x5177;&#x4F53;&#x7684;&#x5206;&#x5272;&#x65B9;&#x6CD5;&#xFF0C;&#x6211;&#x4EEC;&#x4E00;&#x8D77;CART&#x4E3E;&#x4F8B;&#xFF0C;&#x901A;&#x8FC7;&#x4F2A;&#x4EE3;&#x7801;&#x7684;&#x65B9;&#x6CD5;&#x5C55;&#x793A;&#x5206;&#x5272;&#x70B9;&#x7684;&#x9009;&#x62E9;&#x8FC7;&#x7A0B;&#xFF1A;</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&#x6BCF;&#x4E2A;&#x7279;&#x5F81;&#x7EF4;&#x5EA6;D&#xFF1A;</span><br><span class="line"></span><br><span class="line">&#x200B;	&#x6BCF;&#x4E2A;&#x7279;&#x5F81;&#x503C;V&#xFF1A;</span><br><span class="line"></span><br><span class="line">&#x200B;		&#x5C06;&#x6570;&#x636E;&#x6839;&#x636E;D-V&#x5206;&#x6210;&#x4E24;&#x534A;</span><br><span class="line"></span><br><span class="line">&#x200B;		&#x8BA1;&#x7B97;&#x5F53;&#x524D;&#x5206;&#x5272;&#x70B9;&#x7684;&#x57FA;&#x5C3C;&#x7CFB;&#x6570;</span><br><span class="line"></span><br><span class="line">&#x200B;		&#x5982;&#x679C;&#x57FA;&#x5C3C;&#x7CFB;&#x6570;&#x5C0F;&#x4E8E;&#x5F53;&#x524D;&#x6700;&#x5C0F;&#x57FA;&#x5C3C;&#x7CFB;&#x6570;&#xFF0C;&#x90A3;&#x4E48;&#x5C31;&#x66F4;&#x65B0;&#x6700;&#x5C0F;&#x57FA;&#x5C3C;&#x7CFB;&#x6570;&#xFF0C;&#x5E76;&#x8BBE;&#x5B9A;&#x5F53;&#x524D;&#x5206;&#x5272;&#x70B9;&#x4E3A;&#x6700;&#x4F73;&#x5206;&#x5272;&#x70B9;</span><br><span class="line"></span><br><span class="line">&#x8FD4;&#x56DE;&#x6700;&#x4F73;&#x5206;&#x5272;&#x7684;&#x7279;&#x5F81;&#x7EF4;&#x5EA6;&#x548C;&#x7279;&#x5F81;&#x503C;</span><br></pre></td></tr></table></figure>
+<h5 id="&#x71B5;">&#x71B5;</h5>
+<p>&#x71B5;&#x4E00;&#x79CD;&#x4FE1;&#x606F;&#x8BBA;&#x7684;&#x6982;&#x5FF5;&#xFF0C;&#x4EE3;&#x8868;&#x4FE1;&#x606F;&#x7684;&#x671F;&#x671B;&#x3002;&#x71B5;&#x4E0D;&#x80FD;&#x76F4;&#x63A5;&#x4F5C;&#x4E3A;&#x7279;&#x5F81;&#x5206;&#x5272;&#x7684;&#x91CF;&#x5316;&#x6807;&#x51C6;&#x3002;</p>
+<p><img src="/2022/04/07/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95-%E5%86%B3%E7%AD%96%E6%A0%91/&#x71B5;.PNG" alt="&#x71B5;"></p>
+<p>S&#xFF1A;&#x8868;&#x793A;&#x4E00;&#x4E2A;&#x6570;&#x636E;&#x96C6; t=p+n p&#xFF1A;&#x6B63;&#x6837;&#x672C; n&#xFF1A;&#x8D1F;&#x6837;&#x672C;</p>
+<h5 id="&#x4FE1;&#x606F;&#x589E;&#x76CA;">&#x4FE1;&#x606F;&#x589E;&#x76CA;</h5>
+<p>&#x4FE1;&#x606F;&#x589E;&#x76CA;&#x662F;&#x71B5;&#x4E0E;&#x6761;&#x4EF6;&#x71B5;&#x7684;&#x5DEE;&#x503C;&#x3002;&#x6761;&#x4EF6;&#x71B5;&#x662F;&#x6307;&#x5C06;&#x6570;&#x636E;&#x96C6;&#x8FDB;&#x884C;&#x5206;&#x5272;&#x6210;&#x591A;&#x4E2A;&#x5B50;&#x6570;&#x636E;&#x96C6;&#x3002;&#x5E76;&#x6309;&#x7167;&#x5404;&#x4E2A;&#x5B50;&#x6570;&#x636E;&#x96C6;&#x5360;&#x6570;&#x636E;&#x96C6;&#x7684;&#x6BD4;&#x4F8B;&#x4F5C;&#x4E3A;&#x6743;&#x91CD;&#xFF0C;&#x8BA1;&#x7B97;&#x4FE1;&#x606F;&#x71B5;&#x548C;&#x52A0;&#x6743;&#x548C;&#x3002;&#x4FE1;&#x606F;&#x589E;&#x76CA;&#x662F;<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/ID3%E7%AE%97%E6%B3%95/5522381#:~:text=ID3%E7%AE%97%E6%B3%95%E9%80%9A%E8%BF%87%E8%AE%A1%E7%AE%97%E6%AF%8F%E4%B8%AA%E5%B1%9E%E6%80%A7%E7%9A%84%E4%BF%A1%E6%81%AF%E5%A2%9E%E7%9B%8A%EF%BC%8C%E8%AE%A4%E4%B8%BA%E4%BF%A1%E6%81%AF%E5%A2%9E%E7%9B%8A%E9%AB%98%E7%9A%84%E6%98%AF%E5%A5%BD%E5%B1%9E%E6%80%A7%EF%BC%8C%E6%AF%8F%E6%AC%A1%E5%88%92%E5%88%86%E9%80%89%E5%8F%96%E4%BF%A1%E6%81%AF%E5%A2%9E%E7%9B%8A%E6%9C%80%E9%AB%98%E7%9A%84%E5%B1%9E%E6%80%A7%E4%B8%BA%E5%88%92%E5%88%86%E6%A0%87%E5%87%86%EF%BC%8C%E9%87%8D%E5%A4%8D%E8%BF%99%E4%B8%AA%E8%BF%87%E7%A8%8B%EF%BC%8C%E7%9B%B4%E8%87%B3%E7%94%9F%E6%88%90%E4%B8%80%E4%B8%AA%E8%83%BD%E5%AE%8C%E7%BE%8E%E5%88%86%E7%B1%BB%E8%AE%AD%E7%BB%83%E6%A0%B7%E4%BE%8B%E7%9A%84%E5%86%B3%E7%AD%96%E6%A0%91%E3%80%82%20%E5%86%B3%E7%AD%96%E6%A0%91,%E6%98%AF%E5%AF%B9%E6%95%B0%E6%8D%AE%E8%BF%9B%E8%A1%8C%E5%88%86%E7%B1%BB%EF%BC%8C%E4%BB%A5%E6%AD%A4%E8%BE%BE%E5%88%B0%20%E9%A2%84%E6%B5%8B%20%E7%9A%84%E7%9B%AE%E7%9A%84%E3%80%82">ID3</a>&#x578B;&#x51B3;&#x7B56;&#x6811;&#x7684;&#x5206;&#x5272;&#x6807;&#x51C6;&#x3002;</p>
+<p><img src="/2022/04/07/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95-%E5%86%B3%E7%AD%96%E6%A0%91/&#x4FE1;&#x606F;&#x589E;&#x76CA;.PNG" alt="&#x4FE1;&#x606F;&#x589E;&#x76CA;"></p>
+<p>D:&#x8868;&#x793A;&#x4E00;&#x4E2A;&#x6570;&#x636E;&#x96C6;
+D<sup>v</sup>:&#x6309;&#x7167;&#x6761;&#x4EF6;&#x5C06;&#x6570;&#x636E;&#x96C6;D&#x5212;&#x5206;&#x6210;V&#x4E2A;&#x5B50;&#x6570;&#x636E;&#x96C6;&#xFF0C;&#x5176;&#x4E2D;&#x7684;&#x7B2C;v&#x4E2A;&#x5B50;&#x6570;&#x636E;&#x96C6;
+V&#xFF1A;&#x5B50;&#x6570;&#x636E;&#x96C6;&#x4E2A;&#x6570; Ent(D)&#xFF1A;D&#x8FD9;&#x4E2A;&#x6570;&#x636E;&#x96C6;&#x7684;&#x4FE1;&#x606F;&#x71B5;</p>
+<h5 id="&#x4FE1;&#x606F;&#x589E;&#x76CA;&#x6BD4;">&#x4FE1;&#x606F;&#x589E;&#x76CA;&#x6BD4;</h5>
+<p>&#x5F53;&#x4E00;&#x4E2A;&#x6570;&#x636E;&#x96C6;&#x88AB;&#x5212;&#x5206;&#x6210;&#x975E;&#x5E38;&#x591A;&#x4E2A;&#x5B50;&#x6570;&#x636E;&#x96C6;&#xFF0C;&#x5E76;&#x4E14;&#x6BCF;&#x4E2A;&#x5B50;&#x6570;&#x636E;&#x96C6;&#x4E2D;&#x7684;&#x6837;&#x672C;&#x6570;&#x90FD;&#x975E;&#x5E38;&#x5C11;&#x65F6;&#xFF0C;&#x4FE1;&#x606F;&#x589E;&#x76CA;&#x4E2D;&#x7684;&#x6761;&#x4EF6;&#x71B5;&#x5C31;&#x4F1A;&#x53D8;&#x5F97;&#x975E;&#x5E38;&#x5C0F;&#xFF0C;&#x5BFC;&#x81F4;&#x4FE1;&#x606F;&#x589E;&#x76CA;&#x6709;&#x504F;&#x5411;&#x6027;&#xFF0C;&#x4E3A;&#x4E86;&#x5E94;&#x5BF9;&#x8FD9;&#x4E2A;&#x95EE;&#x9898;&#xFF0C;&#x63D0;&#x51FA;&#x4E86;&#x4FE1;&#x606F;&#x589E;&#x76CA;&#x6BD4;&#x7684;&#x5206;&#x5272;&#x6807;&#x51C6;&#x3002;&#x8FD9;&#x4E2A;&#x6807;&#x51C6;&#x4F1A;&#x5F15;&#x5165;&#x6570;&#x636E;&#x96C6;&#x5206;&#x5272;&#x7684;&#x4FE1;&#x606F;&#x71B5;&#xFF0C;&#x4EE5;&#x5E73;&#x8861;&#x504F;&#x5411;&#x6027;&#x7684;&#x5F71;&#x54CD;&#x3002;&#x8FD9;&#x4E2A;&#x5206;&#x5272;&#x6807;&#x51C6;&#x4E3B;&#x8981;&#x7528;&#x4E8E;<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/C4.5%E7%AE%97%E6%B3%95/20814636">C4.5</a>&#x51B3;&#x7B56;&#x6811;&#x4E2D;&#x3002;</p>
+<p><img src="/2022/04/07/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95-%E5%86%B3%E7%AD%96%E6%A0%91/&#x4FE1;&#x606F;&#x589E;&#x76CA;&#x6BD4;.png" alt="&#x4FE1;&#x606F;&#x589E;&#x76CA;&#x6BD4;"></p>
+<p><img src="/2022/04/07/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95-%E5%86%B3%E7%AD%96%E6%A0%91/&#x6570;&#x636E;&#x96C6;&#x5206;&#x5272;&#x7684;&#x4FE1;&#x606F;&#x71B5;.png" alt="&#x6570;&#x636E;&#x96C6;&#x5206;&#x5272;&#x7684;&#x4FE1;&#x606F;&#x71B5;"></p>
+<p>a&#xFF1A;&#x8868;&#x793A;&#x6570;&#x636E;&#x96C6;&#x7684;&#x5206;&#x5272;&#x65B9;&#x6CD5;</p>
+<h5 id="&#x57FA;&#x5C3C;&#x7CFB;&#x6570;">&#x57FA;&#x5C3C;&#x7CFB;&#x6570;</h5>
+<p>&#x57FA;&#x5C3C;&#x7CFB;&#x6570;&#x662F;&#x4E00;&#x79CD;&#x5728;&#x7ECF;&#x6D4E;&#x4E0A;&#x8861;&#x91CF;&#x5C45;&#x6C11;&#x6536;&#x5165;&#x5DEE;&#x8DDD;&#x7684;&#x5E38;&#x7528;&#x6307;&#x6807;&#x3002;&#x7531;&#x4E8E;&#x5176;&#x4E0E;&#x71B5;&#x6A21;&#x578B;&#x7684;&#x5EA6;&#x91CF;&#x65B9;&#x5F0F;&#x975E;&#x5E38;&#x76F8;&#x8FD1;&#xFF0C;&#x5E76;&#x4E14;&#x8BA1;&#x7B97;&#x7B80;&#x5355;&#xFF0C;&#x56E0;&#x6B64;&#x88AB;&#x7528;&#x6765;&#x4EE3;&#x66FF;&#x71B5;&#x7684;&#x65B9;&#x6CD5;&#x3002;</p>
+<p><img src="/2022/04/07/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95-%E5%86%B3%E7%AD%96%E6%A0%91/&#x57FA;&#x5C3C;&#x7CFB;&#x6570;&#x4E0E;&#x71B5;&#x7684;&#x6BD4;&#x8F83;.jpg" alt="&#x57FA;&#x5C3C;&#x7CFB;&#x6570;&#x4E0E;&#x71B5;&#x7684;&#x6BD4;&#x8F83;"></p>
+<p>&#x91C7;&#x7528;&#x57FA;&#x5C3C;&#x7CFB;&#x6570;&#x4F5C;&#x4E3A;&#x5206;&#x5272;&#x6807;&#x51C6;&#x7684;&#x51B3;&#x7B56;&#x6811;&#x662F;CART&#xFF0C;&#x4E5F;&#x662F;&#x76EE;&#x524D;&#x4E3B;&#x8981;&#x662F;&#x4F7F;&#x7528;&#x7684;&#x51B3;&#x7B56;&#x6811;&#xFF0C;&#x666E;&#x904D;&#x5E94;&#x7528;&#x4E8E;bagging&#x548C;boosting&#x7B49;&#x96C6;&#x6210;&#x5B66;&#x4E60;&#x7684;&#x65B9;&#x6CD5;&#x5F53;&#x4E2D;&#x3002;&#x540C;&#x65F6;&#x57FA;&#x5C3C;&#x7CFB;&#x6570;&#x53EF;&#x4EE5;&#x770B;&#x6210;&#x662F;&#x4FE1;&#x606F;&#x589E;&#x76CA;&#x7684;&#x4E00;&#x9636;&#x6CF0;&#x52D2;&#x5C55;&#x5F00;&#x3002;</p>
+<p><img src="/2022/04/07/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95-%E5%86%B3%E7%AD%96%E6%A0%91/&#x6CF0;&#x52D2;&#x5C55;&#x5F00;.PNG" alt="&#x6CF0;&#x52D2;&#x5C55;&#x5F00;"></p>
+<p>&#x9700;&#x8981;&#x6CE8;&#x610F;&#x7684;&#x4E00;&#x70B9;&#x662F;&#xFF0C;&#x57FA;&#x5C3C;&#x7CFB;&#x6570;&#x8FFD;&#x6C42;&#x7684;&#x662F;&#x6700;&#x5C0F;&#x503C;&#xFF0C;&#x71B5;&#x76F8;&#x5173;&#x7684;&#x5206;&#x5272;&#x6807;&#x51C6;&#x8FFD;&#x6C42;&#x7684;&#x662F;&#x6700;&#x5927;&#x503C;&#xFF08;&#x52A0;&#x4E0D;&#x52A0;&#x8D1F;&#x53F7;&#x7684;&#x533A;&#x522B;&#xFF09;&#x3002;</p>
+<h4 id="&#x51B3;&#x7B56;&#x6811;&#x7684;&#x5206;&#x5272;&#x505C;&#x6B62;">&#x51B3;&#x7B56;&#x6811;&#x7684;&#x5206;&#x5272;&#x505C;&#x6B62;</h4>
+<p>&#x5982;&#x679C;&#x8BA9;&#x51B3;&#x7B56;&#x6811;&#x4E00;&#x76F4;&#x5206;&#x5272;&#x4E0B;&#x53BB;&#xFF0C;&#x6700;&#x7EC8;&#x7684;&#x7ED3;&#x679C;&#x5C31;&#x662F;&#x6BCF;&#x4E2A;&#x53F6;&#x5B50;&#x8282;&#x70B9;&#x53EA;&#x6709;&#x4E00;&#x4E2A;&#x6837;&#x672C;&#x3002;&#x8FD9;&#x6837;&#x663E;&#x7136;&#x4F1A;&#x5BFC;&#x81F4;&#x6A21;&#x578B;&#x590D;&#x6742;&#x5EA6;&#x8FC7;&#x9AD8;&#x4EE5;&#x53CA;&#x6A21;&#x578B;&#x8FC7;&#x62DF;&#x5408;&#x7684;&#x95EE;&#x9898;&#x3002;&#x56E0;&#x6B64;&#x9700;&#x8981;&#x5236;&#x5B9A;&#x7B56;&#x7565;&#x4F5C;&#x4E3A;&#x51B3;&#x7B56;&#x6811;&#x505C;&#x6B62;&#x5206;&#x5272;&#x7684;&#x6761;&#x4EF6;&#x3002;</p>
+<h5 id="&#x6700;&#x5C0F;&#x6837;&#x672C;&#x6570;&#x9608;&#x503C;">&#x6700;&#x5C0F;&#x6837;&#x672C;&#x6570;&#x9608;&#x503C;</h5>
+<p>&#x5F53;&#x8BE5;&#x5206;&#x652F;&#x7684;&#x6837;&#x672C;&#x96C6;&#x4E2A;&#x6570;&#x5C0F;&#x4E8E;&#x6700;&#x5C0F;&#x6837;&#x672C;&#x6570;&#x65F6;&#xFF0C;&#x5206;&#x652F;&#x505C;&#x6B62;&#x5206;&#x88C2;&#x3002;</p>
+<h5 id="&#x71B5;&#x7684;&#x9608;&#x503C;">&#x71B5;&#x7684;&#x9608;&#x503C;</h5>
+<p>&#x71B5;&#x8FC7;&#x5C0F;&#x65F6;&#xFF0C;&#x5982;&#x679C;&#x6570;&#x636E;&#x590D;&#x6742;&#x5EA6;&#x4E0D;&#x5927;&#xFF0C;&#x5C31;&#x4E0D;&#x9700;&#x8981;&#x7EE7;&#x7EED;&#x5206;&#x88C2;&#x4E86;&#x3002;&#x6781;&#x7AEF;&#x60C5;&#x51B5;&#x5C31;&#x662F;&#x5F85;&#x5206;&#x88C2;&#x7684;&#x6837;&#x672C;&#x90FD;&#x662F;&#x540C;&#x4E00;&#x7C7B;&#xFF0C;&#x8FD9;&#x65F6;&#x5019;&#x71B5;&#x4E3A;0&#x3002;</p>
+<h5 id="&#x51B3;&#x7B56;&#x6811;&#x6DF1;&#x5EA6;&#x9608;&#x503C;">&#x51B3;&#x7B56;&#x6811;&#x6DF1;&#x5EA6;&#x9608;&#x503C;</h5>
+<p>&#x51B3;&#x7B56;&#x6811;&#x7684;&#x6DF1;&#x5EA6;&#xFF0C;&#x51B3;&#x7B56;&#x6811;&#x7684;&#x6DF1;&#x5EA6;&#x5C31;&#x662F;&#x6240;&#x6709;&#x53F6;&#x5B50;&#x8282;&#x70B9;&#x7684;&#x6700;&#x5927;&#x6DF1;&#x5EA6;&#xFF0C;&#x5B50;&#x8282;&#x70B9;&#x6BD4;&#x7236;&#x8282;&#x70B9;&#x6DF1;&#x5EA6;&#x52A0;1&#xFF0C;&#x5F53;&#x67D0;&#x4E00;&#x5206;&#x652F;&#x7684;&#x6DF1;&#x5EA6;&#x8FBE;&#x5230;&#x6DF1;&#x5EA6;&#x9608;&#x503C;&#xFF0C;&#x8BE5;&#x5206;&#x652F;&#x505C;&#x6B62;&#x5206;&#x88C2;&#x3002;</p>
+<h5 id="&#x65E0;&#x53EF;&#x5206;&#x88C2;&#x7279;&#x5F81;">&#x65E0;&#x53EF;&#x5206;&#x88C2;&#x7279;&#x5F81;</h5>
+<p>&#x5F53;&#x6240;&#x6709;&#x7279;&#x5F81;&#x90FD;&#x662F;&#x7528;&#x5B8C;&#x65F6;&#xFF0C;&#x6CA1;&#x6709;&#x53EF;&#x4EE5;&#x7EE7;&#x7EED;&#x5206;&#x88C2;&#x7684;&#x5C5E;&#x6027;&#xFF0C;&#x5C31;&#x5C06;&#x5F53;&#x524D;&#x8282;&#x70B9;&#x4F5C;&#x4E3A;&#x53F6;&#x5B50;&#x8282;&#x70B9;&#xFF0C;&#x5E76;&#x505C;&#x6B62;&#x8BE5;&#x5206;&#x652F;&#x7684;&#x5206;&#x88C2;&#x3002;</p>
+<h4 id="&#x51B3;&#x7B56;&#x6811;&#x7684;&#x526A;&#x679D;">&#x51B3;&#x7B56;&#x6811;&#x7684;&#x526A;&#x679D;</h4>
+<p>&#x51B3;&#x7B56;&#x6811;&#x7684;&#x526A;&#x679D;&#x4E00;&#x822C;&#x5206;&#x4E3A;&#x4E24;&#x79CD;&#x65B9;&#x6CD5;&#xFF0C;&#x5206;&#x522B;&#x662F;&#x9884;&#x526A;&#x679D;&#x548C;&#x540E;&#x526A;&#x679D;&#x3002;</p>
+<h5 id="&#x9884;&#x526A;&#x679D;">&#x9884;&#x526A;&#x679D;</h5>
+<p>&#x9884;&#x526A;&#x679D;&#x5C31;&#x662F;&#x5728;&#x51B3;&#x7B56;&#x6811;&#x7684;&#x6784;&#x5EFA;&#x8FC7;&#x7A0B;&#x4E2D;&#x8FDB;&#x884C;&#x526A;&#x679D;&#xFF0C;&#x5728;&#x6784;&#x9020;&#x7684;&#x8FC7;&#x7A0B;&#x4E2D;&#x5BF9;&#x8282;&#x70B9;&#x8FDB;&#x884C;&#x8BC4;&#x4F30;&#xFF0C;&#x5982;&#x679C;&#x5BF9;&#x67D0;&#x4E2A;&#x8282;&#x70B9;&#x8FDB;&#x884C;&#x5212;&#x5206;&#x65F6;&#x4E0D;&#x80FD;&#x5E26;&#x6765;&#x51C6;&#x786E;&#x6027;&#x7684;&#x63D0;&#x5347;&#xFF08;&#x635F;&#x5931;&#x51FD;&#x6570;&#x7684;&#x964D;&#x4F4E;&#xFF09;&#xFF0C;&#x90A3;&#x4E48;&#x5BF9;&#x8FD9;&#x4E2A;&#x8282;&#x70B9;&#x8FDB;&#x884C;&#x5212;&#x5206;&#x5C31;&#x6CA1;&#x6709;&#x610F;&#x4E49;&#xFF0C;&#x8FD9;&#x65F6;&#x5C31;&#x4F1A;&#x628A;&#x5F53;&#x524D;&#x8282;&#x70B9;&#x4F5C;&#x4E3A;&#x53F6;&#x8282;&#x70B9;&#xFF0C;&#x4E0D;&#x5BF9;&#x5176;&#x8FDB;&#x884C;&#x5212;&#x5206;&#x3002;&#x9884;&#x526A;&#x679D;&#x5BB9;&#x6613;&#x5BFC;&#x81F4;&#x6B20;&#x62DF;&#x5408;&#x3002;</p>
+<p>&#x8FD9;&#x91CC;&#x9700;&#x8981;&#x660E;&#x786E;&#x7684;&#x662F;&#x51C6;&#x786E;&#x6027;&#x7684;&#x63D0;&#x5347;&#xFF0C;&#x5C31;&#x662F;&#x5BF9;&#x6BD4;&#x672A;&#x5206;&#x5272;&#x6570;&#x636E;&#x96C6;&#x548C;&#x5DF2;&#x7ECF;&#x5206;&#x5272;&#x5B8C;&#x6210;&#x540E;&#xFF0C;&#x9A8C;&#x8BC1;&#x96C6;&#x4E4B;&#x95F4;&#x7684;&#x51C6;&#x786E;&#x6027;&#x3002;</p>
+<p>&#xFF08;0 1 0 1 1&#xFF09; --&gt;&#x9A8C;&#x8BC1;&#x96C6;</p>
+<p>&#x200B; (1 1 1 0 0) --&gt;&#x8BAD;&#x7EC3;&#x96C6;</p>
+<p>&#x200B; /<br>
+</p>
+<p>&#x200B; /<br>
+</p>
+<p>(0 0 1) (1 1) --&gt;&#x9A8C;&#x8BC1;&#x5B50;&#x96C6;</p>
+<p>(0 0 0) (1 1) --&gt;&#x6D4B;&#x8BD5;&#x5B50;&#x96C6;</p>
+<p>&#x5212;&#x5206;&#x524D;&#x9A8C;&#x8BC1;&#x96C6;&#x7684;&#x51C6;&#x786E;&#x7387;&#xFF1A;&#x4E94;&#x4E2A;&#x6837;&#x672C;&#x4E2D;&#xFF0C;&#x56E0;&#x4E3A;&#x201C;1&#x201D;&#x6837;&#x672C;&#x8F83;&#x591A;&#xFF0C;&#x56E0;&#x6B64;&#x9A8C;&#x8BC1;&#x96C6;&#x7684;&#x51C6;&#x786E;&#x7387;=3/5=60%</p>
+<p>&#x5212;&#x5206;&#x540E;&#x9A8C;&#x8BC1;&#x96C6;&#x7684;&#x51C6;&#x786E;&#x7387;&#xFF1A;&#x5DE6;&#x5B50;&#x96C6;&#x6709;&#x4E24;&#x4E2A;&#x5224;&#x65AD;&#x6B63;&#x786E;&#xFF0C;&#x53F3;&#x5B50;&#x96C6;&#x6709;&#x4E24;&#x4E2A;&#x5224;&#x65AD;&#x6B63;&#x786E;&#xFF0C;&#x56E0;&#x6B64;&#x9A8C;&#x8BC1;&#x96C6;&#x7684;&#x51C6;&#x786E;&#x7387;=4/5=80%</p>
+<h5 id="&#x540E;&#x526A;&#x679D;">&#x540E;&#x526A;&#x679D;</h5>
+<p>&#x540E;&#x526A;&#x679D;&#x5C31;&#x662F;&#x5728;&#x751F;&#x6210;&#x51B3;&#x7B56;&#x6811;&#x4E4B;&#x540E;&#x518D;&#x8FDB;&#x884C;&#x526A;&#x679D;&#x3002;&#x901A;&#x5E38;&#x4F1A;&#x4ECE;&#x51B3;&#x7B56;&#x6811;&#x7684;&#x53F6;&#x5B50;&#x8282;&#x70B9;&#x5F00;&#x59CB;&#xFF0C;&#x9010;&#x5C42;&#x5411;&#x4E0A;&#x5BF9;&#x6BCF;&#x4E2A;&#x8282;&#x70B9;&#x8FDB;&#x884C;&#x8BC4;&#x4F30;&#x3002;&#x5982;&#x679C;&#x526A;&#x6389;&#x8FD9;&#x4E2A;&#x8282;&#x70B9;&#x5B50;&#x6811;&#xFF0C;&#x4E0E;&#x4FDD;&#x7559;&#x8BE5;&#x8282;&#x70B9;&#x5B50;&#x6811;&#x5728;&#x5206;&#x7C7B;&#x51C6;&#x786E;&#x6027;&#x4E0A;&#x5DEE;&#x522B;&#x4E0D;&#x5927;&#xFF0C;&#x6216;&#x8005;&#x526A;&#x6389;&#x8BE5;&#x8282;&#x70B9;&#x5B50;&#x6811;&#xFF0C;&#x80FD;&#x5728;&#x9A8C;&#x8BC1;&#x96C6;&#x4E2D;&#x5E26;&#x6765;&#x51C6;&#x786E;&#x6027;&#x7684;&#x63D0;&#x5347;&#xFF0C;&#x90A3;&#x4E48;&#x5C31;&#x53EF;&#x4EE5;&#x628A;&#x8BE5;&#x8282;&#x70B9;&#x5B50;&#x6811;&#x8FDB;&#x884C;&#x526A;&#x679D;&#x3002;</p>
+<h3 id="&#x51B3;&#x7B56;&#x65F6;&#x7684;&#x5B9E;&#x73B0;&#x65B9;&#x6CD5;">&#x51B3;&#x7B56;&#x65F6;&#x7684;&#x5B9E;&#x73B0;&#x65B9;&#x6CD5;</h3>
+<p>&#x53EF;&#x4EE5;&#x4F7F;&#x7528;sklearn&#xFF0C;&#x6216;&#x8005;&#x81EA;&#x5DF1;&#x5199;&#x3002;</p>
 
     </div>
 
@@ -425,6 +452,12 @@
 
   <script class="next-config" data-name="leancloud_visitors" type="application/json">{"enable":true,"app_id":"nG09szIvM8x9ehgslCULWzg2-MdYXbMMI","app_key":"yHykoRL88ikgLTqsUC0xIMvY","server_url":null,"security":false}</script>
   <script src="/js/third-party/statistics/lean-analytics.js"></script>
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdn.jsdelivr.net/npm/mathjax@3.2.0/es5/tex-mml-chtml.js","integrity":"sha256-r+3itOMtGGjap0x+10hu6jW/gZCzxHsoKrOd7gyRSGY="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
 
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">

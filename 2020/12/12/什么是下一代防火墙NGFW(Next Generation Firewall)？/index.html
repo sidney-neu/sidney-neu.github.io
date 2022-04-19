@@ -19,17 +19,19 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"sidney-neu.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.8.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":{"gitalk":{"order":-1}},"activeClass":"gitalk"},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.json","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
-<meta name="description" content="下一代防护墙（Next Generation Firewall, 简称 NGFW），在2007年Gartner提出了这一概念。两年后的2009年，Gartner正式发布了《Defining the Next-Generation Firewall》，对下一代防火墙的定义做了明确说明。相对于IPS、VPN等当时现有安全产品，NGFW给人的感觉就是：我全都要！ ![20201212162217968]">
+<meta name="description" content="&amp;#x4E0B;&amp;#x4E00;&amp;#x4EE3;&amp;#x9632;&amp;#x62A4;&amp;#x5899;&amp;#xFF08;Next Generation Firewall, &amp;#x7B80;&amp;#x79F0; NGFW&amp;#xFF09;&amp;#xFF0C;&amp;#x5728;2007&amp;#x5E74;Gartner&amp;#x63D0;&amp;#x51FA;&amp;#x4E86;&amp;#x8FD9;&amp;#x4E00;&amp;#x6982;&amp;#x5FF">
 <meta property="og:type" content="article">
 <meta property="og:title" content="什么是下一代防火墙NGFW(Next Generation Firewall)？">
 <meta property="og:url" content="https://sidney-neu.github.io/2020/12/12/%E4%BB%80%E4%B9%88%E6%98%AF%E4%B8%8B%E4%B8%80%E4%BB%A3%E9%98%B2%E7%81%AB%E5%A2%99NGFW(Next%20Generation%20Firewall)%EF%BC%9F/index.html">
 <meta property="og:site_name" content="Yoo shen的博客">
-<meta property="og:description" content="下一代防护墙（Next Generation Firewall, 简称 NGFW），在2007年Gartner提出了这一概念。两年后的2009年，Gartner正式发布了《Defining the Next-Generation Firewall》，对下一代防火墙的定义做了明确说明。相对于IPS、VPN等当时现有安全产品，NGFW给人的感觉就是：我全都要！ ![20201212162217968]">
+<meta property="og:description" content="&amp;#x4E0B;&amp;#x4E00;&amp;#x4EE3;&amp;#x9632;&amp;#x62A4;&amp;#x5899;&amp;#xFF08;Next Generation Firewall, &amp;#x7B80;&amp;#x79F0; NGFW&amp;#xFF09;&amp;#xFF0C;&amp;#x5728;2007&amp;#x5E74;Gartner&amp;#x63D0;&amp;#x51FA;&amp;#x4E86;&amp;#x8FD9;&amp;#x4E00;&amp;#x6982;&amp;#x5FF">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://sidney-neu.github.io/2020/12/12/%E4%BB%80%E4%B9%88%E6%98%AF%E4%B8%8B%E4%B8%80%E4%BB%A3%E9%98%B2%E7%81%AB%E5%A2%99NGFW(Next%20Generation%20Firewall)%EF%BC%9F/20201212162217968.jpeg">
 <meta property="article:published_time" content="2020-12-12T08:21:00.000Z">
-<meta property="article:modified_time" content="2022-03-03T01:47:12.969Z">
+<meta property="article:modified_time" content="2022-04-18T03:14:00.103Z">
 <meta property="article:author" content="Yoo Shen">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://sidney-neu.github.io/2020/12/12/%E4%BB%80%E4%B9%88%E6%98%AF%E4%B8%8B%E4%B8%80%E4%BB%A3%E9%98%B2%E7%81%AB%E5%A2%99NGFW(Next%20Generation%20Firewall)%EF%BC%9F/20201212162217968.jpeg">
 
 
 <link rel="canonical" href="https://sidney-neu.github.io/2020/12/12/%E4%BB%80%E4%B9%88%E6%98%AF%E4%B8%8B%E4%B8%80%E4%BB%A3%E9%98%B2%E7%81%AB%E5%A2%99NGFW(Next%20Generation%20Firewall)%EF%BC%9F/">
@@ -86,8 +88,8 @@
 <nav class="site-nav">
   <ul class="main-menu menu">
         <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
-        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">17</span></a></li>
-        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">29</span></a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">12</span></a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">32</span></a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -156,13 +158,13 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">29</span>
+          <span class="site-state-item-count">32</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-count">12</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
   </nav>
@@ -237,7 +239,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-03-03 09:47:12" itemprop="dateModified" datetime="2022-03-03T09:47:12+08:00">2022-03-03</time>
+      <time title="修改时间：2022-04-18 11:14:00" itemprop="dateModified" datetime="2022-04-18T11:14:00+08:00">2022-04-18</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -266,24 +268,27 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <p>下一代防护墙（Next Generation Firewall, 简称 NGFW），在2007年Gartner提出了这一概念。两年后的2009年，Gartner正式发布了《<a target="_blank" rel="noopener" href="https://www.gartner.com/en/documents/1204914/defining-the-next-generation-firewall">Defining the Next-Generation Firewall</a>》，对下一代防火墙的定义做了明确说明。相对于IPS、VPN等当时现有安全产品，NGFW给人的感觉就是：我全都要！</p>
-<p>![20201212162217968](..&#x2F;images&#x2F;什么是下一代防火墙NGFW(Next Generation Firewall)？&#x2F;20201212162217968.jpeg)</p>
-<p>NGFW在诞生之初作为一个全新的概念和产品形态，为边界类的安全产品的发展指明了方向。然而这个为安全厂商指明发展方向的标准却是有一个咨询公司定义，不仅是一个由一个咨询公司定义还收到了国内外安全厂商的普遍认可。随着相关技术的不断成熟和完善，已经不在是一个概念。很多国内安全大厂已经在参照的等报的合规标准逐渐完善标准和安全功能和检测性能。并逐渐依托自身的特点完成产品的孵化和发展。目前国内的安全大厂已经完成了NGFW的产品化。</p>
-<p>华为：</p>
+        <p>&#x4E0B;&#x4E00;&#x4EE3;&#x9632;&#x62A4;&#x5899;&#xFF08;Next Generation Firewall, &#x7B80;&#x79F0;
+NGFW&#xFF09;&#xFF0C;&#x5728;2007&#x5E74;Gartner&#x63D0;&#x51FA;&#x4E86;&#x8FD9;&#x4E00;&#x6982;&#x5FF5;&#x3002;&#x4E24;&#x5E74;&#x540E;&#x7684;2009&#x5E74;&#xFF0C;Gartner&#x6B63;&#x5F0F;&#x53D1;&#x5E03;&#x4E86;&#x300A;<a target="_blank" rel="noopener" href="https://www.gartner.com/en/documents/1204914/defining-the-next-generation-firewall">Defining
+the Next-Generation
+Firewall</a>&#x300B;&#xFF0C;&#x5BF9;&#x4E0B;&#x4E00;&#x4EE3;&#x9632;&#x706B;&#x5899;&#x7684;&#x5B9A;&#x4E49;&#x505A;&#x4E86;&#x660E;&#x786E;&#x8BF4;&#x660E;&#x3002;&#x76F8;&#x5BF9;&#x4E8E;IPS&#x3001;VPN&#x7B49;&#x5F53;&#x65F6;&#x73B0;&#x6709;&#x5B89;&#x5168;&#x4EA7;&#x54C1;&#xFF0C;NGFW&#x7ED9;&#x4EBA;&#x7684;&#x611F;&#x89C9;&#x5C31;&#x662F;&#xFF1A;&#x6211;&#x5168;&#x90FD;&#x8981;&#xFF01;</p>
+<p><img src="/2020/12/12/%E4%BB%80%E4%B9%88%E6%98%AF%E4%B8%8B%E4%B8%80%E4%BB%A3%E9%98%B2%E7%81%AB%E5%A2%99NGFW(Next%20Generation%20Firewall)%EF%BC%9F/20201212162217968.jpeg" alt="20201212162217968"></p>
+<p>NGFW&#x5728;&#x8BDE;&#x751F;&#x4E4B;&#x521D;&#x4F5C;&#x4E3A;&#x4E00;&#x4E2A;&#x5168;&#x65B0;&#x7684;&#x6982;&#x5FF5;&#x548C;&#x4EA7;&#x54C1;&#x5F62;&#x6001;&#xFF0C;&#x4E3A;&#x8FB9;&#x754C;&#x7C7B;&#x7684;&#x5B89;&#x5168;&#x4EA7;&#x54C1;&#x7684;&#x53D1;&#x5C55;&#x6307;&#x660E;&#x4E86;&#x65B9;&#x5411;&#x3002;&#x7136;&#x800C;&#x8FD9;&#x4E2A;&#x4E3A;&#x5B89;&#x5168;&#x5382;&#x5546;&#x6307;&#x660E;&#x53D1;&#x5C55;&#x65B9;&#x5411;&#x7684;&#x6807;&#x51C6;&#x5374;&#x662F;&#x6709;&#x4E00;&#x4E2A;&#x54A8;&#x8BE2;&#x516C;&#x53F8;&#x5B9A;&#x4E49;&#xFF0C;&#x4E0D;&#x4EC5;&#x662F;&#x4E00;&#x4E2A;&#x7531;&#x4E00;&#x4E2A;&#x54A8;&#x8BE2;&#x516C;&#x53F8;&#x5B9A;&#x4E49;&#x8FD8;&#x6536;&#x5230;&#x4E86;&#x56FD;&#x5185;&#x5916;&#x5B89;&#x5168;&#x5382;&#x5546;&#x7684;&#x666E;&#x904D;&#x8BA4;&#x53EF;&#x3002;&#x968F;&#x7740;&#x76F8;&#x5173;&#x6280;&#x672F;&#x7684;&#x4E0D;&#x65AD;&#x6210;&#x719F;&#x548C;&#x5B8C;&#x5584;&#xFF0C;&#x5DF2;&#x7ECF;&#x4E0D;&#x5728;&#x662F;&#x4E00;&#x4E2A;&#x6982;&#x5FF5;&#x3002;&#x5F88;&#x591A;&#x56FD;&#x5185;&#x5B89;&#x5168;&#x5927;&#x5382;&#x5DF2;&#x7ECF;&#x5728;&#x53C2;&#x7167;&#x7684;&#x7B49;&#x62A5;&#x7684;&#x5408;&#x89C4;&#x6807;&#x51C6;&#x9010;&#x6E10;&#x5B8C;&#x5584;&#x6807;&#x51C6;&#x548C;&#x5B89;&#x5168;&#x529F;&#x80FD;&#x548C;&#x68C0;&#x6D4B;&#x6027;&#x80FD;&#x3002;&#x5E76;&#x9010;&#x6E10;&#x4F9D;&#x6258;&#x81EA;&#x8EAB;&#x7684;&#x7279;&#x70B9;&#x5B8C;&#x6210;&#x4EA7;&#x54C1;&#x7684;&#x5B75;&#x5316;&#x548C;&#x53D1;&#x5C55;&#x3002;&#x76EE;&#x524D;&#x56FD;&#x5185;&#x7684;&#x5B89;&#x5168;&#x5927;&#x5382;&#x5DF2;&#x7ECF;&#x5B8C;&#x6210;&#x4E86;NGFW&#x7684;&#x4EA7;&#x54C1;&#x5316;&#x3002;</p>
+<p>&#x534E;&#x4E3A;&#xFF1A;</p>
 <p><a target="_blank" rel="noopener" href="https://e.huawei.com/cn/products/enterprise-networking/security">https://e.huawei.com/cn/products/enterprise-networking/security</a></p>
-<p>深信服：</p>
+<p>&#x6DF1;&#x4FE1;&#x670D;&#xFF1A;</p>
 <p><a target="_blank" rel="noopener" href="https://www.sangfor.com.cn/zh-CN/product-and-solution/sangfor-security/22">https://www.sangfor.com.cn/zh-CN/product-and-solution/sangfor-security/22</a></p>
-<p>山石网科：</p>
+<p>&#x5C71;&#x77F3;&#x7F51;&#x79D1;&#xFF1A;</p>
 <p><a target="_blank" rel="noopener" href="https://www.hillstonenet.com.cn/product-and-service/border-security/ngfw/">https://www.hillstonenet.com.cn/product-and-service/border-security/ngfw/</a></p>
-<p>绿盟科技：</p>
-<p><a target="_blank" rel="noopener" href="https://www.nsfocus.com.cn/html/2019/197_0909/113.html">https://www.nsfocus.com.cn/html/2019/197_0909&#x2F;113.html</a></p>
-<p>下一代防火墙的关键特点：</p>
-<p>1.满足国内市场的《网络安全等级保护基本要求》</p>
-<p>以安全资质打开市场，以安全能力保护安全。</p>
-<p>2.高效的并行处理能力，提高检测效率。区别于传统的UTM等网关类的防护安全产品的串行检测，NGFW有“一次解包，并行检测”的能力，举例来说，一次解包可以实现协议分析、策略匹配、用户识别、内容识别等多功能的并行处理。</p>
-<p>3.多种安全能力的一体化能力，提高检测范围。现有不同的边界防护安全产品存在很多的功能重复，因此如果将一体化的安全防护能力集成到一起，综合IPS、WAF、VPN、UTM等防护功能的众家之长，去除冗余实现一次部署一体防御。</p>
-<p>4.结合人工智能、数据分析等新技术的全新威胁检测技术。检测技术的多样化也是NGFW的一个重要特点，无论是AI和威胁情报的全新检测技术，还是大数据和威胁情报分析相结合的分析技术，都可以提高对APT、恶意软件、0Day等攻击的检测能力。</p>
-<p>5.高速稳定的流量处理速度，包括支持IPv6、多种NAT的多种地址形式和多种地址转换方法。针对IPv4的地址枯竭以及IPv6的逐渐兴起，NGFW要对IPv6以及地址转换等流量场景有高速稳定的处理能力。</p>
+<p>&#x7EFF;&#x76DF;&#x79D1;&#x6280;&#xFF1A;</p>
+<p><a target="_blank" rel="noopener" href="https://www.nsfocus.com.cn/html/2019/197_0909/113.html">https://www.nsfocus.com.cn/html/2019/197_0909/113.html</a></p>
+<p>&#x4E0B;&#x4E00;&#x4EE3;&#x9632;&#x706B;&#x5899;&#x7684;&#x5173;&#x952E;&#x7279;&#x70B9;&#xFF1A;</p>
+<p>1.&#x6EE1;&#x8DB3;&#x56FD;&#x5185;&#x5E02;&#x573A;&#x7684;&#x300A;&#x7F51;&#x7EDC;&#x5B89;&#x5168;&#x7B49;&#x7EA7;&#x4FDD;&#x62A4;&#x57FA;&#x672C;&#x8981;&#x6C42;&#x300B;</p>
+<p>&#x4EE5;&#x5B89;&#x5168;&#x8D44;&#x8D28;&#x6253;&#x5F00;&#x5E02;&#x573A;&#xFF0C;&#x4EE5;&#x5B89;&#x5168;&#x80FD;&#x529B;&#x4FDD;&#x62A4;&#x5B89;&#x5168;&#x3002;</p>
+<p>2.&#x9AD8;&#x6548;&#x7684;&#x5E76;&#x884C;&#x5904;&#x7406;&#x80FD;&#x529B;&#xFF0C;&#x63D0;&#x9AD8;&#x68C0;&#x6D4B;&#x6548;&#x7387;&#x3002;&#x533A;&#x522B;&#x4E8E;&#x4F20;&#x7EDF;&#x7684;UTM&#x7B49;&#x7F51;&#x5173;&#x7C7B;&#x7684;&#x9632;&#x62A4;&#x5B89;&#x5168;&#x4EA7;&#x54C1;&#x7684;&#x4E32;&#x884C;&#x68C0;&#x6D4B;&#xFF0C;NGFW&#x6709;&#x201C;&#x4E00;&#x6B21;&#x89E3;&#x5305;&#xFF0C;&#x5E76;&#x884C;&#x68C0;&#x6D4B;&#x201D;&#x7684;&#x80FD;&#x529B;&#xFF0C;&#x4E3E;&#x4F8B;&#x6765;&#x8BF4;&#xFF0C;&#x4E00;&#x6B21;&#x89E3;&#x5305;&#x53EF;&#x4EE5;&#x5B9E;&#x73B0;&#x534F;&#x8BAE;&#x5206;&#x6790;&#x3001;&#x7B56;&#x7565;&#x5339;&#x914D;&#x3001;&#x7528;&#x6237;&#x8BC6;&#x522B;&#x3001;&#x5185;&#x5BB9;&#x8BC6;&#x522B;&#x7B49;&#x591A;&#x529F;&#x80FD;&#x7684;&#x5E76;&#x884C;&#x5904;&#x7406;&#x3002;</p>
+<p>3.&#x591A;&#x79CD;&#x5B89;&#x5168;&#x80FD;&#x529B;&#x7684;&#x4E00;&#x4F53;&#x5316;&#x80FD;&#x529B;&#xFF0C;&#x63D0;&#x9AD8;&#x68C0;&#x6D4B;&#x8303;&#x56F4;&#x3002;&#x73B0;&#x6709;&#x4E0D;&#x540C;&#x7684;&#x8FB9;&#x754C;&#x9632;&#x62A4;&#x5B89;&#x5168;&#x4EA7;&#x54C1;&#x5B58;&#x5728;&#x5F88;&#x591A;&#x7684;&#x529F;&#x80FD;&#x91CD;&#x590D;&#xFF0C;&#x56E0;&#x6B64;&#x5982;&#x679C;&#x5C06;&#x4E00;&#x4F53;&#x5316;&#x7684;&#x5B89;&#x5168;&#x9632;&#x62A4;&#x80FD;&#x529B;&#x96C6;&#x6210;&#x5230;&#x4E00;&#x8D77;&#xFF0C;&#x7EFC;&#x5408;IPS&#x3001;WAF&#x3001;VPN&#x3001;UTM&#x7B49;&#x9632;&#x62A4;&#x529F;&#x80FD;&#x7684;&#x4F17;&#x5BB6;&#x4E4B;&#x957F;&#xFF0C;&#x53BB;&#x9664;&#x5197;&#x4F59;&#x5B9E;&#x73B0;&#x4E00;&#x6B21;&#x90E8;&#x7F72;&#x4E00;&#x4F53;&#x9632;&#x5FA1;&#x3002;</p>
+<p>4.&#x7ED3;&#x5408;&#x4EBA;&#x5DE5;&#x667A;&#x80FD;&#x3001;&#x6570;&#x636E;&#x5206;&#x6790;&#x7B49;&#x65B0;&#x6280;&#x672F;&#x7684;&#x5168;&#x65B0;&#x5A01;&#x80C1;&#x68C0;&#x6D4B;&#x6280;&#x672F;&#x3002;&#x68C0;&#x6D4B;&#x6280;&#x672F;&#x7684;&#x591A;&#x6837;&#x5316;&#x4E5F;&#x662F;NGFW&#x7684;&#x4E00;&#x4E2A;&#x91CD;&#x8981;&#x7279;&#x70B9;&#xFF0C;&#x65E0;&#x8BBA;&#x662F;AI&#x548C;&#x5A01;&#x80C1;&#x60C5;&#x62A5;&#x7684;&#x5168;&#x65B0;&#x68C0;&#x6D4B;&#x6280;&#x672F;&#xFF0C;&#x8FD8;&#x662F;&#x5927;&#x6570;&#x636E;&#x548C;&#x5A01;&#x80C1;&#x60C5;&#x62A5;&#x5206;&#x6790;&#x76F8;&#x7ED3;&#x5408;&#x7684;&#x5206;&#x6790;&#x6280;&#x672F;&#xFF0C;&#x90FD;&#x53EF;&#x4EE5;&#x63D0;&#x9AD8;&#x5BF9;APT&#x3001;&#x6076;&#x610F;&#x8F6F;&#x4EF6;&#x3001;0Day&#x7B49;&#x653B;&#x51FB;&#x7684;&#x68C0;&#x6D4B;&#x80FD;&#x529B;&#x3002;</p>
+<p>5.&#x9AD8;&#x901F;&#x7A33;&#x5B9A;&#x7684;&#x6D41;&#x91CF;&#x5904;&#x7406;&#x901F;&#x5EA6;&#xFF0C;&#x5305;&#x62EC;&#x652F;&#x6301;IPv6&#x3001;&#x591A;&#x79CD;NAT&#x7684;&#x591A;&#x79CD;&#x5730;&#x5740;&#x5F62;&#x5F0F;&#x548C;&#x591A;&#x79CD;&#x5730;&#x5740;&#x8F6C;&#x6362;&#x65B9;&#x6CD5;&#x3002;&#x9488;&#x5BF9;IPv4&#x7684;&#x5730;&#x5740;&#x67AF;&#x7AED;&#x4EE5;&#x53CA;IPv6&#x7684;&#x9010;&#x6E10;&#x5174;&#x8D77;&#xFF0C;NGFW&#x8981;&#x5BF9;IPv6&#x4EE5;&#x53CA;&#x5730;&#x5740;&#x8F6C;&#x6362;&#x7B49;&#x6D41;&#x91CF;&#x573A;&#x666F;&#x6709;&#x9AD8;&#x901F;&#x7A33;&#x5B9A;&#x7684;&#x5904;&#x7406;&#x80FD;&#x529B;&#x3002;</p>
 
     </div>
 
@@ -332,8 +337,8 @@
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2020/05/16/%E5%A6%82%E4%BD%95%E5%9C%A8C%E8%AF%AD%E8%A8%80%E4%B8%AD%E4%BD%BF%E7%94%A8tensorflow%EF%BC%88%E5%9B%9B%EF%BC%89%E5%AE%9E%E4%BE%8B/" rel="prev" title="如何在C语言中使用tensorflow（四）实例">
-                  <i class="fa fa-chevron-left"></i> 如何在C语言中使用tensorflow（四）实例
+                <a href="/2020/05/16/%E5%A6%82%E4%BD%95%E5%9C%A8C%E8%AF%AD%E8%A8%80%E4%B8%AD%E4%BD%BF%E7%94%A8tensorflow%EF%BC%88%E4%BA%94%EF%BC%89%E6%A3%80%E6%B5%8B/" rel="prev" title="如何在C语言中使用tensorflow（五）检测">
+                  <i class="fa fa-chevron-left"></i> 如何在C语言中使用tensorflow（五）检测
                 </a>
             </div>
             <div class="post-nav-item">
@@ -390,6 +395,12 @@
 
   <script class="next-config" data-name="leancloud_visitors" type="application/json">{"enable":true,"app_id":"nG09szIvM8x9ehgslCULWzg2-MdYXbMMI","app_key":"yHykoRL88ikgLTqsUC0xIMvY","server_url":null,"security":false}</script>
   <script src="/js/third-party/statistics/lean-analytics.js"></script>
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdn.jsdelivr.net/npm/mathjax@3.2.0/es5/tex-mml-chtml.js","integrity":"sha256-r+3itOMtGGjap0x+10hu6jW/gZCzxHsoKrOd7gyRSGY="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
 
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">

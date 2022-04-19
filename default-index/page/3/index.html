@@ -84,8 +84,8 @@
 <nav class="site-nav">
   <ul class="main-menu menu">
         <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
-        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">17</span></a></li>
-        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">29</span></a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">12</span></a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">32</span></a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -154,13 +154,13 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">29</span>
+          <span class="site-state-item-count">32</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-count">12</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
   </nav>
@@ -203,6 +203,326 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://sidney-neu.github.io/2020/05/16/%E5%A6%82%E4%BD%95%E5%9C%A8C%E8%AF%AD%E8%A8%80%E4%B8%AD%E4%BD%BF%E7%94%A8tensorflow%EF%BC%88%E4%BA%94%EF%BC%89%E6%A3%80%E6%B5%8B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Yoo Shen">
+      <meta itemprop="description" content="学习、记录、分享">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Yoo shen的博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2020/05/16/%E5%A6%82%E4%BD%95%E5%9C%A8C%E8%AF%AD%E8%A8%80%E4%B8%AD%E4%BD%BF%E7%94%A8tensorflow%EF%BC%88%E4%BA%94%EF%BC%89%E6%A3%80%E6%B5%8B/" class="post-title-link" itemprop="url">如何在C语言中使用tensorflow（五）检测</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-05-16 20:21:00" itemprop="dateCreated datePublished" datetime="2020-05-16T20:21:00+08:00">2020-05-16</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-04-19 09:21:56" itemprop="dateModified" datetime="2022-04-19T09:21:56+08:00">2022-04-19</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/AI%E5%B7%A5%E7%A8%8B%E5%8C%96%E6%A1%86%E6%9E%B6/" itemprop="url" rel="index"><span itemprop="name">-AI工程化框架</span></a>
+        </span>
+    </span>
+
+  
+    <span id="/2020/05/16/%E5%A6%82%E4%BD%95%E5%9C%A8C%E8%AF%AD%E8%A8%80%E4%B8%AD%E4%BD%BF%E7%94%A8tensorflow%EF%BC%88%E4%BA%94%EF%BC%89%E6%A3%80%E6%B5%8B/" class="post-meta-item leancloud_visitors" data-flag-title="如何在C语言中使用tensorflow（五）检测" title="阅读次数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span class="leancloud-visitors-count"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>&#x672C;&#x671F;&#x4E3B;&#x8981;&#x4EE5;<a target="_blank" rel="noopener" href="https://github.com/sophos-ai/tensorflow-cmake/blob/master/inference/c/inference_c.c">Sophos&#x7684;ai&#x9879;&#x76EE;</a>&#x4E3A;&#x4F8B;&#x5B50;&#xFF0C;&#x5BF9;&#x673A;&#x5668;&#x5B66;&#x4E60;&#x8BFB;&#x5165;pb&#x6A21;&#x578B;&#x4EE5;&#x53CA;&#x68C0;&#x6D4B;&#x6D41;&#x7A0B;&#x8FDB;&#x884C;&#x5206;&#x6790;&#x3002;</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">#include &lt;stdlib.h&gt;</span><br><span class="line">#include &lt;string.h&gt;</span><br><span class="line">#include &lt;tensorflow/c/c_api.h&gt;</span><br><span class="line"></span><br><span class="line">TF_Buffer* read_file(const char* file); //&#x8BFB;&#x53D6;pb&#x6A21;&#x578B;&#x6587;&#x4EF6;&#xFF0C;&#x5728;tensorflow-c&#x7684;api&#x4E2D;&#x6CA1;&#x6709;&#x8FD9;&#x90E8;&#x5206;&#x4EE3;&#x7801;&#xFF0C;&#x9700;&#x8981;&#x81EA;&#x5DF1;&#x5199;</span><br><span class="line"></span><br><span class="line">void free_buffer(void* data, size_t length) { free(data); } //&#x91CA;&#x653E;&#x5185;&#x5B58;&#x7684;&#x51FD;&#x6570;&#xFF0C;&#x5728;&#x8BFB;&#x5165;pb&#x6A21;&#x578B;&#x5230;TF_NewBuffer&#x4F1A;&#x7528;&#x5230;</span><br><span class="line"></span><br><span class="line">void deallocator(void* ptr, size_t len, void* arg) { free((void*)ptr); } //&#x7B14;&#x8005;&#x5728;&#x7528;&#x7684;&#x65F6;&#x5019;&#x4F7F;&#x7528;&#x8FD9;&#x4E2A;&#x51FD;&#x6570;&#x4F1A;&#x5BFC;&#x81F4;&#x9519;&#x8BEF;&#xFF0C;&#x5C06;&#x4EE3;&#x7801;&#x5B8C;&#x5168;&#x6CE8;&#x91CA;&#x540E;&#x6B63;&#x5E38;</span><br><span class="line"></span><br><span class="line">int main(int argc, char const* argv[]) {</span><br><span class="line">  // load graph</span><br><span class="line">  // ================================================================================</span><br><span class="line">  TF_Buffer* graph_def = read_file(&quot;./exported/graph.pb&quot;); //&#x8BFB;&#x53D6;pb&#x6A21;&#x578B;&#x6587;&#x4EF6;&#xFF0C;&#x8FD9;&#x4E2A;&#x8DEF;&#x5F84;&#x5C31;&#x662F;&#x6A21;&#x578B;&#x6587;&#x4EF6;&#x7684;&#x8DEF;&#x5F84;</span><br><span class="line">  TF_Graph* graph = TF_NewGraph(); //&#x65B0;&#x5EFA;Graph</span><br><span class="line">  TF_Status* status = TF_NewStatus(); //status&#x8868;&#x793A;&#x51FD;&#x6570;&#x64CD;&#x4F5C;&#x7684;&#x8FD4;&#x56DE;&#x72B6;&#x6001;&#xFF0C;TF_Message(status)&#x53EF;&#x4EE5;&#x8F93;&#x51FA;&#x72B6;&#x6001;&#x4FE1;&#x606F;</span><br><span class="line">  TF_ImportGraphDefOptions* opts = TF_NewImportGraphDefOptions();</span><br><span class="line">  TF_GraphImportGraphDef(graph, graph_def, opts, status);</span><br><span class="line">  TF_DeleteImportGraphDefOptions(opts);//&#x5C06;&#x6A21;&#x578B;&#x8BFB;&#x5165;graph</span><br><span class="line">  if (TF_GetCode(status) != TF_OK) { //&#x5224;&#x65AD;&#x8BFB;&#x5165;graph&#x662F;&#x5426;&#x6210;&#x529F;&#xFF0C;TF_OK&#x8868;&#x793A;&#x64CD;&#x4F5C;&#x6210;&#x529F;</span><br><span class="line">    fprintf(stderr, &quot;ERROR: Unable to import graph %s\n&quot;, TF_Message(status));</span><br><span class="line">    return 1;</span><br><span class="line">  }</span><br><span class="line">  fprintf(stdout, &quot;Successfully imported graph\n&quot;);</span><br><span class="line"></span><br><span class="line">  // create session</span><br><span class="line">  // ================================================================================</span><br><span class="line">  TF_SessionOptions* opt = TF_NewSessionOptions();</span><br><span class="line">  TF_Session* sess = TF_NewSession(graph, opt, status);//&#x5C06;&#x6A21;&#x578B;&#x8BFB;&#x5165;session</span><br><span class="line">  TF_DeleteSessionOptions(opt); //&#x8BFB;&#x5165;session&#x540E;&#x53EF;&#x4EE5;&#x5220;&#x9664;graph</span><br><span class="line">  if (TF_GetCode(status) != TF_OK) {</span><br><span class="line">    fprintf(stderr, &quot;ERROR: Unable to create session %s\n&quot;, TF_Message(status));</span><br><span class="line">    return 1;</span><br><span class="line">  }</span><br><span class="line">  fprintf(stdout, &quot;Successfully created session\n&quot;);</span><br><span class="line"></span><br><span class="line">  // run init operation&#xFF0C;&#x8BF4;session&#x521D;&#x59CB;&#x5316;&#xFF0C;&#x8FD9;&#x4E2A;&#x5728;&#x5E94;&#x7528;&#x4E2D;&#x53EF;&#x4EE5;&#x4E0D;&#x505A;</span><br><span class="line">  // ================================================================================</span><br><span class="line">  const TF_Operation* init_op = TF_GraphOperationByName(graph, &quot;init&quot;); //&#x521D;&#x59CB;&#x5316;session&#xFF0C;&#x7B14;&#x8005;&#x5728;&#x5E94;&#x7528;&#x4E2D;&#x5E76;&#x6CA1;&#x6709;&#x6D4B;&#x8BD5;&#x8BE5;&#x529F;&#x80FD;</span><br><span class="line">  const TF_Operation* const* targets_ptr = &amp;init_op;</span><br><span class="line"></span><br><span class="line">  TF_SessionRun(sess,</span><br><span class="line">                /* RunOptions */ NULL,</span><br><span class="line">                /* Input tensors */ NULL, NULL, 0,</span><br><span class="line">                /* Output tensors */ NULL, NULL, 0,</span><br><span class="line">                /* Target operations */ targets_ptr, 1,</span><br><span class="line">                /* RunMetadata */ NULL,</span><br><span class="line">                /* Output status */ status);</span><br><span class="line">  if (TF_GetCode(status) != TF_OK) {</span><br><span class="line">    fprintf(stderr, &quot;ERROR: Unable to run init_op: %s\n&quot;, TF_Message(status));</span><br><span class="line">    return 1;</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  // run restore&#xFF0C;session&#x4E2D;&#x7684;&#x6A21;&#x578B;&#x8FDB;&#x884C;&#x518D;&#x6B21;&#x5B58;&#x50A8;&#xFF0C;&#x8FD9;&#x4E2A;&#x5728;&#x5E94;&#x7528;&#x4E2D;&#x53EF;&#x4EE5;&#x4E0D;&#x505A;</span><br><span class="line">  // ================================================================================</span><br><span class="line">  TF_Operation* checkpoint_op = TF_GraphOperationByName(graph, &quot;save/Const&quot;);</span><br><span class="line">  TF_Operation* restore_op = TF_GraphOperationByName(graph, &quot;save/restore_all&quot;);</span><br><span class="line"></span><br><span class="line">  char* checkpoint_path_str = &quot;./exported/my_model&quot;;</span><br><span class="line">  size_t checkpoint_path_str_len = strlen(checkpoint_path_str);</span><br><span class="line">  size_t encoded_size = TF_StringEncodedSize(checkpoint_path_str_len);</span><br><span class="line"></span><br><span class="line">  // The format for TF_STRING tensors is:</span><br><span class="line">  //   start_offset: array[uint64]</span><br><span class="line">  //   data:         byte[...]</span><br><span class="line">  size_t total_size = sizeof(int64_t) + encoded_size;</span><br><span class="line">  char* input_encoded = (char*)malloc(total_size);</span><br><span class="line">  memset(input_encoded, 0, total_size);</span><br><span class="line">  TF_StringEncode(checkpoint_path_str, checkpoint_path_str_len,</span><br><span class="line">                  input_encoded + sizeof(int64_t), encoded_size, status);</span><br><span class="line">  if (TF_GetCode(status) != TF_OK) {</span><br><span class="line">    fprintf(stderr, &quot;ERROR: something wrong with encoding: %s&quot;,</span><br><span class="line">            TF_Message(status));</span><br><span class="line">    return 1;</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  TF_Tensor* path_tensor = TF_NewTensor(TF_STRING, NULL, 0, input_encoded,</span><br><span class="line">                                        total_size, &amp;deallocator, 0);</span><br><span class="line"></span><br><span class="line">  TF_Output* run_path = (TF_Output*)malloc(1 * sizeof(TF_Output));</span><br><span class="line">  run_path[0].oper = checkpoint_op;</span><br><span class="line">  run_path[0].index = 0;</span><br><span class="line"></span><br><span class="line">  TF_Tensor** run_path_tensors = (TF_Tensor**)malloc(1 * sizeof(TF_Tensor*));</span><br><span class="line">  run_path_tensors[0] = path_tensor;</span><br><span class="line"></span><br><span class="line">  TF_SessionRun(sess,</span><br><span class="line">                /* RunOptions */ NULL,</span><br><span class="line">                /* Input tensors */ run_path, run_path_tensors, 1,</span><br><span class="line">                /* Output tensors */ NULL, NULL, 0,</span><br><span class="line">                /* Target operations */ &amp;restore_op, 1,</span><br><span class="line">                /* RunMetadata */ NULL,</span><br><span class="line">                /* Output status */ status);</span><br><span class="line">  if (TF_GetCode(status) != TF_OK) {</span><br><span class="line">    fprintf(stderr, &quot;ERROR: Unable to run restore_op: %s\n&quot;,</span><br><span class="line">            TF_Message(status));</span><br><span class="line">    return 1;</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  // gerenate input</span><br><span class="line">  // ================================================================================</span><br><span class="line">  TF_Operation* input_op = TF_GraphOperationByName(graph, &quot;input&quot;); //&#x660E;&#x786E;&#x6A21;&#x578B;&#x7684;&#x8F93;&#x5165;&#x5C42;&#xFF0C;&#x6BCF;&#x4E2A;&#x6A21;&#x578B;&#x4E0D;&#x540C;</span><br><span class="line">  printf(&quot;input_op has %i inputs\n&quot;, TF_OperationNumOutputs(input_op));</span><br><span class="line">  float* raw_input_data = (float*)malloc(2 * sizeof(float));//&#x8F93;&#x5165;&#x7279;&#x5F81;&#x6709;&#x4E24;&#x4E2A;&#x7EF4;&#x5EA6;&#xFF0C;&#x4E14;&#x90FD;&#x662F;&#x6D6E;&#x70B9;&#x6570;&#x7279;&#x5F81;</span><br><span class="line">  raw_input_data[0] = 1.f;</span><br><span class="line">  raw_input_data[1] = 1.f;</span><br><span class="line">  int64_t* raw_input_dims = (int64_t*)malloc(2 * sizeof(int64_t)); //&#x8F93;&#x5165;&#x6570;&#x636E;&#x4E24;&#x4E2A;&#x7EF4;&#x5EA6;</span><br><span class="line">  raw_input_dims[0] = 1;</span><br><span class="line">  raw_input_dims[1] = 2;</span><br><span class="line"></span><br><span class="line">  /*</span><br><span class="line">  TF_CAPI_EXPORT extern TF_Tensor* TF_NewTensor(</span><br><span class="line">      TF_DataType,</span><br><span class="line">      const int64_t* dims, int num_dims,</span><br><span class="line">      void* data, size_t len,</span><br><span class="line">      void (*deallocator)(void* data, size_t len, void* arg),</span><br><span class="line">      void* deallocator_arg);</span><br><span class="line">  */</span><br><span class="line">  // prepare inputs</span><br><span class="line">  TF_Tensor* input_tensor =</span><br><span class="line">      TF_NewTensor(TF_FLOAT, raw_input_dims, 2, raw_input_data,</span><br><span class="line">                   2 * sizeof(float), &amp;deallocator, NULL);</span><br><span class="line"></span><br><span class="line">  // void* input_data = TF_TensorData(input_tensor);</span><br><span class="line">  // printf(&quot;input_data[0] = %f\n&quot;, ((float*)input_data)[0]);</span><br><span class="line">  // printf(&quot;input_data[1] = %f\n&quot;, ((float*)input_data)[1]);</span><br><span class="line"></span><br><span class="line">  TF_Output* run_inputs = (TF_Output*)malloc(1 * sizeof(TF_Output));</span><br><span class="line">  run_inputs[0].oper = input_op;</span><br><span class="line">  run_inputs[0].index = 0;</span><br><span class="line"></span><br><span class="line">  TF_Tensor** run_inputs_tensors = (TF_Tensor**)malloc(1 * sizeof(TF_Tensor*)); //&#x5C06;&#x8F93;&#x5165;&#x6570;&#x636E;&#x8F93;&#x5165;&#x5230;TF_Tensor</span><br><span class="line">  run_inputs_tensors[0] = input_tensor;</span><br><span class="line"></span><br><span class="line">  // prepare outputs</span><br><span class="line">  // ================================================================================</span><br><span class="line">  TF_Operation* output_op = TF_GraphOperationByName(graph, &quot;output&quot;);//&#x660E;&#x786E;&#x6A21;&#x578B;&#x7684;&#x8F93;&#x51FA;&#x5C42;&#xFF0C;&#x6BCF;&#x4E2A;&#x6A21;&#x578B;&#x4E0D;&#x540C;</span><br><span class="line">  // printf(&quot;output_op has %i outputs\n&quot;, TF_OperationNumOutputs(output_op));</span><br><span class="line"></span><br><span class="line">  TF_Output* run_outputs = (TF_Output*)malloc(1 * sizeof(TF_Output));</span><br><span class="line">  run_outputs[0].oper = output_op;</span><br><span class="line">  run_outputs[0].index = 0;</span><br><span class="line"></span><br><span class="line">  TF_Tensor** run_output_tensors = (TF_Tensor**)malloc(1 * sizeof(TF_Tensor*)); //&#x7B14;&#x8005;&#x5728;&#x4F7F;&#x7528;&#x8FD9;&#x79CD;&#x65B9;&#x6CD5;&#x7684;&#x65F6;&#x5019;&#x4F1A;&#x5BFC;&#x81F4;&#x5185;&#x5B58;&#x6CC4;&#x9732;&#xFF0C;&#x56E0;&#x6B64;&#x9700;&#x8981;&#x6CE8;&#x610F;</span><br><span class="line">  float* raw_output_data = (float*)malloc(1 * sizeof(float));</span><br><span class="line">  raw_output_data[0] = 1.f;</span><br><span class="line">  int64_t* raw_output_dims = (int64_t*)malloc(1 * sizeof(int64_t));</span><br><span class="line">  raw_output_dims[0] = 1;</span><br><span class="line"></span><br><span class="line">  TF_Tensor* output_tensor =</span><br><span class="line">      TF_NewTensor(TF_FLOAT, raw_output_dims, 1, raw_output_data,</span><br><span class="line">                   1 * sizeof(float), &amp;deallocator, NULL);</span><br><span class="line">  run_output_tensors[0] = output_tensor;</span><br><span class="line"></span><br><span class="line">  // run network</span><br><span class="line">  // ================================================================================</span><br><span class="line">  TF_SessionRun(sess,</span><br><span class="line">                /* RunOptions */ NULL,</span><br><span class="line">                /* Input tensors */ run_inputs, run_inputs_tensors, 1,</span><br><span class="line">                /* Output tensors */ run_outputs, run_output_tensors, 1,</span><br><span class="line">                /* Target operations */ NULL, 0,</span><br><span class="line">                /* RunMetadata */ NULL,</span><br><span class="line">                /* Output status */ status);</span><br><span class="line">  if (TF_GetCode(status) != TF_OK) {</span><br><span class="line">    fprintf(stderr, &quot;ERROR: Unable to run output_op: %s\n&quot;, TF_Message(status));</span><br><span class="line">    return 1;</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  // printf(&quot;output-tensor has %i dims\n&quot;, TF_NumDims(run_output_tensors[0]));</span><br><span class="line"></span><br><span class="line">  void* output_data = TF_TensorData(run_output_tensors[0]);</span><br><span class="line">  printf(&quot;output %f\n&quot;, ((float*)output_data)[0]);</span><br><span class="line">  // you do not want see me creating all the other tensors; Enough lines for</span><br><span class="line">  // this simple example!</span><br><span class="line"></span><br><span class="line">  // free up stuff</span><br><span class="line">  // ================================================================================</span><br><span class="line">  // I probably missed something here</span><br><span class="line">  TF_CloseSession(sess, status);</span><br><span class="line">  TF_DeleteSession(sess, status);</span><br><span class="line"></span><br><span class="line">  TF_DeleteStatus(status);</span><br><span class="line">  TF_DeleteBuffer(graph_def);</span><br><span class="line"></span><br><span class="line">  TF_DeleteGraph(graph);</span><br><span class="line"></span><br><span class="line">  free((void*)input_encoded);</span><br><span class="line">  free((void*)raw_input_data);</span><br><span class="line">  free((void*)raw_input_dims);</span><br><span class="line">  free((void*)run_inputs);</span><br><span class="line">  return 0;</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line">TF_Buffer* read_file(const char* file) {</span><br><span class="line">  FILE* f = fopen(file, &quot;rb&quot;);</span><br><span class="line">  fseek(f, 0, SEEK_END);</span><br><span class="line">  long fsize = ftell(f);</span><br><span class="line">  fseek(f, 0, SEEK_SET);  // same as rewind(f);</span><br><span class="line"></span><br><span class="line">  void* data = malloc(fsize);</span><br><span class="line">  fread(data, fsize, 1, f);</span><br><span class="line">  fclose(f);</span><br><span class="line"></span><br><span class="line">  TF_Buffer* buf = TF_NewBuffer();</span><br><span class="line">  buf-&gt;data = data;</span><br><span class="line">  buf-&gt;length = fsize;</span><br><span class="line">  buf-&gt;data_deallocator = free_buffer;</span><br><span class="line">  return buf;</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line">/*</span><br><span class="line">TF_CAPI_EXPORT extern void TF_SessionRun(</span><br><span class="line">    TF_Session* session,</span><br><span class="line">    // RunOptions</span><br><span class="line">    const TF_Buffer* run_options,</span><br><span class="line">    // Input tensors</span><br><span class="line">    const TF_Output* inputs, TF_Tensor* const* input_values, int ninputs,</span><br><span class="line">    // Output tensors</span><br><span class="line">    const TF_Output* outputs, TF_Tensor** output_values, int noutputs,</span><br><span class="line">    // Target operations</span><br><span class="line">    const TF_Operation* const* target_opers, int ntargets,</span><br><span class="line">    // RunMetadata</span><br><span class="line">    TF_Buffer* run_metadata,</span><br><span class="line">    // Output status</span><br><span class="line">    TF_Status*);</span><br><span class="line">*/</span><br></pre></td></tr></table></figure>
+<p>1.&#x8FD9;&#x6BB5;&#x4EE3;&#x7801;&#x5DF2;&#x7ECF;&#x57FA;&#x672C;&#x5C06;tensorflow&#x7684;C&#x8BED;&#x8A00;&#x7684;api&#x4ECB;&#x7ECD;&#x7684;&#x5F88;&#x6E05;&#x695A;&#xFF0C;&#x4F46;&#x662F;&#x8FD8;&#x6709;&#x914D;&#x7F6E;&#x5E76;&#x884C;&#x8BA1;&#x7B97;&#x7684;TF_SetConfig&#x6CA1;&#x6709;&#x63D0;&#x53CA;&#x3002;</p>
+<p>2.&#x6B64;&#x5916;bp&#x6A21;&#x578B;&#x662F;tensorflow&#x8BAD;&#x7EC3;&#x51FA;&#x7684;&#x6A21;&#x578B;&#x7684;&#x56FA;&#x5316;&#xFF08;freeze&#xFF09;&#x540E;&#xFF0C;&#x4E5F;&#x5C31;&#x662F;&#x5C06;&#x6A21;&#x578B;&#x4E2D;&#x7684;&#x53D8;&#x91CF;&#x53D8;&#x6210;&#x5E38;&#x91CF;&#x7684;&#x8FC7;&#x7A0B;&#x3002;</p>
+<p>3.&#x9700;&#x8981;&#x7528;&#x53E6;&#x5916;&#x7684;&#x4EE3;&#x7801;&#x660E;&#x786E;tensorflow&#x6A21;&#x578B;&#x7684;&#x8F93;&#x5165;&#x5C42;&#x548C;&#x8F93;&#x51FA;&#x5C42;&#x7684;&#x540D;&#x5B57;&#xFF0C;&#x6BD5;&#x7ADF;&#x4E0D;&#x662F;&#x6240;&#x6709;&#x7684;&#x6A21;&#x578B;&#x90FD;&#x628A;&#x8F93;&#x5165;&#x5C42;&#x5B9A;&#x4E49;&#x4E3A;input&#xFF0C;&#x8F93;&#x51FA;&#x5C42;&#x90FD;&#x5B9A;&#x4E49;&#x4E3A;output&#x3002;</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://sidney-neu.github.io/2020/05/16/%E5%A6%82%E4%BD%95%E5%9C%A8C%E8%AF%AD%E8%A8%80%E4%B8%AD%E4%BD%BF%E7%94%A8tensorflow%EF%BC%88%E5%9B%9B%EF%BC%89%E5%AE%9E%E4%BE%8B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Yoo Shen">
+      <meta itemprop="description" content="学习、记录、分享">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Yoo shen的博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2020/05/16/%E5%A6%82%E4%BD%95%E5%9C%A8C%E8%AF%AD%E8%A8%80%E4%B8%AD%E4%BD%BF%E7%94%A8tensorflow%EF%BC%88%E5%9B%9B%EF%BC%89%E5%AE%9E%E4%BE%8B/" class="post-title-link" itemprop="url">如何在C语言中使用tensorflow（四）实例</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-05-16 20:21:00" itemprop="dateCreated datePublished" datetime="2020-05-16T20:21:00+08:00">2020-05-16</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-04-19 09:21:56" itemprop="dateModified" datetime="2022-04-19T09:21:56+08:00">2022-04-19</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/AI%E5%B7%A5%E7%A8%8B%E5%8C%96%E6%A1%86%E6%9E%B6/" itemprop="url" rel="index"><span itemprop="name">-AI工程化框架</span></a>
+        </span>
+    </span>
+
+  
+    <span id="/2020/05/16/%E5%A6%82%E4%BD%95%E5%9C%A8C%E8%AF%AD%E8%A8%80%E4%B8%AD%E4%BD%BF%E7%94%A8tensorflow%EF%BC%88%E5%9B%9B%EF%BC%89%E5%AE%9E%E4%BE%8B/" class="post-meta-item leancloud_visitors" data-flag-title="如何在C语言中使用tensorflow（四）实例" title="阅读次数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span class="leancloud-visitors-count"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>&#x672C;&#x6587;&#x4E3B;&#x8981;&#x901A;&#x8FC7;TF_SessionRun&#x7684;&#x65B9;&#x5F0F;&#x8F93;&#x51FA;&#x5B57;&#x7B26;&#x4E32;&#x5185;&#x5BB9;&#xFF1A;</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">#include&lt;stdlib.h&gt;</span><br><span class="line">#include&lt;stdio.h&gt;</span><br><span class="line">#include&lt;string.h&gt;</span><br><span class="line">#include&lt;tensorflow/c/c_api.h&gt;</span><br><span class="line"></span><br><span class="line">int main( int argc, char ** argv ) </span><br><span class="line">{</span><br><span class="line">  TF_Graph * graph = TF_NewGraph();</span><br><span class="line">  TF_SessionOptions * options = TF_NewSessionOptions();</span><br><span class="line">  TF_Status * status = TF_NewStatus();</span><br><span class="line">  TF_Session * session = TF_NewSession( graph, options, status );</span><br><span class="line">  char hello[] = &quot;Hello TensorFlow!&quot;;</span><br><span class="line">  TF_Tensor * tensor = TF_AllocateTensor( TF_STRING, 0, 0, 8 + TF_StringEncodedSize( strlen( hello ) ) );</span><br><span class="line">  TF_Tensor * tensorOutput;</span><br><span class="line">  TF_OperationDescription * operationDescription = TF_NewOperation( graph, &quot;Const&quot;, &quot;hello&quot; );</span><br><span class="line">  TF_Operation * operation; </span><br><span class="line">  struct TF_Output output;</span><br><span class="line"></span><br><span class="line">  TF_StringEncode( hello, strlen( hello ), 8 + ( char * ) TF_TensorData( tensor ), TF_StringEncodedSize( strlen( hello ) ), status );</span><br><span class="line">  memset( TF_TensorData( tensor ), 0, 8 );</span><br><span class="line">  TF_SetAttrTensor( operationDescription, &quot;value&quot;, tensor, status );</span><br><span class="line">  TF_SetAttrType( operationDescription, &quot;dtype&quot;, TF_TensorType( tensor ) );</span><br><span class="line">  operation = TF_FinishOperation( operationDescription, status );</span><br><span class="line"></span><br><span class="line">  output.oper = operation;</span><br><span class="line">  output.index = 0;</span><br><span class="line"></span><br><span class="line">  TF_SessionRun( session, 0,</span><br><span class="line">                 0, 0, 0,  // Inputs</span><br><span class="line">                 &amp;output, &amp;tensorOutput, 1,  // Outputs</span><br><span class="line">                 &amp;operation, 1,  // Operations</span><br><span class="line">                 0, status );</span><br><span class="line"></span><br><span class="line">  printf( &quot;status code: %i\n&quot;, TF_GetCode( status ) );</span><br><span class="line">  printf( &quot;%s\n&quot;, ( ( char * ) TF_TensorData( tensorOutput ) ) + 9 );</span><br><span class="line"></span><br><span class="line">  TF_CloseSession( session, status );</span><br><span class="line">  TF_DeleteSession( session, status );</span><br><span class="line">  TF_DeleteStatus( status );</span><br><span class="line">  TF_DeleteSessionOptions( options );  </span><br><span class="line"></span><br><span class="line">  return 0;</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+<p>&#x5C06;&#x4EE3;&#x7801;&#x66FF;&#x6362;&#x5230;test.c&#x5F53;&#x4E2D;&#xFF0C;&#x7F16;&#x8BD1;&#x751F;&#x6210;&#x53EF;&#x6267;&#x884C;&#x6587;&#x4EF6;test&#x3002;</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">./test</span><br><span class="line">2020-11-16 19:58:37.850140: I tensorflow/core/platform/cpu_feature_guard.cc:142] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2 FMA</span><br><span class="line">2020-11-16 19:58:37.874392: I tensorflow/core/platform/profile_utils/cpu_utils.cc:94] CPU Frequency: 3000000000 Hz</span><br><span class="line">2020-11-16 19:58:37.874637: I tensorflow/compiler/xla/service/service.cc:168] XLA service 0x559021926b60 initialized for platform Host (this does not guarantee that XLA will be used). Devices:</span><br><span class="line">2020-11-16 19:58:37.874654: I tensorflow/compiler/xla/service/service.cc:176]   StreamExecutor device (0): Host, Default Version</span><br><span class="line">status code: 0</span><br><span class="line">Hello TensorFlow!</span><br></pre></td></tr></table></figure>
+<p>&#x4ECE;&#x53EF;&#x6267;&#x884C;&#x6587;&#x4EF6;&#x7684;&#x8F93;&#x51FA;&#x7ED3;&#x679C;&#x53D1;&#x73B0;&#xFF0C;&#x8F93;&#x51FA;&#x5305;&#x542B;LOG&#x4FE1;&#x606F;&#xFF0C;LOG&#x4FE1;&#x606F;&#x901A;&#x8FC7;&#x5B8F;TF_CPP_MIN_LOG_LEVEL&#x786E;&#x5B9A;&#xFF0C;&#x5177;&#x4F53;&#x53D6;&#x503C;&#x53CA;&#x610F;&#x4E49;&#x5982;&#x4E0B;&#x8868;&#x6240;&#x793A;&#x3002;</p>
+<table>
+<thead>
+<tr class="header">
+<th>&#x7F16;&#x53F7;</th>
+<th>&#x542B;&#x4E49;</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0</td>
+<td>&#x9ED8;&#x8BA4;&#x503C;&#xFF0C;&#x8F93;&#x51FA;&#x6240;&#x6709;&#x4FE1;&#x606F;</td>
+</tr>
+<tr class="even">
+<td>1</td>
+<td>&#x5C4F;&#x853D;&#x901A;&#x77E5;&#x4FE1;&#x606F;</td>
+</tr>
+<tr class="odd">
+<td>2</td>
+<td>&#x5C4F;&#x853D;&#x901A;&#x77E5;&#x4FE1;&#x606F;&#x548C;&#x8B66;&#x544A;&#x4FE1;&#x606F;</td>
+</tr>
+<tr class="even">
+<td>3</td>
+<td>&#x5C4F;&#x853D;&#x901A;&#x77E5;&#x4FE1;&#x606F;&#x3001;&#x8B66;&#x544A;&#x4FE1;&#x606F;&#x548C;&#x62A5;&#x9519;&#x4FE1;&#x606F;</td>
+</tr>
+</tbody>
+</table>
+<p>&#x56E0;&#x6B64;&#x53EF;&#x4EE5;&#x6839;&#x636E;&#x8981;&#x6C42;&#x5C06;TF_CPP_MIN_LOG_LEVEL&#x8BBE;&#x7F6E;&#x4E3A;&#x5408;&#x7406;&#x503C;</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">export TF_CPP_MIN_LOG_LEVEL=&apos;2&apos;</span><br><span class="line">./test</span><br><span class="line">status code: 0</span><br><span class="line">Hello TensorFlow!</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://sidney-neu.github.io/2020/05/16/%E5%A6%82%E4%BD%95%E5%9C%A8C%E8%AF%AD%E8%A8%80%E4%B8%AD%E4%BD%BF%E7%94%A8tensorflow%EF%BC%88%E4%B8%89%EF%BC%89%E6%B5%8B%E8%AF%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Yoo Shen">
+      <meta itemprop="description" content="学习、记录、分享">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Yoo shen的博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2020/05/16/%E5%A6%82%E4%BD%95%E5%9C%A8C%E8%AF%AD%E8%A8%80%E4%B8%AD%E4%BD%BF%E7%94%A8tensorflow%EF%BC%88%E4%B8%89%EF%BC%89%E6%B5%8B%E8%AF%95/" class="post-title-link" itemprop="url">如何在C语言中使用tensorflow（三）测试</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-05-16 19:38:00" itemprop="dateCreated datePublished" datetime="2020-05-16T19:38:00+08:00">2020-05-16</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-04-19 09:21:56" itemprop="dateModified" datetime="2022-04-19T09:21:56+08:00">2022-04-19</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/AI%E5%B7%A5%E7%A8%8B%E5%8C%96%E6%A1%86%E6%9E%B6/" itemprop="url" rel="index"><span itemprop="name">-AI工程化框架</span></a>
+        </span>
+    </span>
+
+  
+    <span id="/2020/05/16/%E5%A6%82%E4%BD%95%E5%9C%A8C%E8%AF%AD%E8%A8%80%E4%B8%AD%E4%BD%BF%E7%94%A8tensorflow%EF%BC%88%E4%B8%89%EF%BC%89%E6%B5%8B%E8%AF%95/" class="post-meta-item leancloud_visitors" data-flag-title="如何在C语言中使用tensorflow（三）测试" title="阅读次数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span class="leancloud-visitors-count"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>&#x672C;&#x6587;&#x4E3B;&#x8981;&#x4ECB;&#x7ECD;tensorflow&#x7684;cpu&#x7248;&#x672C;&#x7684;C&#x8BED;&#x8A00;&#x4F7F;&#x7528;&#x65B9;&#x6CD5;&#x3002;</p>
+<p>&#x4E0B;&#x8F7D;libtensorflow&#x5BF9;&#x5E94;&#x7248;&#x672C;&#x540E;&#xFF0C;&#x53EF;&#x4EE5;&#x6D4B;&#x8BD5;libtensorflow&#x5728;&#x5F53;&#x524D;&#x73AF;&#x5883;&#x4E0B;&#x662F;&#x5426;&#x53EF;&#x7528;&#x3002;</p>
+<p>&#x6D4B;&#x8BD5;&#x4EE3;&#x7801;&#x8DEF;&#x5F84;&#xFF1A;</p>
+<p>DIR&#xFF1A;</p>
+<pre><code>|--lib:
+    |--libtensorflow.so
+    |--libtensorflow_framework.so
+
+|--include:
+    |--/include/tensorflow/c/c_api.h
+    |--/include/tensorflow/c/LICENSE
+
+|--src:
+    |--test.c
+    |--Makefile</code></pre>
+<p>&#x6D4B;&#x8BD5;&#x4EE3;&#x7801;test.c&#xFF1A;</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">#include &lt;tensorflow/c/c_api.h&gt;</span><br><span class="line"></span><br><span class="line">int main() {</span><br><span class="line">  printf(&quot;Hello from TensorFlow C library version %s\n&quot;, TF_Version());</span><br><span class="line">  return 0;</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+<p>Makefile&#x6587;&#x4EF6;:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">INC=-I../include</span><br><span class="line">LIB=-L../Lib \</span><br><span class="line">        -ltensorflow \</span><br><span class="line">	-ltensorflow_framework </span><br><span class="line">SRC=test.c</span><br><span class="line">CC=gcc</span><br><span class="line">all:</span><br><span class="line">	${CC}  ${SRC} ${INC} ${LIB} -o test</span><br><span class="line">clean:</span><br><span class="line">	rm test</span><br></pre></td></tr></table></figure>
+<p>&#x7F16;&#x8BD1;&#x8FC7;&#x7A0B;&#xFF1A;</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">make     #&#x7F16;&#x8BD1;&#x751F;&#x6210;&#x53EF;&#x6267;&#x884C;&#x6587;&#x4EF6;</span><br><span class="line">make clean     #&#x5220;&#x9664;&#x53EF;&#x6267;&#x884C;&#x6587;&#x4EF6;</span><br></pre></td></tr></table></figure>
+<p>&#x8FD0;&#x884C;&#x53EF;&#x6267;&#x884C;&#x6587;&#x4EF6;test&#xFF1A;</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">./test</span><br><span class="line">Hello from TensorFlow C library version 1.15.0</span><br></pre></td></tr></table></figure>
+<p>&#x81F3;&#x6B64;&#xFF0C;&#x52A8;&#x6001;&#x5E93;&#x7248;&#x672C;&#x4E0E;&#x786C;&#x4EF6;&#x7248;&#x672C;&#x5339;&#x914D;&#x5B8C;&#x6210;&#x3002;</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
     <link itemprop="mainEntityOfPage" href="https://sidney-neu.github.io/2020/05/09/%E5%A6%82%E4%BD%95%E5%9C%A8C%E8%AF%AD%E8%A8%80%E4%B8%AD%E4%BD%BF%E7%94%A8tensorflow%EF%BC%88%E4%B8%80%EF%BC%89%E6%A6%82%E8%BF%B0/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -234,7 +554,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-03-03 09:47:12" itemprop="dateModified" datetime="2022-03-03T09:47:12+08:00">2022-03-03</time>
+      <time title="修改时间：2022-04-19 09:21:56" itemprop="dateModified" datetime="2022-04-19T09:21:56+08:00">2022-04-19</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -242,7 +562,7 @@
       </span>
       <span class="post-meta-item-text">分类于</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E5%B7%A5%E7%A8%8B%E5%8C%96/" itemprop="url" rel="index"><span itemprop="name">-机器学习 -工程化</span></a>
+          <a href="/categories/AI%E5%B7%A5%E7%A8%8B%E5%8C%96%E6%A1%86%E6%9E%B6/" itemprop="url" rel="index"><span itemprop="name">-AI工程化框架</span></a>
         </span>
     </span>
 
@@ -263,11 +583,11 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <p>Tensorflow是当前广泛使用的机器学习框架。Tensorflow提供了C语言的lib库接口，但是对应的应用文档较少，这里我将结合自己的使用情况做一下分享。</p>
-<p>先说一些我对机器学习实际应用的理解。一般来说机器学习功能的工程化应用分为线下训练和线上部署两个部分。线下训练推荐采用Python脚本语言进行快速开发，实现对模型的高效迭代训练、模型性能评价与验证。这一部分由于Python语言以及对应开源代码的迭代完善，这一部分已经逐渐变得成熟。</p>
-<p>线上部署这部分内容因为要受到后端开发语言以及性能要求等因素的影响，逐渐成为机器学习功能工程化应用的一个重要瓶颈。虽然云计算平台的广泛应用以及离线分析功能可以解决一部分部署问题。但是由于成本和安全等方面的考量，这两种方式并不能完全解决广泛的部署瓶颈问题。如果在Tensorflow中可以很好的C语言中广泛部署应用，这就对机器学习功能的工程化落地推进了一小步。</p>
-<p>libtensorflow的生成方法主要有两种,一种是通过源码自己编译,另一种是在google下载已经编译好的动态库.两种使用方法各有优劣。通过源码编译的方法较复杂,这里就不做介绍了,我们采用官方已经编译好的libtensorflow.so动态库.</p>
-<p>libtensorflow的版本最高为1.15.0，tensorflow2.0及起以上版本并没有提供C语言的接口，因此需要注意版本的搭配。</p>
+          <p>Tensorflow&#x662F;&#x5F53;&#x524D;&#x5E7F;&#x6CDB;&#x4F7F;&#x7528;&#x7684;&#x673A;&#x5668;&#x5B66;&#x4E60;&#x6846;&#x67B6;&#x3002;Tensorflow&#x63D0;&#x4F9B;&#x4E86;C&#x8BED;&#x8A00;&#x7684;lib&#x5E93;&#x63A5;&#x53E3;&#xFF0C;&#x4F46;&#x662F;&#x5BF9;&#x5E94;&#x7684;&#x5E94;&#x7528;&#x6587;&#x6863;&#x8F83;&#x5C11;&#xFF0C;&#x8FD9;&#x91CC;&#x6211;&#x5C06;&#x7ED3;&#x5408;&#x81EA;&#x5DF1;&#x7684;&#x4F7F;&#x7528;&#x60C5;&#x51B5;&#x505A;&#x4E00;&#x4E0B;&#x5206;&#x4EAB;&#x3002;</p>
+<p>&#x5148;&#x8BF4;&#x4E00;&#x4E9B;&#x6211;&#x5BF9;&#x673A;&#x5668;&#x5B66;&#x4E60;&#x5B9E;&#x9645;&#x5E94;&#x7528;&#x7684;&#x7406;&#x89E3;&#x3002;&#x4E00;&#x822C;&#x6765;&#x8BF4;&#x673A;&#x5668;&#x5B66;&#x4E60;&#x529F;&#x80FD;&#x7684;&#x5DE5;&#x7A0B;&#x5316;&#x5E94;&#x7528;&#x5206;&#x4E3A;&#x7EBF;&#x4E0B;&#x8BAD;&#x7EC3;&#x548C;&#x7EBF;&#x4E0A;&#x90E8;&#x7F72;&#x4E24;&#x4E2A;&#x90E8;&#x5206;&#x3002;&#x7EBF;&#x4E0B;&#x8BAD;&#x7EC3;&#x63A8;&#x8350;&#x91C7;&#x7528;Python&#x811A;&#x672C;&#x8BED;&#x8A00;&#x8FDB;&#x884C;&#x5FEB;&#x901F;&#x5F00;&#x53D1;&#xFF0C;&#x5B9E;&#x73B0;&#x5BF9;&#x6A21;&#x578B;&#x7684;&#x9AD8;&#x6548;&#x8FED;&#x4EE3;&#x8BAD;&#x7EC3;&#x3001;&#x6A21;&#x578B;&#x6027;&#x80FD;&#x8BC4;&#x4EF7;&#x4E0E;&#x9A8C;&#x8BC1;&#x3002;&#x8FD9;&#x4E00;&#x90E8;&#x5206;&#x7531;&#x4E8E;Python&#x8BED;&#x8A00;&#x4EE5;&#x53CA;&#x5BF9;&#x5E94;&#x5F00;&#x6E90;&#x4EE3;&#x7801;&#x7684;&#x8FED;&#x4EE3;&#x5B8C;&#x5584;&#xFF0C;&#x8FD9;&#x4E00;&#x90E8;&#x5206;&#x5DF2;&#x7ECF;&#x9010;&#x6E10;&#x53D8;&#x5F97;&#x6210;&#x719F;&#x3002;</p>
+<p>&#x7EBF;&#x4E0A;&#x90E8;&#x7F72;&#x8FD9;&#x90E8;&#x5206;&#x5185;&#x5BB9;&#x56E0;&#x4E3A;&#x8981;&#x53D7;&#x5230;&#x540E;&#x7AEF;&#x5F00;&#x53D1;&#x8BED;&#x8A00;&#x4EE5;&#x53CA;&#x6027;&#x80FD;&#x8981;&#x6C42;&#x7B49;&#x56E0;&#x7D20;&#x7684;&#x5F71;&#x54CD;&#xFF0C;&#x9010;&#x6E10;&#x6210;&#x4E3A;&#x673A;&#x5668;&#x5B66;&#x4E60;&#x529F;&#x80FD;&#x5DE5;&#x7A0B;&#x5316;&#x5E94;&#x7528;&#x7684;&#x4E00;&#x4E2A;&#x91CD;&#x8981;&#x74F6;&#x9888;&#x3002;&#x867D;&#x7136;&#x4E91;&#x8BA1;&#x7B97;&#x5E73;&#x53F0;&#x7684;&#x5E7F;&#x6CDB;&#x5E94;&#x7528;&#x4EE5;&#x53CA;&#x79BB;&#x7EBF;&#x5206;&#x6790;&#x529F;&#x80FD;&#x53EF;&#x4EE5;&#x89E3;&#x51B3;&#x4E00;&#x90E8;&#x5206;&#x90E8;&#x7F72;&#x95EE;&#x9898;&#x3002;&#x4F46;&#x662F;&#x7531;&#x4E8E;&#x6210;&#x672C;&#x548C;&#x5B89;&#x5168;&#x7B49;&#x65B9;&#x9762;&#x7684;&#x8003;&#x91CF;&#xFF0C;&#x8FD9;&#x4E24;&#x79CD;&#x65B9;&#x5F0F;&#x5E76;&#x4E0D;&#x80FD;&#x5B8C;&#x5168;&#x89E3;&#x51B3;&#x5E7F;&#x6CDB;&#x7684;&#x90E8;&#x7F72;&#x74F6;&#x9888;&#x95EE;&#x9898;&#x3002;&#x5982;&#x679C;&#x5728;Tensorflow&#x4E2D;&#x53EF;&#x4EE5;&#x5F88;&#x597D;&#x7684;C&#x8BED;&#x8A00;&#x4E2D;&#x5E7F;&#x6CDB;&#x90E8;&#x7F72;&#x5E94;&#x7528;&#xFF0C;&#x8FD9;&#x5C31;&#x5BF9;&#x673A;&#x5668;&#x5B66;&#x4E60;&#x529F;&#x80FD;&#x7684;&#x5DE5;&#x7A0B;&#x5316;&#x843D;&#x5730;&#x63A8;&#x8FDB;&#x4E86;&#x4E00;&#x5C0F;&#x6B65;&#x3002;</p>
+<p>libtensorflow&#x7684;&#x751F;&#x6210;&#x65B9;&#x6CD5;&#x4E3B;&#x8981;&#x6709;&#x4E24;&#x79CD;,&#x4E00;&#x79CD;&#x662F;&#x901A;&#x8FC7;&#x6E90;&#x7801;&#x81EA;&#x5DF1;&#x7F16;&#x8BD1;,&#x53E6;&#x4E00;&#x79CD;&#x662F;&#x5728;google&#x4E0B;&#x8F7D;&#x5DF2;&#x7ECF;&#x7F16;&#x8BD1;&#x597D;&#x7684;&#x52A8;&#x6001;&#x5E93;.&#x4E24;&#x79CD;&#x4F7F;&#x7528;&#x65B9;&#x6CD5;&#x5404;&#x6709;&#x4F18;&#x52A3;&#x3002;&#x901A;&#x8FC7;&#x6E90;&#x7801;&#x7F16;&#x8BD1;&#x7684;&#x65B9;&#x6CD5;&#x8F83;&#x590D;&#x6742;,&#x8FD9;&#x91CC;&#x5C31;&#x4E0D;&#x505A;&#x4ECB;&#x7ECD;&#x4E86;,&#x6211;&#x4EEC;&#x91C7;&#x7528;&#x5B98;&#x65B9;&#x5DF2;&#x7ECF;&#x7F16;&#x8BD1;&#x597D;&#x7684;libtensorflow.so&#x52A8;&#x6001;&#x5E93;.</p>
+<p>libtensorflow&#x7684;&#x7248;&#x672C;&#x6700;&#x9AD8;&#x4E3A;1.15.0&#xFF0C;tensorflow2.0&#x53CA;&#x8D77;&#x4EE5;&#x4E0A;&#x7248;&#x672C;&#x5E76;&#x6CA1;&#x6709;&#x63D0;&#x4F9B;C&#x8BED;&#x8A00;&#x7684;&#x63A5;&#x53E3;&#xFF0C;&#x56E0;&#x6B64;&#x9700;&#x8981;&#x6CE8;&#x610F;&#x7248;&#x672C;&#x7684;&#x642D;&#x914D;&#x3002;</p>
 
       
     </div>
@@ -325,7 +645,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-03-03 09:47:12" itemprop="dateModified" datetime="2022-03-03T09:47:12+08:00">2022-03-03</time>
+      <time title="修改时间：2022-04-19 09:21:56" itemprop="dateModified" datetime="2022-04-19T09:21:56+08:00">2022-04-19</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -333,7 +653,7 @@
       </span>
       <span class="post-meta-item-text">分类于</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E5%B7%A5%E7%A8%8B%E5%8C%96/" itemprop="url" rel="index"><span itemprop="name">-机器学习 -工程化</span></a>
+          <a href="/categories/AI%E5%B7%A5%E7%A8%8B%E5%8C%96%E6%A1%86%E6%9E%B6/" itemprop="url" rel="index"><span itemprop="name">-AI工程化框架</span></a>
         </span>
     </span>
 
@@ -354,30 +674,26 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <p>本文主要介绍tensorflow的cpu版本的C语言使用方法。</p>
-<h3 id="一-硬件配置要求"><a href="#一-硬件配置要求" class="headerlink" title="一.硬件配置要求"></a>一.硬件配置要求</h3><p>1.libtensorflow的动态库对GCC版本有要求：</p>
+          <p>&#x672C;&#x6587;&#x4E3B;&#x8981;&#x4ECB;&#x7ECD;tensorflow&#x7684;cpu&#x7248;&#x672C;&#x7684;C&#x8BED;&#x8A00;&#x4F7F;&#x7528;&#x65B9;&#x6CD5;&#x3002;</p>
+<h3 id="&#x4E00;.&#x786C;&#x4EF6;&#x914D;&#x7F6E;&#x8981;&#x6C42;">&#x4E00;.&#x786C;&#x4EF6;&#x914D;&#x7F6E;&#x8981;&#x6C42;</h3>
+<p>1.libtensorflow&#x7684;&#x52A8;&#x6001;&#x5E93;&#x5BF9;GCC&#x7248;&#x672C;&#x6709;&#x8981;&#x6C42;&#xFF1A;</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">GCC &gt; 5.0</span><br></pre></td></tr></table></figure>
-
-<p>2.libstdc++.so.6需要支持：    </p>
+<p>2.libstdc++.so.6&#x9700;&#x8981;&#x652F;&#x6301;&#xFF1A;</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">GLIBCXX_3.4.20</span><br><span class="line">GLIBCXX_3.4.21</span><br><span class="line">CXXABI_1.3.8</span><br></pre></td></tr></table></figure>
-
-<p>libm.so.6需要支持：</p>
+<p>libm.so.6&#x9700;&#x8981;&#x652F;&#x6301;&#xFF1A;</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">GLIBC_2.23</span><br></pre></td></tr></table></figure>
-
-<h3 id="二-硬件指令集要求（AVX指令集）："><a href="#二-硬件指令集要求（AVX指令集）：" class="headerlink" title="二.硬件指令集要求（AVX指令集）："></a>二.硬件指令集要求（AVX指令集）：</h3><p>cat &#x2F;proc&#x2F;cpuinfo，查看flags信息里面是否有包含AVX或者AVX2.</p>
+<h3 id="&#x4E8C;.&#x786C;&#x4EF6;&#x6307;&#x4EE4;&#x96C6;&#x8981;&#x6C42;avx&#x6307;&#x4EE4;&#x96C6;">&#x4E8C;.&#x786C;&#x4EF6;&#x6307;&#x4EE4;&#x96C6;&#x8981;&#x6C42;&#xFF08;AVX&#x6307;&#x4EE4;&#x96C6;&#xFF09;&#xFF1A;</h3>
+<p>cat /proc/cpuinfo&#xFF0C;&#x67E5;&#x770B;flags&#x4FE1;&#x606F;&#x91CC;&#x9762;&#x662F;&#x5426;&#x6709;&#x5305;&#x542B;AVX&#x6216;&#x8005;AVX2.</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">cat /proc/cpuinfo</span><br><span class="line"></span><br><span class="line">processor	: 1</span><br><span class="line">vendor_id	: GenuineIntel</span><br><span class="line">cpu family	: 6</span><br><span class="line">model		: 158</span><br><span class="line">model name	: Intel(R) Core(TM) i5-8500 CPU @ 3.00GHz</span><br><span class="line">stepping	: 10</span><br><span class="line">microcode	: 0xb4</span><br><span class="line">cpu MHz		: 3000.000</span><br><span class="line">cache size	: 9216 KB</span><br><span class="line">physical id	: 2</span><br><span class="line">siblings	: 1</span><br><span class="line">core id		: 0</span><br><span class="line">cpu cores	: 1</span><br><span class="line">apicid		: 2</span><br><span class="line">initial apicid	: 2</span><br><span class="line">fpu		: yes</span><br><span class="line">fpu_exception	: yes</span><br><span class="line">cpuid level	: 22</span><br><span class="line">wp		: yes</span><br><span class="line">flags		: fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ss syscall nx pdpe1gb rdtscp lm constant_tsc arch_perfmon nopl xtopology tsc_reliable nonstop_tsc eagerfpu pni pclmulqdq ssse3 fma cx16 pcid sse4_1 sse4_2 x2apic movbe popcnt aes xsave avx f16c rdrand hypervisor lahf_lm 3dnowprefetch ssbd ibrs ibpb stibp fsgsbase smep arat spec_ctrl intel_stibp flush_l1d arch_capabilities</span><br><span class="line">bogomips	: 6000.00</span><br><span class="line">clflush size	: 64</span><br><span class="line">cache_alignment	: 64</span><br><span class="line">address sizes	: 40 bits physical, 48 bits virtual</span><br><span class="line">power management:</span><br></pre></td></tr></table></figure>
-
-
-<p>如果硬件包含AVX指令集，我们就可以使用1.15.0版本，如果不不包含AVX指令集，我们需要使用1.5.0版本。</p>
-<p>下载地址如下：</p>
-<p>1.5.0：</p>
+<p>&#x5982;&#x679C;&#x786C;&#x4EF6;&#x5305;&#x542B;AVX&#x6307;&#x4EE4;&#x96C6;&#xFF0C;&#x6211;&#x4EEC;&#x5C31;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;1.15.0&#x7248;&#x672C;&#xFF0C;&#x5982;&#x679C;&#x4E0D;&#x4E0D;&#x5305;&#x542B;AVX&#x6307;&#x4EE4;&#x96C6;&#xFF0C;&#x6211;&#x4EEC;&#x9700;&#x8981;&#x4F7F;&#x7528;1.5.0&#x7248;&#x672C;&#x3002;</p>
+<p>&#x4E0B;&#x8F7D;&#x5730;&#x5740;&#x5982;&#x4E0B;&#xFF1A;</p>
+<p>1.5.0&#xFF1A;</p>
 <p><a target="_blank" rel="noopener" href="https://storage.googleapis.com/tensorflow/libtensorflow/libtensorflow-cpu-linux-x86_64-1.5.0.tar.gz">https://storage.googleapis.com/tensorflow/libtensorflow/libtensorflow-cpu-linux-x86_64-1.5.0.tar.gz</a></p>
-<p>1.15.0：</p>
+<p>1.15.0&#xFF1A;</p>
 <p><a target="_blank" rel="noopener" href="https://storage.googleapis.com/tensorflow/libtensorflow/libtensorflow-cpu-linux-x86_64-1.5.0.tar.gz">https://storage.googleapis.com/tensorflow/libtensorflow/libtensorflow-cpu-linux-x86_64-1.5.0.tar.gz</a></p>
-<p>将压缩包解压后，会得到一下路径</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">|--lib  #动态库</span><br><span class="line">|--linclude   #头文件</span><br></pre></td></tr></table></figure>
-
-<p>加入以上文件加入到项目依赖当中。</p>
+<p>&#x5C06;&#x538B;&#x7F29;&#x5305;&#x89E3;&#x538B;&#x540E;&#xFF0C;&#x4F1A;&#x5F97;&#x5230;&#x4E00;&#x4E0B;&#x8DEF;&#x5F84;</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">|--lib  #&#x52A8;&#x6001;&#x5E93;</span><br><span class="line">|--linclude   #&#x5934;&#x6587;&#x4EF6;</span><br></pre></td></tr></table></figure>
+<p>&#x52A0;&#x5165;&#x4EE5;&#x4E0A;&#x6587;&#x4EF6;&#x52A0;&#x5165;&#x5230;&#x9879;&#x76EE;&#x4F9D;&#x8D56;&#x5F53;&#x4E2D;&#x3002;</p>
 
       
     </div>
@@ -435,7 +751,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-03-03 09:47:12" itemprop="dateModified" datetime="2022-03-03T09:47:12+08:00">2022-03-03</time>
+      <time title="修改时间：2022-04-19 09:21:56" itemprop="dateModified" datetime="2022-04-19T09:21:56+08:00">2022-04-19</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -443,7 +759,7 @@
       </span>
       <span class="post-meta-item-text">分类于</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Linux-%E8%B0%83%E8%AF%95%E5%B7%A5%E5%85%B7/" itemprop="url" rel="index"><span itemprop="name">-Linux -调试工具</span></a>
+          <a href="/categories/Linux/" itemprop="url" rel="index"><span itemprop="name">-Linux</span></a>
         </span>
     </span>
 
@@ -464,21 +780,18 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <p>gperftools是google出品的一个性能分析工具.它既可以将程序运行的内存情况输出到终端,也可以以流程图的形式展示程序运行中内存占用情况.</p>
-<p>1.下载并安装libunwind+gperftools+graphviz</p>
-<p>2.开启终端A:</p>
-<p>​    (1)配置环境变量:</p>
+          <p>gperftools&#x662F;google&#x51FA;&#x54C1;&#x7684;&#x4E00;&#x4E2A;&#x6027;&#x80FD;&#x5206;&#x6790;&#x5DE5;&#x5177;.&#x5B83;&#x65E2;&#x53EF;&#x4EE5;&#x5C06;&#x7A0B;&#x5E8F;&#x8FD0;&#x884C;&#x7684;&#x5185;&#x5B58;&#x60C5;&#x51B5;&#x8F93;&#x51FA;&#x5230;&#x7EC8;&#x7AEF;,&#x4E5F;&#x53EF;&#x4EE5;&#x4EE5;&#x6D41;&#x7A0B;&#x56FE;&#x7684;&#x5F62;&#x5F0F;&#x5C55;&#x793A;&#x7A0B;&#x5E8F;&#x8FD0;&#x884C;&#x4E2D;&#x5185;&#x5B58;&#x5360;&#x7528;&#x60C5;&#x51B5;.</p>
+<p>1.&#x4E0B;&#x8F7D;&#x5E76;&#x5B89;&#x88C5;libunwind+gperftools+graphviz</p>
+<p>2.&#x5F00;&#x542F;&#x7EC8;&#x7AEF;A:</p>
+<p>&#x200B; (1)&#x914D;&#x7F6E;&#x73AF;&#x5883;&#x53D8;&#x91CF;:</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">export LD_PRELOAD=/usr/local/lib/libtcmalloc.so</span><br><span class="line">export HEAPPROFILE=&lt;path to store heap file&gt;</span><br><span class="line">HEAPPROFILE=&lt;head name prefix&gt;</span><br></pre></td></tr></table></figure>
-
-
-<p>​    (2)运行程序至结束,期间会生成prefix_xxxx.0001.heap等文件</p>
-<p>3.开启终端B:</p>
-<p>​    (1).输出内存情况到终端或者文件:               </p>
+<p>&#x200B; (2)&#x8FD0;&#x884C;&#x7A0B;&#x5E8F;&#x81F3;&#x7ED3;&#x675F;,&#x671F;&#x95F4;&#x4F1A;&#x751F;&#x6210;prefix_xxxx.0001.heap&#x7B49;&#x6587;&#x4EF6;</p>
+<p>3.&#x5F00;&#x542F;&#x7EC8;&#x7AEF;B:</p>
+<p>&#x200B; (1).&#x8F93;&#x51FA;&#x5185;&#x5B58;&#x60C5;&#x51B5;&#x5230;&#x7EC8;&#x7AEF;&#x6216;&#x8005;&#x6587;&#x4EF6;:</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/usr/local/bin/pprof --text  ./&lt;process&gt;  &lt;path to heap file&gt;</span><br></pre></td></tr></table></figure>
-
-
-<p>​    (2).输出内存情况到gift图片文件:</p>
+<p>&#x200B; (2).&#x8F93;&#x51FA;&#x5185;&#x5B58;&#x60C5;&#x51B5;&#x5230;gift&#x56FE;&#x7247;&#x6587;&#x4EF6;:</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/usr/local/bin/pprof --gif  ./&lt;process&gt;  &lt;path to heap file&gt; &gt;&gt; prof.gif</span><br></pre></td></tr></table></figure>
+
       
     </div>
 
@@ -535,7 +848,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-03-03 09:47:12" itemprop="dateModified" datetime="2022-03-03T09:47:12+08:00">2022-03-03</time>
+      <time title="修改时间：2022-04-19 09:21:56" itemprop="dateModified" datetime="2022-04-19T09:21:56+08:00">2022-04-19</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -543,7 +856,7 @@
       </span>
       <span class="post-meta-item-text">分类于</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Linux-shell/" itemprop="url" rel="index"><span itemprop="name">-Linux -shell</span></a>
+          <a href="/categories/Linux/" itemprop="url" rel="index"><span itemprop="name">-Linux</span></a>
         </span>
     </span>
 
@@ -564,18 +877,16 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <p>grep匹配是linux的最常用的shell命令之一，grep的匹配的默认匹配为单行匹配和贪婪匹配，因此需要特殊的技巧将其转化为多行匹配和最小匹配。</p>
-<h3 id="1-多行匹配"><a href="#1-多行匹配" class="headerlink" title="1.多行匹配"></a>1.多行匹配</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">cat aa.txt</span><br><span class="line">aa</span><br><span class="line">bb</span><br><span class="line">aa</span><br><span class="line">ff</span><br><span class="line">cc</span><br><span class="line">dd</span><br><span class="line">ee</span><br><span class="line">ff</span><br><span class="line">aa</span><br><span class="line">bb</span><br></pre></td></tr></table></figure>
-
-<p>多行匹配：</p>
+          <p>grep&#x5339;&#x914D;&#x662F;linux&#x7684;&#x6700;&#x5E38;&#x7528;&#x7684;shell&#x547D;&#x4EE4;&#x4E4B;&#x4E00;&#xFF0C;grep&#x7684;&#x5339;&#x914D;&#x7684;&#x9ED8;&#x8BA4;&#x5339;&#x914D;&#x4E3A;&#x5355;&#x884C;&#x5339;&#x914D;&#x548C;&#x8D2A;&#x5A6A;&#x5339;&#x914D;&#xFF0C;&#x56E0;&#x6B64;&#x9700;&#x8981;&#x7279;&#x6B8A;&#x7684;&#x6280;&#x5DE7;&#x5C06;&#x5176;&#x8F6C;&#x5316;&#x4E3A;&#x591A;&#x884C;&#x5339;&#x914D;&#x548C;&#x6700;&#x5C0F;&#x5339;&#x914D;&#x3002;</p>
+<h3 id="&#x591A;&#x884C;&#x5339;&#x914D;">1.&#x591A;&#x884C;&#x5339;&#x914D;</h3>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">cat aa.txt</span><br><span class="line">aa</span><br><span class="line">bb</span><br><span class="line">aa</span><br><span class="line">ff</span><br><span class="line">cc</span><br><span class="line">dd</span><br><span class="line">ee</span><br><span class="line">ff</span><br><span class="line">aa</span><br><span class="line">bb</span><br></pre></td></tr></table></figure>
+<p>&#x591A;&#x884C;&#x5339;&#x914D;&#xFF1A;</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grep -zoe &quot;start-string.*stop-string&quot; file</span><br></pre></td></tr></table></figure>
-
-<p>举例来说：</p>
+<p>&#x4E3E;&#x4F8B;&#x6765;&#x8BF4;&#xFF1A;</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">grep -zoe &quot;aa.*ff&quot; aa.txt</span><br><span class="line">aa</span><br><span class="line">bb</span><br><span class="line">aa</span><br><span class="line">ff</span><br><span class="line">cc</span><br><span class="line">dd</span><br><span class="line">ee</span><br><span class="line">ff</span><br></pre></td></tr></table></figure>
-
-<h3 id="2-grep最小匹配"><a href="#2-grep最小匹配" class="headerlink" title="2.grep最小匹配"></a>2.grep最小匹配</h3><p>grep最小匹配的方法与sed最小匹配的方法相同：</p>
+<h3 id="grep&#x6700;&#x5C0F;&#x5339;&#x914D;">2.grep&#x6700;&#x5C0F;&#x5339;&#x914D;</h3>
+<p>grep&#x6700;&#x5C0F;&#x5339;&#x914D;&#x7684;&#x65B9;&#x6CD5;&#x4E0E;sed&#x6700;&#x5C0F;&#x5339;&#x914D;&#x7684;&#x65B9;&#x6CD5;&#x76F8;&#x540C;&#xFF1A;</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grep -o &quot;strart-string[^stop-string]*stop-string&quot; file</span><br></pre></td></tr></table></figure>
-
 
       
     </div>
@@ -633,7 +944,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-03-03 09:47:12" itemprop="dateModified" datetime="2022-03-03T09:47:12+08:00">2022-03-03</time>
+      <time title="修改时间：2022-04-19 09:21:56" itemprop="dateModified" datetime="2022-04-19T09:21:56+08:00">2022-04-19</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -641,7 +952,7 @@
       </span>
       <span class="post-meta-item-text">分类于</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Linux-shell/" itemprop="url" rel="index"><span itemprop="name">-Linux -shell</span></a>
+          <a href="/categories/Linux/" itemprop="url" rel="index"><span itemprop="name">-Linux</span></a>
         </span>
     </span>
 
@@ -663,10 +974,11 @@
     
     <div class="post-body" itemprop="articleBody">
           <p>Qos:</p>
-<p>如何使用<a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=shell&spm=1001.2101.3001.7020">shell</a>输出例如0001和0025这种固定位数的方法呢？</p>
-<p>Ans：</p>
-<p>例如需要输出0001，则可以将变量设为10001，然后不输出第一位。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">a=<span class="string">&quot;10001&quot;</span> &amp;&amp; <span class="built_in">echo</span> <span class="string">&quot;<span class="variable">$&#123;a:1&#125;</span>&quot;</span></span><br><span class="line">0001</span><br></pre></td></tr></table></figure>
+<p>&#x5982;&#x4F55;&#x4F7F;&#x7528;<a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=shell&amp;spm=1001.2101.3001.7020">shell</a>&#x8F93;&#x51FA;&#x4F8B;&#x5982;0001&#x548C;0025&#x8FD9;&#x79CD;&#x56FA;&#x5B9A;&#x4F4D;&#x6570;&#x7684;&#x65B9;&#x6CD5;&#x5462;&#xFF1F;</p>
+<p>Ans&#xFF1A;</p>
+<p>&#x4F8B;&#x5982;&#x9700;&#x8981;&#x8F93;&#x51FA;0001&#xFF0C;&#x5219;&#x53EF;&#x4EE5;&#x5C06;&#x53D8;&#x91CF;&#x8BBE;&#x4E3A;10001&#xFF0C;&#x7136;&#x540E;&#x4E0D;&#x8F93;&#x51FA;&#x7B2C;&#x4E00;&#x4F4D;&#x3002;</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">a=<span class="string">&quot;10001&quot;</span> &amp;&amp; <span class="built_in">echo</span> <span class="string">&quot;<span class="variable">${a:1}</span>&quot;</span></span><br><span class="line">0001</span><br></pre></td></tr></table></figure>
+
       
     </div>
 
@@ -723,7 +1035,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-03-03 09:47:12" itemprop="dateModified" datetime="2022-03-03T09:47:12+08:00">2022-03-03</time>
+      <time title="修改时间：2022-04-19 09:21:56" itemprop="dateModified" datetime="2022-04-19T09:21:56+08:00">2022-04-19</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -731,7 +1043,7 @@
       </span>
       <span class="post-meta-item-text">分类于</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Linux-others/" itemprop="url" rel="index"><span itemprop="name">-Linux -others</span></a>
+          <a href="/categories/Linux/" itemprop="url" rel="index"><span itemprop="name">-Linux</span></a>
         </span>
     </span>
 
@@ -752,50 +1064,38 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <p>1.提前下载pip</p>
+          <p>1.&#x63D0;&#x524D;&#x4E0B;&#x8F7D;pip</p>
 <p><a target="_blank" rel="noopener" href="https://files.pythonhosted.org/packages/93/ab/f86b61bef7ab14909bd7ec3cd2178feb0a1c86d451bc9bccd5a1aedcde5f/pip-19.1.1.tar.gz">https://files.pythonhosted.org/packages/93/ab/f86b61bef7ab14909bd7ec3cd2178feb0a1c86d451bc9bccd5a1aedcde5f/pip-19.1.1.tar.gz</a></p>
-<p>2.将pip传输到Linux服务器并解压：</p>
+<p>2.&#x5C06;pip&#x4F20;&#x8F93;&#x5230;Linux&#x670D;&#x52A1;&#x5668;&#x5E76;&#x89E3;&#x538B;&#xFF1A;</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">tar zxf pip-19.1.1.tar.gz</span><br><span class="line">cd pip-19.1.1</span><br><span class="line">python setup.py install</span><br></pre></td></tr></table></figure>
-
-
-<p>3.使用wheel安装。如果没有wheel需要事先安装，安装方法与pip相同</p>
+<p>3.&#x4F7F;&#x7528;wheel&#x5B89;&#x88C5;&#x3002;&#x5982;&#x679C;&#x6CA1;&#x6709;wheel&#x9700;&#x8981;&#x4E8B;&#x5148;&#x5B89;&#x88C5;&#xFF0C;&#x5B89;&#x88C5;&#x65B9;&#x6CD5;&#x4E0E;pip&#x76F8;&#x540C;</p>
 <p><a target="_blank" rel="noopener" href="https://files.pythonhosted.org/packages/1d/b0/f478e80aeace42fe251225a86752799174a94314c4a80ebfc5bf0ab1153a/wheel-0.33.4.tar.gz">https://files.pythonhosted.org/packages/1d/b0/f478e80aeace42fe251225a86752799174a94314c4a80ebfc5bf0ab1153a/wheel-0.33.4.tar.gz</a></p>
-<p>4.确定下载对应的whl文件类型：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">python</span><br><span class="line">import pip._internal</span><br><span class="line">print(pip._internal.pep425tags.get_supported())</span><br><span class="line">[(&#x27;cp27&#x27;, &#x27;cp27m&#x27;, &#x27;manylinux1_x86_64&#x27;), (&#x27;cp27&#x27;, &#x27;cp27m&#x27;, &#x27;linux_x86_64&#x27;), (&#x27;cp27&#x27;, &#x27;none&#x27;, &#x27;manylinux1_x86_64&#x27;), (&#x27;cp27&#x27;, &#x27;none&#x27;, &#x27;linux_x86_64&#x27;), (&#x27;py2&#x27;, &#x27;none&#x27;, &#x27;manylinux1_x86_64&#x27;), (&#x27;py2&#x27;, &#x27;none&#x27;, &#x27;linux_x86_64&#x27;), (&#x27;cp27&#x27;, &#x27;none&#x27;, &#x27;any&#x27;), (&#x27;cp2&#x27;, &#x27;none&#x27;, &#x27;any&#x27;), (&#x27;py27&#x27;, &#x27;none&#x27;, &#x27;any&#x27;), (&#x27;py2&#x27;, &#x27;none&#x27;, &#x27;any&#x27;), (&#x27;py26&#x27;, &#x27;none&#x27;, &#x27;any&#x27;), (&#x27;py25&#x27;, &#x27;none&#x27;, &#x27;any&#x27;), (&#x27;py24&#x27;, &#x27;none&#x27;, &#x27;any&#x27;), (&#x27;py23&#x27;, &#x27;none&#x27;, &#x27;any&#x27;), (&#x27;py22&#x27;, &#x27;none&#x27;, &#x27;any&#x27;), (&#x27;py21&#x27;, &#x27;none&#x27;, &#x27;any&#x27;), (&#x27;py20&#x27;, &#x27;none&#x27;, &#x27;any&#x27;)]</span><br></pre></td></tr></table></figure>
-
-<p>或者</p>
+<p>4.&#x786E;&#x5B9A;&#x4E0B;&#x8F7D;&#x5BF9;&#x5E94;&#x7684;whl&#x6587;&#x4EF6;&#x7C7B;&#x578B;&#xFF1A;</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">python</span><br><span class="line">import pip._internal</span><br><span class="line">print(pip._internal.pep425tags.get_supported())</span><br><span class="line">[(&apos;cp27&apos;, &apos;cp27m&apos;, &apos;manylinux1_x86_64&apos;), (&apos;cp27&apos;, &apos;cp27m&apos;, &apos;linux_x86_64&apos;), (&apos;cp27&apos;, &apos;none&apos;, &apos;manylinux1_x86_64&apos;), (&apos;cp27&apos;, &apos;none&apos;, &apos;linux_x86_64&apos;), (&apos;py2&apos;, &apos;none&apos;, &apos;manylinux1_x86_64&apos;), (&apos;py2&apos;, &apos;none&apos;, &apos;linux_x86_64&apos;), (&apos;cp27&apos;, &apos;none&apos;, &apos;any&apos;), (&apos;cp2&apos;, &apos;none&apos;, &apos;any&apos;), (&apos;py27&apos;, &apos;none&apos;, &apos;any&apos;), (&apos;py2&apos;, &apos;none&apos;, &apos;any&apos;), (&apos;py26&apos;, &apos;none&apos;, &apos;any&apos;), (&apos;py25&apos;, &apos;none&apos;, &apos;any&apos;), (&apos;py24&apos;, &apos;none&apos;, &apos;any&apos;), (&apos;py23&apos;, &apos;none&apos;, &apos;any&apos;), (&apos;py22&apos;, &apos;none&apos;, &apos;any&apos;), (&apos;py21&apos;, &apos;none&apos;, &apos;any&apos;), (&apos;py20&apos;, &apos;none&apos;, &apos;any&apos;)]</span><br></pre></td></tr></table></figure>
+<p>&#x6216;&#x8005;</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">import pip; </span><br><span class="line">print(pip.pep425tags.get_supported())</span><br></pre></td></tr></table></figure>
-
-
-<p>根据上面的显示(‘cp27’, ‘cp27m’, ‘manylinux1_x86_64’)可以下载：</p>
+<p>&#x6839;&#x636E;&#x4E0A;&#x9762;&#x7684;&#x663E;&#x793A;(&apos;cp27&apos;, &apos;cp27m&apos;, &apos;manylinux1_x86_64&apos;)&#x53EF;&#x4EE5;&#x4E0B;&#x8F7D;&#xFF1A;</p>
 <p>numpy-1.16.4-cp27-cp27m-manylinux1_x86_64.whl</p>
 <p><a target="_blank" rel="noopener" href="https://files.pythonhosted.org/packages/20/2c/4d64f1cd4d2170b91d24ae45725de837bd40c34c9c04c94255c0f51c513d/numpy-1.16.4-cp27-cp27m-manylinux1_x86_64.whl">https://files.pythonhosted.org/packages/20/2c/4d64f1cd4d2170b91d24ae45725de837bd40c34c9c04c94255c0f51c513d/numpy-1.16.4-cp27-cp27m-manylinux1_x86_64.whl</a></p>
 <p>scipy-1.2.0-cp27-cp27m-manylinux1_x86_64.whl</p>
 <p><a target="_blank" rel="noopener" href="https://files.pythonhosted.org/packages/2c/9a/8cfd681d4a970ff0174dcb93d16c70103c430c64264a9d9078c8abda2b9f/scipy-1.2.0-cp27-cp27m-manylinux1_x86_64.whl">https://files.pythonhosted.org/packages/2c/9a/8cfd681d4a970ff0174dcb93d16c70103c430c64264a9d9078c8abda2b9f/scipy-1.2.0-cp27-cp27m-manylinux1_x86_64.whl</a></p>
 <p>scikit_learn-0.20.3-cp27-cp27m-manylinux1_x86_64.whl</p>
 <p><a target="_blank" rel="noopener" href="https://files.pythonhosted.org/packages/43/70/9f689f629518b70d7000316faa7a58eac3029ad1ed2b3115a6e30f53797c/scikit_learn-0.20.3-cp27-cp27m-manylinux1_x86_64.whl">https://files.pythonhosted.org/packages/43/70/9f689f629518b70d7000316faa7a58eac3029ad1ed2b3115a6e30f53797c/scikit_learn-0.20.3-cp27-cp27m-manylinux1_x86_64.whl</a></p>
-<p>5.使用pip安装对应的whl文件</p>
+<p>5.&#x4F7F;&#x7528;pip&#x5B89;&#x88C5;&#x5BF9;&#x5E94;&#x7684;whl&#x6587;&#x4EF6;</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">pip install numpy-1.16.4-cp27-cp27m-manylinux1_x86_64.whl</span><br><span class="line">pip install scipy-1.2.0-cp27-cp27m-manylinux1_x86_64.whl</span><br><span class="line">pip install scikit_learn-0.20.3-cp27-cp27m-manylinux1_x86_64.whl</span><br></pre></td></tr></table></figure>
-
-
-<p>安装完成。</p>
-<p>测试程序</p>
+<p>&#x5B89;&#x88C5;&#x5B8C;&#x6210;&#x3002;</p>
+<p>&#x6D4B;&#x8BD5;&#x7A0B;&#x5E8F;</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">from sklearn import linear_model</span><br><span class="line">reg = linear_model.RidgeCV(alphas=[0.1, 1.0, 10.0], cv=3)</span><br><span class="line">reg.fit([[0, 0], [0, 0], [1, 1]], [0, .1, 1])</span><br><span class="line">print reg.alpha_</span><br></pre></td></tr></table></figure>
-
-
-<p>如果输出结果则安装成功。</p>
-<p>ps：如果有错误输出</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">***/python2.7/site-packages/sklearn/externals/joblib/_multiprocessing_helpers.py:38: UserWarning: [Errno 38] Function not implemented.  joblib will operate in serial mode</span><br><span class="line">  warnings.warn(&#x27;%s.  joblib will operate in serial mode&#x27; % (e,))</span><br></pre></td></tr></table></figure>
-
-<p>解决方法参考（<a target="_blank" rel="noopener" href="https://www.boris.co/2012/02/server-ubuntu-11.html%EF%BC%89%EF%BC%9A">https://www.boris.co/2012/02/server-ubuntu-11.html）：</a></p>
-<p>在root用户下：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">mkdir /dev/shm</span><br><span class="line"></span><br><span class="line">vi /etc/fstab</span><br><span class="line">在/etc/fstab的文件末尾添加：</span><br><span class="line">tmpfs /dev/shm    tmpfs   defaults,noexec,nosuid     0     0</span><br></pre></td></tr></table></figure>
-
-<p>保存文件，然后从新挂载：</p>
-<p>重新运行测试程序即可。</p>
+<p>&#x5982;&#x679C;&#x8F93;&#x51FA;&#x7ED3;&#x679C;&#x5219;&#x5B89;&#x88C5;&#x6210;&#x529F;&#x3002;</p>
+<p>ps&#xFF1A;&#x5982;&#x679C;&#x6709;&#x9519;&#x8BEF;&#x8F93;&#x51FA;</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">***/python2.7/site-packages/sklearn/externals/joblib/_multiprocessing_helpers.py:38: UserWarning: [Errno 38] Function not implemented.  joblib will operate in serial mode</span><br><span class="line">  warnings.warn(&apos;%s.  joblib will operate in serial mode&apos; % (e,))</span><br></pre></td></tr></table></figure>
+<p>&#x89E3;&#x51B3;&#x65B9;&#x6CD5;&#x53C2;&#x8003;&#xFF08;https://www.boris.co/2012/02/server-ubuntu-11.html&#xFF09;&#xFF1A;</p>
+<p>&#x5728;root&#x7528;&#x6237;&#x4E0B;&#xFF1A;</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">mkdir /dev/shm</span><br><span class="line"></span><br><span class="line">vi /etc/fstab</span><br><span class="line">&#x5728;/etc/fstab&#x7684;&#x6587;&#x4EF6;&#x672B;&#x5C3E;&#x6DFB;&#x52A0;&#xFF1A;</span><br><span class="line">tmpfs /dev/shm    tmpfs   defaults,noexec,nosuid     0     0</span><br></pre></td></tr></table></figure>
+<p>&#x4FDD;&#x5B58;&#x6587;&#x4EF6;&#xFF0C;&#x7136;&#x540E;&#x4ECE;&#x65B0;&#x6302;&#x8F7D;&#xFF1A;</p>
+<p>&#x91CD;&#x65B0;&#x8FD0;&#x884C;&#x6D4B;&#x8BD5;&#x7A0B;&#x5E8F;&#x5373;&#x53EF;&#x3002;</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mount -a</span><br></pre></td></tr></table></figure>
-
-<p>重新运行测试程序即可。</p>
+<p>&#x91CD;&#x65B0;&#x8FD0;&#x884C;&#x6D4B;&#x8BD5;&#x7A0B;&#x5E8F;&#x5373;&#x53EF;&#x3002;</p>
 
       
     </div>
@@ -853,7 +1153,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-03-03 09:47:12" itemprop="dateModified" datetime="2022-03-03T09:47:12+08:00">2022-03-03</time>
+      <time title="修改时间：2022-04-19 09:21:56" itemprop="dateModified" datetime="2022-04-19T09:21:56+08:00">2022-04-19</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -861,7 +1161,7 @@
       </span>
       <span class="post-meta-item-text">分类于</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Linux-shell/" itemprop="url" rel="index"><span itemprop="name">-Linux -shell</span></a>
+          <a href="/categories/Linux/" itemprop="url" rel="index"><span itemprop="name">-Linux</span></a>
         </span>
     </span>
 
@@ -882,236 +1182,24 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h3 id="1-sed默认使用贪婪匹配"><a href="#1-sed默认使用贪婪匹配" class="headerlink" title="1.sed默认使用贪婪匹配"></a>1.sed默认使用贪婪匹配</h3><p>最近在shell对文本进行操作，遇到了需要对字符串进行最小匹配的问题，但是使用sed默认的匹配规则是贪婪匹配，这里我们就对Linux shell实现最小匹配进行研究。</p>
-<p>sed默认是贪婪匹配，使用如下字符串进行举例：</p>
+          <h3 id="sed&#x9ED8;&#x8BA4;&#x4F7F;&#x7528;&#x8D2A;&#x5A6A;&#x5339;&#x914D;">1.sed&#x9ED8;&#x8BA4;&#x4F7F;&#x7528;&#x8D2A;&#x5A6A;&#x5339;&#x914D;</h3>
+<p>&#x6700;&#x8FD1;&#x5728;shell&#x5BF9;&#x6587;&#x672C;&#x8FDB;&#x884C;&#x64CD;&#x4F5C;&#xFF0C;&#x9047;&#x5230;&#x4E86;&#x9700;&#x8981;&#x5BF9;&#x5B57;&#x7B26;&#x4E32;&#x8FDB;&#x884C;&#x6700;&#x5C0F;&#x5339;&#x914D;&#x7684;&#x95EE;&#x9898;&#xFF0C;&#x4F46;&#x662F;&#x4F7F;&#x7528;sed&#x9ED8;&#x8BA4;&#x7684;&#x5339;&#x914D;&#x89C4;&#x5219;&#x662F;&#x8D2A;&#x5A6A;&#x5339;&#x914D;&#xFF0C;&#x8FD9;&#x91CC;&#x6211;&#x4EEC;&#x5C31;&#x5BF9;Linux
+shell&#x5B9E;&#x73B0;&#x6700;&#x5C0F;&#x5339;&#x914D;&#x8FDB;&#x884C;&#x7814;&#x7A76;&#x3002;</p>
+<p>sed&#x9ED8;&#x8BA4;&#x662F;&#x8D2A;&#x5A6A;&#x5339;&#x914D;&#xFF0C;&#x4F7F;&#x7528;&#x5982;&#x4E0B;&#x5B57;&#x7B26;&#x4E32;&#x8FDB;&#x884C;&#x4E3E;&#x4F8B;&#xFF1A;</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(aa)bb(cc)</span><br></pre></td></tr></table></figure>
-
-
-<p>使用sed匹配:</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">echo &quot;(aa)bb(cc)&quot; | sed &#x27;s/(.*)*//g&#x27;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>以上命令的输出结果为空。也就是说sed将最大范围的(str)都进行了替换，因此sed的匹配模式是贪婪匹配。</p>
-<h3 id="2-最小匹配"><a href="#2-最小匹配" class="headerlink" title="2.最小匹配"></a>2.最小匹配</h3><p>最小匹配的结果是获取满足匹配规则的最小内容，如果采用最小匹配，sed的匹配结果应该如下：</p>
+<p>&#x4F7F;&#x7528;sed&#x5339;&#x914D;:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">echo &quot;(aa)bb(cc)&quot; | sed &apos;s/(.*)*//g&apos;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>&#x4EE5;&#x4E0A;&#x547D;&#x4EE4;&#x7684;&#x8F93;&#x51FA;&#x7ED3;&#x679C;&#x4E3A;&#x7A7A;&#x3002;&#x4E5F;&#x5C31;&#x662F;&#x8BF4;sed&#x5C06;&#x6700;&#x5927;&#x8303;&#x56F4;&#x7684;(str)&#x90FD;&#x8FDB;&#x884C;&#x4E86;&#x66FF;&#x6362;&#xFF0C;&#x56E0;&#x6B64;sed&#x7684;&#x5339;&#x914D;&#x6A21;&#x5F0F;&#x662F;&#x8D2A;&#x5A6A;&#x5339;&#x914D;&#x3002;</p>
+<h3 id="&#x6700;&#x5C0F;&#x5339;&#x914D;">2.&#x6700;&#x5C0F;&#x5339;&#x914D;</h3>
+<p>&#x6700;&#x5C0F;&#x5339;&#x914D;&#x7684;&#x7ED3;&#x679C;&#x662F;&#x83B7;&#x53D6;&#x6EE1;&#x8DB3;&#x5339;&#x914D;&#x89C4;&#x5219;&#x7684;&#x6700;&#x5C0F;&#x5185;&#x5BB9;&#xFF0C;&#x5982;&#x679C;&#x91C7;&#x7528;&#x6700;&#x5C0F;&#x5339;&#x914D;&#xFF0C;sed&#x7684;&#x5339;&#x914D;&#x7ED3;&#x679C;&#x5E94;&#x8BE5;&#x5982;&#x4E0B;&#xFF1A;</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bb</span><br></pre></td></tr></table></figure>
-
-<h3 id="3-使用sed实现最小匹配"><a href="#3-使用sed实现最小匹配" class="headerlink" title="3.使用sed实现最小匹配"></a>3.使用sed实现最小匹配</h3><p>sed实现最小匹配的命令如下:</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">echo &#x27;(aa)bb(cc)&#x27; | sed &#x27;s/([^)]*)*//g&#x27;</span><br><span class="line">bb</span><br></pre></td></tr></table></figure>
-
-<h3 id="4-使用perl实现最小匹配"><a href="#4-使用perl实现最小匹配" class="headerlink" title="4.使用perl实现最小匹配"></a>4.使用perl实现最小匹配</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">echo &quot;(aa)bb(cc)&quot; | perl -pe &#x27;s/\(.*?\)//g&#x27;</span><br><span class="line">bb</span><br></pre></td></tr></table></figure>
-
-<p>另外，sed支持的匹配规则与perl不同，关于字符是否需要转义也是不一样。例如，举例中的 “(“ 和 “)” 在sed中不需要转义，在perl中则需要转义。</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://sidney-neu.github.io/2018/10/19/vim%E9%85%8D%E7%BD%AE/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Yoo Shen">
-      <meta itemprop="description" content="学习、记录、分享">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Yoo shen的博客">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2018/10/19/vim%E9%85%8D%E7%BD%AE/" class="post-title-link" itemprop="url">vim配置</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2018-10-19 17:20:00" itemprop="dateCreated datePublished" datetime="2018-10-19T17:20:00+08:00">2018-10-19</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-03-30 17:45:30" itemprop="dateModified" datetime="2022-03-30T17:45:30+08:00">2022-03-30</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Linux/" itemprop="url" rel="index"><span itemprop="name">-Linux</span></a>
-        </span>
-    </span>
-
-  
-    <span id="/2018/10/19/vim%E9%85%8D%E7%BD%AE/" class="post-meta-item leancloud_visitors" data-flag-title="vim配置" title="阅读次数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-eye"></i>
-      </span>
-      <span class="post-meta-item-text">阅读次数：</span>
-      <span class="leancloud-visitors-count"></span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h3 id="vim"><a href="#vim" class="headerlink" title="vim"></a>vim</h3><p>使用vim能提高代码编写的工作效率。</p>
-<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt-get install vim</span><br></pre></td></tr></table></figure>
-
-<h3 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h3><p>按ESC后，输入“:”，进行命令操作<br> w 保存<br> q 退出<br> &#x2F;[字符串] 查找字符串，然后按n查找下一个，N查找上一个<br> ％s 替换，例：将整个文件里的abcd全部替换为efgh %s&#x2F;abcd&#x2F;efgh&#x2F;g<br> 输入行号回车，转到行<br> set paste 切换至粘贴模式，粘代码时不会自动补齐及自动注释<br> set nu&#x2F;set nonu 显示关闭行号</p>
-<h3 id="快捷操作"><a href="#快捷操作" class="headerlink" title="快捷操作"></a>快捷操作</h3><p>i 插入<br>x 删除（剪切）<br>dd 删除（剪切）一行<br> yy 复制一行<br> p 粘贴<br> v 开始选中，可以移动光标选中<br> $ 移到行尾<br> 0 移到行首<br> D 从当前位置删除到行尾<br> J 删除该行的换行符，与下一行变成一行<br> u 撤消(命令red是重做)<br> % 括号配对(){}等<br> 查找：光标移到单词上，按*，直接查找这个单词<br> 格式化对齐：按V后，移动光标，选中多行文本，按&#x3D;</p>
-<h3 id="代码浏览"><a href="#代码浏览" class="headerlink" title="代码浏览"></a>代码浏览</h3><p>借助cscope和ctags能在vim中浏览代码，跳转函数，查找定义等</p>
-<p>安装cscope和ctags:</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">apt-get install cscope</span><br><span class="line">apt-get install exuberant-ctags</span><br></pre></td></tr></table></figure>
-
-<p> 转到代码目录执行：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cscope -Rbq; ctags -R</span><br></pre></td></tr></table></figure>
-
-<p>当项目为C语言项目的时候不会出问题，如果操作python项目的时候可能会出现如下错误：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cscope: no source files found</span><br></pre></td></tr></table></figure>
-
-<p>这种是因为默认情况下cscope仅仅会在当前目录下针对c、iex和yacc（扩展名分别为.c、.h、.I、.y）程序文件进行解析（如果指定了-R参数则包含其自身的子目录）。py文件不在这个范畴之内，因此需要在代码路径中执行以下命令（以python为例）：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">find . -name &#x27;*.py&#x27; &gt; cscope.files</span><br><span class="line">cscope -Rbq; ctags -R</span><br></pre></td></tr></table></figure>
-
-
-
-<p>vim支持cscope的配置文件<a target="_blank" rel="noopener" href="https://pan.baidu.com/s/1JnMc5Ctz6_UjXdy6iiEUWw">vimcfg.tar.gz</a>(提取码：jqhm)解压到主目录</p>
-<p>vim -t &lt;函数名&gt;直接能跳转到函数<br> 进入vim后，光标转到函数名上，快捷键：<br> 转到函数定义：Ctrl+] 对应命令cs f g &lt;函数名&gt;<br> 返回跳转：Ctrl+t<br> 转到调用处：Ctrl+\松开后按c<br> 全文查找：Ctrl+\松开后按e</p>
-<p>F8函数变量定义列表<br> F6,F7多窗口切换</p>
-<h3 id="块操作"><a href="#块操作" class="headerlink" title="块操作"></a>块操作</h3><p>按快捷键v后，可进行块操作，移动光标选择文本块，并可选择多行文本块，<br> 选定后可进行x删除（剪切）、y复制等操作。<br> V(shift+v)选择整行；<br> Ctrl+v可以选择整列进行操作。<br> 选择列后，按x删除一列；<br> 选择列后，依次按I，字符(可多个)，ESC。可以增加一列字符；</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://sidney-neu.github.io/2016/05/16/ROS%E4%BD%BF%E7%94%A8openni%E8%8E%B7%E5%8F%96Kinect%E5%BD%A9%E8%89%B2%E5%9B%BE%E5%83%8F%E5%92%8C%E6%B7%B1%E5%BA%A6%E5%9B%BE%E5%83%8F/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Yoo Shen">
-      <meta itemprop="description" content="学习、记录、分享">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Yoo shen的博客">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2016/05/16/ROS%E4%BD%BF%E7%94%A8openni%E8%8E%B7%E5%8F%96Kinect%E5%BD%A9%E8%89%B2%E5%9B%BE%E5%83%8F%E5%92%8C%E6%B7%B1%E5%BA%A6%E5%9B%BE%E5%83%8F/" class="post-title-link" itemprop="url">ROS使用openni获取Kinect彩色图像和深度图像</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2016-05-16 20:55:00" itemprop="dateCreated datePublished" datetime="2016-05-16T20:55:00+08:00">2016-05-16</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-03-03 09:47:12" itemprop="dateModified" datetime="2022-03-03T09:47:12+08:00">2022-03-03</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/" itemprop="url" rel="index"><span itemprop="name">-图像处理</span></a>
-        </span>
-    </span>
-
-  
-    <span id="/2016/05/16/ROS%E4%BD%BF%E7%94%A8openni%E8%8E%B7%E5%8F%96Kinect%E5%BD%A9%E8%89%B2%E5%9B%BE%E5%83%8F%E5%92%8C%E6%B7%B1%E5%BA%A6%E5%9B%BE%E5%83%8F/" class="post-meta-item leancloud_visitors" data-flag-title="ROS使用openni获取Kinect彩色图像和深度图像" title="阅读次数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-eye"></i>
-      </span>
-      <span class="post-meta-item-text">阅读次数：</span>
-      <span class="leancloud-visitors-count"></span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h3 id="1-操作系统与软件版本"><a href="#1-操作系统与软件版本" class="headerlink" title="1.操作系统与软件版本"></a>1.操作系统与软件版本</h3><p>本实验使用Ubuntu14.04的64bit版本，ROS使用Indigo版本，图像获取使用OpenNI1(因为OpenNI2中未找到彩色图像和深度图像对齐功能，台湾的一代大神Heresy已经实现这一功能，但是我更喜欢OpenNI1官方对齐方法)，图像处理使用OpenCV2，因其更好的通用性。<br><img src="/../images/ROS%E4%BD%BF%E7%94%A8openni%E8%8E%B7%E5%8F%96Kinect%E5%BD%A9%E8%89%B2%E5%9B%BE%E5%83%8F%E5%92%8C%E6%B7%B1%E5%BA%A6%E5%9B%BE%E5%83%8F/20160516204932422.jpg" alt="img"></p>
-<h3 id="2-配置OpenNI"><a href="#2-配置OpenNI" class="headerlink" title="2.配置OpenNI"></a>2.配置OpenNI</h3><p>openni的配置参考链接中的blog，根据功课教程可以提取Kinect的彩色图像和深度图像：</p>
-<p><a target="_blank" rel="noopener" href="http://www.20papercups.net/programming/kinect-on-ubuntu-with-openni/">http://www.20papercups.net/programming/kinect-on-ubuntu-with-openni/</a></p>
-<h3 id="3-安装OpenCV2"><a href="#3-安装OpenCV2" class="headerlink" title="3.安装OpenCV2"></a>3.安装OpenCV2</h3><p>首先在OpenCV2的官方网站选择对应版本的源代码：</p>
-<p><a target="_blank" rel="noopener" href="http://opencv.org/downloads.html">http://opencv.org/downloads.html</a></p>
-<p>同时安装依赖：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install build-essential libgtk2.0-dev libjpeg-dev libtiff4-dev libjasper-dev libopenexr-dev cmake python-dev python-numpy python-tk libtbb-dev libeigen2-dev yasm libfaac-dev libopencore-amrnb-dev libopencore-amrwb-dev libtheora-dev libvorbis-dev libxvidcore-dev libx264-dev libqt4-dev libqt4-opengl-dev sphinx-common texlive-latex-extra libv4l-dev libdc1394-22-dev libavcodec-dev libavformat-dev libswscale-dev</span><br></pre></td></tr></table></figure>
-
-<p>当依赖安装完成后，安装OpenCV,首先解压OpenCV压缩包并进入OpenCV目录，进行如下操作：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">mkdir build</span><br><span class="line">cd build</span><br><span class="line">cmake ..</span><br><span class="line">make</span><br><span class="line">sudo make install</span><br></pre></td></tr></table></figure>
-
-<h3 id="4-安装ROS"><a href="#4-安装ROS" class="headerlink" title="4.安装ROS"></a>4.安装ROS</h3><p>安装ROS可以参考<a target="_blank" rel="noopener" href="http://wiki.ros.org/kinetic/Installation">ROS官网的安装教程</a>，由于ROS的版本更新速度较快，在ROS的Groovy版本之后，ROS采用catkin来取代之前的rosbuild的包编译方式,但总体上来说是对CMake的又一层封装.因此不必担心，如果熟悉CMake可以使用他来编译ROS，ROS的一些功能包的接口可能会因为版本变化而发生变化,需要注意。</p>
-<h3 id="5-获取kinect的彩色图像和深度图像"><a href="#5-获取kinect的彩色图像和深度图像" class="headerlink" title="5.获取kinect的彩色图像和深度图像"></a>5.获取kinect的彩色图像和深度图像</h3><p>使用ROS自带的Package获取彩色图像和深度图像，可以参考古月居的blog：</p>
-<p><a target="_blank" rel="noopener" href="http://www.guyuehome.com/262">http://www.guyuehome.com/262</a></p>
-<p>使用OpenNI获取获取深度图像和彩色图像可以参考另一篇博客:</p>
-<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/tornadomeet/archive/2012/10/01/2709851.html">https://www.cnblogs.com/tornadomeet/archive/2012/10/01/2709851.html</a></p>
+<h3 id="&#x4F7F;&#x7528;sed&#x5B9E;&#x73B0;&#x6700;&#x5C0F;&#x5339;&#x914D;">3.&#x4F7F;&#x7528;sed&#x5B9E;&#x73B0;&#x6700;&#x5C0F;&#x5339;&#x914D;</h3>
+<p>sed&#x5B9E;&#x73B0;&#x6700;&#x5C0F;&#x5339;&#x914D;&#x7684;&#x547D;&#x4EE4;&#x5982;&#x4E0B;:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">echo &apos;(aa)bb(cc)&apos; | sed &apos;s/([^)]*)*//g&apos;</span><br><span class="line">bb</span><br></pre></td></tr></table></figure>
+<h3 id="&#x4F7F;&#x7528;perl&#x5B9E;&#x73B0;&#x6700;&#x5C0F;&#x5339;&#x914D;">4.&#x4F7F;&#x7528;perl&#x5B9E;&#x73B0;&#x6700;&#x5C0F;&#x5339;&#x914D;</h3>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">echo &quot;(aa)bb(cc)&quot; | perl -pe &apos;s/\(.*?\)//g&apos;</span><br><span class="line">bb</span><br></pre></td></tr></table></figure>
+<p>&#x53E6;&#x5916;&#xFF0C;sed&#x652F;&#x6301;&#x7684;&#x5339;&#x914D;&#x89C4;&#x5219;&#x4E0E;perl&#x4E0D;&#x540C;&#xFF0C;&#x5173;&#x4E8E;&#x5B57;&#x7B26;&#x662F;&#x5426;&#x9700;&#x8981;&#x8F6C;&#x4E49;&#x4E5F;&#x662F;&#x4E0D;&#x4E00;&#x6837;&#x3002;&#x4F8B;&#x5982;&#xFF0C;&#x4E3E;&#x4F8B;&#x4E2D;&#x7684;
+&quot;(&quot; &#x548C; &quot;)&quot; &#x5728;sed&#x4E2D;&#x4E0D;&#x9700;&#x8981;&#x8F6C;&#x4E49;&#xFF0C;&#x5728;perl&#x4E2D;&#x5219;&#x9700;&#x8981;&#x8F6C;&#x4E49;&#x3002;</p>
 
       
     </div>
@@ -1131,7 +1219,7 @@
 
 
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/default-index/page/2/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/default-index/">1</a><a class="page-number" href="/default-index/page/2/">2</a><span class="page-number current">3</span>
+    <a class="extend prev" rel="prev" href="/default-index/page/2/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/default-index/">1</a><a class="page-number" href="/default-index/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/default-index/page/4/">4</a><a class="extend next" rel="next" href="/default-index/page/4/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 </div>
@@ -1172,6 +1260,12 @@
 
   <script class="next-config" data-name="leancloud_visitors" type="application/json">{"enable":true,"app_id":"nG09szIvM8x9ehgslCULWzg2-MdYXbMMI","app_key":"yHykoRL88ikgLTqsUC0xIMvY","server_url":null,"security":false}</script>
   <script src="/js/third-party/statistics/lean-analytics.js"></script>
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdn.jsdelivr.net/npm/mathjax@3.2.0/es5/tex-mml-chtml.js","integrity":"sha256-r+3itOMtGGjap0x+10hu6jW/gZCzxHsoKrOd7gyRSGY="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
 
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">

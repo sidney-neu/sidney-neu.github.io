@@ -19,15 +19,15 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"sidney-neu.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.8.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":{"gitalk":{"order":-1}},"activeClass":"gitalk"},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.json","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
-<meta name="description" content="微服务微服务架构非常适合并发量大或者是业务复杂的场景，微服务的核心是高内聚、低耦合。将独立的大项目拆分成一个一个的服务，每个服务可以独立的开发、测试、构建、部署。微服务最大的好处是降低单个系统复杂性。为了能够顺利的进行微服务开发设计，首先需要了解明确微服务的组件与开发规范。 开发规范根据云原生的特点，微服务架构的核心就是拆分功能服务。 但是不同的服务是由不同的开发团队负责，如果大家都按照自己的开发">
+<meta name="description" content="&amp;#x5FAE;&amp;#x670D;&amp;#x52A1; &amp;#x5FAE;&amp;#x670D;&amp;#x52A1;&amp;#x67B6;&amp;#x6784;&amp;#x975E;&amp;#x5E38;&amp;#x9002;&amp;#x5408;&amp;#x5E76;&amp;#x53D1;&amp;#x91CF;&amp;#x5927;&amp;#x6216;&amp;#x8005;&amp;#x662F;&amp;#x4E1A;&amp;#x52A1;&amp;#x590D;&amp;#x6742;&amp;#x7684;&amp;#x573A">
 <meta property="og:type" content="article">
 <meta property="og:title" content="创建一个简单的微服务之一(微服务组件介绍)">
 <meta property="og:url" content="https://sidney-neu.github.io/2022/03/12/%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95%E7%9A%84%E5%BE%AE%E6%9C%8D%E5%8A%A1%E4%B9%8B%E4%B8%80(%E5%BE%AE%E6%9C%8D%E5%8A%A1%E7%BB%84%E4%BB%B6%E4%BB%8B%E7%BB%8D)/index.html">
 <meta property="og:site_name" content="Yoo shen的博客">
-<meta property="og:description" content="微服务微服务架构非常适合并发量大或者是业务复杂的场景，微服务的核心是高内聚、低耦合。将独立的大项目拆分成一个一个的服务，每个服务可以独立的开发、测试、构建、部署。微服务最大的好处是降低单个系统复杂性。为了能够顺利的进行微服务开发设计，首先需要了解明确微服务的组件与开发规范。 开发规范根据云原生的特点，微服务架构的核心就是拆分功能服务。 但是不同的服务是由不同的开发团队负责，如果大家都按照自己的开发">
+<meta property="og:description" content="&amp;#x5FAE;&amp;#x670D;&amp;#x52A1; &amp;#x5FAE;&amp;#x670D;&amp;#x52A1;&amp;#x67B6;&amp;#x6784;&amp;#x975E;&amp;#x5E38;&amp;#x9002;&amp;#x5408;&amp;#x5E76;&amp;#x53D1;&amp;#x91CF;&amp;#x5927;&amp;#x6216;&amp;#x8005;&amp;#x662F;&amp;#x4E1A;&amp;#x52A1;&amp;#x590D;&amp;#x6742;&amp;#x7684;&amp;#x573A">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-03-12T15:57:00.000Z">
-<meta property="article:modified_time" content="2022-03-30T09:45:30.861Z">
+<meta property="article:modified_time" content="2022-04-19T01:21:56.845Z">
 <meta property="article:author" content="Yoo Shen">
 <meta name="twitter:card" content="summary">
 
@@ -86,8 +86,8 @@
 <nav class="site-nav">
   <ul class="main-menu menu">
         <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
-        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">17</span></a></li>
-        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">29</span></a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">12</span></a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">32</span></a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -144,7 +144,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%BE%AE%E6%9C%8D%E5%8A%A1"><span class="nav-number">1.</span> <span class="nav-text">微服务</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%80%E5%8F%91%E8%A7%84%E8%8C%83"><span class="nav-number">1.1.</span> <span class="nav-text">开发规范</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8E%A5%E5%8F%A3%E8%A7%84%E8%8C%83"><span class="nav-number">1.2.</span> <span class="nav-text">接口规范</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Flask%E6%A1%86%E6%9E%B6"><span class="nav-number">1.3.</span> <span class="nav-text">Flask框架</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Flask-%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%A1%86%E6%9E%B6"><span class="nav-number">1.4.</span> <span class="nav-text">Flask 微服务框架</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E8%B7%AF%E5%BE%84%E5%8F%8A%E5%85%B6%E5%90%AB%E4%B9%89%EF%BC%9A"><span class="nav-number">1.4.1.</span> <span class="nav-text">代码路径及其含义：</span></a></li></ol></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%BE%AE%E6%9C%8D%E5%8A%A1"><span class="nav-number">1.</span> <span class="nav-text">微服务</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%80%E5%8F%91%E8%A7%84%E8%8C%83"><span class="nav-number">1.1.</span> <span class="nav-text">开发规范</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8E%A5%E5%8F%A3%E8%A7%84%E8%8C%83"><span class="nav-number">1.2.</span> <span class="nav-text">接口规范</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#flask%E6%A1%86%E6%9E%B6"><span class="nav-number">1.3.</span> <span class="nav-text">Flask框架</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#flask-%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%A1%86%E6%9E%B6"><span class="nav-number">1.4.</span> <span class="nav-text">Flask 微服务框架</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E8%B7%AF%E5%BE%84%E5%8F%8A%E5%85%B6%E5%90%AB%E4%B9%89"><span class="nav-number">1.4.1.</span> <span class="nav-text">代码路径及其含义：</span></a></li></ol></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -157,13 +157,13 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">29</span>
+          <span class="site-state-item-count">32</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-count">12</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
   </nav>
@@ -238,7 +238,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-03-30 17:45:30" itemprop="dateModified" datetime="2022-03-30T17:45:30+08:00">2022-03-30</time>
+      <time title="修改时间：2022-04-19 09:21:56" itemprop="dateModified" datetime="2022-04-19T09:21:56+08:00">2022-04-19</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -246,7 +246,7 @@
       </span>
       <span class="post-meta-item-text">分类于</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E4%BA%91%E5%8E%9F%E7%94%9F-%E5%BE%AE%E6%9C%8D%E5%8A%A1/" itemprop="url" rel="index"><span itemprop="name">-云原生 -微服务</span></a>
+          <a href="/categories/%E4%BA%91%E5%8E%9F%E7%94%9F/" itemprop="url" rel="index"><span itemprop="name">-云原生</span></a>
         </span>
     </span>
 
@@ -267,23 +267,51 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <h1 id="微服务"><a href="#微服务" class="headerlink" title="微服务"></a>微服务</h1><p>微服务架构非常适合并发量大或者是业务复杂的场景，微服务的核心是高内聚、低耦合。将独立的大项目拆分成一个一个的服务，每个服务可以独立的开发、测试、构建、部署。微服务最大的好处是降低单个系统复杂性。为了能够顺利的进行微服务开发设计，首先需要了解明确微服务的组件与开发规范。</p>
-<h2 id="开发规范"><a href="#开发规范" class="headerlink" title="开发规范"></a>开发规范</h2><p>根据云原生的特点，微服务架构的核心就是拆分功能服务。</p>
-<p>但是不同的服务是由不同的开发团队负责，如果大家都按照自己的开发方式就会导致服务之间难以协同，微服务对开发成员之间的配合是有要求的，因此需要共同遵守同一个规范，本博客系列主要介绍以 <code>Python</code> 编程语言作为开发主语言，并介绍相关规范，各个厂商都有自己编码规范，大家可以作为参考。PEP8 是 Python 官方给定的标准编码规范，要求非常严格。但在团队正常开发中，如果所有人都严格的完全遵守 <code>PEP8</code>，对代码各种吹毛求疵，反而效率会变低。一般大家都会对在代码规范和开发效率中寻找平衡。这里推荐一份gitee<a target="_blank" rel="noopener" href="https://gitee.com/GeekDot/microservice-model/blob/master/doc/%E5%9B%A2%E9%98%9F%E7%BC%96%E7%A0%81%E8%A7%84%E8%8C%83.md">python编码规范</a>给大家。</p>
-<h2 id="接口规范"><a href="#接口规范" class="headerlink" title="接口规范"></a>接口规范</h2><p>除了编码规范以外，其实还有很多规范。微服务对外提供数据通常是以 API的方式提供，由于微服务之间以及微服务对外都有很多的数据交互，因此需要定义接口开发规范。接口开发的设计规范有很多，因为很多应用场景中服务需要通过网络对外提供服务，为了提高和网络的通用性，一般常用的 <a target="_blank" rel="noopener" href="https://www.jitao.tech/books/http-api-book/">HTTP 接口设计</a> 适合一般的架构。微服务通常都采用 <a target="_blank" rel="noopener" href="https://restfulapi.cn/">RESTful API 架构设计</a>，笔者相关微服务的应用中也会是完全遵循RESTful API架构设计思想和开发规范。数据传输采用Json的方法，当然也可以采用常见的数据传输格式有 XML、YAML或者是自定义数据格式。</p>
-<h2 id="Flask框架"><a href="#Flask框架" class="headerlink" title="Flask框架"></a>Flask框架</h2><p>本项目采用的核心框架是 Flask。Flask是Python的 Web开发框架，相比其他的框架如 Django具有轻量、快速、解耦合、无限制等优势。除了核心框架以外， Flask 还提供了相当庞大的组件库供你选择，本项目用到的重要组件有以下几个：Flask-RESTPlus 组件]、Flask-SQLAlchemy 组件、Flask-Script 组件、Flask-Migrate 组件。其中 Flask-RESTPlus&#96;组件是我们重点研究学习的组件，因为可以对微服务传输的RestAPI信息进行解析。除了上述几个主要的组件之外，还有很多辅助组件和依赖主键，这些组件可通过 <a href="https://gitee.com/link?target=https://palletsprojects.com/p/flask/">Flask 官网</a>、<a href="https://gitee.com/link?target=https://github.com/pallets/flask">Flask GitHub</a> 、<a href="https://gitee.com/link?target=https://pypi.org/">PyPi</a> 等网站自行查阅。</p>
-<h2 id="Flask-微服务框架"><a href="#Flask-微服务框架" class="headerlink" title="Flask 微服务框架"></a>Flask 微服务框架</h2><p>根据Flask和Flask-RESTPlus我们就可以开发微服务了。但是Flask由于是很灵活的微内核框架，每个项目的目录结构、目录层级、代码编排、依赖关系、架构设计等都是千差万别的。</p>
-<p>那么有没有一款类似Django或者是Vue的脚手架工具，一键生成我们需要的目录结构呢？很遗憾，到目前从市面上还没有找到。</p>
-<p>虽然还没有类似的轮子，但是我们可以自己造啊。经过长时间实际项目开发和经验积累，逐渐摸索出一套架构设计精巧、目录层次合理的框架，<a target="_blank" rel="noopener" href="https://gitee.com/GeekDot/microservice-model/blob/master/doc/Flask%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%A1%86%E6%9E%B6.md">Flask 微服务框架</a>（Flask microservices frame）简称FMSF。</p>
-<p>FMSF几乎涵盖了在开发过程中能遇到的所有问题，为了对FMSF能有清晰的认识，下列列出几项有关FMSF亮点：</p>
+        <h1 id="&#x5FAE;&#x670D;&#x52A1;">&#x5FAE;&#x670D;&#x52A1;</h1>
+<p>&#x5FAE;&#x670D;&#x52A1;&#x67B6;&#x6784;&#x975E;&#x5E38;&#x9002;&#x5408;&#x5E76;&#x53D1;&#x91CF;&#x5927;&#x6216;&#x8005;&#x662F;&#x4E1A;&#x52A1;&#x590D;&#x6742;&#x7684;&#x573A;&#x666F;&#xFF0C;&#x5FAE;&#x670D;&#x52A1;&#x7684;&#x6838;&#x5FC3;&#x662F;&#x9AD8;&#x5185;&#x805A;&#x3001;&#x4F4E;&#x8026;&#x5408;&#x3002;&#x5C06;&#x72EC;&#x7ACB;&#x7684;&#x5927;&#x9879;&#x76EE;&#x62C6;&#x5206;&#x6210;&#x4E00;&#x4E2A;&#x4E00;&#x4E2A;&#x7684;&#x670D;&#x52A1;&#xFF0C;&#x6BCF;&#x4E2A;&#x670D;&#x52A1;&#x53EF;&#x4EE5;&#x72EC;&#x7ACB;&#x7684;&#x5F00;&#x53D1;&#x3001;&#x6D4B;&#x8BD5;&#x3001;&#x6784;&#x5EFA;&#x3001;&#x90E8;&#x7F72;&#x3002;&#x5FAE;&#x670D;&#x52A1;&#x6700;&#x5927;&#x7684;&#x597D;&#x5904;&#x662F;&#x964D;&#x4F4E;&#x5355;&#x4E2A;&#x7CFB;&#x7EDF;&#x590D;&#x6742;&#x6027;&#x3002;&#x4E3A;&#x4E86;&#x80FD;&#x591F;&#x987A;&#x5229;&#x7684;&#x8FDB;&#x884C;&#x5FAE;&#x670D;&#x52A1;&#x5F00;&#x53D1;&#x8BBE;&#x8BA1;&#xFF0C;&#x9996;&#x5148;&#x9700;&#x8981;&#x4E86;&#x89E3;&#x660E;&#x786E;&#x5FAE;&#x670D;&#x52A1;&#x7684;&#x7EC4;&#x4EF6;&#x4E0E;&#x5F00;&#x53D1;&#x89C4;&#x8303;&#x3002;</p>
+<h2 id="&#x5F00;&#x53D1;&#x89C4;&#x8303;">&#x5F00;&#x53D1;&#x89C4;&#x8303;</h2>
+<p>&#x6839;&#x636E;&#x4E91;&#x539F;&#x751F;&#x7684;&#x7279;&#x70B9;&#xFF0C;&#x5FAE;&#x670D;&#x52A1;&#x67B6;&#x6784;&#x7684;&#x6838;&#x5FC3;&#x5C31;&#x662F;&#x62C6;&#x5206;&#x529F;&#x80FD;&#x670D;&#x52A1;&#x3002;</p>
+<p>&#x4F46;&#x662F;&#x4E0D;&#x540C;&#x7684;&#x670D;&#x52A1;&#x662F;&#x7531;&#x4E0D;&#x540C;&#x7684;&#x5F00;&#x53D1;&#x56E2;&#x961F;&#x8D1F;&#x8D23;&#xFF0C;&#x5982;&#x679C;&#x5927;&#x5BB6;&#x90FD;&#x6309;&#x7167;&#x81EA;&#x5DF1;&#x7684;&#x5F00;&#x53D1;&#x65B9;&#x5F0F;&#x5C31;&#x4F1A;&#x5BFC;&#x81F4;&#x670D;&#x52A1;&#x4E4B;&#x95F4;&#x96BE;&#x4EE5;&#x534F;&#x540C;&#xFF0C;&#x5FAE;&#x670D;&#x52A1;&#x5BF9;&#x5F00;&#x53D1;&#x6210;&#x5458;&#x4E4B;&#x95F4;&#x7684;&#x914D;&#x5408;&#x662F;&#x6709;&#x8981;&#x6C42;&#x7684;&#xFF0C;&#x56E0;&#x6B64;&#x9700;&#x8981;&#x5171;&#x540C;&#x9075;&#x5B88;&#x540C;&#x4E00;&#x4E2A;&#x89C4;&#x8303;&#xFF0C;&#x672C;&#x535A;&#x5BA2;&#x7CFB;&#x5217;&#x4E3B;&#x8981;&#x4ECB;&#x7ECD;&#x4EE5;
+<code>Python</code>
+&#x7F16;&#x7A0B;&#x8BED;&#x8A00;&#x4F5C;&#x4E3A;&#x5F00;&#x53D1;&#x4E3B;&#x8BED;&#x8A00;&#xFF0C;&#x5E76;&#x4ECB;&#x7ECD;&#x76F8;&#x5173;&#x89C4;&#x8303;&#xFF0C;&#x5404;&#x4E2A;&#x5382;&#x5546;&#x90FD;&#x6709;&#x81EA;&#x5DF1;&#x7F16;&#x7801;&#x89C4;&#x8303;&#xFF0C;&#x5927;&#x5BB6;&#x53EF;&#x4EE5;&#x4F5C;&#x4E3A;&#x53C2;&#x8003;&#x3002;PEP8
+&#x662F; Python
+&#x5B98;&#x65B9;&#x7ED9;&#x5B9A;&#x7684;&#x6807;&#x51C6;&#x7F16;&#x7801;&#x89C4;&#x8303;&#xFF0C;&#x8981;&#x6C42;&#x975E;&#x5E38;&#x4E25;&#x683C;&#x3002;&#x4F46;&#x5728;&#x56E2;&#x961F;&#x6B63;&#x5E38;&#x5F00;&#x53D1;&#x4E2D;&#xFF0C;&#x5982;&#x679C;&#x6240;&#x6709;&#x4EBA;&#x90FD;&#x4E25;&#x683C;&#x7684;&#x5B8C;&#x5168;&#x9075;&#x5B88;
+<code>PEP8</code>&#xFF0C;&#x5BF9;&#x4EE3;&#x7801;&#x5404;&#x79CD;&#x5439;&#x6BDB;&#x6C42;&#x75B5;&#xFF0C;&#x53CD;&#x800C;&#x6548;&#x7387;&#x4F1A;&#x53D8;&#x4F4E;&#x3002;&#x4E00;&#x822C;&#x5927;&#x5BB6;&#x90FD;&#x4F1A;&#x5BF9;&#x5728;&#x4EE3;&#x7801;&#x89C4;&#x8303;&#x548C;&#x5F00;&#x53D1;&#x6548;&#x7387;&#x4E2D;&#x5BFB;&#x627E;&#x5E73;&#x8861;&#x3002;&#x8FD9;&#x91CC;&#x63A8;&#x8350;&#x4E00;&#x4EFD;gitee<a target="_blank" rel="noopener" href="https://gitee.com/GeekDot/microservice-model/blob/master/doc/%E5%9B%A2%E9%98%9F%E7%BC%96%E7%A0%81%E8%A7%84%E8%8C%83.md">python&#x7F16;&#x7801;&#x89C4;&#x8303;</a>&#x7ED9;&#x5927;&#x5BB6;&#x3002;</p>
+<h2 id="&#x63A5;&#x53E3;&#x89C4;&#x8303;">&#x63A5;&#x53E3;&#x89C4;&#x8303;</h2>
+<p>&#x9664;&#x4E86;&#x7F16;&#x7801;&#x89C4;&#x8303;&#x4EE5;&#x5916;&#xFF0C;&#x5176;&#x5B9E;&#x8FD8;&#x6709;&#x5F88;&#x591A;&#x89C4;&#x8303;&#x3002;&#x5FAE;&#x670D;&#x52A1;&#x5BF9;&#x5916;&#x63D0;&#x4F9B;&#x6570;&#x636E;&#x901A;&#x5E38;&#x662F;&#x4EE5;
+API&#x7684;&#x65B9;&#x5F0F;&#x63D0;&#x4F9B;&#xFF0C;&#x7531;&#x4E8E;&#x5FAE;&#x670D;&#x52A1;&#x4E4B;&#x95F4;&#x4EE5;&#x53CA;&#x5FAE;&#x670D;&#x52A1;&#x5BF9;&#x5916;&#x90FD;&#x6709;&#x5F88;&#x591A;&#x7684;&#x6570;&#x636E;&#x4EA4;&#x4E92;&#xFF0C;&#x56E0;&#x6B64;&#x9700;&#x8981;&#x5B9A;&#x4E49;&#x63A5;&#x53E3;&#x5F00;&#x53D1;&#x89C4;&#x8303;&#x3002;&#x63A5;&#x53E3;&#x5F00;&#x53D1;&#x7684;&#x8BBE;&#x8BA1;&#x89C4;&#x8303;&#x6709;&#x5F88;&#x591A;&#xFF0C;&#x56E0;&#x4E3A;&#x5F88;&#x591A;&#x5E94;&#x7528;&#x573A;&#x666F;&#x4E2D;&#x670D;&#x52A1;&#x9700;&#x8981;&#x901A;&#x8FC7;&#x7F51;&#x7EDC;&#x5BF9;&#x5916;&#x63D0;&#x4F9B;&#x670D;&#x52A1;&#xFF0C;&#x4E3A;&#x4E86;&#x63D0;&#x9AD8;&#x548C;&#x7F51;&#x7EDC;&#x7684;&#x901A;&#x7528;&#x6027;&#xFF0C;&#x4E00;&#x822C;&#x5E38;&#x7528;&#x7684;
+<a target="_blank" rel="noopener" href="https://www.jitao.tech/books/http-api-book/">HTTP &#x63A5;&#x53E3;&#x8BBE;&#x8BA1;</a>
+&#x9002;&#x5408;&#x4E00;&#x822C;&#x7684;&#x67B6;&#x6784;&#x3002;&#x5FAE;&#x670D;&#x52A1;&#x901A;&#x5E38;&#x90FD;&#x91C7;&#x7528; <a target="_blank" rel="noopener" href="https://restfulapi.cn/">RESTful API
+&#x67B6;&#x6784;&#x8BBE;&#x8BA1;</a>&#xFF0C;&#x7B14;&#x8005;&#x76F8;&#x5173;&#x5FAE;&#x670D;&#x52A1;&#x7684;&#x5E94;&#x7528;&#x4E2D;&#x4E5F;&#x4F1A;&#x662F;&#x5B8C;&#x5168;&#x9075;&#x5FAA;RESTful
+API&#x67B6;&#x6784;&#x8BBE;&#x8BA1;&#x601D;&#x60F3;&#x548C;&#x5F00;&#x53D1;&#x89C4;&#x8303;&#x3002;&#x6570;&#x636E;&#x4F20;&#x8F93;&#x91C7;&#x7528;Json&#x7684;&#x65B9;&#x6CD5;&#xFF0C;&#x5F53;&#x7136;&#x4E5F;&#x53EF;&#x4EE5;&#x91C7;&#x7528;&#x5E38;&#x89C1;&#x7684;&#x6570;&#x636E;&#x4F20;&#x8F93;&#x683C;&#x5F0F;&#x6709;
+XML&#x3001;YAML&#x6216;&#x8005;&#x662F;&#x81EA;&#x5B9A;&#x4E49;&#x6570;&#x636E;&#x683C;&#x5F0F;&#x3002;</p>
+<h2 id="flask&#x6846;&#x67B6;">Flask&#x6846;&#x67B6;</h2>
+<p>&#x672C;&#x9879;&#x76EE;&#x91C7;&#x7528;&#x7684;&#x6838;&#x5FC3;&#x6846;&#x67B6;&#x662F; Flask&#x3002;Flask&#x662F;Python&#x7684;
+Web&#x5F00;&#x53D1;&#x6846;&#x67B6;&#xFF0C;&#x76F8;&#x6BD4;&#x5176;&#x4ED6;&#x7684;&#x6846;&#x67B6;&#x5982;
+Django&#x5177;&#x6709;&#x8F7B;&#x91CF;&#x3001;&#x5FEB;&#x901F;&#x3001;&#x89E3;&#x8026;&#x5408;&#x3001;&#x65E0;&#x9650;&#x5236;&#x7B49;&#x4F18;&#x52BF;&#x3002;&#x9664;&#x4E86;&#x6838;&#x5FC3;&#x6846;&#x67B6;&#x4EE5;&#x5916;&#xFF0C; Flask
+&#x8FD8;&#x63D0;&#x4F9B;&#x4E86;&#x76F8;&#x5F53;&#x5E9E;&#x5927;&#x7684;&#x7EC4;&#x4EF6;&#x5E93;&#x4F9B;&#x4F60;&#x9009;&#x62E9;&#xFF0C;&#x672C;&#x9879;&#x76EE;&#x7528;&#x5230;&#x7684;&#x91CD;&#x8981;&#x7EC4;&#x4EF6;&#x6709;&#x4EE5;&#x4E0B;&#x51E0;&#x4E2A;&#xFF1A;Flask-RESTPlus
+&#x7EC4;&#x4EF6;]&#x3001;Flask-SQLAlchemy &#x7EC4;&#x4EF6;&#x3001;Flask-Script &#x7EC4;&#x4EF6;&#x3001;Flask-Migrate
+&#x7EC4;&#x4EF6;&#x3002;&#x5176;&#x4E2D;
+Flask-RESTPlus`&#x7EC4;&#x4EF6;&#x662F;&#x6211;&#x4EEC;&#x91CD;&#x70B9;&#x7814;&#x7A76;&#x5B66;&#x4E60;&#x7684;&#x7EC4;&#x4EF6;&#xFF0C;&#x56E0;&#x4E3A;&#x53EF;&#x4EE5;&#x5BF9;&#x5FAE;&#x670D;&#x52A1;&#x4F20;&#x8F93;&#x7684;RestAPI&#x4FE1;&#x606F;&#x8FDB;&#x884C;&#x89E3;&#x6790;&#x3002;&#x9664;&#x4E86;&#x4E0A;&#x8FF0;&#x51E0;&#x4E2A;&#x4E3B;&#x8981;&#x7684;&#x7EC4;&#x4EF6;&#x4E4B;&#x5916;&#xFF0C;&#x8FD8;&#x6709;&#x5F88;&#x591A;&#x8F85;&#x52A9;&#x7EC4;&#x4EF6;&#x548C;&#x4F9D;&#x8D56;&#x4E3B;&#x952E;&#xFF0C;&#x8FD9;&#x4E9B;&#x7EC4;&#x4EF6;&#x53EF;&#x901A;&#x8FC7;
+<a href="https://gitee.com/link?target=https%3A%2F%2Fpalletsprojects.com%2Fp%2Fflask%2F">Flask
+&#x5B98;&#x7F51;</a>&#x3001;<a href="https://gitee.com/link?target=https%3A%2F%2Fgithub.com%2Fpallets%2Fflask">Flask
+GitHub</a> &#x3001;<a href="https://gitee.com/link?target=https%3A%2F%2Fpypi.org%2F">PyPi</a>
+&#x7B49;&#x7F51;&#x7AD9;&#x81EA;&#x884C;&#x67E5;&#x9605;&#x3002;</p>
+<h2 id="flask-&#x5FAE;&#x670D;&#x52A1;&#x6846;&#x67B6;">Flask &#x5FAE;&#x670D;&#x52A1;&#x6846;&#x67B6;</h2>
+<p>&#x6839;&#x636E;Flask&#x548C;Flask-RESTPlus&#x6211;&#x4EEC;&#x5C31;&#x53EF;&#x4EE5;&#x5F00;&#x53D1;&#x5FAE;&#x670D;&#x52A1;&#x4E86;&#x3002;&#x4F46;&#x662F;Flask&#x7531;&#x4E8E;&#x662F;&#x5F88;&#x7075;&#x6D3B;&#x7684;&#x5FAE;&#x5185;&#x6838;&#x6846;&#x67B6;&#xFF0C;&#x6BCF;&#x4E2A;&#x9879;&#x76EE;&#x7684;&#x76EE;&#x5F55;&#x7ED3;&#x6784;&#x3001;&#x76EE;&#x5F55;&#x5C42;&#x7EA7;&#x3001;&#x4EE3;&#x7801;&#x7F16;&#x6392;&#x3001;&#x4F9D;&#x8D56;&#x5173;&#x7CFB;&#x3001;&#x67B6;&#x6784;&#x8BBE;&#x8BA1;&#x7B49;&#x90FD;&#x662F;&#x5343;&#x5DEE;&#x4E07;&#x522B;&#x7684;&#x3002;</p>
+<p>&#x90A3;&#x4E48;&#x6709;&#x6CA1;&#x6709;&#x4E00;&#x6B3E;&#x7C7B;&#x4F3C;Django&#x6216;&#x8005;&#x662F;Vue&#x7684;&#x811A;&#x624B;&#x67B6;&#x5DE5;&#x5177;&#xFF0C;&#x4E00;&#x952E;&#x751F;&#x6210;&#x6211;&#x4EEC;&#x9700;&#x8981;&#x7684;&#x76EE;&#x5F55;&#x7ED3;&#x6784;&#x5462;&#xFF1F;&#x5F88;&#x9057;&#x61BE;&#xFF0C;&#x5230;&#x76EE;&#x524D;&#x4ECE;&#x5E02;&#x9762;&#x4E0A;&#x8FD8;&#x6CA1;&#x6709;&#x627E;&#x5230;&#x3002;</p>
+<p>&#x867D;&#x7136;&#x8FD8;&#x6CA1;&#x6709;&#x7C7B;&#x4F3C;&#x7684;&#x8F6E;&#x5B50;&#xFF0C;&#x4F46;&#x662F;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x81EA;&#x5DF1;&#x9020;&#x554A;&#x3002;&#x7ECF;&#x8FC7;&#x957F;&#x65F6;&#x95F4;&#x5B9E;&#x9645;&#x9879;&#x76EE;&#x5F00;&#x53D1;&#x548C;&#x7ECF;&#x9A8C;&#x79EF;&#x7D2F;&#xFF0C;&#x9010;&#x6E10;&#x6478;&#x7D22;&#x51FA;&#x4E00;&#x5957;&#x67B6;&#x6784;&#x8BBE;&#x8BA1;&#x7CBE;&#x5DE7;&#x3001;&#x76EE;&#x5F55;&#x5C42;&#x6B21;&#x5408;&#x7406;&#x7684;&#x6846;&#x67B6;&#xFF0C;<a target="_blank" rel="noopener" href="https://gitee.com/GeekDot/microservice-model/blob/master/doc/Flask&#x5FAE;&#x670D;&#x52A1;&#x6846;&#x67B6;.md">Flask
+&#x5FAE;&#x670D;&#x52A1;&#x6846;&#x67B6;</a>&#xFF08;Flask microservices frame&#xFF09;&#x7B80;&#x79F0;FMSF&#x3002;</p>
+<p>FMSF&#x51E0;&#x4E4E;&#x6DB5;&#x76D6;&#x4E86;&#x5728;&#x5F00;&#x53D1;&#x8FC7;&#x7A0B;&#x4E2D;&#x80FD;&#x9047;&#x5230;&#x7684;&#x6240;&#x6709;&#x95EE;&#x9898;&#xFF0C;&#x4E3A;&#x4E86;&#x5BF9;FMSF&#x80FD;&#x6709;&#x6E05;&#x6670;&#x7684;&#x8BA4;&#x8BC6;&#xFF0C;&#x4E0B;&#x5217;&#x5217;&#x51FA;&#x51E0;&#x9879;&#x6709;&#x5173;FMSF&#x4EAE;&#x70B9;&#xFF1A;</p>
 <ul>
-<li>有着清晰的目录结构、目录层级、代码编排、依赖关系、架构设计等。</li>
-<li>具有四套环境（开发环境、测试环境、生成环境、单元测试），项目配置可通过环境变量进行自动配置，无需改动任何代码。</li>
-<li>扩展能力强，不受限于Flask的约束，可定制扩展项。</li>
-<li>开发速度快，将复杂繁琐的RESTful协议封装在底层，工程师无需了解底层的每个细节，只需要关注具体业务服务即可。</li>
-<li>详细的文档教程、代码详解、测试用例、设计思想和生命周期流程图。</li>
+<li>&#x6709;&#x7740;&#x6E05;&#x6670;&#x7684;&#x76EE;&#x5F55;&#x7ED3;&#x6784;&#x3001;&#x76EE;&#x5F55;&#x5C42;&#x7EA7;&#x3001;&#x4EE3;&#x7801;&#x7F16;&#x6392;&#x3001;&#x4F9D;&#x8D56;&#x5173;&#x7CFB;&#x3001;&#x67B6;&#x6784;&#x8BBE;&#x8BA1;&#x7B49;&#x3002;</li>
+<li>&#x5177;&#x6709;&#x56DB;&#x5957;&#x73AF;&#x5883;&#xFF08;&#x5F00;&#x53D1;&#x73AF;&#x5883;&#x3001;&#x6D4B;&#x8BD5;&#x73AF;&#x5883;&#x3001;&#x751F;&#x6210;&#x73AF;&#x5883;&#x3001;&#x5355;&#x5143;&#x6D4B;&#x8BD5;&#xFF09;&#xFF0C;&#x9879;&#x76EE;&#x914D;&#x7F6E;&#x53EF;&#x901A;&#x8FC7;&#x73AF;&#x5883;&#x53D8;&#x91CF;&#x8FDB;&#x884C;&#x81EA;&#x52A8;&#x914D;&#x7F6E;&#xFF0C;&#x65E0;&#x9700;&#x6539;&#x52A8;&#x4EFB;&#x4F55;&#x4EE3;&#x7801;&#x3002;</li>
+<li>&#x6269;&#x5C55;&#x80FD;&#x529B;&#x5F3A;&#xFF0C;&#x4E0D;&#x53D7;&#x9650;&#x4E8E;Flask&#x7684;&#x7EA6;&#x675F;&#xFF0C;&#x53EF;&#x5B9A;&#x5236;&#x6269;&#x5C55;&#x9879;&#x3002;</li>
+<li>&#x5F00;&#x53D1;&#x901F;&#x5EA6;&#x5FEB;&#xFF0C;&#x5C06;&#x590D;&#x6742;&#x7E41;&#x7410;&#x7684;RESTful&#x534F;&#x8BAE;&#x5C01;&#x88C5;&#x5728;&#x5E95;&#x5C42;&#xFF0C;&#x5DE5;&#x7A0B;&#x5E08;&#x65E0;&#x9700;&#x4E86;&#x89E3;&#x5E95;&#x5C42;&#x7684;&#x6BCF;&#x4E2A;&#x7EC6;&#x8282;&#xFF0C;&#x53EA;&#x9700;&#x8981;&#x5173;&#x6CE8;&#x5177;&#x4F53;&#x4E1A;&#x52A1;&#x670D;&#x52A1;&#x5373;&#x53EF;&#x3002;</li>
+<li>&#x8BE6;&#x7EC6;&#x7684;&#x6587;&#x6863;&#x6559;&#x7A0B;&#x3001;&#x4EE3;&#x7801;&#x8BE6;&#x89E3;&#x3001;&#x6D4B;&#x8BD5;&#x7528;&#x4F8B;&#x3001;&#x8BBE;&#x8BA1;&#x601D;&#x60F3;&#x548C;&#x751F;&#x547D;&#x5468;&#x671F;&#x6D41;&#x7A0B;&#x56FE;&#x3002;</li>
 </ul>
-<h3 id="代码路径及其含义："><a href="#代码路径及其含义：" class="headerlink" title="代码路径及其含义："></a>代码路径及其含义：</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">microservice-model</span><br><span class="line">├── README.md	#项目的说明文档或入门手册</span><br><span class="line">├── app	#微服务的核心功能</span><br><span class="line">│   ├── __init__.py	</span><br><span class="line">│   ├── api #不同路由路径下的不同功能</span><br><span class="line">│   │   └── ai_example</span><br><span class="line">│   │       └── example.py</span><br><span class="line">│   ├── config #配置路径</span><br><span class="line">│   │   ├── log_config.py</span><br><span class="line">│   │   └── other config py files</span><br><span class="line">│   ├── logs	#日志存储路径</span><br><span class="line">│   │   ├── ml_info.log</span><br><span class="line">│   │   └── other log files</span><br><span class="line">│   ├── modules	#不同功能的代码实现路径，包括基础功能和测试功能</span><br><span class="line">│   │   ├── ai_example</span><br><span class="line">│   │   │   └── example.py</span><br><span class="line">│   │   ├── base</span><br><span class="line">│   │   │   └── to do</span><br><span class="line">│   │   └── test</span><br><span class="line">│   │   │   └── to do</span><br><span class="line">│   ├── route	#路由配置路径</span><br><span class="line">│   │   └── __init__.py</span><br><span class="line">│   └── utils	#lib以及其他公用代码路径</span><br><span class="line">│       └── __init__.py</span><br><span class="line">├── manage.py	#服务启动代码</span><br><span class="line">├── gun.py 	#多进程启动代码</span><br><span class="line">└── requirements.txt	#依赖配置代码</span><br></pre></td></tr></table></figure>
+<h3 id="&#x4EE3;&#x7801;&#x8DEF;&#x5F84;&#x53CA;&#x5176;&#x542B;&#x4E49;">&#x4EE3;&#x7801;&#x8DEF;&#x5F84;&#x53CA;&#x5176;&#x542B;&#x4E49;&#xFF1A;</h3>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">microservice-model</span><br><span class="line">&#x251C;&#x2500;&#x2500; README.md	#&#x9879;&#x76EE;&#x7684;&#x8BF4;&#x660E;&#x6587;&#x6863;&#x6216;&#x5165;&#x95E8;&#x624B;&#x518C;</span><br><span class="line">&#x251C;&#x2500;&#x2500; app	#&#x5FAE;&#x670D;&#x52A1;&#x7684;&#x6838;&#x5FC3;&#x529F;&#x80FD;</span><br><span class="line">&#x2502;   &#x251C;&#x2500;&#x2500; __init__.py	</span><br><span class="line">&#x2502;   &#x251C;&#x2500;&#x2500; api #&#x4E0D;&#x540C;&#x8DEF;&#x7531;&#x8DEF;&#x5F84;&#x4E0B;&#x7684;&#x4E0D;&#x540C;&#x529F;&#x80FD;</span><br><span class="line">&#x2502;   &#x2502;   &#x2514;&#x2500;&#x2500; ai_example</span><br><span class="line">&#x2502;   &#x2502;       &#x2514;&#x2500;&#x2500; example.py</span><br><span class="line">&#x2502;   &#x251C;&#x2500;&#x2500; config #&#x914D;&#x7F6E;&#x8DEF;&#x5F84;</span><br><span class="line">&#x2502;   &#x2502;   &#x251C;&#x2500;&#x2500; log_config.py</span><br><span class="line">&#x2502;   &#x2502;   &#x2514;&#x2500;&#x2500; other config py files</span><br><span class="line">&#x2502;   &#x251C;&#x2500;&#x2500; logs	#&#x65E5;&#x5FD7;&#x5B58;&#x50A8;&#x8DEF;&#x5F84;</span><br><span class="line">&#x2502;   &#x2502;   &#x251C;&#x2500;&#x2500; ml_info.log</span><br><span class="line">&#x2502;   &#x2502;   &#x2514;&#x2500;&#x2500; other log files</span><br><span class="line">&#x2502;   &#x251C;&#x2500;&#x2500; modules	#&#x4E0D;&#x540C;&#x529F;&#x80FD;&#x7684;&#x4EE3;&#x7801;&#x5B9E;&#x73B0;&#x8DEF;&#x5F84;&#xFF0C;&#x5305;&#x62EC;&#x57FA;&#x7840;&#x529F;&#x80FD;&#x548C;&#x6D4B;&#x8BD5;&#x529F;&#x80FD;</span><br><span class="line">&#x2502;   &#x2502;   &#x251C;&#x2500;&#x2500; ai_example</span><br><span class="line">&#x2502;   &#x2502;   &#x2502;   &#x2514;&#x2500;&#x2500; example.py</span><br><span class="line">&#x2502;   &#x2502;   &#x251C;&#x2500;&#x2500; base</span><br><span class="line">&#x2502;   &#x2502;   &#x2502;   &#x2514;&#x2500;&#x2500; to do</span><br><span class="line">&#x2502;   &#x2502;   &#x2514;&#x2500;&#x2500; test</span><br><span class="line">&#x2502;   &#x2502;   &#x2502;   &#x2514;&#x2500;&#x2500; to do</span><br><span class="line">&#x2502;   &#x251C;&#x2500;&#x2500; route	#&#x8DEF;&#x7531;&#x914D;&#x7F6E;&#x8DEF;&#x5F84;</span><br><span class="line">&#x2502;   &#x2502;   &#x2514;&#x2500;&#x2500; __init__.py</span><br><span class="line">&#x2502;   &#x2514;&#x2500;&#x2500; utils	#lib&#x4EE5;&#x53CA;&#x5176;&#x4ED6;&#x516C;&#x7528;&#x4EE3;&#x7801;&#x8DEF;&#x5F84;</span><br><span class="line">&#x2502;       &#x2514;&#x2500;&#x2500; __init__.py</span><br><span class="line">&#x251C;&#x2500;&#x2500; manage.py	#&#x670D;&#x52A1;&#x542F;&#x52A8;&#x4EE3;&#x7801;</span><br><span class="line">&#x251C;&#x2500;&#x2500; gun.py 	#&#x591A;&#x8FDB;&#x7A0B;&#x542F;&#x52A8;&#x4EE3;&#x7801;</span><br><span class="line">&#x2514;&#x2500;&#x2500; requirements.txt	#&#x4F9D;&#x8D56;&#x914D;&#x7F6E;&#x4EE3;&#x7801;</span><br></pre></td></tr></table></figure>
 
     </div>
 
@@ -390,6 +418,12 @@
 
   <script class="next-config" data-name="leancloud_visitors" type="application/json">{"enable":true,"app_id":"nG09szIvM8x9ehgslCULWzg2-MdYXbMMI","app_key":"yHykoRL88ikgLTqsUC0xIMvY","server_url":null,"security":false}</script>
   <script src="/js/third-party/statistics/lean-analytics.js"></script>
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdn.jsdelivr.net/npm/mathjax@3.2.0/es5/tex-mml-chtml.js","integrity":"sha256-r+3itOMtGGjap0x+10hu6jW/gZCzxHsoKrOd7gyRSGY="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
 
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">

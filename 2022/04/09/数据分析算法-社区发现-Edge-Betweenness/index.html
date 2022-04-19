@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.0.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"sidney-neu.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.8.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":{"gitalk":{"order":-1}},"activeClass":"gitalk"},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.json","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+<meta name="description" content="&amp;#x793E;&amp;#x533A;&amp;#x7684;&amp;#x5B9A;&amp;#x4E49; &amp;#x4ECE;&amp;#x56FE;&amp;#x7684;&amp;#x89D2;&amp;#x5EA6;&amp;#x6765;&amp;#x8BF4;&amp;#xFF0C;&amp;#x6BCF;&amp;#x4E00;&amp;#x4E2A;&amp;#x8282;&amp;#x70B9;&amp;#x90FD;&amp;#x662F;&amp;#x4E00;&amp;#x4E2A;&amp;#x4E2A;&amp;#x4F53;&amp;#x5355">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据分析算法-常见的社区发现算法">
+<meta property="og:url" content="https://sidney-neu.github.io/2022/04/09/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E7%AE%97%E6%B3%95-%E7%A4%BE%E5%8C%BA%E5%8F%91%E7%8E%B0-Edge-Betweenness/index.html">
+<meta property="og:site_name" content="Yoo shen的博客">
+<meta property="og:description" content="&amp;#x793E;&amp;#x533A;&amp;#x7684;&amp;#x5B9A;&amp;#x4E49; &amp;#x4ECE;&amp;#x56FE;&amp;#x7684;&amp;#x89D2;&amp;#x5EA6;&amp;#x6765;&amp;#x8BF4;&amp;#xFF0C;&amp;#x6BCF;&amp;#x4E00;&amp;#x4E2A;&amp;#x8282;&amp;#x70B9;&amp;#x90FD;&amp;#x662F;&amp;#x4E00;&amp;#x4E2A;&amp;#x4E2A;&amp;#x4F53;&amp;#x5355">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-04-09T14:45:00.000Z">
+<meta property="article:modified_time" content="2022-04-19T02:43:37.543Z">
+<meta property="article:author" content="Yoo Shen">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://sidney-neu.github.io/2022/04/09/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E7%AE%97%E6%B3%95-%E7%A4%BE%E5%8C%BA%E5%8F%91%E7%8E%B0-Edge-Betweenness/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://sidney-neu.github.io/2022/04/09/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E7%AE%97%E6%B3%95-%E7%A4%BE%E5%8C%BA%E5%8F%91%E7%8E%B0-Edge-Betweenness/","path":"2022/04/09/数据分析算法-社区发现-Edge-Betweenness/","title":"数据分析算法-常见的社区发现算法"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>数据分析算法-常见的社区发现算法 | Yoo shen的博客</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<style>mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+.MathJax path {
+  stroke-width: 3;
+}
+
+mjx-container[display="true"] {
+  overflow: auto hidden;
+}
+
+mjx-container[display="true"] + br {
+  display: none;
+}
+</style></head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Yoo shen的博客</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">sy071600sy@163.com</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">12</span></a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">32</span></a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A4%BE%E5%8C%BA%E7%9A%84%E5%AE%9A%E4%B9%89"><span class="nav-number">1.</span> <span class="nav-text">社区的定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A4%BE%E5%8C%BA%E6%A3%80%E6%B5%8B%E7%9A%84%E7%9B%AE%E7%9A%84"><span class="nav-number">2.</span> <span class="nav-text">社区检测的目的</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A4%BE%E5%8C%BA%E6%A3%80%E6%B5%8B%E6%96%B9%E6%B3%95%E5%88%86%E7%B1%BB"><span class="nav-number">3.</span> <span class="nav-text">社区检测方法分类</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#agglomerative-methods%E8%81%9A%E5%90%88%E6%96%B9%E6%B3%95"><span class="nav-number">3.1.</span> <span class="nav-text">Agglomerative
+Methods(聚合方法)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#divisive-methods%E5%88%86%E8%A3%82%E6%96%B9%E6%B3%95"><span class="nav-number">3.2.</span> <span class="nav-text">Divisive Methods(分裂方法)</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Yoo Shen</p>
+  <div class="site-description" itemprop="description">学习、记录、分享</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">32</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/sidney-neu" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;sidney-neu" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://sidney-neu.github.io/2022/04/09/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E7%AE%97%E6%B3%95-%E7%A4%BE%E5%8C%BA%E5%8F%91%E7%8E%B0-Edge-Betweenness/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Yoo Shen">
+      <meta itemprop="description" content="学习、记录、分享">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Yoo shen的博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          数据分析算法-常见的社区发现算法
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-04-09 22:45:00" itemprop="dateCreated datePublished" datetime="2022-04-09T22:45:00+08:00">2022-04-09</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-04-19 10:43:37" itemprop="dateModified" datetime="2022-04-19T10:43:37+08:00">2022-04-19</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%AE%97%E6%B3%95%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">-算法学习</span></a>
+        </span>
+    </span>
+
+  
+    <span id="/2022/04/09/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E7%AE%97%E6%B3%95-%E7%A4%BE%E5%8C%BA%E5%8F%91%E7%8E%B0-Edge-Betweenness/" class="post-meta-item leancloud_visitors" data-flag-title="数据分析算法-常见的社区发现算法" title="阅读次数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span class="leancloud-visitors-count"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h2 id="&#x793E;&#x533A;&#x7684;&#x5B9A;&#x4E49;">&#x793E;&#x533A;&#x7684;&#x5B9A;&#x4E49;</h2>
+<p>&#x4ECE;&#x56FE;&#x7684;&#x89D2;&#x5EA6;&#x6765;&#x8BF4;&#xFF0C;&#x6BCF;&#x4E00;&#x4E2A;&#x8282;&#x70B9;&#x90FD;&#x662F;&#x4E00;&#x4E2A;&#x4E2A;&#x4F53;&#x5355;&#x4F4D;&#xFF0C;&#x793E;&#x533A;&#x5C31;&#x53EF;&#x4EE5;&#x5B9A;&#x4E49;&#x4E3A;&#x8282;&#x70B9;&#x7684;&#x5B50;&#x96C6;&#xFF0C;&#x793E;&#x533A;&#x5185;&#x7684;&#x8282;&#x70B9;&#x4E4B;&#x95F4;&#x8054;&#x7CFB;&#x7D27;&#x5BC6;&#xFF0C;&#x5404;&#x4E2A;&#x793E;&#x533A;&#x4E4B;&#x95F4;&#x7684;&#x8FDE;&#x63A5;&#x8F83;&#x4E3A;&#x677E;&#x6563;&#xFF0C;&#x5C31;&#x597D;&#x50CF;&#x7531;&#x4E2A;&#x4F53;&#x5355;&#x4F4D;&#x7EC4;&#x6210;&#x7684;&#x793E;&#x533A;&#xFF0C;&#x4F60;&#x5728;&#x4E2D;&#x5173;&#x6751;&#xFF0C;&#x6211;&#x5728;&#x56DE;&#x9F99;&#x89C2;&#x3002;</p>
+<h2 id="&#x793E;&#x533A;&#x68C0;&#x6D4B;&#x7684;&#x76EE;&#x7684;">&#x793E;&#x533A;&#x68C0;&#x6D4B;&#x7684;&#x76EE;&#x7684;</h2>
+<p>&#x5728;&#x7F51;&#x7EDC;&#x5206;&#x6790;&#x4E2D;&#xFF0C;&#x68C0;&#x6D4B;&#x7F51;&#x7EDC;&#x4E2D;&#x7684;&#x793E;&#x533A;&#x662F;&#x4E00;&#x4E2A;&#x975E;&#x5E38;&#x91CD;&#x8981;&#x7684;&#x4EFB;&#x52A1;&#x3002;&#x5176;&#x57FA;&#x672C;&#x903B;&#x8F91;&#x5C31;&#x662F;&#x5728;&#x4E00;&#x4E2A;&#x5927;&#x578B;&#x7684;&#x7F51;&#x7EDC;&#x4E2D;(&#x6BD4;&#x5982;&#x7F51;&#x7EDC;&#x8FDE;&#x901A;&#x5173;&#x7CFB;&#x3001;&#x793E;&#x4EA4;&#x7F51;&#x7EDC;)&#x4E2D;&#xFF0C;&#x53EF;&#x80FD;&#x5B58;&#x5728;&#x4E0A;&#x767E;&#x4E07;&#x4E2A;&#x8282;&#x70B9;&#x548C;&#x8FB9;&#xFF0C;&#x5728;&#x8FD9;&#x6837;&#x89C4;&#x6A21;&#x7684;&#x7F51;&#x7EDC;&#x4E2D;&#x63A2;&#x6D4B;&#x793E;&#x533A;&#x662F;&#x4E00;&#x9879;&#x975E;&#x5E38;&#x8270;&#x5DE8;&#x7684;&#x4EFB;&#x52A1;&#x3002;&#x56E0;&#x6B64;&#x6211;&#x4EEC;&#x9700;&#x8981;&#x8FDB;&#x884C;&#x793E;&#x533A;&#x68C0;&#x6D4B;&#xFF0C;&#x5C06;&#x4E00;&#x4E2A;&#x5DE8;&#x5927;&#x7684;&#x7F51;&#x7EDC;&#x5212;&#x5206;&#x4E3A;&#x591A;&#x4E2A;&#x793E;&#x533A;&#xFF0C;&#x627E;&#x5230;&#x7F51;&#x7EDC;&#x4E2D;&#x591A;&#x4E2A;&#x8054;&#x7CFB;&#x7D27;&#x5BC6;&#x7684;&#x8282;&#x70B9;&#x7C07;&#x3002;</p>
+<h2 id="&#x793E;&#x533A;&#x68C0;&#x6D4B;&#x65B9;&#x6CD5;&#x5206;&#x7C7B;">&#x793E;&#x533A;&#x68C0;&#x6D4B;&#x65B9;&#x6CD5;&#x5206;&#x7C7B;</h2>
+<h3 id="agglomerative-methods&#x805A;&#x5408;&#x65B9;&#x6CD5;">Agglomerative
+Methods(&#x805A;&#x5408;&#x65B9;&#x6CD5;)</h3>
+<p>&#x5728;&#x805A;&#x5408;&#x65B9;&#x6CD5;&#x4E2D;&#xFF0C;&#x5728;&#x5F00;&#x59CB;&#x9636;&#x6BB5;&#x56FE;&#x4E2D;&#x53EA;&#x6709;&#x8282;&#x70B9;&#x6CA1;&#x6709;&#x8FB9;&#x3002;&#x63A5;&#x4E0B;&#x6765;&#x6839;&#x636E;&#x8FB9;&#x7684;&#x6743;&#x91CD;&#x6216;&#x5F3A;&#x5F31;&#x4E00;&#x6B21;&#x5C06;&#x8FB9;&#x6DFB;&#x52A0;&#x5230;&#x56FE;&#x4E2D;&#xFF0C;&#x6700;&#x7EC8;&#x5B8C;&#x6210;&#x56FE;&#x7684;&#x6574;&#x4F53;&#x6784;&#x5EFA;&#x3002;&#x5176;&#x4E2D;&#x8FB9;&#x7684;&#x5F3A;&#x5EA6;&#x6216;&#x8005;&#x6743;&#x91CD;&#x662F;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x4E0D;&#x540C;&#x7B97;&#x6CD5;&#x8BA1;&#x7B97;&#x83B7;&#x5F97;&#x7684;&#x3002;</p>
+<h3 id="divisive-methods&#x5206;&#x88C2;&#x65B9;&#x6CD5;">Divisive Methods(&#x5206;&#x88C2;&#x65B9;&#x6CD5;)</h3>
+<p>&#x5728;&#x5206;&#x88C2;&#x65B9;&#x6CD5;&#x4E2D;&#xFF0C;&#x4E00;&#x822C;&#x91C7;&#x7528;&#x4E0E;&#x805A;&#x5408;&#x65B9;&#x6CD5;&#x76F8;&#x53CD;&#x7684;&#x9014;&#x5F84;&#xFF0C;&#x5728;&#x5F00;&#x59CB;&#x9636;&#x6BB5;&#x7684;&#x56FE;&#x4E2D;&#x5305;&#x542B;&#x5B8C;&#x6574;&#x7684;&#x8FB9;&#x3002;&#x901A;&#x8FC7;&#x4F9D;&#x6B21;&#x8FED;&#x4EE3;&#x5220;&#x9664;&#x56FE;&#x4E2D;&#x5DF2;&#x7ECF;&#x5B58;&#x5728;&#x7684;&#x8FB9;&#xFF0C;&#x5176;&#x4E2D;&#x6743;&#x91CD;&#x6700;&#x5927;&#x7684;&#x8FB9;&#x7F18;&#x6700;&#x5148;&#x88AB;&#x79FB;&#x9664;&#x3002;&#x5728;&#x8FD9;&#x79CD;&#x65B9;&#x5F0F;&#x4E0B;&#xFF0C;&#x6BCF;&#x6B21;&#x79FB;&#x9664;&#x4E00;&#x4E2A;&#x8FB9;&#x540E;&#xFF0C;&#x90FD;&#x9700;&#x8981;&#x5BF9;&#x8FB9;&#x7684;&#x6743;&#x91CD;&#x6216;&#x5F3A;&#x5EA6;&#x8FDB;&#x884C;&#x91CD;&#x65B0;&#x8BA1;&#x7B97;&#xFF0C;&#x56E0;&#x4E3A;&#x5220;&#x9664;&#x4E00;&#x6761;&#x8FB9;&#x4E4B;&#x540E;&#xFF0C;&#x5269;&#x4F59;&#x8FB9;&#x7684;&#x6743;&#x91CD;&#x4E5F;&#x4F1A;&#x76F8;&#x5E94;&#x53D1;&#x751F;&#x53D8;&#x5316;&#x3002;&#x7ECF;&#x8FC7;&#x4E00;&#x5B9A;&#x6B21;&#x6570;&#x7684;&#x8FED;&#x4EE3;&#x540E;&#xFF0C;&#x5220;&#x9664;&#x4E00;&#x5B9A;&#x89C4;&#x6A21;&#x7684;&#x8FB9;&#x540E;&#x5C31;&#x53EF;&#x4EE5;&#x83B7;&#x5F97;&#x8FDE;&#x63A5;&#x7D27;&#x5BC6;&#x7684;&#x8282;&#x70B9;&#x7C07;&#x3002;&#x5176;&#x4E2D;Girvan-Newman(GN)&#x7B97;&#x6CD5;&#x5C31;&#x662F;&#x5178;&#x578B;&#x7684;&#x5206;&#x88C2;&#x7B97;&#x6CD5;&#x3002;</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="reward-container">
+  <div>感谢支持，鼓励成就原创！</div>
+  <button>
+    赞赏
+  </button>
+  <div class="post-reward">
+      <div>
+        <img src="/images/wc.jpg" alt="Yoo Shen 微信">
+        <span>微信</span>
+      </div>
+      <div>
+        <img src="/images/zfb.jpg" alt="Yoo Shen 支付宝">
+        <span>支付宝</span>
+      </div>
+
+  </div>
+</div>
+
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>Yoo Shen
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://sidney-neu.github.io/2022/04/09/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E7%AE%97%E6%B3%95-%E7%A4%BE%E5%8C%BA%E5%8F%91%E7%8E%B0-Edge-Betweenness/" title="数据分析算法-常见的社区发现算法">https://sidney-neu.github.io/2022/04/09/数据分析算法-社区发现-Edge-Betweenness/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2022/04/09/DDoS%E7%AE%80%E8%BF%B0/" rel="prev" title="DDoS简述">
+                  <i class="fa fa-chevron-left"></i> DDoS简述
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments gitalk-container"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Yoo Shen</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/next-boot.js"></script>
+
+  
+<script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.0/dist/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+
+
+  <script class="next-config" data-name="leancloud_visitors" type="application/json">{"enable":true,"app_id":"nG09szIvM8x9ehgslCULWzg2-MdYXbMMI","app_key":"yHykoRL88ikgLTqsUC0xIMvY","server_url":null,"security":false}</script>
+  <script src="/js/third-party/statistics/lean-analytics.js"></script>
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdn.jsdelivr.net/npm/mathjax@3.2.0/es5/tex-mml-chtml.js","integrity":"sha256-r+3itOMtGGjap0x+10hu6jW/gZCzxHsoKrOd7gyRSGY="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
+
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"sidney-neu","repo":"sidney-neu.github.io","client_id":"04c1120504d2e421fa7d","client_secret":"389710c48c007c80cfbb7b9788d01e674ab31c00","admin_user":"sidney-neu","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":"zh-CN","js":{"url":"https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js","integrity":"sha256-Pmj85ojLaPOWwRtlMJwmezB/Qg8BzvJp5eTzvXaYAfA="},"path_md5":"d04e7cf7af03bbb2754d8e54032b0d15"}</script>
+<script src="/js/third-party/comments/gitalk.js"></script>
+
+</body>
+</html>

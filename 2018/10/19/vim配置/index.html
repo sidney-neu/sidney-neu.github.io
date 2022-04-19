@@ -19,12 +19,12 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"sidney-neu.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.8.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":{"gitalk":{"order":-1}},"activeClass":"gitalk"},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.json","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
-<meta name="description" content="vim使用vim能提高代码编写的工作效率。 安装1apt-get install vim  常用命令按ESC后，输入“:”，进行命令操作 w 保存 q 退出 &#x2F;[字符串] 查找字符串，然后按n查找下一个，N查找上一个 ％s 替换，例：将整个文件里的abcd全部替换为efgh %s&#x2F;abcd&#x2F;efgh&#x2F;g 输入行号回车，转到行 set paste 切换至粘贴模">
+<meta name="description" content="vim &amp;#x4F7F;&amp;#x7528;vim&amp;#x80FD;&amp;#x63D0;&amp;#x9AD8;&amp;#x4EE3;&amp;#x7801;&amp;#x7F16;&amp;#x5199;&amp;#x7684;&amp;#x5DE5;&amp;#x4F5C;&amp;#x6548;&amp;#x7387;&amp;#x3002; &amp;#x5B89;&amp;#x88C5; 1apt-get install vim &amp;#x5E38;&amp;#x7528;&amp;#x547D;&amp;#x4EE4; &amp;">
 <meta property="og:type" content="article">
 <meta property="og:title" content="vim配置">
 <meta property="og:url" content="https://sidney-neu.github.io/2018/10/19/vim%E9%85%8D%E7%BD%AE/index.html">
 <meta property="og:site_name" content="Yoo shen的博客">
-<meta property="og:description" content="vim使用vim能提高代码编写的工作效率。 安装1apt-get install vim  常用命令按ESC后，输入“:”，进行命令操作 w 保存 q 退出 &#x2F;[字符串] 查找字符串，然后按n查找下一个，N查找上一个 ％s 替换，例：将整个文件里的abcd全部替换为efgh %s&#x2F;abcd&#x2F;efgh&#x2F;g 输入行号回车，转到行 set paste 切换至粘贴模">
+<meta property="og:description" content="vim &amp;#x4F7F;&amp;#x7528;vim&amp;#x80FD;&amp;#x63D0;&amp;#x9AD8;&amp;#x4EE3;&amp;#x7801;&amp;#x7F16;&amp;#x5199;&amp;#x7684;&amp;#x5DE5;&amp;#x4F5C;&amp;#x6548;&amp;#x7387;&amp;#x3002; &amp;#x5B89;&amp;#x88C5; 1apt-get install vim &amp;#x5E38;&amp;#x7528;&amp;#x547D;&amp;#x4EE4; &amp;">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2018-10-19T09:20:00.000Z">
 <meta property="article:modified_time" content="2022-03-30T09:45:30.858Z">
@@ -86,8 +86,8 @@
 <nav class="site-nav">
   <ul class="main-menu menu">
         <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
-        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">17</span></a></li>
-        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">29</span></a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">12</span></a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">32</span></a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -157,13 +157,13 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">29</span>
+          <span class="site-state-item-count">32</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-count">12</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
   </nav>
@@ -267,30 +267,43 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <h3 id="vim"><a href="#vim" class="headerlink" title="vim"></a>vim</h3><p>使用vim能提高代码编写的工作效率。</p>
-<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt-get install vim</span><br></pre></td></tr></table></figure>
-
-<h3 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h3><p>按ESC后，输入“:”，进行命令操作<br> w 保存<br> q 退出<br> &#x2F;[字符串] 查找字符串，然后按n查找下一个，N查找上一个<br> ％s 替换，例：将整个文件里的abcd全部替换为efgh %s&#x2F;abcd&#x2F;efgh&#x2F;g<br> 输入行号回车，转到行<br> set paste 切换至粘贴模式，粘代码时不会自动补齐及自动注释<br> set nu&#x2F;set nonu 显示关闭行号</p>
-<h3 id="快捷操作"><a href="#快捷操作" class="headerlink" title="快捷操作"></a>快捷操作</h3><p>i 插入<br>x 删除（剪切）<br>dd 删除（剪切）一行<br> yy 复制一行<br> p 粘贴<br> v 开始选中，可以移动光标选中<br> $ 移到行尾<br> 0 移到行首<br> D 从当前位置删除到行尾<br> J 删除该行的换行符，与下一行变成一行<br> u 撤消(命令red是重做)<br> % 括号配对(){}等<br> 查找：光标移到单词上，按*，直接查找这个单词<br> 格式化对齐：按V后，移动光标，选中多行文本，按&#x3D;</p>
-<h3 id="代码浏览"><a href="#代码浏览" class="headerlink" title="代码浏览"></a>代码浏览</h3><p>借助cscope和ctags能在vim中浏览代码，跳转函数，查找定义等</p>
-<p>安装cscope和ctags:</p>
+        <h3 id="vim">vim</h3>
+<p>&#x4F7F;&#x7528;vim&#x80FD;&#x63D0;&#x9AD8;&#x4EE3;&#x7801;&#x7F16;&#x5199;&#x7684;&#x5DE5;&#x4F5C;&#x6548;&#x7387;&#x3002;</p>
+<h3 id="&#x5B89;&#x88C5;">&#x5B89;&#x88C5;</h3>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt-get install vim</span><br></pre></td></tr></table></figure>
+<h3 id="&#x5E38;&#x7528;&#x547D;&#x4EE4;">&#x5E38;&#x7528;&#x547D;&#x4EE4;</h3>
+<p>&#x6309;ESC&#x540E;&#xFF0C;&#x8F93;&#x5165;&#x201C;:&#x201D;&#xFF0C;&#x8FDB;&#x884C;&#x547D;&#x4EE4;&#x64CD;&#x4F5C; w &#x4FDD;&#x5B58; q &#x9000;&#x51FA; /[&#x5B57;&#x7B26;&#x4E32;]
+&#x67E5;&#x627E;&#x5B57;&#x7B26;&#x4E32;&#xFF0C;&#x7136;&#x540E;&#x6309;n&#x67E5;&#x627E;&#x4E0B;&#x4E00;&#x4E2A;&#xFF0C;N&#x67E5;&#x627E;&#x4E0A;&#x4E00;&#x4E2A; &#xFF05;s
+&#x66FF;&#x6362;&#xFF0C;&#x4F8B;&#xFF1A;&#x5C06;&#x6574;&#x4E2A;&#x6587;&#x4EF6;&#x91CC;&#x7684;abcd&#x5168;&#x90E8;&#x66FF;&#x6362;&#x4E3A;efgh %s/abcd/efgh/g
+&#x8F93;&#x5165;&#x884C;&#x53F7;&#x56DE;&#x8F66;&#xFF0C;&#x8F6C;&#x5230;&#x884C; set paste
+&#x5207;&#x6362;&#x81F3;&#x7C98;&#x8D34;&#x6A21;&#x5F0F;&#xFF0C;&#x7C98;&#x4EE3;&#x7801;&#x65F6;&#x4E0D;&#x4F1A;&#x81EA;&#x52A8;&#x8865;&#x9F50;&#x53CA;&#x81EA;&#x52A8;&#x6CE8;&#x91CA; set nu/set nonu
+&#x663E;&#x793A;&#x5173;&#x95ED;&#x884C;&#x53F7;</p>
+<h3 id="&#x5FEB;&#x6377;&#x64CD;&#x4F5C;">&#x5FEB;&#x6377;&#x64CD;&#x4F5C;</h3>
+<p>i &#x63D2;&#x5165; x &#x5220;&#x9664;&#xFF08;&#x526A;&#x5207;&#xFF09; dd &#x5220;&#x9664;&#xFF08;&#x526A;&#x5207;&#xFF09;&#x4E00;&#x884C; yy &#x590D;&#x5236;&#x4E00;&#x884C; p &#x7C98;&#x8D34; v
+&#x5F00;&#x59CB;&#x9009;&#x4E2D;&#xFF0C;&#x53EF;&#x4EE5;&#x79FB;&#x52A8;&#x5149;&#x6807;&#x9009;&#x4E2D; $ &#x79FB;&#x5230;&#x884C;&#x5C3E; 0 &#x79FB;&#x5230;&#x884C;&#x9996; D &#x4ECE;&#x5F53;&#x524D;&#x4F4D;&#x7F6E;&#x5220;&#x9664;&#x5230;&#x884C;&#x5C3E;
+J &#x5220;&#x9664;&#x8BE5;&#x884C;&#x7684;&#x6362;&#x884C;&#x7B26;&#xFF0C;&#x4E0E;&#x4E0B;&#x4E00;&#x884C;&#x53D8;&#x6210;&#x4E00;&#x884C; u &#x64A4;&#x6D88;(&#x547D;&#x4EE4;red&#x662F;&#x91CD;&#x505A;) %
+&#x62EC;&#x53F7;&#x914D;&#x5BF9;(){}&#x7B49; &#x67E5;&#x627E;&#xFF1A;&#x5149;&#x6807;&#x79FB;&#x5230;&#x5355;&#x8BCD;&#x4E0A;&#xFF0C;&#x6309;*&#xFF0C;&#x76F4;&#x63A5;&#x67E5;&#x627E;&#x8FD9;&#x4E2A;&#x5355;&#x8BCD;
+&#x683C;&#x5F0F;&#x5316;&#x5BF9;&#x9F50;&#xFF1A;&#x6309;V&#x540E;&#xFF0C;&#x79FB;&#x52A8;&#x5149;&#x6807;&#xFF0C;&#x9009;&#x4E2D;&#x591A;&#x884C;&#x6587;&#x672C;&#xFF0C;&#x6309;=</p>
+<h3 id="&#x4EE3;&#x7801;&#x6D4F;&#x89C8;">&#x4EE3;&#x7801;&#x6D4F;&#x89C8;</h3>
+<p>&#x501F;&#x52A9;cscope&#x548C;ctags&#x80FD;&#x5728;vim&#x4E2D;&#x6D4F;&#x89C8;&#x4EE3;&#x7801;&#xFF0C;&#x8DF3;&#x8F6C;&#x51FD;&#x6570;&#xFF0C;&#x67E5;&#x627E;&#x5B9A;&#x4E49;&#x7B49;</p>
+<p>&#x5B89;&#x88C5;cscope&#x548C;ctags:</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">apt-get install cscope</span><br><span class="line">apt-get install exuberant-ctags</span><br></pre></td></tr></table></figure>
-
-<p> 转到代码目录执行：</p>
+<p>&#x8F6C;&#x5230;&#x4EE3;&#x7801;&#x76EE;&#x5F55;&#x6267;&#x884C;&#xFF1A;</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cscope -Rbq; ctags -R</span><br></pre></td></tr></table></figure>
-
-<p>当项目为C语言项目的时候不会出问题，如果操作python项目的时候可能会出现如下错误：</p>
+<p>&#x5F53;&#x9879;&#x76EE;&#x4E3A;C&#x8BED;&#x8A00;&#x9879;&#x76EE;&#x7684;&#x65F6;&#x5019;&#x4E0D;&#x4F1A;&#x51FA;&#x95EE;&#x9898;&#xFF0C;&#x5982;&#x679C;&#x64CD;&#x4F5C;python&#x9879;&#x76EE;&#x7684;&#x65F6;&#x5019;&#x53EF;&#x80FD;&#x4F1A;&#x51FA;&#x73B0;&#x5982;&#x4E0B;&#x9519;&#x8BEF;&#xFF1A;</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cscope: no source files found</span><br></pre></td></tr></table></figure>
-
-<p>这种是因为默认情况下cscope仅仅会在当前目录下针对c、iex和yacc（扩展名分别为.c、.h、.I、.y）程序文件进行解析（如果指定了-R参数则包含其自身的子目录）。py文件不在这个范畴之内，因此需要在代码路径中执行以下命令（以python为例）：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">find . -name &#x27;*.py&#x27; &gt; cscope.files</span><br><span class="line">cscope -Rbq; ctags -R</span><br></pre></td></tr></table></figure>
-
-
-
-<p>vim支持cscope的配置文件<a target="_blank" rel="noopener" href="https://pan.baidu.com/s/1JnMc5Ctz6_UjXdy6iiEUWw">vimcfg.tar.gz</a>(提取码：jqhm)解压到主目录</p>
-<p>vim -t &lt;函数名&gt;直接能跳转到函数<br> 进入vim后，光标转到函数名上，快捷键：<br> 转到函数定义：Ctrl+] 对应命令cs f g &lt;函数名&gt;<br> 返回跳转：Ctrl+t<br> 转到调用处：Ctrl+\松开后按c<br> 全文查找：Ctrl+\松开后按e</p>
-<p>F8函数变量定义列表<br> F6,F7多窗口切换</p>
-<h3 id="块操作"><a href="#块操作" class="headerlink" title="块操作"></a>块操作</h3><p>按快捷键v后，可进行块操作，移动光标选择文本块，并可选择多行文本块，<br> 选定后可进行x删除（剪切）、y复制等操作。<br> V(shift+v)选择整行；<br> Ctrl+v可以选择整列进行操作。<br> 选择列后，按x删除一列；<br> 选择列后，依次按I，字符(可多个)，ESC。可以增加一列字符；</p>
+<p>&#x8FD9;&#x79CD;&#x662F;&#x56E0;&#x4E3A;&#x9ED8;&#x8BA4;&#x60C5;&#x51B5;&#x4E0B;cscope&#x4EC5;&#x4EC5;&#x4F1A;&#x5728;&#x5F53;&#x524D;&#x76EE;&#x5F55;&#x4E0B;&#x9488;&#x5BF9;c&#x3001;iex&#x548C;yacc&#xFF08;&#x6269;&#x5C55;&#x540D;&#x5206;&#x522B;&#x4E3A;.c&#x3001;.h&#x3001;.I&#x3001;.y&#xFF09;&#x7A0B;&#x5E8F;&#x6587;&#x4EF6;&#x8FDB;&#x884C;&#x89E3;&#x6790;&#xFF08;&#x5982;&#x679C;&#x6307;&#x5B9A;&#x4E86;-R&#x53C2;&#x6570;&#x5219;&#x5305;&#x542B;&#x5176;&#x81EA;&#x8EAB;&#x7684;&#x5B50;&#x76EE;&#x5F55;&#xFF09;&#x3002;py&#x6587;&#x4EF6;&#x4E0D;&#x5728;&#x8FD9;&#x4E2A;&#x8303;&#x7574;&#x4E4B;&#x5185;&#xFF0C;&#x56E0;&#x6B64;&#x9700;&#x8981;&#x5728;&#x4EE3;&#x7801;&#x8DEF;&#x5F84;&#x4E2D;&#x6267;&#x884C;&#x4EE5;&#x4E0B;&#x547D;&#x4EE4;&#xFF08;&#x4EE5;python&#x4E3A;&#x4F8B;&#xFF09;&#xFF1A;</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">find . -name &apos;*.py&apos; &gt; cscope.files</span><br><span class="line">cscope -Rbq; ctags -R</span><br></pre></td></tr></table></figure>
+<p>vim&#x652F;&#x6301;cscope&#x7684;&#x914D;&#x7F6E;&#x6587;&#x4EF6;<a target="_blank" rel="noopener" href="https://pan.baidu.com/s/1JnMc5Ctz6_UjXdy6iiEUWw">vimcfg.tar.gz</a>(&#x63D0;&#x53D6;&#x7801;&#xFF1A;jqhm)&#x89E3;&#x538B;&#x5230;&#x4E3B;&#x76EE;&#x5F55;</p>
+<p>vim -t <函数名>&#x76F4;&#x63A5;&#x80FD;&#x8DF3;&#x8F6C;&#x5230;&#x51FD;&#x6570; &#x8FDB;&#x5165;vim&#x540E;&#xFF0C;&#x5149;&#x6807;&#x8F6C;&#x5230;&#x51FD;&#x6570;&#x540D;&#x4E0A;&#xFF0C;&#x5FEB;&#x6377;&#x952E;&#xFF1A;
+&#x8F6C;&#x5230;&#x51FD;&#x6570;&#x5B9A;&#x4E49;&#xFF1A;Ctrl+] &#x5BF9;&#x5E94;&#x547D;&#x4EE4;cs f g <函数名> &#x8FD4;&#x56DE;&#x8DF3;&#x8F6C;&#xFF1A;Ctrl+t
+&#x8F6C;&#x5230;&#x8C03;&#x7528;&#x5904;&#xFF1A;Ctrl+ &#x5168;&#x6587;&#x67E5;&#x627E;&#xFF1A;Ctrl+</函数名></函数名></p>
+<p>F8&#x51FD;&#x6570;&#x53D8;&#x91CF;&#x5B9A;&#x4E49;&#x5217;&#x8868; F6,F7&#x591A;&#x7A97;&#x53E3;&#x5207;&#x6362;</p>
+<h3 id="&#x5757;&#x64CD;&#x4F5C;">&#x5757;&#x64CD;&#x4F5C;</h3>
+<p>&#x6309;&#x5FEB;&#x6377;&#x952E;v&#x540E;&#xFF0C;&#x53EF;&#x8FDB;&#x884C;&#x5757;&#x64CD;&#x4F5C;&#xFF0C;&#x79FB;&#x52A8;&#x5149;&#x6807;&#x9009;&#x62E9;&#x6587;&#x672C;&#x5757;&#xFF0C;&#x5E76;&#x53EF;&#x9009;&#x62E9;&#x591A;&#x884C;&#x6587;&#x672C;&#x5757;&#xFF0C;
+&#x9009;&#x5B9A;&#x540E;&#x53EF;&#x8FDB;&#x884C;x&#x5220;&#x9664;&#xFF08;&#x526A;&#x5207;&#xFF09;&#x3001;y&#x590D;&#x5236;&#x7B49;&#x64CD;&#x4F5C;&#x3002; V(shift+v)&#x9009;&#x62E9;&#x6574;&#x884C;&#xFF1B;
+Ctrl+v&#x53EF;&#x4EE5;&#x9009;&#x62E9;&#x6574;&#x5217;&#x8FDB;&#x884C;&#x64CD;&#x4F5C;&#x3002; &#x9009;&#x62E9;&#x5217;&#x540E;&#xFF0C;&#x6309;x&#x5220;&#x9664;&#x4E00;&#x5217;&#xFF1B;
+&#x9009;&#x62E9;&#x5217;&#x540E;&#xFF0C;&#x4F9D;&#x6B21;&#x6309;I&#xFF0C;&#x5B57;&#x7B26;(&#x53EF;&#x591A;&#x4E2A;)&#xFF0C;ESC&#x3002;&#x53EF;&#x4EE5;&#x589E;&#x52A0;&#x4E00;&#x5217;&#x5B57;&#x7B26;&#xFF1B;</p>
 
     </div>
 
@@ -397,6 +410,12 @@
 
   <script class="next-config" data-name="leancloud_visitors" type="application/json">{"enable":true,"app_id":"nG09szIvM8x9ehgslCULWzg2-MdYXbMMI","app_key":"yHykoRL88ikgLTqsUC0xIMvY","server_url":null,"security":false}</script>
   <script src="/js/third-party/statistics/lean-analytics.js"></script>
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdn.jsdelivr.net/npm/mathjax@3.2.0/es5/tex-mml-chtml.js","integrity":"sha256-r+3itOMtGGjap0x+10hu6jW/gZCzxHsoKrOd7gyRSGY="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
 
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">

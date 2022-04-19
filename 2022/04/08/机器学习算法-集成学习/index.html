@@ -19,25 +19,25 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"sidney-neu.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.8.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":{"gitalk":{"order":-1}},"activeClass":"gitalk"},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.json","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
-<meta name="description" content="集成学习概述集成学习（ensemble learning）本身不是一个单独的机器学习算法，是一种机器学习的范式，通过构架并组合多个机器学习算法模型来完成学习任务。集成学习属于一种策略，通过组合若干个个体学习器（individual learner），通过一定的组合策略，最终形成一个强学习器模型。 集成学习的分类根据个体学习器的组合关系分类根据个体学习器的组合关系，可以将集成学习分为串行集成学习和并">
+<meta name="description" content="&amp;#x96C6;&amp;#x6210;&amp;#x5B66;&amp;#x4E60;&amp;#x6982;&amp;#x8FF0; &amp;#x96C6;&amp;#x6210;&amp;#x5B66;&amp;#x4E60;&amp;#xFF08;ensemble learning&amp;#xFF09;&amp;#x672C;&amp;#x8EAB;&amp;#x4E0D;&amp;#x662F;&amp;#x4E00;&amp;#x4E2A;&amp;#x5355;&amp;#x72EC;&amp;#x7684;&amp;#x673A;&amp;#x566">
 <meta property="og:type" content="article">
 <meta property="og:title" content="机器学习算法-集成学习">
 <meta property="og:url" content="https://sidney-neu.github.io/2022/04/08/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95-%E9%9B%86%E6%88%90%E5%AD%A6%E4%B9%A0/index.html">
 <meta property="og:site_name" content="Yoo shen的博客">
-<meta property="og:description" content="集成学习概述集成学习（ensemble learning）本身不是一个单独的机器学习算法，是一种机器学习的范式，通过构架并组合多个机器学习算法模型来完成学习任务。集成学习属于一种策略，通过组合若干个个体学习器（individual learner），通过一定的组合策略，最终形成一个强学习器模型。 集成学习的分类根据个体学习器的组合关系分类根据个体学习器的组合关系，可以将集成学习分为串行集成学习和并">
+<meta property="og:description" content="&amp;#x96C6;&amp;#x6210;&amp;#x5B66;&amp;#x4E60;&amp;#x6982;&amp;#x8FF0; &amp;#x96C6;&amp;#x6210;&amp;#x5B66;&amp;#x4E60;&amp;#xFF08;ensemble learning&amp;#xFF09;&amp;#x672C;&amp;#x8EAB;&amp;#x4E0D;&amp;#x662F;&amp;#x4E00;&amp;#x4E2A;&amp;#x5355;&amp;#x72EC;&amp;#x7684;&amp;#x673A;&amp;#x566">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://sidney-neu.github.io/images/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95-%E9%9B%86%E6%88%90%E5%AD%A6%E4%B9%A0/Bagging%E7%9A%84%E7%AE%97%E6%B3%95%E6%B5%81%E7%A8%8B.PNG">
-<meta property="og:image" content="https://sidney-neu.github.io/images/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95-%E9%9B%86%E6%88%90%E5%AD%A6%E4%B9%A0/Bagging%E7%9A%84%E7%AE%97%E6%B3%95%E6%A1%86%E6%9E%B6.jpg">
-<meta property="og:image" content="https://sidney-neu.github.io/images/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95-%E9%9B%86%E6%88%90%E5%AD%A6%E4%B9%A0/Adaboost%E5%A4%84%E7%90%86%E6%B5%81%E7%A8%8B.PNG">
-<meta property="og:image" content="https://sidney-neu.github.io/images/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95-%E9%9B%86%E6%88%90%E5%AD%A6%E4%B9%A0/Boosting%E7%9A%84%E5%A4%84%E7%90%86%E6%A1%86%E6%9E%B6.jpg">
-<meta property="og:image" content="https://sidney-neu.github.io/images/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95-%E9%9B%86%E6%88%90%E5%AD%A6%E4%B9%A0/Stacking%E7%9A%84%E5%A4%84%E7%90%86%E6%B5%81%E7%A8%8B.PNG">
-<meta property="og:image" content="https://sidney-neu.github.io/images/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95-%E9%9B%86%E6%88%90%E5%AD%A6%E4%B9%A0/Stacking%E7%9A%84%E5%A4%84%E7%90%86%E6%A1%86%E6%9E%B6.jpg">
-<meta property="og:image" content="https://sidney-neu.github.io/images/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95-%E9%9B%86%E6%88%90%E5%AD%A6%E4%B9%A0/Blending%E7%9A%84%E5%A4%84%E7%90%86%E6%9E%B6%E6%9E%84.jpg">
+<meta property="og:image" content="https://sidney-neu.github.io/2022/04/08/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95-%E9%9B%86%E6%88%90%E5%AD%A6%E4%B9%A0/Bagging&#x7684;&#x7B97;&#x6CD5;&#x6D41;&#x7A0B;.PNG">
+<meta property="og:image" content="https://sidney-neu.github.io/2022/04/08/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95-%E9%9B%86%E6%88%90%E5%AD%A6%E4%B9%A0/Bagging&#x7684;&#x7B97;&#x6CD5;&#x6846;&#x67B6;.jpg">
+<meta property="og:image" content="https://sidney-neu.github.io/2022/04/08/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95-%E9%9B%86%E6%88%90%E5%AD%A6%E4%B9%A0/Adaboost&#x5904;&#x7406;&#x6D41;&#x7A0B;.PNG">
+<meta property="og:image" content="https://sidney-neu.github.io/2022/04/08/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95-%E9%9B%86%E6%88%90%E5%AD%A6%E4%B9%A0/Boosting&#x7684;&#x5904;&#x7406;&#x6846;&#x67B6;.jpg">
+<meta property="og:image" content="https://sidney-neu.github.io/2022/04/08/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95-%E9%9B%86%E6%88%90%E5%AD%A6%E4%B9%A0/Stacking&#x7684;&#x5904;&#x7406;&#x6D41;&#x7A0B;.PNG">
+<meta property="og:image" content="https://sidney-neu.github.io/2022/04/08/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95-%E9%9B%86%E6%88%90%E5%AD%A6%E4%B9%A0/Stacking&#x7684;&#x5904;&#x7406;&#x6846;&#x67B6;.jpg">
+<meta property="og:image" content="https://sidney-neu.github.io/2022/04/08/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95-%E9%9B%86%E6%88%90%E5%AD%A6%E4%B9%A0/Blending&#x7684;&#x5904;&#x7406;&#x67B6;&#x6784;.jpg">
 <meta property="article:published_time" content="2022-04-08T13:45:00.000Z">
-<meta property="article:modified_time" content="2022-04-08T10:25:01.139Z">
+<meta property="article:modified_time" content="2022-04-18T03:14:00.139Z">
 <meta property="article:author" content="Yoo Shen">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://sidney-neu.github.io/images/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95-%E9%9B%86%E6%88%90%E5%AD%A6%E4%B9%A0/Bagging%E7%9A%84%E7%AE%97%E6%B3%95%E6%B5%81%E7%A8%8B.PNG">
+<meta name="twitter:image" content="https://sidney-neu.github.io/2022/04/08/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95-%E9%9B%86%E6%88%90%E5%AD%A6%E4%B9%A0/Bagging&#x7684;&#x7B97;&#x6CD5;&#x6D41;&#x7A0B;.PNG">
 
 
 <link rel="canonical" href="https://sidney-neu.github.io/2022/04/08/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95-%E9%9B%86%E6%88%90%E5%AD%A6%E4%B9%A0/">
@@ -94,8 +94,8 @@
 <nav class="site-nav">
   <ul class="main-menu menu">
         <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
-        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">17</span></a></li>
-        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">29</span></a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">12</span></a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">32</span></a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -152,7 +152,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9B%86%E6%88%90%E5%AD%A6%E4%B9%A0%E6%A6%82%E8%BF%B0"><span class="nav-number">1.</span> <span class="nav-text">集成学习概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9B%86%E6%88%90%E5%AD%A6%E4%B9%A0%E7%9A%84%E5%88%86%E7%B1%BB"><span class="nav-number">2.</span> <span class="nav-text">集成学习的分类</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A0%B9%E6%8D%AE%E4%B8%AA%E4%BD%93%E5%AD%A6%E4%B9%A0%E5%99%A8%E7%9A%84%E7%BB%84%E5%90%88%E5%85%B3%E7%B3%BB%E5%88%86%E7%B1%BB"><span class="nav-number">2.1.</span> <span class="nav-text">根据个体学习器的组合关系分类</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%B8%B2%E8%A1%8C%E9%9B%86%E6%88%90%E5%AD%A6%E4%B9%A0"><span class="nav-number">2.1.1.</span> <span class="nav-text">串行集成学习</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%B9%B6%E8%A1%8C%E9%9B%86%E6%88%90%E5%AD%A6%E4%B9%A0"><span class="nav-number">2.1.2.</span> <span class="nav-text">并行集成学习</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A0%B9%E6%8D%AE%E4%B8%AA%E4%BD%93%E5%AD%A6%E4%B9%A0%E5%99%A8%E7%9A%84%E5%BC%82%E5%90%8C%E5%88%86%E7%B1%BB"><span class="nav-number">2.2.</span> <span class="nav-text">根据个体学习器的异同分类</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%90%8C%E8%B4%A8%E9%9B%86%E6%88%90%E5%AD%A6%E4%B9%A0"><span class="nav-number">2.2.1.</span> <span class="nav-text">同质集成学习</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%BC%82%E8%B4%A8%E9%9B%86%E6%88%90%E5%AD%A6%E4%B9%A0"><span class="nav-number">2.2.2.</span> <span class="nav-text">异质集成学习</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9B%86%E6%88%90%E5%AD%A6%E4%B9%A0%E6%A1%86%E6%9E%B6"><span class="nav-number">3.</span> <span class="nav-text">集成学习框架</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Bagging%E6%A1%86%E6%9E%B6"><span class="nav-number">3.1.</span> <span class="nav-text">Bagging框架</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Bagging%E7%9A%84%E5%A4%84%E7%90%86%E6%B5%81%E7%A8%8B"><span class="nav-number">3.1.1.</span> <span class="nav-text">Bagging的处理流程</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Bagging%E7%9A%84%E5%A4%84%E7%90%86%E6%A1%86%E6%9E%B6"><span class="nav-number">3.1.2.</span> <span class="nav-text">Bagging的处理框架</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Bagging%E7%9A%84%E7%89%B9%E7%82%B9"><span class="nav-number">3.1.3.</span> <span class="nav-text">Bagging的特点</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Boosting%E6%A1%86%E6%9E%B6"><span class="nav-number">3.2.</span> <span class="nav-text">Boosting框架</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#AdaBoost%E7%9A%84%E5%A4%84%E7%90%86%E6%B5%81%E7%A8%8B"><span class="nav-number">3.2.1.</span> <span class="nav-text">AdaBoost的处理流程</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Boosting%E7%9A%84%E5%A4%84%E7%90%86%E6%A1%86%E6%9E%B6"><span class="nav-number">3.2.2.</span> <span class="nav-text">Boosting的处理框架</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Boosting%E7%9A%84%E7%89%B9%E7%82%B9"><span class="nav-number">3.2.3.</span> <span class="nav-text">Boosting的特点</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Stacking%E6%A1%86%E6%9E%B6"><span class="nav-number">3.3.</span> <span class="nav-text">Stacking框架</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Stacking%E7%9A%84%E5%A4%84%E7%90%86%E6%B5%81%E7%A8%8B"><span class="nav-number">3.3.1.</span> <span class="nav-text">Stacking的处理流程</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Stacking%E7%9A%84%E5%A4%84%E7%90%86%E6%A1%86%E6%9E%B6"><span class="nav-number">3.3.2.</span> <span class="nav-text">Stacking的处理框架</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Stacking%E7%9A%84%E7%89%B9%E7%82%B9"><span class="nav-number">3.3.3.</span> <span class="nav-text">Stacking的特点</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Blending%E6%A1%86%E6%9E%B6"><span class="nav-number">3.4.</span> <span class="nav-text">Blending框架</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Blending%E7%9A%84%E5%A4%84%E7%90%86%E6%B5%81%E7%A8%8B"><span class="nav-number">3.4.1.</span> <span class="nav-text">Blending的处理流程</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Blend%E7%9A%84%E5%A4%84%E7%90%86%E6%9E%B6%E6%9E%84"><span class="nav-number">3.4.2.</span> <span class="nav-text">Blend的处理架构</span></a></li></ol></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9B%86%E6%88%90%E5%AD%A6%E4%B9%A0%E6%A6%82%E8%BF%B0"><span class="nav-number">1.</span> <span class="nav-text">集成学习概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9B%86%E6%88%90%E5%AD%A6%E4%B9%A0%E7%9A%84%E5%88%86%E7%B1%BB"><span class="nav-number">2.</span> <span class="nav-text">集成学习的分类</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A0%B9%E6%8D%AE%E4%B8%AA%E4%BD%93%E5%AD%A6%E4%B9%A0%E5%99%A8%E7%9A%84%E7%BB%84%E5%90%88%E5%85%B3%E7%B3%BB%E5%88%86%E7%B1%BB"><span class="nav-number">2.1.</span> <span class="nav-text">根据个体学习器的组合关系分类</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%B2%E8%A1%8C%E9%9B%86%E6%88%90%E5%AD%A6%E4%B9%A0"><span class="nav-number">2.1.1.</span> <span class="nav-text">串行集成学习</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B9%B6%E8%A1%8C%E9%9B%86%E6%88%90%E5%AD%A6%E4%B9%A0"><span class="nav-number">2.1.2.</span> <span class="nav-text">并行集成学习</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A0%B9%E6%8D%AE%E4%B8%AA%E4%BD%93%E5%AD%A6%E4%B9%A0%E5%99%A8%E7%9A%84%E5%BC%82%E5%90%8C%E5%88%86%E7%B1%BB"><span class="nav-number">2.2.</span> <span class="nav-text">根据个体学习器的异同分类</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%90%8C%E8%B4%A8%E9%9B%86%E6%88%90%E5%AD%A6%E4%B9%A0"><span class="nav-number">2.2.1.</span> <span class="nav-text">同质集成学习</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BC%82%E8%B4%A8%E9%9B%86%E6%88%90%E5%AD%A6%E4%B9%A0"><span class="nav-number">2.2.2.</span> <span class="nav-text">异质集成学习</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9B%86%E6%88%90%E5%AD%A6%E4%B9%A0%E6%A1%86%E6%9E%B6"><span class="nav-number">3.</span> <span class="nav-text">集成学习框架</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#bagging%E6%A1%86%E6%9E%B6"><span class="nav-number">3.1.</span> <span class="nav-text">Bagging框架</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#bagging%E7%9A%84%E5%A4%84%E7%90%86%E6%B5%81%E7%A8%8B"><span class="nav-number">3.1.1.</span> <span class="nav-text">Bagging的处理流程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#bagging%E7%9A%84%E5%A4%84%E7%90%86%E6%A1%86%E6%9E%B6"><span class="nav-number">3.1.2.</span> <span class="nav-text">Bagging的处理框架</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#bagging%E7%9A%84%E7%89%B9%E7%82%B9"><span class="nav-number">3.1.3.</span> <span class="nav-text">Bagging的特点</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#boosting%E6%A1%86%E6%9E%B6"><span class="nav-number">3.2.</span> <span class="nav-text">Boosting框架</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#adaboost%E7%9A%84%E5%A4%84%E7%90%86%E6%B5%81%E7%A8%8B"><span class="nav-number">3.2.1.</span> <span class="nav-text">AdaBoost的处理流程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#boosting%E7%9A%84%E5%A4%84%E7%90%86%E6%A1%86%E6%9E%B6"><span class="nav-number">3.2.2.</span> <span class="nav-text">Boosting的处理框架</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#boosting%E7%9A%84%E7%89%B9%E7%82%B9"><span class="nav-number">3.2.3.</span> <span class="nav-text">Boosting的特点</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#stacking%E6%A1%86%E6%9E%B6"><span class="nav-number">3.3.</span> <span class="nav-text">Stacking框架</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#stacking%E7%9A%84%E5%A4%84%E7%90%86%E6%B5%81%E7%A8%8B"><span class="nav-number">3.3.1.</span> <span class="nav-text">Stacking的处理流程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#stacking%E7%9A%84%E5%A4%84%E7%90%86%E6%A1%86%E6%9E%B6"><span class="nav-number">3.3.2.</span> <span class="nav-text">Stacking的处理框架</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#stacking%E7%9A%84%E7%89%B9%E7%82%B9"><span class="nav-number">3.3.3.</span> <span class="nav-text">Stacking的特点</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#blending%E6%A1%86%E6%9E%B6"><span class="nav-number">3.4.</span> <span class="nav-text">Blending框架</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#blending%E7%9A%84%E5%A4%84%E7%90%86%E6%B5%81%E7%A8%8B"><span class="nav-number">3.4.1.</span> <span class="nav-text">Blending的处理流程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#blend%E7%9A%84%E5%A4%84%E7%90%86%E6%9E%B6%E6%9E%84"><span class="nav-number">3.4.2.</span> <span class="nav-text">Blend的处理架构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#blend%E7%9A%84%E7%89%B9%E7%82%B9"><span class="nav-number">3.4.3.</span> <span class="nav-text">Blend的特点</span></a></li></ol></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -165,13 +165,13 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">29</span>
+          <span class="site-state-item-count">32</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-count">12</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
   </nav>
@@ -238,9 +238,15 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
-      
 
-      <time title="创建时间：2022-04-08 21:45:00 / 修改时间：18:25:01" itemprop="dateCreated datePublished" datetime="2022-04-08T21:45:00+08:00">2022-04-08</time>
+      <time title="创建时间：2022-04-08 21:45:00" itemprop="dateCreated datePublished" datetime="2022-04-08T21:45:00+08:00">2022-04-08</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-04-18 11:14:00" itemprop="dateModified" datetime="2022-04-18T11:14:00+08:00">2022-04-18</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -269,47 +275,75 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <h3 id="集成学习概述"><a href="#集成学习概述" class="headerlink" title="集成学习概述"></a>集成学习概述</h3><p>集成学习（ensemble learning）本身不是一个单独的机器学习算法，是一种机器学习的范式，通过构架并组合多个机器学习算法模型来完成学习任务。集成学习属于一种策略，通过组合若干个个体学习器（individual learner），通过一定的组合策略，最终形成一个强学习器模型。</p>
-<h3 id="集成学习的分类"><a href="#集成学习的分类" class="headerlink" title="集成学习的分类"></a>集成学习的分类</h3><h4 id="根据个体学习器的组合关系分类"><a href="#根据个体学习器的组合关系分类" class="headerlink" title="根据个体学习器的组合关系分类"></a>根据个体学习器的组合关系分类</h4><p>根据个体学习器的组合关系，可以将集成学习分为串行集成学习和并行集成学习。</p>
-<h5 id="串行集成学习"><a href="#串行集成学习" class="headerlink" title="串行集成学习"></a>串行集成学习</h5><p>串行集成学习的原理是将上一个 个体学习器的分类错误的样本给一个较大的权重输入给下一个个体学习器。通过后续的个体学习器对之前分类错误的纠正，来提高模型的整体性能。</p>
-<p>个体学习器1 ——————————-&gt;个体学习器2 ——————————-&gt;个体学习器3——-&gt;检测结果</p>
-<p>​                         分类错误的样本加权                            分类错误的样本加权</p>
-<h5 id="并行集成学习"><a href="#并行集成学习" class="headerlink" title="并行集成学习"></a>并行集成学习</h5><p>并行集成学习是通过样本和特征的bootstrapping的方法来保证各个个体学习器之间的独立性和差异性，然后通过投票的方法给出最终分类结果，并通过个体学习器之间的独立性和差异性提高模型的抗过拟合能力。</p>
-<p>个体学习器1—————|</p>
-<p>个体学习器2—————|—————-&gt;投票给出检测结果</p>
-<p>个体学习器3—————|</p>
-<h4 id="根据个体学习器的异同分类"><a href="#根据个体学习器的异同分类" class="headerlink" title="根据个体学习器的异同分类"></a>根据个体学习器的异同分类</h4><h5 id="同质集成学习"><a href="#同质集成学习" class="headerlink" title="同质集成学习"></a>同质集成学习</h5><p>各个个体学习器都是通过同一个基础算法生成的。</p>
-<h5 id="异质集成学习"><a href="#异质集成学习" class="headerlink" title="异质集成学习"></a>异质集成学习</h5><p>各个个体学习器是通过不同的基础算法生成的。</p>
-<h3 id="集成学习框架"><a href="#集成学习框架" class="headerlink" title="集成学习框架"></a>集成学习框架</h3><h4 id="Bagging框架"><a href="#Bagging框架" class="headerlink" title="Bagging框架"></a>Bagging框架</h4><p>Bagging可以理解为聚合引导的意思。通过bootstrap的方法将训练集划分为多个子训练集，并将每一个子训练集用来训练一个个体学习器，最终通过投票的方法获得最终预测结果。</p>
-<h5 id="Bagging的处理流程"><a href="#Bagging的处理流程" class="headerlink" title="Bagging的处理流程"></a>Bagging的处理流程</h5><p>如图：</p>
-<p><img src="/../images/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95-%E9%9B%86%E6%88%90%E5%AD%A6%E4%B9%A0/Bagging%E7%9A%84%E7%AE%97%E6%B3%95%E6%B5%81%E7%A8%8B.PNG" alt="Bagging的算法流程"></p>
-<h5 id="Bagging的处理框架"><a href="#Bagging的处理框架" class="headerlink" title="Bagging的处理框架"></a>Bagging的处理框架</h5><p>如图：</p>
-<p><img src="/../images/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95-%E9%9B%86%E6%88%90%E5%AD%A6%E4%B9%A0/Bagging%E7%9A%84%E7%AE%97%E6%B3%95%E6%A1%86%E6%9E%B6.jpg" alt="Bagging的算法框架"></p>
-<h5 id="Bagging的特点"><a href="#Bagging的特点" class="headerlink" title="Bagging的特点"></a>Bagging的特点</h5><p>因为Bagging通过bootstrap的方法构建了存在明显差异的个体学习器，因此这种架构可以有效的解决模型的方差问题。可以很好的缓解过拟合的问题。并且每个个体学习器都是强模型，有独立的分类能力，因此会Bagging会出现高偏差低方差的现象。</p>
-<h4 id="Boosting框架"><a href="#Boosting框架" class="headerlink" title="Boosting框架"></a>Boosting框架</h4><p>Boosting可以理解为是通过结合多个弱分类器的结果，形成一个强分类器。这里提到的弱分类器是指仅仅比随机猜测好一点点的模型，比如一个较小的决策树，或者一个简单的线性分割器。Boosting和Bagging的区别就是Bagging可以对个体学习器进行并行的训练；而Boosting需要利用加权后的数据对多个弱分类器依次的串行训练。</p>
-<h5 id="AdaBoost的处理流程"><a href="#AdaBoost的处理流程" class="headerlink" title="AdaBoost的处理流程"></a>AdaBoost的处理流程</h5><p>如图：</p>
-<p><img src="/../images/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95-%E9%9B%86%E6%88%90%E5%AD%A6%E4%B9%A0/Adaboost%E5%A4%84%E7%90%86%E6%B5%81%E7%A8%8B.PNG" alt="Adaboost处理流程"></p>
-<h5 id="Boosting的处理框架"><a href="#Boosting的处理框架" class="headerlink" title="Boosting的处理框架"></a>Boosting的处理框架</h5><p>如图：</p>
-<p><img src="/../images/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95-%E9%9B%86%E6%88%90%E5%AD%A6%E4%B9%A0/Boosting%E7%9A%84%E5%A4%84%E7%90%86%E6%A1%86%E6%9E%B6.jpg" alt="Boosting的处理框架"></p>
-<h5 id="Boosting的特点"><a href="#Boosting的特点" class="headerlink" title="Boosting的特点"></a>Boosting的特点</h5><p>因为Bagging通过弱分类器的方法可以有很好的检测精度，因此这种架构可以有效的解决模型的偏差问题。可以很好的缓解欠拟合的问题。并且每个个体学习器都是弱模型，并没有独立的分类能力，因此会Bagging会出现低偏差高方差的现象。</p>
-<h4 id="Stacking框架"><a href="#Stacking框架" class="headerlink" title="Stacking框架"></a>Stacking框架</h4><p>Stacking框架与Bagging框架有一些类似，比如个体学习器都是强分类器，并且各个体学习器可以并行训练得出。不同的地方在于bagging的检测结果是对个体学习器检测结果的综合，但是Stacking框架是将个体学习器的检测结果作为最终检测模型的输入。简而言之，stacking把投票变成了另一个模型。</p>
-<h5 id="Stacking的处理流程"><a href="#Stacking的处理流程" class="headerlink" title="Stacking的处理流程"></a>Stacking的处理流程</h5><p>如图：</p>
-<p><img src="/../images/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95-%E9%9B%86%E6%88%90%E5%AD%A6%E4%B9%A0/Stacking%E7%9A%84%E5%A4%84%E7%90%86%E6%B5%81%E7%A8%8B.PNG" alt="Stacking的处理框架"></p>
-<h5 id="Stacking的处理框架"><a href="#Stacking的处理框架" class="headerlink" title="Stacking的处理框架"></a>Stacking的处理框架</h5><p>如图：</p>
-<p><img src="/../images/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95-%E9%9B%86%E6%88%90%E5%AD%A6%E4%B9%A0/Stacking%E7%9A%84%E5%A4%84%E7%90%86%E6%A1%86%E6%9E%B6.jpg" alt="Stacking的处理框架"></p>
-<h5 id="Stacking的特点"><a href="#Stacking的特点" class="headerlink" title="Stacking的特点"></a>Stacking的特点</h5><p>Stacking其实更符合大家对集成学习的猜想，相较于Bagging，它在个体学习器的检测结果之后，并没有简单的进行综合，而是将多个检测结果作为输入，训练一个新的元模型作为最终的分类器。基模型（个体学习器）其实更像是一种介于特征处理和检测模型中间的一种装置。</p>
-<h4 id="Blending框架"><a href="#Blending框架" class="headerlink" title="Blending框架"></a>Blending框架</h4><p>blending框架是对Stacking框架的一种优化，主要是将基模型的训练数据和原模型的训练数据分开，这样就可以提高元模型与基模型的关联程度。更好的把基模型从一个检测模型转化成一个特征处理方式。而且这种处理方式可以降低人为的参与程度。</p>
-<h5 id="Blending的处理流程"><a href="#Blending的处理流程" class="headerlink" title="Blending的处理流程"></a>Blending的处理流程</h5><p>流程如下：</p>
-<p>1.将原始训练集T分为训练集T<sub>train</sub>和验证集T<sub>valid</sub></p>
-<p>2.用T<sub>train</sub>训练多个基模型</p>
-<p>3.用多个基模型预测验证集T<sub>valid</sub>，将预测结果作为新的训练数据T<sub>mate</sub></p>
-<p>4.用T<sub>mate</sub>训练一个元模型</p>
-<p>5.使用多个基模型对测试集进行预测，生成新的测试集</p>
-<p>6.使用元模型对新生成的测试集预测，得出最终的结果。</p>
-<h5 id="Blend的处理架构"><a href="#Blend的处理架构" class="headerlink" title="Blend的处理架构"></a>Blend的处理架构</h5><p>如图：</p>
-<p><img src="/../images/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95-%E9%9B%86%E6%88%90%E5%AD%A6%E4%B9%A0/Blending%E7%9A%84%E5%A4%84%E7%90%86%E6%9E%B6%E6%9E%84.jpg" alt="Blending的处理架构"></p>
-<p>Blend的特点</p>
-<p>对Stacking的优化，原始训练数据集分成训练数据集和验证数据集，通过训练数据集训练基模型，并将基模型作为特征处理方法对验证数据集进行进一步的特征处理。</p>
+        <h2 id="&#x96C6;&#x6210;&#x5B66;&#x4E60;&#x6982;&#x8FF0;">&#x96C6;&#x6210;&#x5B66;&#x4E60;&#x6982;&#x8FF0;</h2>
+<p>&#x96C6;&#x6210;&#x5B66;&#x4E60;&#xFF08;ensemble
+learning&#xFF09;&#x672C;&#x8EAB;&#x4E0D;&#x662F;&#x4E00;&#x4E2A;&#x5355;&#x72EC;&#x7684;&#x673A;&#x5668;&#x5B66;&#x4E60;&#x7B97;&#x6CD5;&#xFF0C;&#x662F;&#x4E00;&#x79CD;&#x673A;&#x5668;&#x5B66;&#x4E60;&#x7684;&#x8303;&#x5F0F;&#xFF0C;&#x901A;&#x8FC7;&#x6784;&#x67B6;&#x5E76;&#x7EC4;&#x5408;&#x591A;&#x4E2A;&#x673A;&#x5668;&#x5B66;&#x4E60;&#x7B97;&#x6CD5;&#x6A21;&#x578B;&#x6765;&#x5B8C;&#x6210;&#x5B66;&#x4E60;&#x4EFB;&#x52A1;&#x3002;&#x96C6;&#x6210;&#x5B66;&#x4E60;&#x5C5E;&#x4E8E;&#x4E00;&#x79CD;&#x7B56;&#x7565;&#xFF0C;&#x901A;&#x8FC7;&#x7EC4;&#x5408;&#x82E5;&#x5E72;&#x4E2A;&#x4E2A;&#x4F53;&#x5B66;&#x4E60;&#x5668;&#xFF08;individual
+learner&#xFF09;&#xFF0C;&#x901A;&#x8FC7;&#x4E00;&#x5B9A;&#x7684;&#x7EC4;&#x5408;&#x7B56;&#x7565;&#xFF0C;&#x6700;&#x7EC8;&#x5F62;&#x6210;&#x4E00;&#x4E2A;&#x5F3A;&#x5B66;&#x4E60;&#x5668;&#x6A21;&#x578B;&#x3002;</p>
+<h2 id="&#x96C6;&#x6210;&#x5B66;&#x4E60;&#x7684;&#x5206;&#x7C7B;">&#x96C6;&#x6210;&#x5B66;&#x4E60;&#x7684;&#x5206;&#x7C7B;</h2>
+<h3 id="&#x6839;&#x636E;&#x4E2A;&#x4F53;&#x5B66;&#x4E60;&#x5668;&#x7684;&#x7EC4;&#x5408;&#x5173;&#x7CFB;&#x5206;&#x7C7B;">&#x6839;&#x636E;&#x4E2A;&#x4F53;&#x5B66;&#x4E60;&#x5668;&#x7684;&#x7EC4;&#x5408;&#x5173;&#x7CFB;&#x5206;&#x7C7B;</h3>
+<p>&#x6839;&#x636E;&#x4E2A;&#x4F53;&#x5B66;&#x4E60;&#x5668;&#x7684;&#x7EC4;&#x5408;&#x5173;&#x7CFB;&#xFF0C;&#x53EF;&#x4EE5;&#x5C06;&#x96C6;&#x6210;&#x5B66;&#x4E60;&#x5206;&#x4E3A;&#x4E32;&#x884C;&#x96C6;&#x6210;&#x5B66;&#x4E60;&#x548C;&#x5E76;&#x884C;&#x96C6;&#x6210;&#x5B66;&#x4E60;&#x3002;</p>
+<h4 id="&#x4E32;&#x884C;&#x96C6;&#x6210;&#x5B66;&#x4E60;">&#x4E32;&#x884C;&#x96C6;&#x6210;&#x5B66;&#x4E60;</h4>
+<p>&#x4E32;&#x884C;&#x96C6;&#x6210;&#x5B66;&#x4E60;&#x7684;&#x539F;&#x7406;&#x662F;&#x5C06;&#x4E0A;&#x4E00;&#x4E2A;
+&#x4E2A;&#x4F53;&#x5B66;&#x4E60;&#x5668;&#x7684;&#x5206;&#x7C7B;&#x9519;&#x8BEF;&#x7684;&#x6837;&#x672C;&#x7ED9;&#x4E00;&#x4E2A;&#x8F83;&#x5927;&#x7684;&#x6743;&#x91CD;&#x8F93;&#x5165;&#x7ED9;&#x4E0B;&#x4E00;&#x4E2A;&#x4E2A;&#x4F53;&#x5B66;&#x4E60;&#x5668;&#x3002;&#x901A;&#x8FC7;&#x540E;&#x7EED;&#x7684;&#x4E2A;&#x4F53;&#x5B66;&#x4E60;&#x5668;&#x5BF9;&#x4E4B;&#x524D;&#x5206;&#x7C7B;&#x9519;&#x8BEF;&#x7684;&#x7EA0;&#x6B63;&#xFF0C;&#x6765;&#x63D0;&#x9AD8;&#x6A21;&#x578B;&#x7684;&#x6574;&#x4F53;&#x6027;&#x80FD;&#x3002;</p>
+<p>&#x4E2A;&#x4F53;&#x5B66;&#x4E60;&#x5668;1 -------------------------------&gt;&#x4E2A;&#x4F53;&#x5B66;&#x4E60;&#x5668;2
+-------------------------------&gt;&#x4E2A;&#x4F53;&#x5B66;&#x4E60;&#x5668;3-------&gt;&#x68C0;&#x6D4B;&#x7ED3;&#x679C;</p>
+<p>&#x200B; &#x5206;&#x7C7B;&#x9519;&#x8BEF;&#x7684;&#x6837;&#x672C;&#x52A0;&#x6743; &#x5206;&#x7C7B;&#x9519;&#x8BEF;&#x7684;&#x6837;&#x672C;&#x52A0;&#x6743;</p>
+<h4 id="&#x5E76;&#x884C;&#x96C6;&#x6210;&#x5B66;&#x4E60;">&#x5E76;&#x884C;&#x96C6;&#x6210;&#x5B66;&#x4E60;</h4>
+<p>&#x5E76;&#x884C;&#x96C6;&#x6210;&#x5B66;&#x4E60;&#x662F;&#x901A;&#x8FC7;&#x6837;&#x672C;&#x548C;&#x7279;&#x5F81;&#x7684;bootstrapping&#x7684;&#x65B9;&#x6CD5;&#x6765;&#x4FDD;&#x8BC1;&#x5404;&#x4E2A;&#x4E2A;&#x4F53;&#x5B66;&#x4E60;&#x5668;&#x4E4B;&#x95F4;&#x7684;&#x72EC;&#x7ACB;&#x6027;&#x548C;&#x5DEE;&#x5F02;&#x6027;&#xFF0C;&#x7136;&#x540E;&#x901A;&#x8FC7;&#x6295;&#x7968;&#x7684;&#x65B9;&#x6CD5;&#x7ED9;&#x51FA;&#x6700;&#x7EC8;&#x5206;&#x7C7B;&#x7ED3;&#x679C;&#xFF0C;&#x5E76;&#x901A;&#x8FC7;&#x4E2A;&#x4F53;&#x5B66;&#x4E60;&#x5668;&#x4E4B;&#x95F4;&#x7684;&#x72EC;&#x7ACB;&#x6027;&#x548C;&#x5DEE;&#x5F02;&#x6027;&#x63D0;&#x9AD8;&#x6A21;&#x578B;&#x7684;&#x6297;&#x8FC7;&#x62DF;&#x5408;&#x80FD;&#x529B;&#x3002;</p>
+<p>&#x4E2A;&#x4F53;&#x5B66;&#x4E60;&#x5668;1---------------|</p>
+<p>&#x4E2A;&#x4F53;&#x5B66;&#x4E60;&#x5668;2---------------|----------------&gt;&#x6295;&#x7968;&#x7ED9;&#x51FA;&#x68C0;&#x6D4B;&#x7ED3;&#x679C;</p>
+<p>&#x4E2A;&#x4F53;&#x5B66;&#x4E60;&#x5668;3---------------|</p>
+<h3 id="&#x6839;&#x636E;&#x4E2A;&#x4F53;&#x5B66;&#x4E60;&#x5668;&#x7684;&#x5F02;&#x540C;&#x5206;&#x7C7B;">&#x6839;&#x636E;&#x4E2A;&#x4F53;&#x5B66;&#x4E60;&#x5668;&#x7684;&#x5F02;&#x540C;&#x5206;&#x7C7B;</h3>
+<h4 id="&#x540C;&#x8D28;&#x96C6;&#x6210;&#x5B66;&#x4E60;">&#x540C;&#x8D28;&#x96C6;&#x6210;&#x5B66;&#x4E60;</h4>
+<p>&#x5404;&#x4E2A;&#x4E2A;&#x4F53;&#x5B66;&#x4E60;&#x5668;&#x90FD;&#x662F;&#x901A;&#x8FC7;&#x540C;&#x4E00;&#x4E2A;&#x57FA;&#x7840;&#x7B97;&#x6CD5;&#x751F;&#x6210;&#x7684;&#x3002;</p>
+<h4 id="&#x5F02;&#x8D28;&#x96C6;&#x6210;&#x5B66;&#x4E60;">&#x5F02;&#x8D28;&#x96C6;&#x6210;&#x5B66;&#x4E60;</h4>
+<p>&#x5404;&#x4E2A;&#x4E2A;&#x4F53;&#x5B66;&#x4E60;&#x5668;&#x662F;&#x901A;&#x8FC7;&#x4E0D;&#x540C;&#x7684;&#x57FA;&#x7840;&#x7B97;&#x6CD5;&#x751F;&#x6210;&#x7684;&#x3002;</p>
+<h2 id="&#x96C6;&#x6210;&#x5B66;&#x4E60;&#x6846;&#x67B6;">&#x96C6;&#x6210;&#x5B66;&#x4E60;&#x6846;&#x67B6;</h2>
+<h3 id="bagging&#x6846;&#x67B6;">Bagging&#x6846;&#x67B6;</h3>
+<p>Bagging&#x53EF;&#x4EE5;&#x7406;&#x89E3;&#x4E3A;&#x805A;&#x5408;&#x5F15;&#x5BFC;&#x7684;&#x610F;&#x601D;&#x3002;&#x901A;&#x8FC7;bootstrap&#x7684;&#x65B9;&#x6CD5;&#x5C06;&#x8BAD;&#x7EC3;&#x96C6;&#x5212;&#x5206;&#x4E3A;&#x591A;&#x4E2A;&#x5B50;&#x8BAD;&#x7EC3;&#x96C6;&#xFF0C;&#x5E76;&#x5C06;&#x6BCF;&#x4E00;&#x4E2A;&#x5B50;&#x8BAD;&#x7EC3;&#x96C6;&#x7528;&#x6765;&#x8BAD;&#x7EC3;&#x4E00;&#x4E2A;&#x4E2A;&#x4F53;&#x5B66;&#x4E60;&#x5668;&#xFF0C;&#x6700;&#x7EC8;&#x901A;&#x8FC7;&#x6295;&#x7968;&#x7684;&#x65B9;&#x6CD5;&#x83B7;&#x5F97;&#x6700;&#x7EC8;&#x9884;&#x6D4B;&#x7ED3;&#x679C;&#x3002;</p>
+<h4 id="bagging&#x7684;&#x5904;&#x7406;&#x6D41;&#x7A0B;">Bagging&#x7684;&#x5904;&#x7406;&#x6D41;&#x7A0B;</h4>
+<p>&#x5982;&#x56FE;&#xFF1A;</p>
+<p><img src="/2022/04/08/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95-%E9%9B%86%E6%88%90%E5%AD%A6%E4%B9%A0/Bagging&#x7684;&#x7B97;&#x6CD5;&#x6D41;&#x7A0B;.PNG" alt="Bagging&#x7684;&#x7B97;&#x6CD5;&#x6D41;&#x7A0B;"></p>
+<h4 id="bagging&#x7684;&#x5904;&#x7406;&#x6846;&#x67B6;">Bagging&#x7684;&#x5904;&#x7406;&#x6846;&#x67B6;</h4>
+<p>&#x5982;&#x56FE;&#xFF1A;</p>
+<p><img src="/2022/04/08/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95-%E9%9B%86%E6%88%90%E5%AD%A6%E4%B9%A0/Bagging&#x7684;&#x7B97;&#x6CD5;&#x6846;&#x67B6;.jpg" alt="Bagging&#x7684;&#x7B97;&#x6CD5;&#x6846;&#x67B6;"></p>
+<h4 id="bagging&#x7684;&#x7279;&#x70B9;">Bagging&#x7684;&#x7279;&#x70B9;</h4>
+<p>&#x56E0;&#x4E3A;Bagging&#x901A;&#x8FC7;bootstrap&#x7684;&#x65B9;&#x6CD5;&#x6784;&#x5EFA;&#x4E86;&#x5B58;&#x5728;&#x660E;&#x663E;&#x5DEE;&#x5F02;&#x7684;&#x4E2A;&#x4F53;&#x5B66;&#x4E60;&#x5668;&#xFF0C;&#x56E0;&#x6B64;&#x8FD9;&#x79CD;&#x67B6;&#x6784;&#x53EF;&#x4EE5;&#x6709;&#x6548;&#x7684;&#x89E3;&#x51B3;&#x6A21;&#x578B;&#x7684;&#x65B9;&#x5DEE;&#x95EE;&#x9898;&#x3002;&#x53EF;&#x4EE5;&#x5F88;&#x597D;&#x7684;&#x7F13;&#x89E3;&#x8FC7;&#x62DF;&#x5408;&#x7684;&#x95EE;&#x9898;&#x3002;&#x5E76;&#x4E14;&#x6BCF;&#x4E2A;&#x4E2A;&#x4F53;&#x5B66;&#x4E60;&#x5668;&#x90FD;&#x662F;&#x5F3A;&#x6A21;&#x578B;&#xFF0C;&#x6709;&#x72EC;&#x7ACB;&#x7684;&#x5206;&#x7C7B;&#x80FD;&#x529B;&#xFF0C;&#x56E0;&#x6B64;&#x4F1A;Bagging&#x4F1A;&#x51FA;&#x73B0;&#x9AD8;&#x504F;&#x5DEE;&#x4F4E;&#x65B9;&#x5DEE;&#x7684;&#x73B0;&#x8C61;&#x3002;</p>
+<h3 id="boosting&#x6846;&#x67B6;">Boosting&#x6846;&#x67B6;</h3>
+<p>Boosting&#x53EF;&#x4EE5;&#x7406;&#x89E3;&#x4E3A;&#x662F;&#x901A;&#x8FC7;&#x7ED3;&#x5408;&#x591A;&#x4E2A;&#x5F31;&#x5206;&#x7C7B;&#x5668;&#x7684;&#x7ED3;&#x679C;&#xFF0C;&#x5F62;&#x6210;&#x4E00;&#x4E2A;&#x5F3A;&#x5206;&#x7C7B;&#x5668;&#x3002;&#x8FD9;&#x91CC;&#x63D0;&#x5230;&#x7684;&#x5F31;&#x5206;&#x7C7B;&#x5668;&#x662F;&#x6307;&#x4EC5;&#x4EC5;&#x6BD4;&#x968F;&#x673A;&#x731C;&#x6D4B;&#x597D;&#x4E00;&#x70B9;&#x70B9;&#x7684;&#x6A21;&#x578B;&#xFF0C;&#x6BD4;&#x5982;&#x4E00;&#x4E2A;&#x8F83;&#x5C0F;&#x7684;&#x51B3;&#x7B56;&#x6811;&#xFF0C;&#x6216;&#x8005;&#x4E00;&#x4E2A;&#x7B80;&#x5355;&#x7684;&#x7EBF;&#x6027;&#x5206;&#x5272;&#x5668;&#x3002;Boosting&#x548C;Bagging&#x7684;&#x533A;&#x522B;&#x5C31;&#x662F;Bagging&#x53EF;&#x4EE5;&#x5BF9;&#x4E2A;&#x4F53;&#x5B66;&#x4E60;&#x5668;&#x8FDB;&#x884C;&#x5E76;&#x884C;&#x7684;&#x8BAD;&#x7EC3;&#xFF1B;&#x800C;Boosting&#x9700;&#x8981;&#x5229;&#x7528;&#x52A0;&#x6743;&#x540E;&#x7684;&#x6570;&#x636E;&#x5BF9;&#x591A;&#x4E2A;&#x5F31;&#x5206;&#x7C7B;&#x5668;&#x4F9D;&#x6B21;&#x7684;&#x4E32;&#x884C;&#x8BAD;&#x7EC3;&#x3002;</p>
+<h4 id="adaboost&#x7684;&#x5904;&#x7406;&#x6D41;&#x7A0B;">AdaBoost&#x7684;&#x5904;&#x7406;&#x6D41;&#x7A0B;</h4>
+<p>&#x5982;&#x56FE;&#xFF1A;</p>
+<p><img src="/2022/04/08/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95-%E9%9B%86%E6%88%90%E5%AD%A6%E4%B9%A0/Adaboost&#x5904;&#x7406;&#x6D41;&#x7A0B;.PNG" alt="Adaboost&#x5904;&#x7406;&#x6D41;&#x7A0B;"></p>
+<h4 id="boosting&#x7684;&#x5904;&#x7406;&#x6846;&#x67B6;">Boosting&#x7684;&#x5904;&#x7406;&#x6846;&#x67B6;</h4>
+<p>&#x5982;&#x56FE;&#xFF1A;</p>
+<p><img src="/2022/04/08/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95-%E9%9B%86%E6%88%90%E5%AD%A6%E4%B9%A0/Boosting&#x7684;&#x5904;&#x7406;&#x6846;&#x67B6;.jpg" alt="Boosting&#x7684;&#x5904;&#x7406;&#x6846;&#x67B6;"></p>
+<h4 id="boosting&#x7684;&#x7279;&#x70B9;">Boosting&#x7684;&#x7279;&#x70B9;</h4>
+<p>&#x56E0;&#x4E3A;Bagging&#x901A;&#x8FC7;&#x5F31;&#x5206;&#x7C7B;&#x5668;&#x7684;&#x65B9;&#x6CD5;&#x53EF;&#x4EE5;&#x6709;&#x5F88;&#x597D;&#x7684;&#x68C0;&#x6D4B;&#x7CBE;&#x5EA6;&#xFF0C;&#x56E0;&#x6B64;&#x8FD9;&#x79CD;&#x67B6;&#x6784;&#x53EF;&#x4EE5;&#x6709;&#x6548;&#x7684;&#x89E3;&#x51B3;&#x6A21;&#x578B;&#x7684;&#x504F;&#x5DEE;&#x95EE;&#x9898;&#x3002;&#x53EF;&#x4EE5;&#x5F88;&#x597D;&#x7684;&#x7F13;&#x89E3;&#x6B20;&#x62DF;&#x5408;&#x7684;&#x95EE;&#x9898;&#x3002;&#x5E76;&#x4E14;&#x6BCF;&#x4E2A;&#x4E2A;&#x4F53;&#x5B66;&#x4E60;&#x5668;&#x90FD;&#x662F;&#x5F31;&#x6A21;&#x578B;&#xFF0C;&#x5E76;&#x6CA1;&#x6709;&#x72EC;&#x7ACB;&#x7684;&#x5206;&#x7C7B;&#x80FD;&#x529B;&#xFF0C;&#x56E0;&#x6B64;&#x4F1A;Bagging&#x4F1A;&#x51FA;&#x73B0;&#x4F4E;&#x504F;&#x5DEE;&#x9AD8;&#x65B9;&#x5DEE;&#x7684;&#x73B0;&#x8C61;&#x3002;</p>
+<h3 id="stacking&#x6846;&#x67B6;">Stacking&#x6846;&#x67B6;</h3>
+<p>Stacking&#x6846;&#x67B6;&#x4E0E;Bagging&#x6846;&#x67B6;&#x6709;&#x4E00;&#x4E9B;&#x7C7B;&#x4F3C;&#xFF0C;&#x6BD4;&#x5982;&#x4E2A;&#x4F53;&#x5B66;&#x4E60;&#x5668;&#x90FD;&#x662F;&#x5F3A;&#x5206;&#x7C7B;&#x5668;&#xFF0C;&#x5E76;&#x4E14;&#x5404;&#x4E2A;&#x4F53;&#x5B66;&#x4E60;&#x5668;&#x53EF;&#x4EE5;&#x5E76;&#x884C;&#x8BAD;&#x7EC3;&#x5F97;&#x51FA;&#x3002;&#x4E0D;&#x540C;&#x7684;&#x5730;&#x65B9;&#x5728;&#x4E8E;bagging&#x7684;&#x68C0;&#x6D4B;&#x7ED3;&#x679C;&#x662F;&#x5BF9;&#x4E2A;&#x4F53;&#x5B66;&#x4E60;&#x5668;&#x68C0;&#x6D4B;&#x7ED3;&#x679C;&#x7684;&#x7EFC;&#x5408;&#xFF0C;&#x4F46;&#x662F;Stacking&#x6846;&#x67B6;&#x662F;&#x5C06;&#x4E2A;&#x4F53;&#x5B66;&#x4E60;&#x5668;&#x7684;&#x68C0;&#x6D4B;&#x7ED3;&#x679C;&#x4F5C;&#x4E3A;&#x6700;&#x7EC8;&#x68C0;&#x6D4B;&#x6A21;&#x578B;&#x7684;&#x8F93;&#x5165;&#x3002;&#x7B80;&#x800C;&#x8A00;&#x4E4B;&#xFF0C;stacking&#x628A;&#x6295;&#x7968;&#x53D8;&#x6210;&#x4E86;&#x53E6;&#x4E00;&#x4E2A;&#x6A21;&#x578B;&#x3002;</p>
+<h4 id="stacking&#x7684;&#x5904;&#x7406;&#x6D41;&#x7A0B;">Stacking&#x7684;&#x5904;&#x7406;&#x6D41;&#x7A0B;</h4>
+<p>&#x5982;&#x56FE;&#xFF1A;</p>
+<p><img src="/2022/04/08/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95-%E9%9B%86%E6%88%90%E5%AD%A6%E4%B9%A0/Stacking&#x7684;&#x5904;&#x7406;&#x6D41;&#x7A0B;.PNG" alt="Stacking&#x7684;&#x5904;&#x7406;&#x6846;&#x67B6;"></p>
+<h4 id="stacking&#x7684;&#x5904;&#x7406;&#x6846;&#x67B6;">Stacking&#x7684;&#x5904;&#x7406;&#x6846;&#x67B6;</h4>
+<p>&#x5982;&#x56FE;&#xFF1A;</p>
+<p><img src="/2022/04/08/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95-%E9%9B%86%E6%88%90%E5%AD%A6%E4%B9%A0/Stacking&#x7684;&#x5904;&#x7406;&#x6846;&#x67B6;.jpg" alt="Stacking&#x7684;&#x5904;&#x7406;&#x6846;&#x67B6;"></p>
+<h4 id="stacking&#x7684;&#x7279;&#x70B9;">Stacking&#x7684;&#x7279;&#x70B9;</h4>
+<p>Stacking&#x5176;&#x5B9E;&#x66F4;&#x7B26;&#x5408;&#x5927;&#x5BB6;&#x5BF9;&#x96C6;&#x6210;&#x5B66;&#x4E60;&#x7684;&#x731C;&#x60F3;&#xFF0C;&#x76F8;&#x8F83;&#x4E8E;Bagging&#xFF0C;&#x5B83;&#x5728;&#x4E2A;&#x4F53;&#x5B66;&#x4E60;&#x5668;&#x7684;&#x68C0;&#x6D4B;&#x7ED3;&#x679C;&#x4E4B;&#x540E;&#xFF0C;&#x5E76;&#x6CA1;&#x6709;&#x7B80;&#x5355;&#x7684;&#x8FDB;&#x884C;&#x7EFC;&#x5408;&#xFF0C;&#x800C;&#x662F;&#x5C06;&#x591A;&#x4E2A;&#x68C0;&#x6D4B;&#x7ED3;&#x679C;&#x4F5C;&#x4E3A;&#x8F93;&#x5165;&#xFF0C;&#x8BAD;&#x7EC3;&#x4E00;&#x4E2A;&#x65B0;&#x7684;&#x5143;&#x6A21;&#x578B;&#x4F5C;&#x4E3A;&#x6700;&#x7EC8;&#x7684;&#x5206;&#x7C7B;&#x5668;&#x3002;&#x57FA;&#x6A21;&#x578B;&#xFF08;&#x4E2A;&#x4F53;&#x5B66;&#x4E60;&#x5668;&#xFF09;&#x5176;&#x5B9E;&#x66F4;&#x50CF;&#x662F;&#x4E00;&#x79CD;&#x4ECB;&#x4E8E;&#x7279;&#x5F81;&#x5904;&#x7406;&#x548C;&#x68C0;&#x6D4B;&#x6A21;&#x578B;&#x4E2D;&#x95F4;&#x7684;&#x4E00;&#x79CD;&#x88C5;&#x7F6E;&#x3002;</p>
+<h3 id="blending&#x6846;&#x67B6;">Blending&#x6846;&#x67B6;</h3>
+<p>blending&#x6846;&#x67B6;&#x662F;&#x5BF9;Stacking&#x6846;&#x67B6;&#x7684;&#x4E00;&#x79CD;&#x4F18;&#x5316;&#xFF0C;&#x4E3B;&#x8981;&#x662F;&#x5C06;&#x57FA;&#x6A21;&#x578B;&#x7684;&#x8BAD;&#x7EC3;&#x6570;&#x636E;&#x548C;&#x539F;&#x6A21;&#x578B;&#x7684;&#x8BAD;&#x7EC3;&#x6570;&#x636E;&#x5206;&#x5F00;&#xFF0C;&#x8FD9;&#x6837;&#x5C31;&#x53EF;&#x4EE5;&#x63D0;&#x9AD8;&#x5143;&#x6A21;&#x578B;&#x4E0E;&#x57FA;&#x6A21;&#x578B;&#x7684;&#x5173;&#x8054;&#x7A0B;&#x5EA6;&#x3002;&#x66F4;&#x597D;&#x7684;&#x628A;&#x57FA;&#x6A21;&#x578B;&#x4ECE;&#x4E00;&#x4E2A;&#x68C0;&#x6D4B;&#x6A21;&#x578B;&#x8F6C;&#x5316;&#x6210;&#x4E00;&#x4E2A;&#x7279;&#x5F81;&#x5904;&#x7406;&#x65B9;&#x5F0F;&#x3002;&#x800C;&#x4E14;&#x8FD9;&#x79CD;&#x5904;&#x7406;&#x65B9;&#x5F0F;&#x53EF;&#x4EE5;&#x964D;&#x4F4E;&#x4EBA;&#x4E3A;&#x7684;&#x53C2;&#x4E0E;&#x7A0B;&#x5EA6;&#x3002;</p>
+<h4 id="blending&#x7684;&#x5904;&#x7406;&#x6D41;&#x7A0B;">Blending&#x7684;&#x5904;&#x7406;&#x6D41;&#x7A0B;</h4>
+<p>&#x6D41;&#x7A0B;&#x5982;&#x4E0B;&#xFF1A;</p>
+<p>1.&#x5C06;&#x539F;&#x59CB;&#x8BAD;&#x7EC3;&#x96C6;T&#x5206;&#x4E3A;&#x8BAD;&#x7EC3;&#x96C6;T<sub>train</sub>&#x548C;&#x9A8C;&#x8BC1;&#x96C6;T<sub>valid</sub></p>
+<p>2.&#x7528;T<sub>train</sub>&#x8BAD;&#x7EC3;&#x591A;&#x4E2A;&#x57FA;&#x6A21;&#x578B;</p>
+<p>3.&#x7528;&#x591A;&#x4E2A;&#x57FA;&#x6A21;&#x578B;&#x9884;&#x6D4B;&#x9A8C;&#x8BC1;&#x96C6;T<sub>valid</sub>&#xFF0C;&#x5C06;&#x9884;&#x6D4B;&#x7ED3;&#x679C;&#x4F5C;&#x4E3A;&#x65B0;&#x7684;&#x8BAD;&#x7EC3;&#x6570;&#x636E;T<sub>mate</sub></p>
+<p>4.&#x7528;T<sub>mate</sub>&#x8BAD;&#x7EC3;&#x4E00;&#x4E2A;&#x5143;&#x6A21;&#x578B;</p>
+<p>5.&#x4F7F;&#x7528;&#x591A;&#x4E2A;&#x57FA;&#x6A21;&#x578B;&#x5BF9;&#x6D4B;&#x8BD5;&#x96C6;&#x8FDB;&#x884C;&#x9884;&#x6D4B;&#xFF0C;&#x751F;&#x6210;&#x65B0;&#x7684;&#x6D4B;&#x8BD5;&#x96C6;</p>
+<p>6.&#x4F7F;&#x7528;&#x5143;&#x6A21;&#x578B;&#x5BF9;&#x65B0;&#x751F;&#x6210;&#x7684;&#x6D4B;&#x8BD5;&#x96C6;&#x9884;&#x6D4B;&#xFF0C;&#x5F97;&#x51FA;&#x6700;&#x7EC8;&#x7684;&#x7ED3;&#x679C;&#x3002;</p>
+<h4 id="blend&#x7684;&#x5904;&#x7406;&#x67B6;&#x6784;">Blend&#x7684;&#x5904;&#x7406;&#x67B6;&#x6784;</h4>
+<p>&#x5982;&#x56FE;&#xFF1A;</p>
+<p><img src="/2022/04/08/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95-%E9%9B%86%E6%88%90%E5%AD%A6%E4%B9%A0/Blending&#x7684;&#x5904;&#x7406;&#x67B6;&#x6784;.jpg" alt="Blending&#x7684;&#x5904;&#x7406;&#x67B6;&#x6784;"></p>
+<h4 id="blend&#x7684;&#x7279;&#x70B9;">Blend&#x7684;&#x7279;&#x70B9;</h4>
+<p>&#x5BF9;Stacking&#x7684;&#x4F18;&#x5316;&#xFF0C;&#x539F;&#x59CB;&#x8BAD;&#x7EC3;&#x6570;&#x636E;&#x96C6;&#x5206;&#x6210;&#x8BAD;&#x7EC3;&#x6570;&#x636E;&#x96C6;&#x548C;&#x9A8C;&#x8BC1;&#x6570;&#x636E;&#x96C6;&#xFF0C;&#x901A;&#x8FC7;&#x8BAD;&#x7EC3;&#x6570;&#x636E;&#x96C6;&#x8BAD;&#x7EC3;&#x57FA;&#x6A21;&#x578B;&#xFF0C;&#x5E76;&#x5C06;&#x57FA;&#x6A21;&#x578B;&#x4F5C;&#x4E3A;&#x7279;&#x5F81;&#x5904;&#x7406;&#x65B9;&#x6CD5;&#x5BF9;&#x9A8C;&#x8BC1;&#x6570;&#x636E;&#x96C6;&#x8FDB;&#x884C;&#x8FDB;&#x4E00;&#x6B65;&#x7684;&#x7279;&#x5F81;&#x5904;&#x7406;&#x3002;</p>
 
     </div>
 
@@ -363,6 +397,9 @@
                 </a>
             </div>
             <div class="post-nav-item">
+                <a href="/2022/04/08/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95-%E9%9B%86%E6%88%90%E5%AD%A6%E4%B9%A0-%E5%B8%B8%E8%A7%81%E7%AE%97%E6%B3%95/" rel="next" title="机器学习算法-集成学习-常见算法">
+                  机器学习算法-集成学习-常见算法 <i class="fa fa-chevron-right"></i>
+                </a>
             </div>
           </div>
     </footer>
@@ -413,6 +450,12 @@
 
   <script class="next-config" data-name="leancloud_visitors" type="application/json">{"enable":true,"app_id":"nG09szIvM8x9ehgslCULWzg2-MdYXbMMI","app_key":"yHykoRL88ikgLTqsUC0xIMvY","server_url":null,"security":false}</script>
   <script src="/js/third-party/statistics/lean-analytics.js"></script>
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdn.jsdelivr.net/npm/mathjax@3.2.0/es5/tex-mml-chtml.js","integrity":"sha256-r+3itOMtGGjap0x+10hu6jW/gZCzxHsoKrOd7gyRSGY="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
 
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
