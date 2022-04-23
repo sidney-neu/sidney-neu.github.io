@@ -106,19 +106,3 @@ DGA 域名不只是有字符串特征，我们可以在 DGA 的离线算法里�
 ### 总结
 
 在使用数据模型解决安全类问题的时候，作者建议思考该模型是不是真的适合这一场景，而不是盲目认为其在当前数据集里拟合出的神奇效果足以支持它部署到生产系统里。本文也通过 LSTM 检测 DGA 的例子简单介绍了基于样本的模型攻击办法，以及模型的“捷径学习”，供各位小伙伴延伸阅读。
-
-### 参考与延伸阅读
-
-- CrowdStrike slides https://www.slideshare.net/CrowdStrike/endtoend-analysis-of-a-domain-generating
-- CrowdStrike whitepaper https://paper.bobylive.com/Meeting_Papers/BlackHat/USA-2013/US-13-Geffner-End-To-End-Analysis-of-a-Domain-Generating-Algorithm-Malware-Family-WP.pdf
-- 作者在乌云知识库的文章存档 https://zhuanlan.zhihu.com/p/20045198
-- 作者开源的 SVM 检测 DGA https://github.com/phunterlau/dga_classifier
-- Endgame paper https://arxiv.org/abs/1611.00791 github https://github.com/endgameinc/dga_predict
-- MaskDGA paper https://arxiv.org/abs/1902.08909 github https://github.com/liorsidi/Adversarial-DGA-Datasets
-- A Death Match of Domain Generation Algorithms https://blogs.akamai.com/2018/01/a-death-match-of-domain-generation-algorithms.html
-- Shortcut Learning in Deep Neural Networks https://arxiv.org/abs/2004.07780
-- System for correlation of domain names，专利编号 US 14/937616
-- Vector representation of internet domain names using a word embedding technique https://ieeexplore.ieee.org/document/8226415
-- Dns2Vec: Exploring Internet Domain Names Through Deep Learning https://www.usenix.org/sites/default/files/conference/protected-files/scainet19_slides_arora.pdf
-- Domain-Embeddings Based DGA Detection with Incremental Training Method https://arxiv.org/pdf/2009.09959.pdf
-- A DGA Odyssey PDNS Driven DGA Analysis https://pc.nanog.org/static/published/meetings/NANOG71/1444/20171004_Gong_A_Dga_Odyssey__v1.pdf
