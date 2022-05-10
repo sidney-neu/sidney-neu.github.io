@@ -28,7 +28,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://sidney-neu.github.io/2022/03/22/%E4%B8%BA%E4%BB%80%E4%B9%88LSTM%E6%A3%80%E6%B5%8BDGA%E6%98%AF%E6%97%A0%E7%94%A8%E5%8A%9F(%E8%BD%AC%E8%BD%BD)/&#x52C7;&#x6562;&#x725B;&#x725B;.jpg">
 <meta property="article:published_time" content="2022-03-22T13:05:00.000Z">
-<meta property="article:modified_time" content="2022-04-19T01:21:56.844Z">
+<meta property="article:modified_time" content="2022-05-05T02:28:38.935Z">
 <meta property="article:author" content="Yoo Shen">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://sidney-neu.github.io/2022/03/22/%E4%B8%BA%E4%BB%80%E4%B9%88LSTM%E6%A3%80%E6%B5%8BDGA%E6%98%AF%E6%97%A0%E7%94%A8%E5%8A%9F(%E8%BD%AC%E8%BD%BD)/&#x52C7;&#x6562;&#x725B;&#x725B;.jpg">
@@ -89,7 +89,7 @@
   <ul class="main-menu menu">
         <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
         <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">12</span></a></li>
-        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">32</span></a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">33</span></a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -148,7 +148,7 @@
         <div class="post-toc-wrap sidebar-panel">
             <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88-lstm-%E6%A3%80%E6%B5%8B-dga-%E6%98%AF%E6%97%A0%E7%94%A8%E5%8A%9F"><span class="nav-number">1.</span> <span class="nav-text">为什么 LSTM 检测 DGA
 是无用功</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AD%97%E7%AC%A6%E9%9B%86%E7%89%B9%E5%BE%81%E6%A3%80%E6%B5%8B-dga"><span class="nav-number">2.</span> <span class="nav-text">字符集特征检测 DGA</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#lstm-%E7%9C%8B%E8%B5%B7%E6%9D%A5%E6%9B%B4%E5%8A%A0%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0"><span class="nav-number">3.</span> <span class="nav-text">LSTM 看起来更加“深度学习”</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%92%88%E5%AF%B9-lstm-%E7%B1%BB-dga-%E6%A3%80%E6%B5%8B%E7%9A%84%E7%AE%80%E5%8D%95%E6%94%BB%E5%87%BB"><span class="nav-number">4.</span> <span class="nav-text">针对 LSTM 类 DGA
-检测的简单攻击</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%97%A0%E7%94%A8%E5%8A%9F%E7%9A%84%E5%8E%9F%E5%9B%A0"><span class="nav-number">5.</span> <span class="nav-text">无用功的原因</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9C%A8%E7%BA%BF%E6%A3%80%E6%B5%8B-dga-%E8%AF%A5%E6%80%8E%E4%B9%88%E5%81%9A"><span class="nav-number">6.</span> <span class="nav-text">在线检测 DGA 该怎么做</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E4%BA%8E%E5%AD%97%E7%AC%A6%E9%9B%86%E7%89%B9%E5%BE%81%E7%9A%84%E5%8A%9E%E6%B3%95"><span class="nav-number">7.</span> <span class="nav-text">基于字符集特征的办法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E4%BA%8E-dns-%E6%B5%81%E9%87%8F%E7%89%B9%E5%BE%81%E7%9A%84%E5%8A%9E%E6%B3%95"><span class="nav-number">8.</span> <span class="nav-text">基于 DNS 流量特征的办法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">9.</span> <span class="nav-text">总结</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E4%B8%8E%E5%BB%B6%E4%BC%B8%E9%98%85%E8%AF%BB"><span class="nav-number">10.</span> <span class="nav-text">参考与延伸阅读</span></a></li></ol></div>
+检测的简单攻击</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%97%A0%E7%94%A8%E5%8A%9F%E7%9A%84%E5%8E%9F%E5%9B%A0"><span class="nav-number">5.</span> <span class="nav-text">无用功的原因</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9C%A8%E7%BA%BF%E6%A3%80%E6%B5%8B-dga-%E8%AF%A5%E6%80%8E%E4%B9%88%E5%81%9A"><span class="nav-number">6.</span> <span class="nav-text">在线检测 DGA 该怎么做</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E4%BA%8E%E5%AD%97%E7%AC%A6%E9%9B%86%E7%89%B9%E5%BE%81%E7%9A%84%E5%8A%9E%E6%B3%95"><span class="nav-number">7.</span> <span class="nav-text">基于字符集特征的办法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E4%BA%8E-dns-%E6%B5%81%E9%87%8F%E7%89%B9%E5%BE%81%E7%9A%84%E5%8A%9E%E6%B3%95"><span class="nav-number">8.</span> <span class="nav-text">基于 DNS 流量特征的办法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">9.</span> <span class="nav-text">总结</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -161,7 +161,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">32</span>
+          <span class="site-state-item-count">33</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -194,6 +194,7 @@
     <i class="fa fa-arrow-up"></i>
     <span>0%</span>
   </div>
+  <div class="reading-progress-bar"></div>
 
 <noscript>
   <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
@@ -242,7 +243,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-04-19 09:21:56" itemprop="dateModified" datetime="2022-04-19T09:21:56+08:00">2022-04-19</time>
+      <time title="修改时间：2022-05-05 10:28:38" itemprop="dateModified" datetime="2022-05-05T10:28:38+08:00">2022-05-05</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -407,34 +408,6 @@ louvain &#x8FDB;&#x884C;&#x5206;&#x5272;&#x7684; DNS
 <p>&#x5728;&#x4F7F;&#x7528;&#x6570;&#x636E;&#x6A21;&#x578B;&#x89E3;&#x51B3;&#x5B89;&#x5168;&#x7C7B;&#x95EE;&#x9898;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x4F5C;&#x8005;&#x5EFA;&#x8BAE;&#x601D;&#x8003;&#x8BE5;&#x6A21;&#x578B;&#x662F;&#x4E0D;&#x662F;&#x771F;&#x7684;&#x9002;&#x5408;&#x8FD9;&#x4E00;&#x573A;&#x666F;&#xFF0C;&#x800C;&#x4E0D;&#x662F;&#x76F2;&#x76EE;&#x8BA4;&#x4E3A;&#x5176;&#x5728;&#x5F53;&#x524D;&#x6570;&#x636E;&#x96C6;&#x91CC;&#x62DF;&#x5408;&#x51FA;&#x7684;&#x795E;&#x5947;&#x6548;&#x679C;&#x8DB3;&#x4EE5;&#x652F;&#x6301;&#x5B83;&#x90E8;&#x7F72;&#x5230;&#x751F;&#x4EA7;&#x7CFB;&#x7EDF;&#x91CC;&#x3002;&#x672C;&#x6587;&#x4E5F;&#x901A;&#x8FC7;
 LSTM &#x68C0;&#x6D4B; DGA
 &#x7684;&#x4F8B;&#x5B50;&#x7B80;&#x5355;&#x4ECB;&#x7ECD;&#x4E86;&#x57FA;&#x4E8E;&#x6837;&#x672C;&#x7684;&#x6A21;&#x578B;&#x653B;&#x51FB;&#x529E;&#x6CD5;&#xFF0C;&#x4EE5;&#x53CA;&#x6A21;&#x578B;&#x7684;&#x201C;&#x6377;&#x5F84;&#x5B66;&#x4E60;&#x201D;&#xFF0C;&#x4F9B;&#x5404;&#x4F4D;&#x5C0F;&#x4F19;&#x4F34;&#x5EF6;&#x4F38;&#x9605;&#x8BFB;&#x3002;</p>
-<h3 id="&#x53C2;&#x8003;&#x4E0E;&#x5EF6;&#x4F38;&#x9605;&#x8BFB;">&#x53C2;&#x8003;&#x4E0E;&#x5EF6;&#x4F38;&#x9605;&#x8BFB;</h3>
-<ul>
-<li>CrowdStrike slides
-https://www.slideshare.net/CrowdStrike/endtoend-analysis-of-a-domain-generating</li>
-<li>CrowdStrike whitepaper
-https://paper.bobylive.com/Meeting_Papers/BlackHat/USA-2013/US-13-Geffner-End-To-End-Analysis-of-a-Domain-Generating-Algorithm-Malware-Family-WP.pdf</li>
-<li>&#x4F5C;&#x8005;&#x5728;&#x4E4C;&#x4E91;&#x77E5;&#x8BC6;&#x5E93;&#x7684;&#x6587;&#x7AE0;&#x5B58;&#x6863;
-https://zhuanlan.zhihu.com/p/20045198</li>
-<li>&#x4F5C;&#x8005;&#x5F00;&#x6E90;&#x7684; SVM &#x68C0;&#x6D4B; DGA
-https://github.com/phunterlau/dga_classifier</li>
-<li>Endgame paper https://arxiv.org/abs/1611.00791 github
-https://github.com/endgameinc/dga_predict</li>
-<li>MaskDGA paper https://arxiv.org/abs/1902.08909 github
-https://github.com/liorsidi/Adversarial-DGA-Datasets</li>
-<li>A Death Match of Domain Generation Algorithms
-https://blogs.akamai.com/2018/01/a-death-match-of-domain-generation-algorithms.html</li>
-<li>Shortcut Learning in Deep Neural Networks
-https://arxiv.org/abs/2004.07780</li>
-<li>System for correlation of domain names&#xFF0C;&#x4E13;&#x5229;&#x7F16;&#x53F7; US 14/937616</li>
-<li>Vector representation of internet domain names using a word
-embedding technique https://ieeexplore.ieee.org/document/8226415</li>
-<li>Dns2Vec: Exploring Internet Domain Names Through Deep Learning
-https://www.usenix.org/sites/default/files/conference/protected-files/scainet19_slides_arora.pdf</li>
-<li>Domain-Embeddings Based DGA Detection with Incremental Training
-Method https://arxiv.org/pdf/2009.09959.pdf</li>
-<li>A DGA Odyssey PDNS Driven DGA Analysis
-https://pc.nanog.org/static/published/meetings/NANOG71/1444/20171004_Gong_A_Dga_Odyssey__v1.pdf</li>
-</ul>
 
     </div>
 
