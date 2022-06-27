@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.0.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"sidney-neu.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.8.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":{"gitalk":{"order":-1}},"activeClass":"gitalk"},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.json","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+<meta name="description" content="DGA&amp;#x7684;&amp;#x5B9A;&amp;#x4E49; Fast-Flux&amp;#x50F5;&amp;#x5C38;&amp;#x7F51;&amp;#x7EDC;&amp;#x901A;&amp;#x4FE1;&amp;#x6240;&amp;#x91C7;&amp;#x7528;&amp;#x7684;&amp;#x57DF;&amp;#x540D;&amp;#x4E00;&amp;#x822C;&amp;#x88AB;&amp;#x79F0;&amp;#x4E3A;DGA&amp;#x57DF;&amp;#x540D;&amp;#xFF0C;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="DGA简述">
+<meta property="og:url" content="https://sidney-neu.github.io/2022/02/22/DGA%E7%AE%80%E8%BF%B0/index.html">
+<meta property="og:site_name" content="Yoo shen的博客">
+<meta property="og:description" content="DGA&amp;#x7684;&amp;#x5B9A;&amp;#x4E49; Fast-Flux&amp;#x50F5;&amp;#x5C38;&amp;#x7F51;&amp;#x7EDC;&amp;#x901A;&amp;#x4FE1;&amp;#x6240;&amp;#x91C7;&amp;#x7528;&amp;#x7684;&amp;#x57DF;&amp;#x540D;&amp;#x4E00;&amp;#x822C;&amp;#x88AB;&amp;#x79F0;&amp;#x4E3A;DGA&amp;#x57DF;&amp;#x540D;&amp;#xFF0C;">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://sidney-neu.github.io/2022/02/22/DGA%E7%AE%80%E8%BF%B0/&#x4F01;&#x4E1A;&#x5FAE;&#x4FE1;&#x622A;&#x56FE;_16460268114223.png">
+<meta property="og:image" content="https://sidney-neu.github.io/2022/02/22/DGA%E7%AE%80%E8%BF%B0/image-20220419004547992.png">
+<meta property="og:image" content="https://sidney-neu.github.io/2022/02/22/DGA%E7%AE%80%E8%BF%B0/image-20220419005200693.png">
+<meta property="og:image" content="https://sidney-neu.github.io/2022/02/22/DGA%E7%AE%80%E8%BF%B0/image-20220419005304304.png">
+<meta property="article:published_time" content="2022-02-22T14:22:22.000Z">
+<meta property="article:modified_time" content="2022-06-27T14:37:31.691Z">
+<meta property="article:author" content="Yoo Shen">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://sidney-neu.github.io/2022/02/22/DGA%E7%AE%80%E8%BF%B0/&#x4F01;&#x4E1A;&#x5FAE;&#x4FE1;&#x622A;&#x56FE;_16460268114223.png">
+
+
+<link rel="canonical" href="https://sidney-neu.github.io/2022/02/22/DGA%E7%AE%80%E8%BF%B0/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://sidney-neu.github.io/2022/02/22/DGA%E7%AE%80%E8%BF%B0/","path":"2022/02/22/DGA简述/","title":"DGA简述"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>DGA简述 | Yoo shen的博客</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Yoo shen的博客</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">sy071600sy@163.com</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">13</span></a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">35</span></a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#dga%E7%9A%84%E5%AE%9A%E4%B9%89"><span class="nav-number">1.</span> <span class="nav-text">DGA的定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#dga%E7%9A%84%E7%BB%84%E6%88%90"><span class="nav-number">2.</span> <span class="nav-text">DGA的组成</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%A7%8D%E5%AD%90"><span class="nav-number">2.1.</span> <span class="nav-text">种子</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AE%97%E6%B3%95"><span class="nav-number">2.2.</span> <span class="nav-text">算法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#dga%E7%A7%8D%E5%AD%90%E7%B1%BB%E5%9E%8B"><span class="nav-number">3.</span> <span class="nav-text">DGA种子类型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E4%BA%8E%E8%AF%8D%E5%85%B8%E7%9A%84%E7%A7%8D%E5%AD%90"><span class="nav-number">3.1.</span> <span class="nav-text">基于词典的种子</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E4%BA%8E%E6%97%B6%E9%97%B4%E7%9A%84%E7%A7%8D%E5%AD%90"><span class="nav-number">3.2.</span> <span class="nav-text">基于时间的种子</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E4%BA%8E%E5%85%B6%E4%BB%96%E5%8A%A8%E6%80%81%E6%95%B0%E6%8D%AE%E7%9A%84%E7%A7%8D%E5%AD%90"><span class="nav-number">3.3.</span> <span class="nav-text">基于其他动态数据的种子</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#dga%E7%9A%84%E7%B1%BB%E5%88%AB"><span class="nav-number">4.</span> <span class="nav-text">DGA的类别</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E4%BA%8E%E7%A7%8D%E5%AD%90%E7%B1%BB%E5%9E%8B%E7%9A%84%E5%88%86%E7%B1%BB"><span class="nav-number">4.1.</span> <span class="nav-text">基于种子类型的分类</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#tid"><span class="nav-number">4.1.1.</span> <span class="nav-text">TID</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#tdd"><span class="nav-number">4.1.2.</span> <span class="nav-text">TDD</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#tdn"><span class="nav-number">4.1.3.</span> <span class="nav-text">TDN</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#tin"><span class="nav-number">4.1.4.</span> <span class="nav-text">TIN</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E4%BA%8E%E7%AE%97%E6%B3%95%E7%94%9F%E6%88%90%E6%96%B9%E5%BC%8F%E7%9A%84%E5%88%86%E7%B1%BB"><span class="nav-number">4.2.</span> <span class="nav-text">基于算法生成方式的分类</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#arithmetic-a"><span class="nav-number">4.2.1.</span> <span class="nav-text">Arithmetic (A)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#wordlist-w"><span class="nav-number">4.2.2.</span> <span class="nav-text">Wordlist (W)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#hashing-h"><span class="nav-number">4.2.3.</span> <span class="nav-text">Hashing (H)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#permutation-p"><span class="nav-number">4.2.4.</span> <span class="nav-text">Permutation (P)</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#dga%E7%9A%84%E7%94%A8%E9%80%94"><span class="nav-number">5.</span> <span class="nav-text">DGA的用途</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#dga%E7%9A%84%E7%A0%B4%E7%BB%BD"><span class="nav-number">6.</span> <span class="nav-text">DGA的破绽</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#dga%E7%9A%84%E6%A3%80%E6%B5%8B%E6%96%B9%E6%B3%95"><span class="nav-number">7.</span> <span class="nav-text">DGA的检测方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BC%A0%E7%BB%9F%E6%A3%80%E6%B5%8B%E6%96%B9%E6%B3%95"><span class="nav-number">7.1.</span> <span class="nav-text">传统检测方法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A8%81%E8%83%81%E6%83%85%E6%8A%A5"><span class="nav-number">7.1.1.</span> <span class="nav-text">威胁情报</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A0%B9%E4%BA%8E%E5%9F%9F%E5%90%8D%E6%B3%A8%E5%86%8C%E4%BF%A1%E6%81%AF%E5%88%86%E6%9E%90"><span class="nav-number">7.1.2.</span> <span class="nav-text">根于域名注册信息分析</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%99%BA%E8%83%BD%E6%A3%80%E6%B5%8B%E6%96%B9%E6%B3%95"><span class="nav-number">7.2.</span> <span class="nav-text">智能检测方法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95"><span class="nav-number">7.2.1.</span> <span class="nav-text">机器学习算法</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%BC%A0%E7%BB%9F%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0"><span class="nav-number">7.2.1.1.</span> <span class="nav-text">传统机器学习</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0"><span class="nav-number">7.2.1.2.</span> <span class="nav-text">深度学习</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E7%AE%97%E6%B3%95"><span class="nav-number">7.2.2.</span> <span class="nav-text">数据分析算法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9F%BA%E7%BA%BF%E5%92%8C%E9%98%88%E5%80%BC%E7%9A%84%E6%96%B9%E6%B3%95"><span class="nav-number">7.2.3.</span> <span class="nav-text">基线和阈值的方法</span></a></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Yoo Shen</p>
+  <div class="site-description" itemprop="description">学习、记录、分享</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">35</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/sidney-neu" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;sidney-neu" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://sidney-neu.github.io/2022/02/22/DGA%E7%AE%80%E8%BF%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Yoo Shen">
+      <meta itemprop="description" content="学习、记录、分享">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Yoo shen的博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          DGA简述
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-02-22 22:22:22" itemprop="dateCreated datePublished" datetime="2022-02-22T22:22:22+08:00">2022-02-22</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-06-27 22:37:31" itemprop="dateModified" datetime="2022-06-27T22:37:31+08:00">2022-06-27</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8-%E6%94%BB%E5%87%BB%E7%B1%BB%E5%9E%8B/" itemprop="url" rel="index"><span itemprop="name">-网络安全 -攻击类型</span></a>
+        </span>
+    </span>
+
+  
+    <span id="/2022/02/22/DGA%E7%AE%80%E8%BF%B0/" class="post-meta-item leancloud_visitors" data-flag-title="DGA简述" title="阅读次数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span class="leancloud-visitors-count"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h2 id="dga&#x7684;&#x5B9A;&#x4E49;">DGA&#x7684;&#x5B9A;&#x4E49;</h2>
+<p>Fast-Flux&#x50F5;&#x5C38;&#x7F51;&#x7EDC;&#x901A;&#x4FE1;&#x6240;&#x91C7;&#x7528;&#x7684;&#x57DF;&#x540D;&#x4E00;&#x822C;&#x88AB;&#x79F0;&#x4E3A;DGA&#x57DF;&#x540D;&#xFF0C;&#x5373;&#x901A;&#x8FC7;&#x7279;&#x5B9A;&#x7B97;&#x6CD5;&#x968F;&#x673A;&#x751F;&#x6210;&#x7684;&#x57DF;&#x540D;&#xFF0C;&#x662F;&#x4E00;&#x79CD;&#x901A;&#x8FC7;&#x8F93;&#x5165;&#x4E00;&#x4E9B;&#x79CD;&#x5B50;&#xFF0C;&#x5305;&#x542B;&#x5B57;&#x7B26;&#x4E32;&#x3001;&#x6570;&#x5B57;&#x3001;&#x7279;&#x5B9A;&#x82F1;&#x6587;&#x5B57;&#x5178;&#x4E2D;&#x7684;&#x5355;&#x8BCD;&#x4EE5;&#x53CA;&#x65E5;&#x671F;&#xFF0C;&#x5229;&#x7528;&#x52A0;&#x5BC6;&#x7B97;&#x6CD5;&#xFF08;&#x6BD4;&#x5982;&#x5F02;&#x6216;&#x64CD;&#x4F5C;&#x7B49;&#xFF09;&#xFF0C;&#x4ECE;&#x800C;&#x4EA7;&#x751F;&#x4E00;&#x7CFB;&#x5217;&#x4F2A;&#x968F;&#x673A;&#x5B57;&#x7B26;&#x4E32;&#x751F;&#x6210;&#x7684;&#x57DF;&#x540D;&#x3002;DGA&#x57DF;&#x540D;&#x662F;&#x968F;&#x673A;&#x751F;&#x6210;&#x7684;&#xFF0C;&#x7528;&#x4E8E;&#x9003;&#x907F;&#x57DF;&#x540D;&#x9ED1;&#x540D;&#x5355;&#x68C0;&#x6D4B;&#x6280;&#x672F;&#x3002;</p>
+<p>DGA&#x662F;&#x82F1;&#x6587;Domain Generation Algorithm&#x7684;&#x7F29;&#x5199;&#xFF0C;&#x4E2D;&#x6587;&#x7FFB;&#x8BD1;&#x4E3A;&#x57DF;&#x540D;&#x751F;&#x6210;&#x7B97;&#x6CD5;&#x3002;&#x9996;&#x5148;&#x9700;&#x8981;&#x660E;&#x786E;DGA&#x6307;&#x7684;&#x662F;&#x7B97;&#x6CD5;&#xFF0C;&#x8FD9;&#x79CD;&#x7B97;&#x6CD5;&#x7684;&#x529F;&#x80FD;&#x548C;&#x76EE;&#x7684;&#x5C31;&#x662F;&#x751F;&#x6210;&#x57DF;&#x540D;&#xFF0C;&#x901A;&#x8FC7;DGA&#x751F;&#x6210;&#x7684;&#x57DF;&#x540D;&#x88AB;&#x79F0;&#x4E3A;AGD&#xFF0C;&#x82F1;&#x6587;Algorithmically-Generated Domain&#x3002;&#x6839;&#x636E;<a target="_blank" rel="noopener" href="https://dgarchive.caad.fkie.fraunhofer.de/welcome/">dgarchive</a>&#x7684;&#x4F5C;&#x8005; <a target="_blank" rel="noopener" href="https://net.cs.uni-bonn.de/wg/cs/staff/daniel-plohmann/">Daniel Plohmann</a>2015&#x5E74;&#x5728;&#x7B2C;&#x4E09;&#x5C4A;Botconf&#x4F1A;&#x8BAE;&#x4E0A;&#x7684;<a target="_blank" rel="noopener" href="https://www.botconf.eu/wp-content/uploads/2015/12/OK-P06-Plohmann-DGArchive.pdf">&#x62A5;&#x544A;</a>&#x5185;&#x5BB9;&#xFF0C;DGA&#x6700;&#x65E9;&#x5728;2008&#x5E74;&#x88AB;&#x63D0;&#x51FA;&#xFF0C;&#x5F53;&#x65F6;&#x88AB;&#x79F0;&#x4E3A;Domain Flux&#xFF0C;&#x5230;&#x76EE;&#x524D;&#x4E3A;&#x6B62;&#xFF0C;DGA&#x7684;&#x5BB6;&#x65CF;&#x79CD;&#x7C7B;&#x5DF2;&#x7ECF;&#x8D85;&#x8FC7;70&#x79CD;&#xFF0C;&#x7D2F;&#x8BA1;&#x751F;&#x6210;&#x7684;&#x57DF;&#x540D;&#x8D85;&#x8FC7;1&#x4EBF;&#x4E2A;&#x3002;</p>
+<h2 id="dga&#x7684;&#x7EC4;&#x6210;">DGA&#x7684;&#x7EC4;&#x6210;</h2>
+<p>&#x53C2;&#x8003;&#x7EFF;&#x76DF;&#x7684;<a target="_blank" rel="noopener" href="https://www.secrss.com/articles/14369#:~:text=DGA%E7%AE%97%E6%B3%95%E7%94%B1%E4%B8%A4%E9%83%A8%E5%88%86%E6%9E%84%E6%88%90%EF%BC%8C%E7%A7%8D%E5%AD%90%EF%BC%88%E7%AE%97%E6%B3%95%E8%BE%93%E5%85%A5%EF%BC%89%E5%92%8C%E7%AE%97%E6%B3%95%EF%BC%8C%E5%8F%AF%E4%BB%A5%E6%A0%B9%E6%8D%AE%E7%A7%8D%E5%AD%90%E5%92%8C%E7%AE%97%E6%B3%95%E5%AF%B9DGA%E5%9F%9F%E5%90%8D%E8%BF%9B%E8%A1%8C%E5%88%86%E7%B1%BB%EF%BC%8CDGA%E5%9F%9F%E5%90%8D%E5%8F%AF%E4%BB%A5%E8%A1%A8%E7%A4%BA%E4%B8%BAAGD%EF%BC%88Algorithmically-Generated%20Domains%EF%BC%89%E3%80%82,2.1%20%E6%8C%89%E7%85%A7%E7%A7%8D%E5%AD%90%E8%BF%9B%E8%A1%8C%E5%88%86%E7%B1%BB">&#x76F8;&#x5173;&#x7814;&#x7A76;</a>&#x7684;&#x5F52;&#x7EB3;&#x603B;&#x7ED3;&#xFF0C;DGA&#x4E3B;&#x8981;&#x6709;&#x4E24;&#x90E8;&#x5206;&#x7EC4;&#x6210;&#xFF0C;&#x5206;&#x522B;&#x662F;&#x79CD;&#x5B50;&#xFF08;seed&#xFF09;&#x548C;&#x9488;&#x5BF9;&#x79CD;&#x5B50;&#x7684;DGA&#x5904;&#x7406;&#x7B97;&#x6CD5;&#x3002;&#x901A;&#x8FC7;&#x8FD9;&#x4E24;&#x4E2A;&#x7EC4;&#x5408;&#xFF0C;DGA&#x5C31;&#x53EF;&#x4EE5;&#x751F;&#x6210;AGD&#x4E86;&#x3002;</p>
+<h3 id="&#x79CD;&#x5B50;">&#x79CD;&#x5B50;</h3>
+<p>&#x7B2C;&#x4E00;&#x90E8;&#x5206;&#x662F;&#x79CD;&#x5B50;&#xFF0C;&#x79CD;&#x5B50;&#x662F;DGA&#x8F93;&#x5165;&#x53C2;&#x6570;&#xFF0C;&#x4E0D;&#x540C;&#x7684;&#x79CD;&#x5B50;&#x5373;&#x4F7F;&#x91C7;&#x7528;&#x76F8;&#x540C;&#x7684;DGA&#x5904;&#x7406;&#x7B97;&#x6CD5;&#xFF0C;&#x4E5F;&#x53EF;&#x4EE5;&#x751F;&#x6210;&#x4E0D;&#x540C;&#x7684;DGA&#x57DF;&#x540D;&#xFF0C;&#x8FD9;&#x5C31;&#x5BFC;&#x81F4;DGA&#x53EF;&#x4EE5;&#x751F;&#x6210;&#x6D77;&#x91CF;&#x7684;&#x57DF;&#x540D;&#x3002;</p>
+<h3 id="&#x7B97;&#x6CD5;">&#x7B97;&#x6CD5;</h3>
+<p>&#x7B97;&#x6CD5;&#x4EE3;&#x8868;&#x4E86;DGA&#x5BF9;&#x79CD;&#x5B50;(Seed)&#x7684;&#x5904;&#x7406;&#x903B;&#x8F91;&#xFF0C;&#x6BD4;&#x5982;&#x53EF;&#x4EE5;&#x5BF9;seed&#x8FDB;&#x884C;&#x903B;&#x8F91;&#x8FD0;&#x7B97;&#xFF0C;&#x6700;&#x540E;&#x5BF9;&#x903B;&#x8F91;&#x8FD0;&#x7B97;&#x7684;&#x7ED3;&#x679C;&#x8BA1;&#x7B97;&#x54C8;&#x5E0C;&#x503C;&#xFF0C;&#x5E76;&#x5C06;&#x54C8;&#x5E0C;&#x503C;&#x4F5C;&#x4E3A;DGA&#x57DF;&#x540D;&#xFF1B;&#x540C;&#x65F6;&#x4E5F;&#x53EF;&#x4EE5;&#x5BF9;&#x903B;&#x8F91;&#x8FD0;&#x7B97;&#x7684;&#x8BB0;&#x8FC7;&#x8FDB;&#x884C;&#x622A;&#x53D6;&#xFF0C;&#x5E76;&#x5C06;&#x5B57;&#x7B26;&#x4E32;&#x7684;&#x622A;&#x53D6;&#x7ED3;&#x679C;&#x4F5C;&#x4E3A;DGA&#x57DF;&#x540D;&#x3002;</p>
+<h2 id="dga&#x79CD;&#x5B50;&#x7C7B;&#x578B;">DGA&#x79CD;&#x5B50;&#x7C7B;&#x578B;</h2>
+<p>&#x4E00;&#x822C;&#x770B;&#x8BF4;&#xFF0C;DGA&#x7684;&#x79CD;&#x5B50;&#x53EF;&#x4EE5;&#x5206;&#x4E3A;&#x4E09;&#x79CD;&#x7C7B;&#x578B;&#xFF1A;</p>
+<h3 id="&#x57FA;&#x4E8E;&#x8BCD;&#x5178;&#x7684;&#x79CD;&#x5B50;">&#x57FA;&#x4E8E;&#x8BCD;&#x5178;&#x7684;&#x79CD;&#x5B50;</h3>
+<p>&#x901A;&#x8FC7;&#x4E8B;&#x5148;&#x8BBE;&#x5B9A;&#x8BCD;&#x5178;&#x5E76;&#x901A;&#x8FC7;&#x4E00;&#x5B9A;&#x7684;&#x903B;&#x8F91;&#x7B5B;&#x9009;&#x5176;&#x4E2D;&#x7684;&#x90E8;&#x5206;&#x79CD;&#x5B50;&#xFF0C;&#x901A;&#x8FC7;&#x6392;&#x5217;&#x7EC4;&#x5408;&#x4EE5;&#x53CA;&#x903B;&#x8F91;&#x64CD;&#x4F5C;&#xFF0C;&#x5C31;&#x53EF;&#x4EE5;&#x751F;&#x6210;DGA&#x57DF;&#x540D;&#xFF1B;</p>
+<p>&#x4F8B;&#x5982;simda&#x5C31;&#x662F;&#x5229;&#x7528;&#x8BCD;&#x5178;&#x79CD;&#x5B50;&#x7684;DGA&#x7B97;&#x6CD5;&#xFF1A;</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">length = 7</span><br><span class="line">tld = &quot;com&quot;</span><br><span class="line">key = &quot;1676d5775e05c50b46baa5579d4fc7&quot;</span><br><span class="line">base = 0x45AE94B2</span><br><span class="line"></span><br><span class="line">consonants = &quot;qwrtpsdfghjklzxcvbnmv&quot;</span><br><span class="line">vowels = &quot;eyuioa&quot;</span><br><span class="line"></span><br><span class="line">step = 0</span><br><span class="line">for m in key:</span><br><span class="line">    step += ord(m)</span><br><span class="line"></span><br><span class="line">for nr in range(1000):</span><br><span class="line">    domain = &quot;&quot;</span><br><span class="line">    base += step</span><br><span class="line"></span><br><span class="line">    for i in range(length):</span><br><span class="line">        index = int(base/(3+2*i))</span><br><span class="line">        if i % 2 == 0:</span><br><span class="line">            char = consonants[index % 20]</span><br><span class="line">        else:</span><br><span class="line">            char = vowels[index % 6]</span><br><span class="line">        domain += char</span><br><span class="line"></span><br><span class="line">    domain += &quot;.&quot; + tld</span><br><span class="line">    print(domain)</span><br></pre></td></tr></table></figure>
+<h3 id="&#x57FA;&#x4E8E;&#x65F6;&#x95F4;&#x7684;&#x79CD;&#x5B50;">&#x57FA;&#x4E8E;&#x65F6;&#x95F4;&#x7684;&#x79CD;&#x5B50;</h3>
+<p>DGA&#x7B97;&#x6CD5;&#x53EF;&#x4EE5;&#x5C06;&#x65F6;&#x95F4;&#x4FE1;&#x606F;&#x4F5C;&#x4E3A;&#x8F93;&#x5165;&#x79CD;&#x5B50;&#xFF0C;&#x901A;&#x8FC7;&#x611F;&#x67D3;&#x4E3B;&#x673A;&#x7684;&#x7CFB;&#x7EDF;&#x65F6;&#x95F4;&#x3001;HTTP&#x7684;&#x54CD;&#x5E94;&#x65F6;&#x95F4;&#xFF0C;&#x4EE5;&#x53CA;&#x5176;&#x4ED6;&#x63A7;&#x5236;&#x4E0E;&#x88AB;&#x63A7;&#x7AEF;&#x53EF;&#x4EE5;&#x540C;&#x65F6;&#x660E;&#x786E;&#x7684;&#x65F6;&#x95F4;&#x90FD;&#x53EF;&#x4EE5;&#x4F5C;&#x4E3A;&#x8F93;&#x5165;&#xFF0C;&#x751F;&#x6210;&#x5BF9;&#x5E94;&#x7684;DGA&#x57DF;&#x540D;&#xFF1B;</p>
+<p>&#x4F8B;&#x5982;ranbyus&#x5BB6;&#x65CF;&#x5C31;&#x662F;&#x5229;&#x7528;&#x65F6;&#x95F4;&#x4E3A;&#x4E3B;&#x8981;&#x79CD;&#x5B50;&#x5E76;&#x7ED3;&#x5408;&#x5B57;&#x5178;&#x79CD;&#x5B50;&#x7684;DGA&#x5BB6;&#x65CF;&#xFF1A;</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br></pre></td><td class="code"><pre><span class="line">&quot;&quot;&quot;</span><br><span class="line">    The DGA of Ranbyus as described here:</span><br><span class="line">        http://johannesbader.ch/2015/09/ranbyuss-dga-revisited/</span><br><span class="line">    Known Seeds are:</span><br><span class="line">        - 0F0D5BFA</span><br><span class="line">        - F2C72B14</span><br><span class="line">        - AE8714BE</span><br><span class="line">        - CE7F8514 (= ~ 31807AEB)</span><br><span class="line">        - 572473BB (= ~ A8DB8C44)</span><br><span class="line">        - 17794CF1 (= ~ E886B30E)</span><br><span class="line">        - C0E32524 (= ~ 3F1CDADB)</span><br><span class="line">        - 7CB7966E (= ~ 83486991)</span><br><span class="line">        - 9F90C9E7 (= ~ 606F3618)</span><br><span class="line">        - 8FB8879B (= ~ 70477864)</span><br><span class="line">        - E981684B (= ~ 167E97B4)</span><br><span class="line">&quot;&quot;&quot;</span><br><span class="line"></span><br><span class="line">import argparse</span><br><span class="line">from datetime import datetime</span><br><span class="line"></span><br><span class="line">def to_little_array(val):</span><br><span class="line">    a = 4*[0]</span><br><span class="line">    for i in range(4):</span><br><span class="line">        a[i] = (val &amp; 0xFF)</span><br><span class="line">        val &gt;&gt;= 8</span><br><span class="line">    return a</span><br><span class="line">        </span><br><span class="line">def pcg_random(r): </span><br><span class="line">    alpha = 0x5851F42D4C957F2D</span><br><span class="line">    inc = 0x14057B7EF767814F</span><br><span class="line"></span><br><span class="line">    step1 = alpha*r + inc</span><br><span class="line">    step2 = alpha*step1 + inc</span><br><span class="line">    step3 = alpha*step2 + inc</span><br><span class="line">    </span><br><span class="line">    tmp = (step3 &gt;&gt; 24) &amp; 0xFFFFFF00 | (step3  &amp; 0xFFFFFFFF) &gt;&gt; 24</span><br><span class="line">    a = (tmp ^ step2) &amp; 0x000FFFFF ^ step2</span><br><span class="line">    b = (step2 &gt;&gt; 32)</span><br><span class="line">    c = (step1 &amp; 0xFFF00000)  | ((step3 &gt;&gt; 32) &amp; 0xFFFFFFFF) &gt;&gt; 12</span><br><span class="line">    d = (step1 &gt;&gt; 32) &amp; 0xFFFFFFFF</span><br><span class="line">    </span><br><span class="line">    data = 32*[None]</span><br><span class="line">    data[0:4] = to_little_array(a)</span><br><span class="line">    data[4:8] = to_little_array(b)</span><br><span class="line">    data[8:12] = to_little_array(c)</span><br><span class="line">    data[12:16] = to_little_array(d)</span><br><span class="line">    return step3 &amp; 0xFFFFFFFFFFFFFFFF, data</span><br><span class="line"></span><br><span class="line">def dga(year, month, day, seed):</span><br><span class="line">    x = (day*month*year) ^ seed</span><br><span class="line">    tld_index = day</span><br><span class="line">    for _ in range(40):</span><br><span class="line">        random = 32*[None]</span><br><span class="line">        x, random[0:16] = pcg_random(x)</span><br><span class="line">        x, random[16:32] = pcg_random(x)</span><br><span class="line"></span><br><span class="line">        domain = &quot;&quot;</span><br><span class="line">        for i in range(17):</span><br><span class="line">            domain += chr(random[i] % 25 + ord(&apos;a&apos;))</span><br><span class="line">        if seed == 0xCE7F8514:</span><br><span class="line">            tlds =  [&quot;in&quot;, &quot;net&quot;, &quot;org&quot;, &quot;com&quot;, &quot;me&quot;, &quot;su&quot;, &quot;tw&quot;, &quot;cc&quot;, &quot;pw&quot;]</span><br><span class="line">        else:</span><br><span class="line">            tlds =  [&quot;in&quot;, &quot;me&quot;, &quot;cc&quot;, &quot;su&quot;, &quot;tw&quot;, &quot;net&quot;, &quot;com&quot;, &quot;pw&quot;, &quot;org&quot;]</span><br><span class="line">        domain += &apos;.&apos; + tlds[tld_index % (len(tlds) - 1)]</span><br><span class="line">        tld_index += 1</span><br><span class="line">        yield domain</span><br><span class="line"></span><br><span class="line">if __name__==&quot;__main__&quot;:</span><br><span class="line">    parser = argparse.ArgumentParser()</span><br><span class="line">    parser.add_argument(&quot;-d&quot;, &quot;--date&quot;, help=&quot;date for which to generate domains&quot;)</span><br><span class="line">    parser.add_argument(&quot;-s&quot;, &quot;--seed&quot;, help=&quot;seed as hex string&quot;, default=&quot;0F0D5BFA&quot;)</span><br><span class="line">    args = parser.parse_args()</span><br><span class="line">    if args.date:</span><br><span class="line">        d = datetime.strptime(args.date, &quot;%Y-%m-%d&quot;)</span><br><span class="line">    else:</span><br><span class="line">        d = datetime.now()</span><br><span class="line">    for domain in dga(d.year, d.month, d.day, int(args.seed, 16)):</span><br><span class="line">        print(domain)</span><br></pre></td></tr></table></figure>
+<h3 id="&#x57FA;&#x4E8E;&#x5176;&#x4ED6;&#x52A8;&#x6001;&#x6570;&#x636E;&#x7684;&#x79CD;&#x5B50;">&#x57FA;&#x4E8E;&#x5176;&#x4ED6;&#x52A8;&#x6001;&#x6570;&#x636E;&#x7684;&#x79CD;&#x5B50;</h3>
+<p>&#x6BD4;&#x5982;Bedep&#x662F;&#x4EE5;&#x6B27;&#x6D32;&#x4E2D;&#x592E;&#x94F6;&#x884C;&#x6BCF;&#x5929;&#x53D1;&#x5E03;&#x7684;&#x5916;&#x6C47;&#x53C2;&#x8003;&#x6C47;&#x7387;&#x4F5C;&#x4E3A;&#x79CD;&#x5B50;&#xFF0C;Torpig&#x4F7F;&#x7528;twitter&#x7684;&#x5173;&#x952E;&#x5B57;&#x4F5C;&#x4E3A;&#x79CD;&#x5B50;&#xFF0C;&#x8FD9;&#x4E9B;&#x52A8;&#x6001;&#x53D8;&#x5316;&#x7684;&#x6570;&#x636E;&#x53EA;&#x6709;&#x5728;&#x786E;&#x5B9A;&#x7684;&#x65F6;&#x95F4;&#x7A97;&#x53E3;&#x5185;&#x6CE8;&#x518C;&#x57DF;&#x540D;&#x624D;&#x4F1A;&#x751F;&#x6548;&#xFF1B;</p>
+<p>&#x4F8B;&#x5982;&#x5728;<a target="_blank" rel="noopener" href="https://github.com/arbor/bedep_dga/blob/b6aff6b9cbcabb32514e2afab35ad939c610d5a6/dga.py#L133">Bedep&#x7684;python&#x5B9E;&#x73B0;</a>&#x4E2D;&#x5C31;&#x6709;&#x8FD9;&#x4E24;&#x884C;&#x4EE3;&#x7801;&#xFF0C;&#x4EE3;&#x8868;&#x91C7;&#x7528;&#x6B27;&#x4E2D;&#x4E2D;&#x592E;&#x94F6;&#x884C;&#x7684;&#x76F8;&#x5173;&#x4FE1;&#x606F;&#xFF1A;</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cube1 = root.find(&quot;{http://www.ecb.int/vocabulary/2002-08-01/eurofxref}Cube&quot;)</span><br><span class="line">cube2s = cube1.findall(&quot;{http://www.ecb.int/vocabulary/2002-08-01/eurofxref}Cube&quot;)</span><br></pre></td></tr></table></figure>
+<h2 id="dga&#x7684;&#x7C7B;&#x522B;">DGA&#x7684;&#x7C7B;&#x522B;</h2>
+<h3 id="&#x57FA;&#x4E8E;&#x79CD;&#x5B50;&#x7C7B;&#x578B;&#x7684;&#x5206;&#x7C7B;">&#x57FA;&#x4E8E;&#x79CD;&#x5B50;&#x7C7B;&#x578B;&#x7684;&#x5206;&#x7C7B;</h3>
+<p>&#x901A;&#x8FC7;Thomas Barabosch&#x7B49;&#x4EBA;&#x5BF9;DGA&#x7684;<a target="_blank" rel="noopener" href="https://net.cs.uni-bonn.de/fileadmin/user_upload/wichmann/Extraction_DNGA_Malware.pdf">&#x5206;&#x6790;&#x8BBA;&#x6587;</a>&#x4E2D;&#xFF0C;&#x7684;&#x4FE1;&#x606F;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x770B;&#x51FA;&#xFF0C;&#x6709;&#x7684;&#x79CD;&#x5B50;&#x662F;&#x56FA;&#x5B9A;&#x7684;&#xFF0C;&#x6BD4;&#x5982;&#x5B57;&#x5178;&#x6216;&#x8005;&#x67D0;&#x4E00;&#x4E2A;&#x56FA;&#x5B9A;&#x7684;&#x65F6;&#x95F4;&#xFF1B;&#x6709;&#x4E9B;&#x79CD;&#x5B50;&#x662F;&#x8DDF;&#x968F;&#x65F6;&#x95F4;&#x52A8;&#x6001;&#x53D8;&#x5316;&#x7684;&#x4E0D;&#x53EF;&#x786E;&#x5B9A;&#x7684;&#x79CD;&#x5B50;&#x3002;&#x90A3;&#x4E48;&#x56E0;&#x6B64;&#x6839;&#x636E;&#x8FD9;&#x79CD;&#x7279;&#x6027;DGA&#x57DF;&#x540D;&#x53EF;&#x4EE5;&#x5206;&#x4E3A;&#x56DB;&#x7C7B;&#xFF1A;</p>
+<h4 id="tid">TID</h4>
+<p>TID&#xFF08;time-independent and deterministic&#xFF09;&#xFF0C;&#x4E0E;&#x65F6;&#x95F4;&#x4E0D;&#x76F8;&#x5173;&#xFF0C;&#x53EF;&#x786E;&#x5B9A;&#x3002;&#x4E3B;&#x8981;&#x4EE5;&#x57FA;&#x4E8E;&#x8BCD;&#x5178;&#x7684;&#x79CD;&#x5B50;&#x4E3A;&#x4E3B;&#xFF1B;</p>
+<h4 id="tdd">TDD</h4>
+<p>TDD&#xFF08;time-dependent and deterministic&#xFF09;&#xFF0C;&#x4E0E;&#x65F6;&#x95F4;&#x76F8;&#x5173;&#xFF0C;&#x53EF;&#x786E;&#x5B9A;&#xFF1B;&#x4EE5;&#x57FA;&#x4E8E;&#x65F6;&#x95F4;&#x7684;&#x79CD;&#x5B50;&#x4E3A;&#x4E3B;&#xFF0C;&#x540C;&#x65F6;&#x4E5F;&#x4F1A;&#x5E94;&#x7528;&#x57FA;&#x4E8E;&#x8BCD;&#x5178;&#x7684;&#x79CD;&#x5B50;&#xFF1B;</p>
+<h4 id="tdn">TDN</h4>
+<p>TDN&#xFF08;time-dependent and non-deterministic&#xFF09;&#xFF0C;&#x4E0E;&#x65F6;&#x95F4;&#x76F8;&#x5173;&#xFF0C;&#x4E0D;&#x53EF;&#x786E;&#x5B9A;&#xFF1B;&#x4EE5;&#x57FA;&#x4E8E;&#x5176;&#x4ED6;&#x52A8;&#x6001;&#x6570;&#x636E;&#x7684;&#x79CD;&#x5B50;&#x4E3A;&#x4E3B;&#xFF0C;&#x540C;&#x65F6;&#x4F1A;&#x5E94;&#x7528;&#x57FA;&#x4E8E;&#x8BCD;&#x5178;&#x7684;&#x79CD;&#x5B50;&#x3002;</p>
+<h4 id="tin">TIN</h4>
+<p>TIN&#xFF08;time-independent and non-deterministic&#xFF09;&#xFF0C;&#x4E0E;&#x65F6;&#x95F4;&#x4E0D;&#x76F8;&#x5173;&#xFF0C;&#x4E0D;&#x53EF;&#x786E;&#x5B9A;&#xFF1B;&#x76EE;&#x524D;&#x672A;&#x53D1;&#x73B0;&#x76F8;&#x5173;DGA&#x5BB6;&#x65CF;&#xFF0C;&#x7B14;&#x8005;&#x4E5F;&#x4E0D;&#x77E5;&#x9053;&#x548C;&#x65F6;&#x95F4;&#x4E0D;&#x76F8;&#x5173;&#x7684;&#x79CD;&#x5B50;&#x6709;&#x54EA;&#x4E9B;&#x3002;</p>
+<p>Daniel Plohmann&#x5728;<a target="_blank" rel="noopener" href="https://www.botconf.eu/wp-content/uploads/2015/12/OK-P06-Plohmann-DGArchive.pdf">&#x6280;&#x672F;&#x5206;&#x4EAB;</a>&#x4E2D;&#xFF0C;&#x5BF9;&#x591A;&#x4E2A;DGA&#x5BB6;&#x65CF;&#x5728;&#x57FA;&#x4E8E;&#x79CD;&#x5B50;&#x7C7B;&#x578B;&#x5206;&#x7C7B;&#x4E2D;&#x7684;&#x7EDF;&#x8BA1;&#x60C5;&#x51B5;&#x5982;&#x4E0B;&#xFF1A;</p>
+<p><img src="/2022/02/22/DGA%E7%AE%80%E8%BF%B0/&#x4F01;&#x4E1A;&#x5FAE;&#x4FE1;&#x622A;&#x56FE;_16460268114223.png" alt="DGA&#x5BB6;&#x65CF;&#x7684;&#x5206;&#x7C7B;"></p>
+<h3 id="&#x57FA;&#x4E8E;&#x7B97;&#x6CD5;&#x751F;&#x6210;&#x65B9;&#x5F0F;&#x7684;&#x5206;&#x7C7B;">&#x57FA;&#x4E8E;&#x7B97;&#x6CD5;&#x751F;&#x6210;&#x65B9;&#x5F0F;&#x7684;&#x5206;&#x7C7B;</h3>
+<h4 id="arithmetic-a">Arithmetic (A)</h4>
+<p>&#x7B97;&#x6570;&#x7B97;&#x6CD5;&#xFF0C;&#x8FD9;&#x79CD;&#x7B97;&#x6CD5;&#x4E3B;&#x8981;&#x662F;&#x5BF9;&#x901A;&#x8FC7;&#x56DB;&#x5219;&#x8FD0;&#x7B97;&#x548C;&#x903B;&#x8F91;&#x8FD0;&#x7B97;&#x7B49;&#x65B9;&#x6CD5;&#x5BF9;seed&#x8FDB;&#x884C;&#x5904;&#x7406;&#x3002;&#x751F;&#x6210;&#x7684;&#x57DF;&#x540D;&#x53EF;&#x8BFB;&#x6027;&#x8F83;&#x5DEE;&#x3002;</p>
+<p>&#x793A;&#x4F8B;DGA&#x5BB6;&#x65CF;&#xFF1A;DirCrypt</p>
+<p>&#x793A;&#x4F8B;DGA&#x57DF;&#x540D;&#xFF1A;vlbqryjd.com</p>
+<h4 id="wordlist-w">Wordlist (W)</h4>
+<p>&#x8BCD;&#x6839;&#x7B97;&#x6CD5;&#xFF0C;&#x8FD9;&#x79CD;&#x7B97;&#x6CD5;&#x4E3B;&#x8981;&#x662F;&#x901A;&#x8FC7;&#x56DB;&#x5219;&#x8FD0;&#x7B97;&#x548C;&#x903B;&#x8F91;&#x8FD0;&#x7B97;&#x7B49;&#x65B9;&#x6CD5;&#x751F;&#x6210;&#x7D22;&#x5F15;&#xFF0C;&#x5E76;&#x7D22;&#x5F15;&#x8BCD;&#x8868;&#x4E2D;&#x7684;&#x8BCD;&#x6839;&#x751F;&#x6210;&#x57DF;&#x540D;&#xFF0C;&#x8FD9;&#x79CD;&#x57DF;&#x540D;&#x6709;&#x4E00;&#x5B9A;&#x7684;&#x53EF;&#x8BFB;&#x6027;&#xFF0C;&#x5F88;&#x96BE;&#x88AB;&#x68C0;&#x6D4B;&#xFF0C;&#x4F46;&#x662F;&#x57DF;&#x540D;&#x957F;&#x5EA6;&#x8F83;&#x957F;&#xFF0C;&#x5E76;&#x4E14;&#x6BD4;&#x8F83;&#x5BB9;&#x6613;&#x53D1;&#x751F;DGA&#x57DF;&#x540D;&#x78B0;&#x649E;&#x3002;</p>
+<p>&#x793A;&#x4F8B;DGA&#x5BB6;&#x65CF;&#xFF1A;Matsnu</p>
+<p>&#x793A;&#x4F8B;DGA&#x57DF;&#x540D;&#xFF1A;termacceptyear.com</p>
+<h4 id="hashing-h">Hashing (H)</h4>
+<p>&#x54C8;&#x5E0C;&#x7B97;&#x6CD5;&#xFF0C;&#x901A;&#x8FC7;hash&#x7684;&#x65B9;&#x6CD5;&#x5BF9;seed&#x8FDB;&#x884C;&#x5904;&#x7406;&#xFF0C;&#x901A;&#x8FC7;HASH&#x6563;&#x5217;&#x7684;&#x65B9;&#x6CD5;&#x968F;&#x673A;&#x751F;&#x6210;&#x57DF;&#x540D;&#xFF0C;&#x8FD9;&#x79CD;&#x57DF;&#x540D;&#x6CA1;&#x6709;&#x53EF;&#x8BFB;&#x6027;&#xFF0C;&#x5E76;&#x4E14;&#x957F;&#x5EA6;&#x56FA;&#x5B9A;&#xFF0C;&#x5BB9;&#x6613;&#x88AB;&#x68C0;&#x6D4B;&#xFF0C;&#x4E0D;&#x5BB9;&#x6613;&#x53D1;&#x751F;DGA&#x57DF;&#x540D;&#x78B0;&#x649E;&#x3002;</p>
+<p>&#x793A;&#x4F8B;DGA&#x5BB6;&#x65CF;&#xFF1A;Bamital</p>
+<p>&#x793A;&#x4F8B;DGA&#x57DF;&#x540D;&#xFF1A;b83ed4877eec1997fcc39b7ae590007a.info</p>
+<h4 id="permutation-p">Permutation (P)</h4>
+<p>&#x4E0E;&#x8BCD;&#x6839;&#x7B97;&#x6CD5;&#x6709;&#x4E9B;&#x7C7B;&#x4F3C;&#xFF0C;&#x4F46;&#x662F;&#x8FD9;&#x79CD;&#x65B9;&#x6CD5;&#x662F;&#x5F88;&#x5BB9;&#x6613;&#x88AB;&#x7A77;&#x4E3E;&#x3002;</p>
+<p>&#x793A;&#x4F8B;DGA&#x5BB6;&#x65CF;&#xFF1A;VolatileCedar</p>
+<p>&#x793A;&#x4F8B;DGA&#x57DF;&#x540D;&#xFF1A;dotnetexplorer.info</p>
+<p>&#x5BF9;&#x591A;&#x4E2A;DGA&#x5BB6;&#x65CF;&#x5728;&#x57FA;&#x4E8E;&#x7B97;&#x6CD5;&#x751F;&#x6210;&#x65B9;&#x5F0F;&#x5206;&#x7C7B;&#x4E2D;&#x7684;&#x7EDF;&#x8BA1;&#x60C5;&#x51B5;&#x5982;&#x4E0B;&#xFF1A;</p>
+<p><img src="/2022/02/22/DGA%E7%AE%80%E8%BF%B0/image-20220419004547992.png" alt="&#x57FA;&#x4E8E;&#x7B97;&#x6CD5;&#x7684;DGA&#x5206;&#x7C7B;"></p>
+<h2 id="dga&#x7684;&#x7528;&#x9014;">DGA&#x7684;&#x7528;&#x9014;</h2>
+<p>DGA&#x7684;&#x4E3B;&#x8981;&#x7528;&#x4E8E;&#x88AB;&#x6076;&#x610F;&#x63A7;&#x5236;&#x7684;&#x88AB;&#x63A7;&#x7AEF;&#x4E0E;&#x9ED1;&#x5BA2;&#x7684;&#x63A7;&#x5236;&#x7AEF;&#x4E4B;&#x95F4;&#x7684;C2&#x901A;&#x4FE1;&#x3002;&#x5B8C;&#x6210;&#x6574;&#x4E2A;C2&#x901A;&#x4FE1;&#x4E3B;&#x8981;&#x5206;&#x4E3A;&#x4EE5;&#x4E0B;&#x51E0;&#x4E2A;&#x6B65;&#x9AA4;&#xFF1A;</p>
+<p>&#x200B; step1&#xFF1A;&#x9ED1;&#x5BA2;&#x5728;DGA&#x751F;&#x6210;&#x7684;&#x5927;&#x91CF;&#x57DF;&#x540D;&#x4E2D;&#x627E;&#x4E00;&#x4E2A;&#x8FDB;&#x884C;&#x57DF;&#x540D;XXX.biz&#x6CE8;&#x518C;&#xFF1B;</p>
+<p>&#x200B; stdp2&#xFF1A;&#x88AB;&#x63A7;&#x7AEF;&#x67E5;&#x8BE2;DGA&#x751F;&#x6210;&#x7684;&#x57DF;&#x540D;&#xFF0C;&#x901A;&#x8FC7;&#x67E5;&#x627E;&#x78B0;&#x649E;&#x627E;&#x5230;&#x57DF;&#x540D;XXX.biz&#x5BF9;&#x5E94;&#x7684;IP&#x5730;&#x5740;&#xFF1B;</p>
+<p>&#x200B; step3&#xFF1A;&#x901A;&#x8FC7;&#x8FDE;&#x63A5;IP&#x5730;&#x5740;&#x5411;&#x88AB;&#x63A7;&#x7AEF;&#x670D;&#x52A1;&#x5668;&#x53D1;&#x9001;&#x4FDD;&#x6D3B;&#x5305;&#x5E76;&#x63A5;&#x53D7;C2&#x547D;&#x4EE4;.</p>
+<p>&#x5728;&#x8FD9;&#x4E2A;&#x5DE5;&#x7A0B;&#x4E2D;&#xFF0C;&#x7B2C;&#x4E00;&#x3001;&#x56E0;&#x4E3A;DGA&#x751F;&#x6210;&#x7684;&#x57DF;&#x540D;&#x5177;&#x6709;&#x5F88;&#x5F3A;&#x7684;&#x4F2A;&#x968F;&#x673A;&#x6027;&#x4E14;&#x968F;&#x7740;&#x65F6;&#x95F4;&#x548C;seed&#x7B49;&#x4FE1;&#x606F;&#x4E0D;&#x65AD;&#x53D8;&#x5316;&#xFF0C;&#x56E0;&#x6B64;&#x5F88;&#x96BE;&#x901A;&#x8FC7;&#x9ED1;&#x540D;&#x5355;&#x7684;&#x65B9;&#x6CD5;&#x8FDB;&#x884C;&#x62E6;&#x622A;&#xFF1B;&#x7B2C;&#x4E8C;&#x3001;&#x800C;&#x4E14;&#x901A;&#x8FC7;&#x63D0;&#x524D;&#x6CE8;&#x518C;DGA&#x751F;&#x6210;&#x7684;&#x57DF;&#x540D;&#xFF0C;&#x5C31;&#x53EF;&#x4EE5;&#x5C06;IP&#x5730;&#x5740;&#x9690;&#x85CF;&#x8D77;&#x6765;&#xFF0C;&#x964D;&#x4F4E;IP&#x5730;&#x5740;&#x88AB;&#x9ED1;&#x540D;&#x5355;&#x62E6;&#x622A;&#x7684;&#x98CE;&#x9669;&#x3002;&#x7B2C;&#x4E09;&#x3001;DGA&#x751F;&#x6210;&#x7B97;&#x6CD5;&#x53EF;&#x4EE5;&#x8FDB;&#x884C;&#x4E0D;&#x65AD;&#x7684;&#x66F4;&#x65B0;&#x8FED;&#x4EE3;&#xFF0C;&#x901A;&#x8FC7;&#x5D4C;&#x5165;&#x7279;&#x5B9A;&#x7684;&#x82F1;&#x6587;&#x5355;&#x8BCD;&#x4F5C;&#x4E3A;seed&#xFF0C;&#x57DF;&#x540D;&#x770B;&#x4E0A;&#x53BB;&#x66F4;&#x52A0;&#x6B63;&#x5E38;&#x4E14;&#x5177;&#x5907;&#x4E00;&#x5B9A;&#x7684;&#x8BED;&#x4E49;&#x4FE1;&#x606F;&#xFF0C;&#x63D0;&#x9AD8;&#x4E86;&#x68C0;&#x6D4B;&#x96BE;&#x5EA6;&#x3002;</p>
+<h2 id="dga&#x7684;&#x7834;&#x7EFD;">DGA&#x7684;&#x7834;&#x7EFD;</h2>
+<p>&#x867D;&#x7136;DGA&#x7B97;&#x6CD5;&#x53EF;&#x4EE5;&#x89C4;&#x907F;&#x9ED1;&#x540D;&#x5355;&#x7B49;&#x68C0;&#x6D4B;&#x65B9;&#x6CD5;&#xFF0C;&#x4F46;&#x662F;&#x7531;&#x4E8E;&#x5176;&#x72EC;&#x7279;&#x7684;&#x751F;&#x6210;&#x65B9;&#x6CD5;&#x548C;DNS&#x67E5;&#x8BE2;&#x7279;&#x70B9;&#xFF0C;&#x8FD8;&#x662F;&#x5B58;&#x5728;&#x660E;&#x663E;&#x7684;&#x7834;&#x7EFD;&#x3002;&#x7B2C;&#x4E00;&#x70B9;&#x5C31;&#x662F;&#x6BCF;&#x4E00;&#x6B21;DGA&#x4F1A;&#x751F;&#x6210;&#x591A;&#x4E2A;DGA&#x57DF;&#x540D;&#xFF0C;&#x56E0;&#x6B64;&#x5728;&#x8FD9;&#x4E2A;&#x8FC7;&#x7A0B;&#x5F53;&#x4E2D;&#x4F1A;&#x4EA7;&#x751F;&#x591A;&#x4E8E;&#x6B63;&#x5E38;&#x65F6;&#x5019;&#x7684;NXDomain&#x7C7B;&#x578B;&#x7684;DNS&#x67E5;&#x8BE2;&#x6B21;&#x6570;&#xFF1B;</p>
+<p>&#x7B2C;&#x4E8C;&#xFF0C;&#x56E0;&#x4E3A;DGA&#x751F;&#x6210;&#x7684;&#x57DF;&#x540D;&#x7684;&#x4E3B;&#x8981;&#x4F5C;&#x7528;&#x5C31;&#x662F;&#x4E3A;&#x4E86;&#x627E;&#x5230;&#x63A7;&#x5236;&#x7AEF;&#x5BF9;&#x5E94;&#x7684;IP&#x5730;&#x5740;&#xFF0C;&#x56E0;&#x6B64;DGA&#x751F;&#x6210;&#x7684;&#x57DF;&#x540D;&#x5730;&#x5740;&#x5F88;&#x5C11;&#x8FD8;&#x4F1A;&#x6709;&#x5B50;&#x57DF;&#x540D;&#xFF0C;&#x57DF;&#x540D;&#x7684;&#x7EA7;&#x6570;&#x548C;&#x5B50;&#x57DF;&#x540D;&#x7684;&#x4E2A;&#x6570;&#x90FD;&#x8F83;&#x5C11;&#xFF1B;</p>
+<p>&#x7B2C;&#x4E09;&#xFF0C;&#x76F8;&#x6BD4;&#x4E8E;&#x6B63;&#x5E38;&#x57DF;&#x540D;DGA&#x57DF;&#x540D;&#x7684;&#x957F;&#x5EA6;&#x66F4;&#x957F;&#xFF0C;&#x53EF;&#x8BFB;&#x6027;&#x76F8;&#x5BF9;&#x8F83;&#x5DEE;&#x3002;</p>
+<p>&#x7B2C;&#x56DB;&#xFF0C;&#x9274;&#x4E8E;&#x7528;&#x6237;&#x7684;&#x4E0A;&#x7F51;&#x4E60;&#x60EF;&#xFF0C;&#x4E00;&#x822C;&#x5E38;&#x7528;&#x7684;DNS&#x67E5;&#x8BE2;&#x90FD;&#x4F1A;&#x5386;&#x53F2;&#x8BB0;&#x5F55;&#xFF0C;&#x4F46;&#x662F;DGA&#x5F88;&#x53EF;&#x80FD;&#x662F;&#x521D;&#x6D4B;&#x6CE8;&#x518C;&#xFF0C;&#x56E0;&#x6B64;&#x5927;&#x6982;&#x7387;&#x4F1A;&#x662F;&#x9996;&#x6B21;&#x51FA;&#x73B0;&#x7684;DNS&#x67E5;&#x8BE2;&#xFF1B;</p>
+<p>&#x7B2C;&#x4E94;&#xFF0C;DGA&#x751F;&#x6210;&#x7684;&#x57DF;&#x540D;&#x4E00;&#x822C;&#x4E34;&#x65F6;&#x5FEB;&#x901F;&#x6CE8;&#x518C;&#x7684;&#xFF0C;&#x56E0;&#x6B64;&#x6CE8;&#x518C;&#x65F6;&#x95F4;&#x548C;&#x88AB;&#x63A7;&#x7AEF;DNS&#x67E5;&#x8BE2;&#x4E4B;&#x95F4;&#x7684;&#x65F6;&#x95F4;&#x5DEE;&#x4F1A;&#x5F88;&#x77ED;&#xFF1B;</p>
+<p>&#x7B2C;&#x516D;&#xFF0C;DNS&#x7684;&#x5B58;&#x6D3B;&#x65F6;&#x95F4;&#x5F88;&#x77ED;&#xFF0C;&#x4E00;&#x822C;&#x662F;&#x5728;1&#x5230;7&#x5929;&#x3002;</p>
+<p>&#x4EE5;&#x4E0A;&#x7684;&#x8FD9;&#x4E9B;&#x7279;&#x70B9;&#x90FD;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x4E0D;&#x540C;&#x7684;&#x68C0;&#x6D4B;&#x65B9;&#x6CD5;&#x8FDB;&#x884C;&#x9488;&#x5BF9;&#x6027;&#x7684;&#x68C0;&#x6D4B;&#x3002;&#x5176;&#x4E2D;&#x5305;&#x62EC;&#x673A;&#x5668;&#x5B66;&#x4E60;&#x7684;&#x65B9;&#x6CD5;&#x3001;&#x5F02;&#x5E38;&#x68C0;&#x6D4B;&#x7684;&#x65B9;&#x6CD5;&#x3001;&#x4EE5;&#x53CA;&#x9608;&#x503C;&#x548C;&#x6B63;&#x5219;&#x7684;&#x65B9;&#x6CD5;&#x3001;&#x4EE5;&#x53CA;DNS&#x67E5;&#x8BE2;&#x8BB0;&#x5F55;&#x5206;&#x6790;&#x548C;Whois&#x67E5;&#x8BE2;&#x7B49;&#x591A;&#x79CD;&#x65B9;&#x6CD5;&#x3002;&#x5B89;&#x5168;&#x5382;&#x5546;&#x53EF;&#x4EE5;&#x6839;&#x636E;&#x4E0D;&#x540C;&#x5B89;&#x5168;&#x4EA7;&#x54C1;&#x7684;&#x6570;&#x636E;&#x548C;&#x8BA1;&#x7B97;&#x80FD;&#x529B;&#xFF0C;&#x8FDB;&#x884C;&#x9488;&#x5BF9;&#x6027;&#x5206;&#x6790;&#x3002;</p>
+<h2 id="dga&#x7684;&#x68C0;&#x6D4B;&#x65B9;&#x6CD5;">DGA&#x7684;&#x68C0;&#x6D4B;&#x65B9;&#x6CD5;</h2>
+<p>DGA&#x4F5C;&#x4E3A;C2&#x8FDE;&#x63A5;&#x884C;&#x4E3A;&#x7684;&#x524D;&#x671F;&#x884C;&#x4E3A;&#xFF0C;&#x53EF;&#x4EE5;&#x6839;&#x636E;C2&#x670D;&#x52A1;&#x5668;&#x7684;&#x7279;&#x70B9;&#x91C7;&#x7528;&#x4F20;&#x7EDF;&#x68C0;&#x6D4B;&#x65B9;&#x6CD5;&#x8FDB;&#x884C;&#x68C0;&#x6D4B;&#x3002;&#x4ECE;DGA&#x4E2D;&#x7B97;&#x6CD5;&#x7684;&#x89D2;&#x5EA6;&#x6765;&#x8BF4;&#xFF0C;&#x56E0;&#x4E3A;&#x8FD9;&#x79CD;&#x57DF;&#x540D;&#x5F88;&#x5C11;&#x91CD;&#x590D;&#x4F7F;&#x7528;&#xFF0C;&#x56E0;&#x6B64;&#x6BD4;&#x8F83;&#x9002;&#x5408;&#x91C7;&#x7528;&#x667A;&#x80FD;&#x68C0;&#x6D4B;&#x65B9;&#x6CD5;&#x8FDB;&#x884C;&#x68C0;&#x6D4B;&#x3002;</p>
+<h3 id="&#x4F20;&#x7EDF;&#x68C0;&#x6D4B;&#x65B9;&#x6CD5;">&#x4F20;&#x7EDF;&#x68C0;&#x6D4B;&#x65B9;&#x6CD5;</h3>
+<h4 id="&#x5A01;&#x80C1;&#x60C5;&#x62A5;">&#x5A01;&#x80C1;&#x60C5;&#x62A5;</h4>
+<p>DGA&#x884C;&#x4E3A;&#x7684;&#x4E3B;&#x8981;&#x76EE;&#x7684;&#x662F;&#x4E3A;&#x4E86;&#x627E;&#x5230;C2&#x670D;&#x52A1;&#x5668;&#x7684;IP&#x5730;&#x5740;&#xFF0C;&#x56E0;&#x6B64;&#x53EF;&#x4EE5;&#x5C06;C2&#x670D;&#x52A1;&#x5668;&#x7684;IP&#x5730;&#x5740;&#x4F5C;&#x4E3A;&#x5A01;&#x80C1;&#x60C5;&#x62A5;&#x8FDB;&#x884C;&#x68C0;&#x6D4B;&#xFF0C;&#x5E76;&#x6839;&#x636E;&#x5A01;&#x80C1;&#x60C5;&#x62A5;&#x68C0;&#x6D4B;&#x7ED3;&#x679C;&#x5BF9;C2&#x884C;&#x4E3A;&#x8FDB;&#x884C;&#x62E6;&#x622A;&#x4EE5;&#x53CA;Theat Hunting&#x7684;&#x5904;&#x7406;&#x3002;</p>
+<h4 id="&#x6839;&#x4E8E;&#x57DF;&#x540D;&#x6CE8;&#x518C;&#x4FE1;&#x606F;&#x5206;&#x6790;">&#x6839;&#x4E8E;&#x57DF;&#x540D;&#x6CE8;&#x518C;&#x4FE1;&#x606F;&#x5206;&#x6790;</h4>
+<p>&#x4E00;&#x822C;DGA&#x7684;&#x57DF;&#x540D;&#x6CE8;&#x518C;&#x65F6;&#x95F4;&#x548C;&#x5F53;&#x524D;DNS&#x67E5;&#x8BE2;&#x884C;&#x4E3A;&#x4E4B;&#x95F4;&#x7684;&#x65F6;&#x95F4;&#x5DEE;&#x6BD4;&#x8F83;&#x77ED;&#xFF0C;&#x5E76;&#x4E14;DGA&#x57DF;&#x540D;&#x53EF;&#x7528;&#x7684;&#x65F6;&#x95F4;&#x4E5F;&#x6BD4;&#x8F83;&#x77ED;&#xFF0C;&#x4E00;&#x822C;&#x5C0F;&#x4E8E;&#x4E00;&#x5468;&#x3002;</p>
+<p>&#x4E3E;&#x4F8B;&#x6765;&#x8BF4;&#x6211;&#x4EEC;&#x67E5;&#x8BE2;baidu.com&#x7684;&#x65F6;&#x5019;&#x4F1A;&#x53D1;&#x73B0;&#x57DF;&#x540D;&#x5F00;&#x59CB;&#x6CE8;&#x518C;&#x7684;&#x65F6;&#x95F4;&#x4E0E;&#x5F53;&#x524D;&#x67E5;&#x8BE2;&#x65F6;&#x95F4;&#x7684;&#x65F6;&#x95F4;&#x5DEE;&#x53EF;&#x80FD;&#x662F;&#x5341;&#x51E0;&#x5E74;&#x3002;&#x800C;DGA&#x57DF;&#x540D;&#x7684;&#x6CE8;&#x518C;&#x65F6;&#x95F4;&#x548C;&#x5F53;&#x524D;&#x67E5;&#x8BE2;&#x65F6;&#x95F4;&#x7684;&#x65F6;&#x95F4;&#x5DEE;&#x53EF;&#x80FD;&#x53EA;&#x6709;&#x51E0;&#x5929;&#x3002;</p>
+<h3 id="&#x667A;&#x80FD;&#x68C0;&#x6D4B;&#x65B9;&#x6CD5;">&#x667A;&#x80FD;&#x68C0;&#x6D4B;&#x65B9;&#x6CD5;</h3>
+<h4 id="&#x673A;&#x5668;&#x5B66;&#x4E60;&#x7B97;&#x6CD5;">&#x673A;&#x5668;&#x5B66;&#x4E60;&#x7B97;&#x6CD5;</h4>
+<p>&#x53EF;&#x4EE5;&#x91C7;&#x7528;&#x7EDF;&#x8BA1;&#x5206;&#x6790;&#x7279;&#x5F81;&#x7684;&#x4F20;&#x7EDF;&#x673A;&#x5668;&#x5B66;&#x4E60;&#x7B97;&#x6CD5;&#x548C;RNN&#x7684;&#x6DF1;&#x5EA6;&#x5B66;&#x4E60;&#x7B97;&#x6CD5;&#x8FDB;&#x884C;&#x68C0;&#x6D4B;&#x3002;<strong>&#x9700;&#x8981;&#x6CE8;&#x610F;&#x7684;&#x662F;&#x91C7;&#x7528;&#x673A;&#x5668;&#x5B66;&#x4E60;&#x7B97;&#x6CD5;&#x8FDB;&#x884C;DGA&#x68C0;&#x6D4B;&#x65F6;&#xFF0C;&#x57FA;&#x4E8E;&#x5BB6;&#x65CF;&#x7684;DGA&#x591A;&#x5206;&#x7C7B;&#x7B97;&#x6CD5;&#x4E00;&#x822C;&#x51C6;&#x786E;&#x7387;&#x4E0D;&#x4F1A;&#x8FC7;&#x9AD8;&#xFF0C;&#x5982;&#x679C;&#x5728;&#x6D4B;&#x8BD5;&#x96C6;&#x4E0B;&#x7684;&#x91CF;&#x5316;&#x6307;&#x6807;&#x8FC7;&#x4E8E;&#x51FA;&#x8272;&#xFF0C;&#x90A3;&#x4E48;&#x5C31;&#x9700;&#x8981;&#x6CE8;&#x610F;&#x6A21;&#x578B;&#x7684;&#x8FC7;&#x62DF;&#x5408;&#x95EE;&#x9898;&#xFF01;&#xFF01;&#xFF01;&#xFF01;&#xFF01;&#xFF01;</strong></p>
+<p>&#x8FD9;&#x662F;&#x4E3A;&#x4EC0;&#x4E48;&#x5462;&#xFF1F;&#x56E0;&#x4E3A;&#x5F88;&#x591A;&#x540C;&#x7C7B;&#x522B;&#x7684;DGA&#x5BB6;&#x65CF;&#x4E4B;&#x95F4;&#x5C31;&#x5B58;&#x5728;&#x660E;&#x663E;&#x7684;&#x78B0;&#x649E;&#x95EE;&#x9898;&#xFF0C;&#x6839;&#x636E;Daniel Plohmann&#x7684;&#x7814;&#x7A76;,&#x53D1;&#x73B0;&#x4EE5;&#x4E0B;&#x5BB6;&#x65CF;&#x4E4B;&#x95F4;&#x5C31;&#x5B58;&#x5728;&#x660E;&#x663E;&#x7684;&#x78B0;&#x649E;&#x884C;&#x4E3A;&#xFF1A;</p>
+<p><img src="/2022/02/22/DGA%E7%AE%80%E8%BF%B0/image-20220419005200693.png" alt="DGA&#x5BB6;&#x65CF;&#x78B0;&#x649E;(1)"></p>
+<p>&#x540C;&#x65F6;&#x8FD8;&#x6709;&#xFF1A;</p>
+<p><img src="/2022/02/22/DGA%E7%AE%80%E8%BF%B0/image-20220419005304304.png" alt="DGA&#x5BB6;&#x65CF;&#x78B0;&#x649E;(2)"></p>
+<h5 id="&#x4F20;&#x7EDF;&#x673A;&#x5668;&#x5B66;&#x4E60;">&#x4F20;&#x7EDF;&#x673A;&#x5668;&#x5B66;&#x4E60;</h5>
+<p>&#x4ECE;&#x4F20;&#x7EDF;&#x673A;&#x5668;&#x5B66;&#x4E60;&#x7B97;&#x6CD5;&#x7684;&#x6837;&#x672C;&#x8F93;&#x5165;&#x7684;&#x89D2;&#x5EA6;&#x6765;&#x8BF4;&#xFF0C;&#x53EF;&#x4EE5;&#x4EE5;&#x4E00;&#x4E2A;&#x57DF;&#x540D;&#x4F5C;&#x4E3A;&#x8F93;&#x5165;&#xFF0C;&#x4E5F;&#x53EF;&#x4EE5;&#x4EE5;N&#x4E2A;&#x57DF;&#x540D;&#x4F5C;&#x4E3A;&#x4E00;&#x4E2A;&#x6837;&#x672C;&#x8F93;&#x5165;&#x3002;&#x76F8;&#x6BD4;&#x4E8E;&#x4E00;&#x4E2A;&#x57DF;&#x540D;&#x7684;&#x8F93;&#x5165;&#xFF0C;N&#x4E2A;&#x57DF;&#x540D;&#x7684;&#x6837;&#x672C;&#x8F93;&#x5165;&#x53EF;&#x4EE5;&#x83B7;&#x5F97;&#x66F4;&#x591A;&#x7684;&#x7EDF;&#x8BA1;&#x4FE1;&#x606F;&#xFF0C;&#x68C0;&#x6D4B;&#x6548;&#x679C;&#x4E5F;&#x66F4;&#x4E3A;&#x51C6;&#x786E;&#x3002;&#x4E00;&#x4E2A;&#x57DF;&#x540D;&#x7684;&#x8F93;&#x5165;&#x53EF;&#x4EE5;&#x8FDB;&#x884C;&#x5B9E;&#x65F6;&#x68C0;&#x6D4B;&#xFF0C;N&#x4E2A;&#x57DF;&#x540D;&#x7684;&#x6837;&#x672C;&#x8F93;&#x5165;&#x6709;&#x4E00;&#x5B9A;&#x7684;&#x5EF6;&#x65F6;&#x7279;&#x6027;&#x3002;</p>
+<h5 id="&#x6DF1;&#x5EA6;&#x5B66;&#x4E60;">&#x6DF1;&#x5EA6;&#x5B66;&#x4E60;</h5>
+<p>&#x91C7;&#x7528;RNN&#x7684;&#x65B9;&#x6CD5;&#x53EF;&#x4EE5;&#x514D;&#x53BB;&#x7EDF;&#x8BA1;&#x5206;&#x6790;&#x5F52;&#x7EB3;&#x7279;&#x5F81;&#x7684;&#x8FC7;&#x7A0B;&#xFF0C;&#x57DF;&#x540D;&#x7684;&#x5B57;&#x7B26;&#x4FE1;&#x606F;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;embedding&#x540E;&#x76F4;&#x63A5;&#x8F93;&#x5165;&#x5230;&#x6A21;&#x578B;&#x5F53;&#x4E2D;&#xFF0C;&#x7B80;&#x5316;&#x4E86;&#x7279;&#x5F81;&#x5904;&#x7406;&#x7684;&#x8FC7;&#x7A0B;&#x3002;&#x5982;&#x679C;&#x6570;&#x636E;&#x91CF;&#x8F83;&#x5927;&#x65F6;&#xFF0C;&#x8FD9;&#x79CD;&#x65B9;&#x6CD5;&#x4F1A;&#x6709;&#x5F88;&#x597D;&#x7684;&#x7ED3;&#x679C;&#x3002;&#x5982;&#x679C;&#x6570;&#x636E;&#x89C4;&#x6A21;&#x4E0D;&#x8DB3;&#x53EF;&#x80FD;&#x4F1A;&#x5F15;&#x51FA;&#x6377;&#x5F84;&#x5B66;&#x4E60;&#x548C;&#x6570;&#x636E;&#x504F;&#x5DEE;&#x7684;&#x95EE;&#x9898;&#x3002;</p>
+<h4 id="&#x6570;&#x636E;&#x5206;&#x6790;&#x7B97;&#x6CD5;">&#x6570;&#x636E;&#x5206;&#x6790;&#x7B97;&#x6CD5;</h4>
+<p>&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x793E;&#x533A;&#x53D1;&#x73B0;&#x7684;&#x65B9;&#x6CD5;&#x5BF9;DNS&#x67E5;&#x8BE2;&#x8BB0;&#x5F55;&#x8FDB;&#x884C;&#x5206;&#x6790;&#xFF0C;&#x540C;&#x65F6;&#x4E5F;&#x53EF;&#x4EE5;&#x8BB0;&#x5F55;&#x4E00;&#x5B9A;&#x65F6;&#x95F4;&#x7A97;&#x53E3;&#x5185;&#x7684;&#x57DF;&#x540D;&#x67E5;&#x8BE2;&#x4FE1;&#x606F;&#xFF0C;&#x5E76;&#x5BF9;&#x65B0;&#x51FA;&#x73B0;&#x7684;&#x57DF;&#x540D;&#x8FDB;&#x884C;&#x91CD;&#x70B9;&#x5206;&#x6790;&#xFF0C;&#x5176;&#x4E2D;NXDomain&#x7C7B;&#x578B;&#x7684;DNS&#x4E5F;&#x9700;&#x8981;&#x91CD;&#x70B9;&#x5206;&#x6790;&#x3002;</p>
+<h4 id="&#x57FA;&#x7EBF;&#x548C;&#x9608;&#x503C;&#x7684;&#x65B9;&#x6CD5;">&#x57FA;&#x7EBF;&#x548C;&#x9608;&#x503C;&#x7684;&#x65B9;&#x6CD5;</h4>
+<p>&#x4E00;&#x822C;&#x4F1A;&#x901A;&#x8FC7;&#x57FA;&#x7EBF;&#x548C;&#x9608;&#x503C;&#x7684;&#x65B9;&#x6CD5;&#x4F5C;&#x4E3A;&#x8865;&#x5145;&#x4EE5;&#x964D;&#x4F4E;&#x667A;&#x80FD;&#x68C0;&#x6D4B;&#x65B9;&#x6CD5;&#x7684;&#x8BEF;&#x62A5;&#xFF0C;&#x5E76;&#x63D0;&#x9AD8;&#x68C0;&#x6D4B;&#x6548;&#x7387;&#x3002;</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="reward-container">
+  <div>感谢支持，鼓励成就原创！</div>
+  <button>
+    赞赏
+  </button>
+  <div class="post-reward">
+      <div>
+        <img src="/images/wc.jpg" alt="Yoo Shen 微信">
+        <span>微信</span>
+      </div>
+      <div>
+        <img src="/images/zfb.jpg" alt="Yoo Shen 支付宝">
+        <span>支付宝</span>
+      </div>
+
+  </div>
+</div>
+
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>Yoo Shen
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://sidney-neu.github.io/2022/02/22/DGA%E7%AE%80%E8%BF%B0/" title="DGA简述">https://sidney-neu.github.io/2022/02/22/DGA简述/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2022/02/22/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%9C%A8%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E5%BA%94%E7%94%A8%E9%9D%A2%E4%B8%B4%E7%9A%84%E6%8C%91%E6%88%98/" rel="prev" title="机器学习在网络安全应用面临的挑战">
+                  <i class="fa fa-chevron-left"></i> 机器学习在网络安全应用面临的挑战
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2022/02/26/ATT&CK/" rel="next" title="ATT&CK简述">
+                  ATT&CK简述 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments gitalk-container"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Yoo Shen</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/next-boot.js"></script>
+
+  
+<script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.0/dist/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+
+
+  <script class="next-config" data-name="leancloud_visitors" type="application/json">{"enable":true,"app_id":"nG09szIvM8x9ehgslCULWzg2-MdYXbMMI","app_key":"yHykoRL88ikgLTqsUC0xIMvY","server_url":null,"security":false}</script>
+  <script src="/js/third-party/statistics/lean-analytics.js"></script>
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdn.jsdelivr.net/npm/mathjax@3.2.0/es5/tex-mml-chtml.js","integrity":"sha256-r+3itOMtGGjap0x+10hu6jW/gZCzxHsoKrOd7gyRSGY="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
+
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"sidney-neu","repo":"sidney-neu.github.io","client_id":"04c1120504d2e421fa7d","client_secret":"389710c48c007c80cfbb7b9788d01e674ab31c00","admin_user":"sidney-neu","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":"zh-CN","js":{"url":"https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js","integrity":"sha256-Pmj85ojLaPOWwRtlMJwmezB/Qg8BzvJp5eTzvXaYAfA="},"path_md5":"09de7b7fd40bbc186c71308c9e8dbb3a"}</script>
+<script src="/js/third-party/comments/gitalk.js"></script>
+
+</body>
+</html>

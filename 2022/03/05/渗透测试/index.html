@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.0.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"sidney-neu.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.8.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":{"gitalk":{"order":-1}},"activeClass":"gitalk"},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.json","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+<meta name="description" content="&amp;#x4EC0;&amp;#x4E48;&amp;#x662F;&amp;#x6E17;&amp;#x900F;&amp;#x6D4B;&amp;#x8BD5; &amp;#x6E17;&amp;#x900F;&amp;#x6D4B;&amp;#x8BD5;&amp;#x662F;&amp;#x6307;&amp;#x6D4B;&amp;#x8BD5;&amp;#x8005;&amp;#x6A21;&amp;#x62DF;&amp;#x653B;&amp;#x51FB;&amp;#x8005;&amp;#x4F7F;&amp;#x7528;&amp;#x7684;&amp;#x6F0F">
+<meta property="og:type" content="article">
+<meta property="og:title" content="渗透测试初探">
+<meta property="og:url" content="https://sidney-neu.github.io/2022/03/05/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/index.html">
+<meta property="og:site_name" content="Yoo shen的博客">
+<meta property="og:description" content="&amp;#x4EC0;&amp;#x4E48;&amp;#x662F;&amp;#x6E17;&amp;#x900F;&amp;#x6D4B;&amp;#x8BD5; &amp;#x6E17;&amp;#x900F;&amp;#x6D4B;&amp;#x8BD5;&amp;#x662F;&amp;#x6307;&amp;#x6D4B;&amp;#x8BD5;&amp;#x8005;&amp;#x6A21;&amp;#x62DF;&amp;#x653B;&amp;#x51FB;&amp;#x8005;&amp;#x4F7F;&amp;#x7528;&amp;#x7684;&amp;#x6F0F">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://sidney-neu.github.io/2022/03/05/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/16331557-70700231f24367c2.png">
+<meta property="og:image" content="https://sidney-neu.github.io/2022/03/05/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/16331557-3d358a7ade200651.png">
+<meta property="og:image" content="https://sidney-neu.github.io/2022/03/05/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/16331557-8398c1d1436c5b8a.png">
+<meta property="og:image" content="https://sidney-neu.github.io/2022/03/05/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/16331557-0f7487c511fb589a.png">
+<meta property="og:image" content="https://sidney-neu.github.io/2022/03/05/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/16331557-badad40ad32e9c61.png">
+<meta property="og:image" content="https://sidney-neu.github.io/2022/03/05/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/16331557-273c0b01fd1eee17.png">
+<meta property="og:image" content="https://sidney-neu.github.io/2022/03/05/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/16331557-04ad3fc656c71420.png">
+<meta property="og:image" content="https://sidney-neu.github.io/2022/03/05/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/16331557-6837d49e474dc7b3.png">
+<meta property="og:image" content="https://sidney-neu.github.io/2022/03/05/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/16331557-9760b9c3975f6235.png">
+<meta property="og:image" content="https://sidney-neu.github.io/2022/03/05/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/16331557-68b6fcb0fc4291c2.png">
+<meta property="og:image" content="https://sidney-neu.github.io/2022/03/05/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/16331557-417732fcac44beb3.png">
+<meta property="og:image" content="https://sidney-neu.github.io/2022/03/05/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/16331557-05ced0a08f59a553.png">
+<meta property="article:published_time" content="2022-03-05T09:05:00.000Z">
+<meta property="article:modified_time" content="2022-06-27T14:37:31.767Z">
+<meta property="article:author" content="Yoo Shen">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://sidney-neu.github.io/2022/03/05/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/16331557-70700231f24367c2.png">
+
+
+<link rel="canonical" href="https://sidney-neu.github.io/2022/03/05/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://sidney-neu.github.io/2022/03/05/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/","path":"2022/03/05/渗透测试/","title":"渗透测试初探"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>渗透测试初探 | Yoo shen的博客</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Yoo shen的博客</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">sy071600sy@163.com</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">13</span></a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">35</span></a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95"><span class="nav-number">1.</span> <span class="nav-text">什么是渗透测试</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E7%9A%84%E5%88%86%E7%B1%BB"><span class="nav-number">2.</span> <span class="nav-text">渗透测试的分类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E7%9A%84%E6%B5%81%E7%A8%8B"><span class="nav-number">3.</span> <span class="nav-text">渗透测试的流程</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%98%8E%E7%A1%AE%E9%9C%80%E6%B1%82"><span class="nav-number">3.1.</span> <span class="nav-text">明确需求</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86"><span class="nav-number">3.2.</span> <span class="nav-text">信息收集</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E8%A2%AB%E5%8A%A8%E6%94%B6%E9%9B%86"><span class="nav-number">3.2.1.</span> <span class="nav-text">被动收集</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#google-hacking"><span class="nav-number">3.2.1.1.</span> <span class="nav-text">google hacking</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#shodan%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E"><span class="nav-number">3.2.1.2.</span> <span class="nav-text">shodan搜索引擎</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%B8%BB%E5%8A%A8%E6%94%B6%E9%9B%86"><span class="nav-number">3.2.2.</span> <span class="nav-text">主动收集</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#nmap%E5%B7%A5%E5%85%B7"><span class="nav-number">3.2.2.1.</span> <span class="nav-text">nmap工具</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A8%81%E8%83%81%E5%BB%BA%E6%A8%A1"><span class="nav-number">3.3.</span> <span class="nav-text">威胁建模</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%BC%8F%E6%B4%9E%E5%88%86%E6%9E%90"><span class="nav-number">3.4.</span> <span class="nav-text">漏洞分析</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#nessus%E5%B7%A5%E5%85%B7"><span class="nav-number">3.4.1.</span> <span class="nav-text">nessus工具</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#awvs%E5%B7%A5%E5%85%B7"><span class="nav-number">3.4.2.</span> <span class="nav-text">AWVS工具</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8"><span class="nav-number">3.5.</span> <span class="nav-text">漏洞利用</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#metasploit%E5%B7%A5%E5%85%B7"><span class="nav-number">3.5.1.</span> <span class="nav-text">Metasploit工具</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%B7%B1%E5%BA%A6%E5%88%A9%E7%94%A8"><span class="nav-number">3.6.</span> <span class="nav-text">深度利用</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#meterpreter%E5%B7%A5%E5%85%B7"><span class="nav-number">3.6.1.</span> <span class="nav-text">meterpreter工具</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B9%A6%E9%9D%A2%E6%8A%A5%E5%91%8A"><span class="nav-number">3.7.</span> <span class="nav-text">书面报告</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E6%90%AD%E5%BB%BA"><span class="nav-number">4.</span> <span class="nav-text">渗透测试搭建</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%94%BB%E5%87%BB%E5%B9%B3%E5%8F%B0"><span class="nav-number">4.1.</span> <span class="nav-text">攻击平台</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#kali"><span class="nav-number">4.1.1.</span> <span class="nav-text">KALI</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%9D%B6%E6%9C%BA%E5%B9%B3%E5%8F%B0"><span class="nav-number">4.2.</span> <span class="nav-text">靶机平台</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#phpstudydvwa"><span class="nav-number">4.2.1.</span> <span class="nav-text">phpStudy+DVWA</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#phpstudy"><span class="nav-number">4.2.1.1.</span> <span class="nav-text">phpStudy</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#dvwa"><span class="nav-number">4.2.1.2.</span> <span class="nav-text">DVWA</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#vulhub"><span class="nav-number">4.2.2.</span> <span class="nav-text">vulhub</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#metasploitable"><span class="nav-number">4.2.3.</span> <span class="nav-text">metasploitable</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E5%AE%9E%E4%BE%8B-%E6%B0%B8%E6%81%92%E4%B9%8B%E8%93%9D"><span class="nav-number">5.</span> <span class="nav-text">渗透测试实例-永恒之蓝</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%A4%E6%96%AD%E9%9D%B6%E6%9C%BA%E6%98%AF%E5%90%A6%E5%9C%A8%E7%BA%BF"><span class="nav-number">5.1.</span> <span class="nav-text">判断靶机是否在线</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8B%E7%AB%AF%E5%8F%A3%E5%BC%80%E6%94%BE%E6%83%85%E5%86%B5"><span class="nav-number">5.2.</span> <span class="nav-text">查看端口开放情况</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%90%AF%E7%94%A8msf"><span class="nav-number">5.3.</span> <span class="nav-text">启用MSF</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E6%94%BB%E5%87%BB%E6%A8%A1%E5%9D%97%E8%BF%9B%E8%A1%8C%E6%B8%97%E9%80%8F"><span class="nav-number">5.4.</span> <span class="nav-text">使用攻击模块进行渗透</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%89%A7%E8%A1%8Cexploit%E8%BF%9B%E8%A1%8C%E6%94%BB%E5%87%BB"><span class="nav-number">5.5.</span> <span class="nav-text">执行exploit进行攻击</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%8E%B7%E5%8F%96%E7%9B%AE%E6%A0%87%E7%9A%84shell"><span class="nav-number">5.6.</span> <span class="nav-text">获取目标的shell</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%AE%BE%E7%BD%AEpayload%E8%8E%B7%E5%8F%96meterpreter%E5%9B%9E%E6%98%BE"><span class="nav-number">5.7.</span> <span class="nav-text">设置payload获取meterpreter回显</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#background%E5%90%8E%E5%8F%B0%E6%89%A7%E8%A1%8C"><span class="nav-number">5.8.</span> <span class="nav-text">background后台执行</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%8E%B7%E5%8F%96%E7%94%A8%E6%88%B7%E7%9A%84%E5%93%88%E5%B8%8C"><span class="nav-number">5.9.</span> <span class="nav-text">获取用户的哈希</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E4%B8%8B%E8%BD%BD"><span class="nav-number">5.10.</span> <span class="nav-text">文件下载</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%8E%B7%E5%8F%96winscp%E7%9A%84%E8%B4%A6%E5%8F%B7%E5%92%8C%E5%AF%86%E7%A0%81"><span class="nav-number">5.11.</span> <span class="nav-text">获取winscp的账号和密码</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Yoo Shen</p>
+  <div class="site-description" itemprop="description">学习、记录、分享</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">35</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/sidney-neu" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;sidney-neu" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://sidney-neu.github.io/2022/03/05/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Yoo Shen">
+      <meta itemprop="description" content="学习、记录、分享">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Yoo shen的博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          渗透测试初探
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-03-05 17:05:00" itemprop="dateCreated datePublished" datetime="2022-03-05T17:05:00+08:00">2022-03-05</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-06-27 22:37:31" itemprop="dateModified" datetime="2022-06-27T22:37:31+08:00">2022-06-27</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8-%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/" itemprop="url" rel="index"><span itemprop="name">-网络安全 -渗透测试</span></a>
+        </span>
+    </span>
+
+  
+    <span id="/2022/03/05/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/" class="post-meta-item leancloud_visitors" data-flag-title="渗透测试初探" title="阅读次数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span class="leancloud-visitors-count"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h3 id="&#x4EC0;&#x4E48;&#x662F;&#x6E17;&#x900F;&#x6D4B;&#x8BD5;">&#x4EC0;&#x4E48;&#x662F;&#x6E17;&#x900F;&#x6D4B;&#x8BD5;</h3>
+<p>&#x6E17;&#x900F;&#x6D4B;&#x8BD5;&#x662F;&#x6307;&#x6D4B;&#x8BD5;&#x8005;&#x6A21;&#x62DF;&#x653B;&#x51FB;&#x8005;&#x4F7F;&#x7528;&#x7684;&#x6F0F;&#x6D1E;&#x6280;&#x672F;&#x548C;&#x653B;&#x51FB;&#x65B9;&#x6CD5;&#xFF0C;&#x5BF9;&#x7F51;&#x7EDC;&#x76EE;&#x6807;&#x3001;&#x7CFB;&#x7EDF;&#x3001;&#x4E3B;&#x673A;&#x3001;&#x5E94;&#x7528;&#x7684;&#x5B89;&#x5168;&#x6027;&#x505A;&#x51FA;&#x6309;&#x56FE;&#x6848;&#x63A2;&#x6D4B;&#xFF0C;&#x53D1;&#x73B0;&#x7CFB;&#x7EDF;&#x4E2D;&#x8106;&#x5F31;&#x7684;&#x73AF;&#x8282;&#x3002;&#x6E17;&#x900F;&#x6D4B;&#x8BD5;&#x4E00;&#x822C;&#x9700;&#x8981;&#x5BF9;&#x76EE;&#x6807;&#x7CFB;&#x7EDF;&#x8FDB;&#x884C;&#x4E3B;&#x52A8;&#x7684;&#x63A2;&#x6D4B;&#x5206;&#x6790;&#xFF0C;&#x53D1;&#x73B0;&#x6F5C;&#x5728;&#x7684;&#x6F0F;&#x6D1E;&#xFF0C;&#x5305;&#x62EC;&#x4F46;&#x4E0D;&#x9650;&#x4E8E;&#x4E0D;&#x6070;&#x5F53;&#x7684;&#x7CFB;&#x7EDF;&#x914D;&#x7F6E;&#x3001;&#x5DF2;&#x77E5;&#x6216;&#x8005;&#x672A;&#x77E5;&#x7684;&#x8F6F;&#x786C;&#x4EF6;&#x6F0F;&#x6D1E;&#x3001;&#x4EE5;&#x53CA;&#x5728;&#x5B89;&#x5168;&#x8BA1;&#x5212;&#x4E0E;&#x54CD;&#x5E94;&#x8FC7;&#x7A0B;&#x4E2D;&#x7684;&#x64CD;&#x4F5C;&#x6027;&#x5F31;&#x70B9;&#x7B49;&#xFF0C;&#x751A;&#x81F3;&#x66B4;&#x9732;&#x5728;&#x5F00;&#x6E90;&#x73AF;&#x5883;&#x4E0B;&#x7684;&#x793E;&#x5DE5;&#x4FE1;&#x606F;&#x7B49;&#x3002;</p>
+<h3 id="&#x6E17;&#x900F;&#x6D4B;&#x8BD5;&#x7684;&#x5206;&#x7C7B;">&#x6E17;&#x900F;&#x6D4B;&#x8BD5;&#x7684;&#x5206;&#x7C7B;</h3>
+<p>&#x9488;&#x5BF9;&#x6E17;&#x900F;&#x6D4B;&#x8BD5;&#x4EBA;&#x5458;&#x5BF9;&#x88AB;&#x6E17;&#x900F;&#x6D4B;&#x8BD5;&#x76EE;&#x6807;&#x7684;&#x719F;&#x6089;&#x7A0B;&#x5EA6;&#xFF0C;&#x6E17;&#x900F;&#x6D4B;&#x8BD5;&#x53EF;&#x4EE5;&#x5206;&#x4E3A;&#x4E09;&#x79CD;&#xFF1A;</p>
+<p>&#x7B2C;&#x4E00;&#x79CD;&#xFF1A;&#x767D;&#x76D2;&#x6D4B;&#x8BD5;&#xFF0C;&#x660E;&#x786E;&#x548C;&#x719F;&#x6089;&#x88AB;&#x6E17;&#x900F;&#x6D4B;&#x8BD5;&#x7684;&#x5185;&#x90E8;&#x73AF;&#x5883;&#x548C;&#x6280;&#x672F;&#x7EC6;&#x8282;&#xFF0C;&#x5BF9;&#x5185;&#x7F51;&#x7684;&#x62D3;&#x6251;&#x3001;&#x7F51;&#x7EDC;&#x7ED3;&#x6784;&#x7B49;&#x4FE1;&#x606F;&#x5341;&#x5206;&#x660E;&#x786E;&#xFF0C;&#x5728;&#x8FD9;&#x79CD;&#x60C5;&#x51B5;&#x4E0B;&#x8FDB;&#x884C;&#x7684;&#x6E17;&#x900F;&#x6D4B;&#x8BD5;&#x5C31;&#x662F;&#x767D;&#x76D2;&#x6D4B;&#x8BD5;&#xFF0C;&#x5728;&#x5BF9;&#x76EE;&#x6807;&#x8FDB;&#x884C;&#x5185;&#x7F51;&#x52A0;&#x56FA;&#x3001;&#x5B89;&#x5168;&#x8BC4;&#x7EA7;&#x7B49;&#x5DE5;&#x4F5C;&#x662F;&#x4F1A;&#x4F7F;&#x7528;&#x5230;&#x767D;&#x76D2;&#x6D4B;&#x8BD5;&#x3002;</p>
+<p>&#x7B2C;&#x4E8C;&#x79CD;&#xFF1A;&#x7070;&#x76D2;&#x6D4B;&#x8BD5;&#xFF0C;&#x53EA;&#x77E5;&#x9053;&#x76EE;&#x6807;&#x7684;&#x90E8;&#x5206;&#x7F51;&#x7EDC;&#x4FE1;&#x606F;&#xFF0C;&#x5E76;&#x6CA1;&#x6709;&#x5B8C;&#x5168;&#x638C;&#x63E1;&#x7F51;&#x7EDC;&#x5185;&#x90E8;&#x7684;&#x6240;&#x6709;&#x60C5;&#x51B5;&#xFF0C;&#x4F8B;&#x5982;&#x5173;&#x952E;&#x90E8;&#x4EF6;&#x7684;&#x67B6;&#x6784;&#x7248;&#x672C;&#x3001;&#x6240;&#x6709;&#x7684;&#x7F51;&#x7EDC;&#x7ED3;&#x6784;&#x4E0D;&#x88AB;&#x638C;&#x63E1;&#x4E0B;&#x8FDB;&#x884C;&#x6E17;&#x900F;&#x6D4B;&#x8BD5;&#x3002;</p>
+<p>&#x7B2C;&#x4E09;&#x79CD;&#xFF1A;&#x9ED1;&#x76D2;&#x6E17;&#x900F;&#xFF0C;&#x5C31;&#x662F;&#x5BF9;&#x6E17;&#x900F;&#x6D4B;&#x8BD5;&#x76EE;&#x6807;&#x7684;&#x4FE1;&#x606F;&#x4E00;&#x65E0;&#x6240;&#x77E5;&#x7684;&#x60C5;&#x51B5;&#x4E0B;&#x8FDB;&#x884C;&#x6E17;&#x900F;&#x6D4B;&#x8BD5;&#xFF0C;&#x4F8B;&#x5982;HW&#x884C;&#x52A8;&#x5C31;&#x4F1A;&#x4F7F;&#x7528;&#x9ED1;&#x76D2;&#x6E17;&#x900F;&#x6D4B;&#x8BD5;&#x3002;</p>
+<h3 id="&#x6E17;&#x900F;&#x6D4B;&#x8BD5;&#x7684;&#x6D41;&#x7A0B;">&#x6E17;&#x900F;&#x6D4B;&#x8BD5;&#x7684;&#x6D41;&#x7A0B;</h3>
+<p>&#x6E17;&#x900F;&#x6D4B;&#x8BD5;&#x6267;&#x884C;&#x6807;&#x51C6;(PenetrationTesting Executjion Standard),&#x8FD9;&#x4E2A;&#x6807;&#x51C6;&#x7531;&#x6E17;&#x900F;&#x6D4B;&#x8BD5;7&#x4E2A;&#x9636;&#x6BB5;&#x7684;&#x6807;&#x51C6;&#x7EC4;&#x6210;&#xFF0C;&#x53EF;&#x5728;&#x4EFB;&#x610F;&#x73AF;&#x5883;&#x4E2D;&#x8FDB;&#x884C;&#x5BCC;&#x6709;&#x6210;&#x679C;&#x7684;&#x6E17;&#x900F;&#x6D4B;&#x8BD5;&#x3002;&#x5B83;&#x7684;&#x5B98;&#x65B9;&#x7F51;&#x7AD9;&#x8BE6;&#x7EC6;&#x4ECB;&#x7ECD;&#x4E86;&#x5177;&#x4F53;&#x6D4B;&#x8BD5;&#x65B9;&#x6CD5;&#xFF0C;&#x6709;&#x5174;&#x8DA3;&#x7684;&#x8BFB;&#x8005;&#x53EF;&#x8BBF;&#x95EE; <a target="_blank" rel="noopener" href="https://www.pentest-standard.org/index.php/Main_Page">https://www.pentest-standard.org/index.php/Main_Page</a>&#x3002;&#x6839;&#x636E;&#x8BE5;&#x6807;&#x51C6;&#xFF0C;&#x6807;&#x51C6;&#x7684;&#x6E17;&#x900F;&#x6D4B;&#x8BD5;&#x53EF;&#x4EE5;&#x5206;&#x4E3A;&#x4E03;&#x4E2A;&#x9636;&#x6BB5;&#xFF0C;&#x5206;&#x522B;&#x4E3A;;</p>
+<h4 id="&#x660E;&#x786E;&#x9700;&#x6C42;">&#x660E;&#x786E;&#x9700;&#x6C42;</h4>
+<p>&#x53C2;&#x4E0E;&#x6E17;&#x900F;&#x6D4B;&#x8BD5;&#x7684;&#x5B89;&#x5168;&#x4EBA;&#x5458;&#x548C;&#x5BA2;&#x6237;&#x8FDB;&#x884C;&#x5546;&#x5B9A;&#xFF0C;&#x786E;&#x5B9A;&#x6E17;&#x900F;&#x6D4B;&#x8BD5;&#x7684;&#x76EE;&#x6807;&#xFF0C;&#x5305;&#x62EC;&#x6D4B;&#x8BD5;&#x9700;&#x6C42;&#x3001;&#x6D4B;&#x8BD5;&#x65F6;&#x95F4;&#x3001;&#x6D4B;&#x8BD5;&#x8303;&#x56F4;&#x7B49;&#xFF1B;</p>
+<h4 id="&#x4FE1;&#x606F;&#x6536;&#x96C6;">&#x4FE1;&#x606F;&#x6536;&#x96C6;</h4>
+<p>&#x901A;&#x8FC7;&#x88AB;&#x52A8;&#x626B;&#x63CF;&#x548C;&#x4E3B;&#x52A8;&#x63A2;&#x6D4B;&#x3001;&#x793E;&#x5DE5;&#x6536;&#x96C6;&#x7B49;&#x65B9;&#x6CD5;&#xFF0C;&#x5BF9;&#x7F51;&#x7EDC;&#x76EE;&#x6807;&#x3001;&#x670D;&#x52A1;&#x5668;&#x3001;&#x5E94;&#x7528;&#x7B49;&#x4FE1;&#x606F;&#x8FDB;&#x884C;&#x6536;&#x96C6;&#xFF0C;&#x5B8C;&#x6210;&#x5BF9;&#x6E17;&#x900F;&#x76EE;&#x6807;&#x7684;&#x521D;&#x6B65;&#x4E86;&#x89E3;&#xFF0C;&#x53EF;&#x4EE5;&#x5229;&#x7528;&#x5404;&#x79CD;&#x4FE1;&#x606F;&#x6765;&#x6E90;&#x4E0E;&#x6536;&#x96C6;&#x6280;&#x672F;&#x65B9;&#x6CD5;&#xFF0C;&#x83B7;&#x53D6;&#x66F4;&#x591A;&#x5173;&#x4E8E;&#x76EE;&#x6807;&#x7EC4;&#x7EC7;&#x7F51;&#x7EDC;&#x62D3;&#x6251;&#xFF0C;&#x7CFB;&#x7EDF;&#x914D;&#x7F6E;&#x4E0E;&#x5B89;&#x5168;&#x9632;&#x5FA1;&#x63AA;&#x65BD;&#x7684;&#x4FE1;&#x606F;&#x3002;&#x516C;&#x5F00;&#x6765;&#x6E90;&#x7684;&#x4FE1;&#x606F;&#x67E5;&#x8BE2;&#xFF0C;google hacking&#xFF0C;&#x793E;&#x4F1A;&#x5DE5;&#x7A0B;&#x5B66;&#xFF0C;&#x7F51;&#x7EDC;&#x8E29;&#x70B9;&#xFF0C;&#x626B;&#x63CF;&#x63A2;&#x6D4B;&#xFF0C;&#x88AB;&#x52A8;&#x76D1;&#x542C;&#xFF0C;&#x670D;&#x52A1;&#x68C0;&#x67E5;&#x7B49;&#xFF1B;</p>
+<p>&#x4FE1;&#x606F;&#x6536;&#x96C6;&#x6839;&#x636E;&#x5206;&#x7C7B;&#x53EF;&#x4EE5;&#x5206;&#x4E3A;&#x88AB;&#x52A8;&#x6536;&#x96C6;&#x548C;&#x4E3B;&#x52A8;&#x6536;&#x96C6;&#x4E24;&#x79CD;&#xFF1A;</p>
+<h5 id="&#x88AB;&#x52A8;&#x6536;&#x96C6;">&#x88AB;&#x52A8;&#x6536;&#x96C6;</h5>
+<p>&#x88AB;&#x52A8;&#x6536;&#x96C6;&#x662F;&#x6307;&#x5728;&#x4E0D;&#x548C;&#x7F51;&#x7EDC;&#x76EE;&#x6807;&#x4E2D;&#x7684;&#x7F51;&#x7EDC;&#x8BBE;&#x5907;&#x8FDB;&#x884C;&#x8FDE;&#x63A5;&#x7684;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;&#x901A;&#x8FC7;&#x7B2C;&#x4E09;&#x65B9;&#x7F51;&#x7AD9;&#x7B49;&#x516C;&#x5F00;&#x6E20;&#x9053;&#x8FDB;&#x884C;&#x4FE1;&#x606F;&#x6536;&#x96C6;&#xFF0C;&#x8FD9;&#x6837;&#x505A;&#x7684;&#x597D;&#x5904;&#x662F;&#x53EF;&#x4EE5;&#x4FDD;&#x8BC1;&#x4E0D;&#x518D;&#x76EE;&#x6807;&#x4E3B;&#x673A;&#x7559;&#x4E0B;&#x4EFB;&#x4F55;&#x75D5;&#x8FF9;&#x7684;&#x60C5;&#x51B5;&#x4E0B;&#x8FDB;&#x884C;&#x4FE1;&#x606F;&#x6536;&#x96C6;&#xFF0C;&#x4E0D;&#x4F1A;&#x6709;&#x88AB;&#x76EE;&#x6807;&#x53D1;&#x73B0;&#x5E76;&#x88AB;&#x653E;&#x5165;&#x9ED1;&#x540D;&#x5355;&#x7684;&#x98CE;&#x9669;&#x3002;</p>
+<h6 id="google-hacking">google hacking</h6>
+<p>&#x901A;&#x8FC7;&#x4F7F;&#x7528;google&#x641C;&#x7D22;&#x5F15;&#x64CE;&#x4E2D;&#x7684;&#x9AD8;&#x7EA7;&#x64CD;&#x4F5C;&#x7B26;&#xFF0C;&#x5728;&#x641C;&#x7D22;&#x7ED3;&#x679C;&#x4E2D;&#x5B9A;&#x4F4D;&#x7279;&#x5B9A;&#x7684;&#x6587;&#x5B57;&#x64CD;&#x4F5C;&#x7B26;&#xFF0C;&#x4EE5;&#x6B64;&#x6765;&#x53D1;&#x73B0;&#x7F51;&#x7AD9;&#x914D;&#x7F6E;&#x548C;&#x8BA1;&#x7B97;&#x673A;&#x4EE3;&#x7801;&#x4E2D;&#x7684;&#x5B89;&#x5168;&#x6F0F;&#x6D1E;&#x3002;&#x5E38;&#x7528;&#x7684;&#x8BED;&#x6CD5;&#x5982;&#x4E0B;&#xFF1A;</p>
+<table>
+<thead>
+<tr class="header">
+<th>&#x8BED;&#x6CD5;</th>
+<th>&#x63CF;&#x8FF0;</th>
+<th>&#x793A;&#x4F8B;</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>filetype</td>
+<td>&#x641C;&#x7D22;&#x6587;&#x4EF6;&#x7684;&#x540E;&#x7F00;&#x540D;&#x6216;&#x62D3;&#x5C55;&#x540D;&#xFF08;&#x76EE;&#x524D;&#x56FD;&#x5185;&#x641C;&#x7D22;&#x5F15;&#x64CE;&#x4E00;&#x822C;&#x4E0D;&#x652F;&#x6301;&#xFF09;</td>
+<td>filetype:php</td>
+</tr>
+<tr class="even">
+<td>allintitle</td>
+<td>&#x641C;&#x7D22;&#x6240;&#x6709;&#x5173;&#x952E;&#x5B57;&#x7EC4;&#x6210;&#x6807;&#x9898;&#x7684;&#x7F51;&#x9875;</td>
+<td>alltitle:&#x540E;&#x53F0;&#x767B;&#x5F55; &#x7BA1;&#x7406;&#x5458;</td>
+</tr>
+<tr class="odd">
+<td>site</td>
+<td>&#x5236;&#x5B9A;&#x641C;&#x7D22;&#x57DF;&#x540D;</td>
+<td>site:baidu.com</td>
+</tr>
+<tr class="even">
+<td>intext</td>
+<td>&#x641C;&#x7D22;&#x7F51;&#x9875;&#x5185;&#x5BB9;&#x5305;&#x542B;&#x7684;&#x6587;&#x5B57;&#xFF08;&#x5185;&#x5BB9;&#x5305;&#x542B;&#x7684;&#x6587;&#x5B57;&#xFF09;</td>
+<td>intext:&#x767B;&#x5F55;</td>
+</tr>
+<tr class="odd">
+<td>intitle</td>
+<td>&#x641C;&#x7D22;&#x7F51;&#x9875;&#x6807;&#x9898;&#x5305;&#x542B;&#x7684;&#x6587;&#x5B57;</td>
+<td>intitle:&#x6559;&#x52A1;&#x5904;</td>
+</tr>
+<tr class="even">
+<td>inurl</td>
+<td>&#x641C;&#x7D22;url&#x4E2D;&#x5305;&#x542B;&#x7684;&#x6587;&#x5B57;</td>
+<td>inurl:Login</td>
+</tr>
+</tbody>
+</table>
+<p>&#x4EE5;&#x4E0A;&#x516D;&#x79CD;&#x8BED;&#x6CD5;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x7A7A;&#x683C;&#x4F5C;&#x4E3A;&#x5206;&#x9694;&#x7B26;&#x8FDB;&#x884C;&#x7EC4;&#x5408;&#x4F7F;&#x7528;&#x3002;&#x5E76;&#x4E14;&#x4EE5;&#x4E0A;&#x8BED;&#x6CD5;&#x652F;&#x6301;&#x4EE5;&#x4E0B;&#x7684;&#x57FA;&#x672C;&#x903B;&#x8F91;&#xFF1A;</p>
+<p>&#x200B; &#x903B;&#x8F91;&#x4E0E;&#xFF1A;and &amp;</p>
+<p>&#x200B; &#x903B;&#x8F91;&#x6216;&#xFF1A; or ||</p>
+<p>&#x200B; &#x903B;&#x8F91;&#x975E;&#xFF1A; -</p>
+<p>&#x200B; &#x5B8C;&#x6574;&#x5339;&#x914D;&#xFF1A;&quot;&#x5173;&#x952E;&#x8BCD;&quot;</p>
+<p>&#x200B; &#x901A;&#x914D;&#x7B26;&#xFF1A;* ?</p>
+<p>&#x4E00;&#x4E9B;&#x7528;&#x4F8B;&#x53EF;&#x4EE5;&#x53C2;&#x8003;&#x4EE5;&#x4E0B;&#x94FE;&#x63A5;&#xFF1A;</p>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/142832509">https://zhuanlan.zhihu.com/p/142832509</a></p>
+<h6 id="shodan&#x641C;&#x7D22;&#x5F15;&#x64CE;">shodan&#x641C;&#x7D22;&#x5F15;&#x64CE;</h6>
+<p>shodan&#x662F;&#x4E00;&#x4E2A;&#x641C;&#x7D22;&#x5F15;&#x64CE;&#xFF0C;&#x662F;&#x4E00;&#x4E2A;&#x4E3B;&#x8981;&#x9762;&#x5411;&#x7F51;&#x7EDC;&#x4E13;&#x4E1A;&#x4EBA;&#x5458;&#x7684;&#x73B0;&#x5728;&#x6F0F;&#x6D1E;&#x8BC4;&#x4F30;&#x5DE5;&#x5177;&#xFF0C;&#x4ED6;&#x548C;&#x767E;&#x5EA6;&#x3001;&#x8C37;&#x6B4C;&#x4E00;&#x7C7B;&#x7684;&#x641C;&#x7D22;&#x5F15;&#x64CE;&#x5B58;&#x5728;&#x660E;&#x663E;&#x4E0D;&#x540C;&#xFF0C;shodan&#x4E3B;&#x8981;&#x7528;&#x6765;&#x641C;&#x7D22;&#x6240;&#x6709;&#x63A5;&#x5165;&#x4E92;&#x8054;&#x7F51;&#x7684;&#x8BBE;&#x5907;&#xFF0C;&#x901A;&#x8FC7;shodan&#x7528;&#x6237;&#x53EF;&#x4EE5;&#x67E5;&#x627E;&#x5E26;&#x6709;&#x7F51;&#x7EDC;&#x5730;&#x5740;&#x7684;&#x7279;&#x5B9A;&#x7C7B;&#x578B;&#x7684;&#x8BBE;&#x5907;&#xFF0C;&#x4F8B;&#x5982;&#x4EA4;&#x6362;&#x673A;&#x3001;&#x8DEF;&#x7531;&#x5668;&#x3001;&#x6444;&#x50CF;&#x5934;&#x3001;&#x6536;&#x96C6;&#x3001;&#x5E73;&#x677F;&#x3001;&#x5DE5;&#x63A7;&#x8BBE;&#x5907;&#x3001;&#x6838;&#x5DE5;&#x4E1A;&#x8BBE;&#x5907;&#x7B49;&#x3002;</p>
+<p>shodan&#x4E0E;&#x4F20;&#x7EDF;&#x641C;&#x7D22;&#x5F15;&#x64CE;&#x4E0D;&#x540C;&#xFF0C;&#x5B83;&#x4E3B;&#x8981;&#x6536;&#x96C6;&#x5404;&#x7C7B;&#x8BBE;&#x5907;&#x7684;banners&#x4FE1;&#x606F;&#x8FDB;&#x884C;&#x5BA1;&#x6838;&#x5E76;&#x4EA7;&#x751F;&#x641C;&#x7D22;&#x7ED3;&#x679C;&#xFF0C;&#x6240;&#x8C13;&#x7684;banners&#x4FE1;&#x606F;&#xFF0C;&#x5B9E;&#x9645;&#x4E0A;&#x5C31;&#x662F;&#x670D;&#x52A1;&#x5728;&#x67E5;&#x8BE2;&#x65F6;&#x8FD4;&#x56DE;&#x7684;&#x4FE1;&#x606F;&#x5757;&#xFF0C;&#x6839;&#x636E;&#x54CD;&#x5E94;&#x4FE1;&#x606F;&#x7684;&#x4E0D;&#x540C;&#xFF0C;Banners&#x53EF;&#x4EE5;&#x5305;&#x542B;&#x8F6F;&#x4EF6;&#x7248;&#x672C;&#x3001;&#x5B89;&#x88C5;&#x65E5;&#x671F;&#x3001;IP&#x5730;&#x5740;&#x3001;&#x670D;&#x52A1;&#x7C7B;&#x578B;&#x7B49;&#x4E0D;&#x540C;&#x7684;&#x4FE1;&#x606F;&#x5FEB;&#x3002;</p>
+<p>shodan&#x7684;&#x57FA;&#x672C;&#x8BED;&#x6CD5;&#x5982;&#x4E0B;&#xFF1A;</p>
+<table>
+<thead>
+<tr class="header">
+<th>&#x8BED;&#x6CD5;</th>
+<th>&#x63CF;&#x8FF0;</th>
+<th>&#x793A;&#x4F8B;</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>net</td>
+<td>&#x641C;&#x7D22;&#x5236;&#x5B9A;&#x7684;IP&#x5730;&#x5740;&#x6216;&#x8303;&#x56F4;&#x4EE5;&#x53CA;&#x5B50;&#x7F51;</td>
+<td>net:&quot;100.100.100.0/24&quot;</td>
+</tr>
+<tr class="even">
+<td>version</td>
+<td>&#x641C;&#x7D22;&#x6307;&#x5B9A;&#x7684;&#x7248;&#x672C;&#x4FE1;&#x606F;</td>
+<td>version:&quot;1.8.8&quot;</td>
+</tr>
+<tr class="odd">
+<td>city</td>
+<td>&#x641C;&#x7D22;&#x6307;&#x5B9A;&#x7684;&#x57CE;&#x5E02;</td>
+<td>city:&quot;Shanghai&quot;</td>
+</tr>
+<tr class="even">
+<td>country</td>
+<td>&#x641C;&#x7D22;&#x6307;&#x5B9A;&#x7684;&#x56FD;&#x5BB6;</td>
+<td>country:&quot;CN&quot;</td>
+</tr>
+<tr class="odd">
+<td>product</td>
+<td>&#x641C;&#x7D22;&#x6307;&#x5B9A;&#x7684;&#x8F6F;&#x4EF6;&#x3001;&#x5E73;&#x53F0;&#x3001;&#x7CFB;&#x7EDF;</td>
+<td>product:&quot;Apache httpd&quot;</td>
+</tr>
+<tr class="even">
+<td>port</td>
+<td>&#x641C;&#x7D22;&#x6307;&#x5B9A;&#x7684;&#x7AEF;&#x53E3;</td>
+<td>port:&quot;22&quot;</td>
+</tr>
+<tr class="odd">
+<td>hostname</td>
+<td>&#x641C;&#x7D22;&#x6307;&#x5B9A;&#x7684;&#x4E3B;&#x673A;&#x6216;&#x57DF;&#x540D;</td>
+<td>hostname:&quot;google&quot;</td>
+</tr>
+</tbody>
+</table>
+<p>&#x9700;&#x8981;&#x7279;&#x522B;&#x6CE8;&#x610F;&#x7684;&#x662F;JAWS&#x662F;&#x7F51;&#x7EDC;&#x6444;&#x50CF;&#x5934;&#x7684;&#x5173;&#x952E;&#x5B57;&#xFF0C;&#x4E5F;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;shodan&#x8FDB;&#x884C;&#x641C;&#x7D22;&#x3002;&#x6B64;&#x5916;Shodan&#x8FD8;&#x53EF;&#x4EE5;&#x8BC6;&#x522B;&#x7F51;&#x7EDC;&#x8BBE;&#x5907;&#x7684;&#x7C7B;&#x578B;&#xFF0C;&#x5E76;&#x4E14;&#x53EF;&#x4EE5;&#x5C06;&#x90E8;&#x5206;&#x871C;&#x7F50;&#x8BBE;&#x5907;&#x8BC6;&#x522B;&#x51FA;&#x6765;&#x3002;</p>
+<h5 id="&#x4E3B;&#x52A8;&#x6536;&#x96C6;">&#x4E3B;&#x52A8;&#x6536;&#x96C6;</h5>
+<p>&#x4E3B;&#x52A8;&#x6536;&#x96C6;&#x662F;&#x5B89;&#x5168;&#x6E17;&#x900F;&#x4EBA;&#x5458;&#x901A;&#x8FC7;&#x5B89;&#x5168;&#x5DE5;&#x5177;&#x5BF9;&#x76EE;&#x6807;&#x8BBE;&#x5907;&#x8FDB;&#x884C;&#x4E3B;&#x52A8;&#x8FDE;&#x63A5;&#xFF0C;&#x901A;&#x8FC7;&#x5206;&#x6790;&#x8FDE;&#x63A5;&#x884C;&#x4E3A;&#x7684;&#x54CD;&#x5E94;&#x4FE1;&#x606F;&#x5206;&#x6790;&#x7F51;&#x7EDC;&#x8BBE;&#x5907;&#x7684;&#x670D;&#x52A1;&#x7C7B;&#x578B;&#x3001;&#x7AEF;&#x53E3;&#x5F00;&#x653E;&#x3001;&#x5E94;&#x7528;&#x7248;&#x672C;&#x7B49;&#x4FE1;&#x606F;&#x7684;&#x884C;&#x4E3A;&#x3002;</p>
+<h6 id="nmap&#x5DE5;&#x5177;">nmap&#x5DE5;&#x5177;</h6>
+<p>nmap&#x662F;&#x4E00;&#x79CD;&#x7F51;&#x7EDC;&#x626B;&#x63CF;&#x548C;&#x4E3B;&#x673A;&#x63A2;&#x6D4B;&#x7684;&#x7F51;&#x7EDC;&#x5DE5;&#x5177;&#xFF0C;nmap&#x4E0D;&#x4EC5;&#x53EF;&#x4EE5;&#x6536;&#x96C6;&#x4FE1;&#x606F;&#x5E76;&#x679A;&#x4E3E;&#xFF0C;&#x540C;&#x65F6;&#x8FD8;&#x53EF;&#x4EE5;&#x7528;&#x6765;&#x4F5C;&#x4E3A;&#x4E00;&#x4E2A;&#x6F0F;&#x6D1E;&#x626B;&#x63CF;&#x5668;&#x6216;&#x8005;&#x5B89;&#x5168;&#x626B;&#x63CF;&#x5668;&#xFF0C;&#x5B83;&#x652F;&#x6301;&#x5E38;&#x89C1;&#x7684;&#x6240;&#x6709;&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#x3002;map&#x7684;&#x4E3B;&#x8981;&#x7528;&#x9014;&#x5982;&#x4E0B;&#xFF1A;</p>
+<p>1.&#x68C0;&#x6D4B;&#x5728;&#x7F51;&#x7EDC;&#x4E2D;&#x7684;&#x4E3B;&#x673A;(&#x4E3B;&#x673A;&#x53D1;&#x73B0;)</p>
+<p>2.&#x68C0;&#x6D4B;&#x4E3B;&#x673A;&#x4E0A;&#x7684;&#x5F00;&#x53D1;&#x7AEF;&#x53E3;&#xFF08;&#x7AEF;&#x53E3;&#x53D1;&#x73B0;&#x6216;&#x679A;&#x4E3E;&#xFF09;</p>
+<p>3.&#x68C0;&#x6D4B;&#x7AEF;&#x53E3;&#x7684;&#x8F6F;&#x4EF6;&#x4EE5;&#x53CA;&#x8F6F;&#x4EF6;&#x672C;&#xFF08;&#x670D;&#x52A1;&#x53D1;&#x73B0;&#xFF09;</p>
+<p>4.&#x68C0;&#x6D4B;&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#xFF0C;&#x786C;&#x4EF6;&#x5730;&#x5740;</p>
+<p>5.&#x68C0;&#x6D4B;&#x8106;&#x5F31;&#x6027;&#x7684;&#x6F0F;&#x6D1E;(nmap&#x7684;&#x811A;&#x672C;)</p>
+<p>&#x76F8;&#x5173;&#x7EC6;&#x8282;&#x53EF;&#x4EE5;&#x53C2;&#x7167;&#x4EE5;&#x4E0B;&#x4E24;&#x4E2A;&#x94FE;&#x63A5;:</p>
+<p><a target="_blank" rel="noopener" href="https://nmap.org/man/zh/">nmap&#x5B98;&#x7F51;</a></p>
+<p><a target="_blank" rel="noopener" href="http://www.nmap.com.cn/doc/manual.shtm">nmap&#x4E2D;&#x6587;&#x7AD9;</a></p>
+<h4 id="&#x5A01;&#x80C1;&#x5EFA;&#x6A21;">&#x5A01;&#x80C1;&#x5EFA;&#x6A21;</h4>
+<p>&#x6839;&#x636E;&#x6536;&#x96C6;&#x5230;&#x7684;&#x4FE1;&#x606F;&#x6765;&#x5206;&#x6790;&#x548C;&#x8BC6;&#x522B;&#x76EE;&#x6807;&#x7F51;&#x7EDC;&#x7CFB;&#x7EDF;&#x4E2D;&#x53EF;&#x80FD;&#x5B58;&#x5728;&#x7684;&#x5B89;&#x5168;&#x6F0F;&#x6D1E;&#x548C;&#x5F31;&#x70B9;&#xFF0C;&#x4EE5;&#x653B;&#x51FB;&#x8005;&#x7684;&#x89C6;&#x89D2;&#x62DF;&#x5B9A;&#x6E17;&#x900F;&#x6D4B;&#x8BD5;&#x7684;&#x653B;&#x51FB;&#x65B9;&#x6CD5;&#xFF1B;</p>
+<h4 id="&#x6F0F;&#x6D1E;&#x5206;&#x6790;">&#x6F0F;&#x6D1E;&#x5206;&#x6790;</h4>
+<p>&#x6839;&#x636E;&#x524D;&#x9762;&#x6536;&#x96C6;&#x5230;&#x7684;&#x4FE1;&#x606F;&#xFF0C;&#x5229;&#x7528;&#x6F0F;&#x626B;&#x7B49;&#x5DE5;&#x5177;&#x63A2;&#x6D4B;&#x6E17;&#x900F;&#x76EE;&#x6807;&#x7F51;&#x7EDC;&#x7CFB;&#x7EDF;&#x4E2D;&#x7684;&#x5B89;&#x5168;&#x6F0F;&#x6D1E;&#xFF0C;&#x786E;&#x5B9A;&#x54EA;&#x4E9B;&#x653B;&#x51FB;&#x65B9;&#x6CD5;&#x662F;&#x53EF;&#x884C;&#x7684;&#xFF1B;</p>
+<h5 id="nessus&#x5DE5;&#x5177;">nessus&#x5DE5;&#x5177;</h5>
+<p>Nessus&#x53F7;&#x79F0;&#x662F;&#x4E16;&#x754C;&#x4E0A;&#x6700;&#x6D41;&#x884C;&#x7684;&#x6F0F;&#x6D1E;&#x626B;&#x63CF;&#x5DE5;&#x5177;&#xFF0C;&#x636E;&#x79F0;&#x5168;&#x4E16;&#x754C;&#x6709;&#x8D85;&#x8FC7;75000&#x4E2A;&#x7EC4;&#x7EC7;&#xFF08;&#x771F;&#x7684;&#x6709;&#x8FD9;&#x4E48;&#x591A;&#x5417;&#xFF09;&#x5728;&#x4F7F;&#x7528;&#x5B83;&#xFF0C;&#x5B83;&#x6536;&#x5F55;&#x4E86;&#x4E0D;&#x540C;&#x5E73;&#x53F0;&#x548C;&#x4E0D;&#x540C;&#x534F;&#x8BAE;&#x7684;&#x5927;&#x91CF;&#x5B89;&#x5168;&#x6F0F;&#x6D1E;&#xFF0C;&#x4E0D;&#x968F;&#x65F6;&#x66F4;&#x65B0;&#x5176;&#x6F0F;&#x6D1E;&#x6570;&#x636E;&#x5E93;&#x3002;Nessus&#x4E0D;&#x540C;&#x4E8E;&#x4F20;&#x7EDF;&#x7684;&#x6F0F;&#x6D1E;&#x626B;&#x63CF;&#x8F6F;&#x4EF6;&#xFF0C;Nessus&#x53EF;&#x540C;&#x65F6;&#x5728;&#x672C;&#x673A;&#x6216;&#x8FDC;&#x7AEF;&#x4E0A;&#x9065;&#x63A7;&#xFF0C;&#x8FDB;&#x884C;&#x7CFB;&#x7EDF;&#x7684;&#x6F0F;&#x6D1E;&#x5206;&#x6790;&#x626B;&#x63CF;&#x3002;</p>
+<p>Nessus&#x6C47;&#x805A;&#x4E86;&#x6BCF;&#x4E2A;&#x6F0F;&#x6D1E;&#x7684;&#x8BE6;&#x7EC6;&#x4FE1;&#x606F;&#xFF0C;&#x8FD9;&#x4E9B;&#x8BE6;&#x7EC6;&#x4FE1;&#x606F;&#x62AB;&#x9732;&#x4E86;&#x5229;&#x7528;&#x8BE5;&#x6F0F;&#x6D1E;&#x7684;&#x96BE;&#x6613;&#x7A0B;&#x5EA6;&#x3002;&#x540C;&#x65F6;Nessus&#x663E;&#x793A;&#x51FA;metasploit&#x3001;core&#x3001;impact&#x548C;canvas&#x7B49;&#x5DE5;&#x5177;&#x7684;&#x5229;&#x7528;&#x60C5;&#x51B5;&#x3002;</p>
+<p>&#x9700;&#x8981;&#x989D;&#x5916;&#x8BF4;&#x660E;&#x7684;&#x662F;&#xFF0C;&#x8BE5;&#x5DE5;&#x5177;&#x662F;&#x6536;&#x8D39;&#x7684;&#xFF0C;&#x800C;&#x4E14;&#x4EF7;&#x683C;&#x4E0D;&#x83F2;&#xFF0C;&#x76F8;&#x5173;&#x7684;&#x6536;&#x76CA;&#x4E5F;&#x4FDD;&#x8BC1;&#x4E86;&#x8BE5;&#x5DE5;&#x5177;&#x7684;&#x66F4;&#x65B0;&#x901F;&#x5EA6;&#x548C;&#x5B9E;&#x7528;&#x6027;&#x3002;</p>
+<p>&#x5B98;&#x65B9;&#x4F7F;&#x7528;&#x6559;&#x7A0B;&#x6587;&#x6863;&#xFF1A;</p>
+<p><a target="_blank" rel="noopener" href="https://docs.tenable.com/Nessus.htm#Latest-Release-Notes">Nessus DOC</a></p>
+<h5 id="awvs&#x5DE5;&#x5177;">AWVS&#x5DE5;&#x5177;</h5>
+<p>AWVS(Acunetix Acunetix Web Vulnerability Scanner)&#x662F;&#x4E00;&#x4E2A;&#x81EA;&#x52A8;&#x5316;&#x7684;web&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#x5B89;&#x5168;&#x68C0;&#x6D4B;&#x5DE5;&#x5177;&#xFF0C;&#x8BE5;&#x5DE5;&#x5177;&#x53EF;&#x4EE5;&#x626B;&#x63CF;&#x4EFB;&#x4F55;&#x9075;&#x5FAA;HTTP&#x3001;HTTPS&#x534F;&#x8BAE;&#x7684;web&#x7AD9;&#x70B9;&#x548C;web&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#x3002;AWVS&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x7F51;&#x7EDC;&#x722C;&#x866B;&#x3001;&#x68C0;&#x67E5;SQL&#x6CE8;&#x5165;&#x653B;&#x51FB;&#x6F0F;&#x6D1E;&#x3001;XXS&#x7B49;&#x98CE;&#x9600;&#x68C0;&#x6D4B;web&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#x7684;&#x5B89;&#x5168;&#x6027;&#x3002;</p>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/iamver/p/7124718.html">&#x4F7F;&#x7528;&#x65B9;&#x6CD5;&#x76F8;&#x5173;blog</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.acunetix.com/download/fullver14/">&#x5B98;&#x7F51;&#x6587;&#x6863;</a></p>
+<h4 id="&#x6F0F;&#x6D1E;&#x5229;&#x7528;">&#x6F0F;&#x6D1E;&#x5229;&#x7528;</h4>
+<p>&#x4F7F;&#x7528;metasploit&#x7B49;&#x5DE5;&#x5177;&#xFF0C;&#x5229;&#x7528;&#x5DE5;&#x5177;&#x4E2D;&#x53D1;&#x73B0;&#x7684;&#x5B89;&#x5168;&#x6F0F;&#x6D1E;&#xFF0C;&#x529B;&#x56FE;&#x83B7;&#x53D6;&#x6E17;&#x900F;&#x76EE;&#x6807;&#x7CFB;&#x7EDF;&#x7684;&#x8BBF;&#x95EE;&#x6743;&#x9650;&#xFF1B;</p>
+<h5 id="metasploit&#x5DE5;&#x5177;">Metasploit&#x5DE5;&#x5177;</h5>
+<p>Metasploit&#x662F;&#x6E17;&#x900F;&#x6D4B;&#x8BD5;&#x754C;&#x7684;&#x6807;&#x51C6;&#x5DE5;&#x5177;&#xFF0C;&#x53EF;&#x4EE5;&#x67E5;&#x627E;&#x3001;&#x5229;&#x7528;&#x3001;&#x9A8C;&#x8BC1;&#x6F0F;&#x6D1E;&#xFF0C;&#x5728;&#x8FD9;&#x4E2A;&#x6846;&#x67B6;&#x4E0B;&#x5B89;&#x5168;&#x6E17;&#x900F;&#x4EBA;&#x5458;&#x53EF;&#x4EE5;&#x8FDB;&#x884C;&#x4E00;&#x7CFB;&#x5217;&#x7684;&#x6E17;&#x900F;&#x6D4B;&#x8BD5;&#xFF0C;&#x5229;&#x7528;&#x73B0;&#x6709;&#x7684;payload&#xFF0C;&#x5982;meterpreter&#x7B49;&#x8FDB;&#x4E00;&#x6B65;&#x83B7;&#x53D6;&#x76EE;&#x6807;&#x4FE1;&#x606F;&#x3002;&#x5176;&#x4E2D;Exploit&#x662F;&#x5B9E;&#x9645;&#x53D1;&#x8D77;&#x653B;&#x51FB;&#x7684;&#x8F6F;&#x4EF6;&#x7EC4;&#x4EF6;&#x3002;Auxiliary&#x53EF;&#x4EE5;&#x7528;&#x6765;&#x6267;&#x884C;&#x8BF8;&#x5982;&#x626B;&#x63CF;&#x7684;&#x653B;&#x51FB;&#x52A8;&#x4F5C;&#xFF1B;payload&#x653B;&#x51FB;&#x8D1F;&#x8377;&#x662F;&#x6211;&#x4EEC;&#x671F;&#x671B;&#x6A21;&#x677F;&#x7CFB;&#x7EDF;&#x5728;&#x88AB;&#x6E17;&#x900F;&#x653B;&#x51FB;&#x540E;&#x53BB;&#x6267;&#x884C;&#x7684;&#x4EE3;&#x7801;&#x3002;&#x6839;&#x636E;<a target="_blank" rel="noopener" href="https://www.cnblogs.com/zovt/p/15530376.html#:~:text=%E4%BD%BF%E7%94%A8Metasploit%E6%A1%86%E6%9E%B6%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%AD%A5%E9%AA%A4%E5%8C%85%E6%8B%AC%EF%BC%9A,1.%E6%89%AB%E6%8F%8F%E7%9B%AE%E6%A0%87%E4%B8%BB%E6%9C%BA%EF%BC%8C%E5%AF%BB%E6%89%BE%E5%8F%AF%E7%94%A8%E6%BC%8F%E6%B4%9E%202.%E9%80%89%E6%8B%A9%E5%B9%B6%E9%85%8D%E7%BD%AE%E4%B8%80%E4%B8%AA%E6%94%BB%E5%87%BB%E4%BB%A3%E7%A0%81%EF%BC%88Explolt%EF%BC%8C%E5%88%A9%E7%94%A8%E6%BC%8F%E6%B4%9E%E6%9D%A5%E8%BF%9B%E5%85%A5%E7%9B%AE%E6%A0%87%E7%B3%BB%E7%BB%9F%E7%9A%84%E4%BB%A3%E7%A0%81%EF%BC%89">&#x76F8;&#x5173;&#x535A;&#x5BA2;</a>&#x7684;&#x5F52;&#x7EB3;&#xFF0C;&#x5404;&#x4E2A;&#x6A21;&#x5757;&#x7684;&#x5177;&#x4F53;&#x529F;&#x80FD;&#x5982;&#x4E0B;&#x8868;&#x6240;&#x793A;:</p>
+<table>
+<colgroup>
+<col style="width: 28%">
+<col style="width: 71%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>&#x6A21;&#x5757;</th>
+<th>&#x529F;&#x80FD;&#x7B80;&#x4ECB;</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Auxiliaries(&#x8F85;&#x52A9;&#x6A21;&#x5757;)</td>
+<td>&#x8F85;&#x52A9;&#x6A21;&#x5757;&#x4E0D;&#x4F1A;&#x76F4;&#x63A5;&#x5728;&#x6D4B;&#x8BD5;&#x8005;&#x548C;&#x76EE;&#x6807;&#x4E4B;&#x95F4;&#x5EFA;&#x7ACB;&#x8BBF;&#x95EE;&#xFF0C;&#x5B83;&#x4EEC;&#x53EA;&#x8D1F;&#x8D23;&#x6267;&#x884C;&#x626B;&#x63CF;&#xFF0C;&#x55C5;&#x63A2;&#xFF0C;&#x6307;&#x7EB9;&#x8BC6;&#x522B;&#x7B49;&#x76F8;&#x5173;&#x529F;&#x80FD;&#x4EE5;&#x8F85;&#x52A9;&#x6E17;&#x900F;&#x6D4B;&#x8BD5;</td>
+</tr>
+<tr class="even">
+<td>Exploit&#xFF08;&#x6F0F;&#x6D1E;&#x5229;&#x7528;&#x6A21;&#x5757;&#xFF09;</td>
+<td>&#x6F0F;&#x6D1E;&#x5229;&#x7528;&#x662F;&#x6307;&#x7531;&#x6E17;&#x900F;&#x6D4B;&#x8BD5;&#x8005;&#x5229;&#x7528;&#x4E00;&#x4E2A;&#x7CFB;&#x7EDF;&#x3001;&#x5E94;&#x7528;&#x6216;&#x8005;&#x670D;&#x52A1;&#x4E2D;&#x7684;&#x5B89;&#x5168;&#x6F0F;&#x6D1E;&#x8FDB;&#x884C;&#x7684;&#x653B;&#x51FB;&#x884C;&#x4E3A;&#x3002;&#x6D41;&#x884C;&#x7684;&#x6E17;&#x900F;&#x653B;&#x51FB;&#x6280;&#x672F;&#x5305;&#x62EC;&#x7F13;&#x51B2;&#x533A;&#x6EA2;&#x51FA;&#x3001;Web&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#x653B;&#x51FB;&#x4EE5;&#x53CA;&#x5229;&#x7528;&#x914D;&#x7F6E;&#x9519;&#x8BEF;&#x7B49;&#xFF0C;&#x5176;&#x4E2D;&#x5305;&#x542B;&#x653B;&#x51FB;&#x8005;&#x6216;&#x8005;&#x6D4B;&#x8BD5;&#x4EBA;&#x5458;&#x9488;&#x5BF9;&#x7CFB;&#x7EDF;&#x4E2D;&#x7684;&#x6F0F;&#x6D1E;&#x800C;&#x8BBE;&#x8BA1;&#x7684;&#x5404;&#x79CD;POC&#x9A8C;&#x8BC1;&#x7A0B;&#x5E8F;&#xFF0C;&#x7528;&#x4E8E;&#x7834;&#x574F;&#x7CFB;&#x7EDF;&#x5B89;&#x5168;&#x7684;&#x653B;&#x51FB;&#x4EE3;&#x7801;&#xFF0C;&#x6BCF;&#x4E2A;&#x6F0F;&#x6D1E;&#x90FD;&#x6709;&#x76F8;&#x5E94;&#x7684;&#x653B;&#x51FB;&#x4EE3;&#x7801;</td>
+</tr>
+<tr class="odd">
+<td>Payload&#xFF08;&#x653B;&#x51FB;&#x8F7D;&#x8377;&#x6A21;&#x5757;&#xFF09;</td>
+<td>&#x653B;&#x51FB;&#x8F7D;&#x8377;&#x662F;&#x6211;&#x4EEC;&#x671F;&#x671B;&#x76EE;&#x6807;&#x7CFB;&#x7EDF;&#x5728;&#x88AB;&#x6E17;&#x900F;&#x653B;&#x51FB;&#x4E4B;&#x540E;&#x5B8C;&#x6210;&#x5B9E;&#x9645;&#x653B;&#x51FB;&#x529F;&#x80FD;&#x7684;&#x4EE3;&#x7801;&#xFF0C;&#x6210;&#x529F;&#x6E17;&#x900F;&#x76EE;&#x6807;&#x540E;&#xFF0C;&#x7528;&#x4E8E;&#x5728;&#x76EE;&#x6807;&#x7CFB;&#x7EDF;&#x4E0A;&#x8FD0;&#x884C;&#x4EFB;&#x610F;&#x547D;&#x4EE4;&#x6216;&#x8005;&#x6267;&#x884C;&#x7279;&#x5B9A;&#x4EE3;&#x7801;&#xFF0C;&#x5728;Metasploit&#x6846;&#x67B6;&#x4E2D;&#x53EF;&#x4EE5;&#x81EA;&#x7531;&#x7684;&#x9009;&#x62E9;&#x3001;&#x4F20;&#x9001;&#x548C;&#x690D;&#x5165;&#x3002;&#x653B;&#x51FB;&#x8F7D;&#x8377;&#x4E5F;&#x53EF;&#x80FD;&#x662F;&#x7B80;&#x5355;&#x5730;&#x5728;&#x76EE;&#x6807;&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#x4E0A;&#x6267;&#x884C;&#x4E00;&#x4E9B;&#x547D;&#x4EE4;&#xFF0C;&#x5982;&#x6DFB;&#x52A0;&#x7528;&#x6237;&#x8D26;&#x53F7;&#x7B49;</td>
+</tr>
+<tr class="even">
+<td>Post&#xFF08;&#x540E;&#x671F;&#x6E17;&#x900F;&#x6A21;&#x5757;&#xFF09;</td>
+<td>&#x540E;&#x671F;&#x6E17;&#x900F;&#x6A21;&#x5757;&#x4E3B;&#x8981;&#x7528;&#x4E8E;&#x5728;&#x53D6;&#x5F97;&#x76EE;&#x6807;&#x7CFB;&#x7EDF;&#x8FDC;&#x7A0B;&#x63A7;&#x5236;&#x6743;&#x540E;&#xFF0C;&#x8FDB;&#x884C;&#x4E00;&#x4E9B;&#x5217;&#x7684;&#x540E;&#x671F;&#x6E17;&#x900F;&#x653B;&#x51FB;&#x52A8;&#x4F5C;&#xFF0C;&#x5982;&#x83B7;&#x53D6;&#x654F;&#x611F;&#x4FE1;&#x606F;&#xFF0C;&#x5B9E;&#x65BD;&#x8DF3;&#x677F;&#x653B;&#x51FB;&#x7B49;</td>
+</tr>
+<tr class="odd">
+<td>Encoders&#xFF08;&#x7F16;&#x7801;&#x653B;&#x51FB;&#x6A21;&#x5757;&#xFF09;</td>
+<td>&#x7F16;&#x7801;&#x653B;&#x51FB;&#x6A21;&#x5757;&#x5728;&#x6E17;&#x900F;&#x6D4B;&#x8BD5;&#x4E2D;&#x8D1F;&#x8D23;&#x514D;&#x6740;&#xFF0C;&#x4EE5;&#x9632;&#x6B62;&#x88AB;&#x6740;&#x6BD2;&#x8F6F;&#x4EF6;&#x3001;&#x9632;&#x706B;&#x5899;&#x3001;IDS&#x3001;IPS&#x53CA;&#x7C7B;&#x4F3C;&#x7684;&#x5B89;&#x5168;&#x8F6F;&#x4EF6;&#x53CA;&#x8BBE;&#x5907;&#x68C0;&#x6D4B;&#x51FA;&#x6765;</td>
+</tr>
+</tbody>
+</table>
+<p>&#x5176;&#x57FA;&#x672C;&#x7684;&#x4F7F;&#x7528;&#x6B65;&#x9AA4;&#x5305;&#x62EC;;</p>
+<p>1.&#x626B;&#x63CF;&#x76EE;&#x6807;&#x4E3B;&#x673A;&#xFF0C;&#x5BFB;&#x627E;&#x53EF;&#x7528;&#x6F0F;&#x6D1E; 2.&#x9009;&#x62E9;&#x5E76;&#x914D;&#x7F6E;&#x4E00;&#x4E2A;&#x653B;&#x51FB;&#x4EE3;&#x7801;&#xFF08;Explolt&#xFF0C;&#x5229;&#x7528;&#x6F0F;&#x6D1E;&#x6765;&#x8FDB;&#x5165;&#x76EE;&#x6807;&#x7CFB;&#x7EDF;&#x7684;&#x4EE3;&#x7801;&#xFF09; 3.&#x68C0;&#x67E5;&#x76EE;&#x6807;&#x7CFB;&#x7EDF;&#x662F;&#x5426;&#x4F1A;&#x88AB;&#x6B64;&#x4EE3;&#x7801;&#x5F71;&#x54CD;&#xFF08;&#x53EF;&#x9009;&#xFF09; 4.&#x9009;&#x62E9;&#x5E76;&#x914D;&#x7F6E;&#x4E00;&#x4E2A;&#x6709;&#x6548;&#x8D1F;&#x8F7D;&#xFF08;Payload&#xFF0C;&#x5728;&#x6210;&#x529F;&#x8FDB;&#x5165;&#x540E;&#x5728;&#x76EE;&#x6807;&#x7CFB;&#x7EDF;&#x4E0A;&#x6267;&#x884C;&#x7684;&#x4EE3;&#x7801;&#xFF09; 5.&#x9009;&#x62E9;&#x7F16;&#x7801;&#x65B9;&#x5F0F;&#xFF0C;&#x4F7F;&#x5165;&#x4FB5;&#x9632;&#x5FA1;&#x7CFB;&#x7EDF;&#x5FFD;&#x7565;&#x5DF2;&#x88AB;&#x7F16;&#x7801;&#x7684;&#x6709;&#x6548;&#x8D1F;&#x8F7D;&#xFF0C;&#x5373;&#x7ED5;&#x8FC7;&#x6740;&#x6BD2;&#x8F6F;&#x4EF6;&#x7684;&#x67E5;&#x6740; 6.&#x6267;&#x884C;&#x653B;&#x51FB;&#x4EE3;&#x7801;</p>
+<h4 id="&#x6DF1;&#x5EA6;&#x5229;&#x7528;">&#x6DF1;&#x5EA6;&#x5229;&#x7528;</h4>
+<p>&#x9700;&#x8981;&#x6E17;&#x900F;&#x6D4B;&#x8BD5;&#x56E2;&#x961F;&#x6839;&#x636E;&#x76EE;&#x6807;&#x7EC4;&#x7EC7;&#x7684;&#x4E1A;&#x52A1;&#x7ECF;&#x8425;&#x6A21;&#x5F0F;&#xFF0C;&#x4FDD;&#x62A4;&#x8D44;&#x4EA7;&#x5F62;&#x5F0F;&#x4E0E;&#x5B89;&#x5168;&#x9632;&#x5FA1;&#x8BA1;&#x5212;&#x7684;&#x4E0D;&#x540C;&#x7279;&#x70B9;&#xFF0C;&#x81EA;&#x4E3B;&#x8BBE;&#x8BA1;&#x51FA;&#x653B;&#x51FB;&#x76EE;&#x6807;&#xFF0C;&#x8BC6;&#x522B;&#x5173;&#x952E;&#x57FA;&#x7840;&#x8BBE;&#x65BD;&#xFF0C;&#x5E76;&#x5BFB;&#x627E;&#x5BA2;&#x6237;&#x7EC4;&#x7EC7;&#x6700;&#x5177;&#x6709;&#x4EF7;&#x503C;&#x548C;&#x5C1D;&#x8BD5;&#x5B89;&#x5168;&#x4FDD;&#x62A4;&#x7684;&#x4FE1;&#x606F;&#x8D44;&#x4EA7;&#xFF0C;&#x6700;&#x7EC8;&#x8FBE;&#x5230;&#x80FD;&#x591F;&#x5BF9;&#x5BA2;&#x6237;&#x7EC4;&#x7EC7;&#x9020;&#x6210;&#x6700;&#x91CD;&#x8981;&#x4E1A;&#x52A1;&#x5F71;&#x54CD;&#x7684;&#x653B;&#x51FB;&#x9014;&#x5F84;&#xFF1B;</p>
+<p>&#x5728;&#x8FD9;&#x4E00;&#x9636;&#x6BB5;&#xFF0C;&#x6211;&#x4EEC;&#x5173;&#x6CE8;&#x672B;&#x73ED;&#x7CFB;&#x7EDF;&#x7684;&#x4FE1;&#x606F;&#x6536;&#x96C6;&#x3001;&#x63D0;&#x6743;&#x63D0;&#x793A;&#x4EE5;&#x53CA;&#x5185;&#x7F51;&#x6A2A;&#x5411;&#x79FB;&#x52A8;&#x3002;</p>
+<h5 id="meterpreter&#x5DE5;&#x5177;">meterpreter&#x5DE5;&#x5177;</h5>
+<p>meterpreter&#x662F;Metasploit&#x6846;&#x67B6;&#x7684;&#x4E00;&#x4E2A;&#x62D3;&#x5C55;&#x6A21;&#x5757;&#xFF0C;&#x662F;&#x4E00;&#x79CD;&#x540E;&#x6E17;&#x900F;&#x5DE5;&#x5177;&#xFF0C;&#x5728;&#x6E17;&#x900F;&#x653B;&#x51FB;&#x6210;&#x529F;&#x4E4B;&#x540E;&#x53EF;&#x4EE5;&#x8FD4;&#x56DE;&#x4E00;&#x4E2A;&#x88AB;&#x6E17;&#x900F;&#x76EE;&#x6807;&#x7684;&#x63A7;&#x5236;&#x901A;&#x9053;&#x3002;&#x4F7F;&#x7528;&#x5B83;&#x53EF;&#x4EE5;&#x4F5C;&#x4E3A;&#x4F5C;&#x4E3A;&#x653B;&#x51FB;&#x8F7D;&#x8377;&#x80FD;&#x591F;&#x83B7;&#x53D6;&#x76EE;&#x6807;&#x7CFB;&#x7EDF;&#x7684;&#x4E00;&#x4E2A;meterpreter shell&#x8FDE;&#x63A5;&#x3002;meterpreter shell&#x4F5C;&#x4E3A;&#x4E00;&#x4E2A;&#x6E17;&#x900F;&#x998D;&#x5757;&#x6709;&#x5F88;&#x591A;&#x529F;&#x80FD;&#xFF0C;&#x53EF;&#x4EE5;&#x5B9E;&#x73B0;&#x5BF9;&#x76EE;&#x6807;&#x7CFB;&#x7EDF;&#x7684;&#x591A;&#x79CD;&#x63A7;&#x5236;&#xFF0C;&#x4F8B;&#x5982;&#x521B;&#x5EFA;&#x3001;&#x4FEE;&#x6539;&#x3001;&#x5220;&#x9664;&#x7528;&#x6237;&#xFF0C;&#x6355;&#x6349;&#x952E;&#x76D8;&#x4FE1;&#x606F;&#x548C;&#x5C4F;&#x5E55;&#x4FE1;&#x606F;&#x3001;&#x4E0A;&#x4F20;&#x3001;&#x4E0B;&#x8F7D;&#x548C;&#x8FD0;&#x884C;&#x53EF;&#x6267;&#x884C;&#x6587;&#x4EF6;&#x3002;</p>
+<h4 id="&#x4E66;&#x9762;&#x62A5;&#x544A;">&#x4E66;&#x9762;&#x62A5;&#x544A;</h4>
+<p>&#x8FD9;&#x4EFD;&#x62A5;&#x544A;&#x4F53;&#x73B0;&#x51FA;&#x6E17;&#x900F;&#x6D4B;&#x8BD5;&#x6D41;&#x7A0B;&#x4E2D;&#x6240;&#x6709;&#x7684;&#x4FE1;&#x606F;&#xFF0C;&#x5305;&#x62EC;&#x6E17;&#x900F;&#x6D4B;&#x8BD5;&#x6267;&#x884C;&#x8FC7;&#x7A0B;&#xFF0C;&#x8FD8;&#x8981;&#x7AD9;&#x5728;&#x9632;&#x5FA1;&#x8005;&#x89D2;&#x5EA6;&#x4E0A;&#xFF0C;&#x5E2E;&#x52A9;&#x4ED6;&#x4EEC;&#x5206;&#x6790;&#x5B89;&#x5168;&#x9632;&#x5FA1;&#x4F53;&#x7CFB;&#x4E2D;&#x7684;&#x8584;&#x5F31;&#x73AF;&#x8282;&#xFF0C;&#x5B58;&#x5728;&#x7684;&#x95EE;&#x9898;&#xFF0C;&#x4EE5;&#x53CA;&#x4FEE;&#x8865;&#x4E0E;&#x5347;&#x7EA7;&#x6280;&#x672F;&#x65B9;&#x6848;&#x3002;</p>
+<p>&#x5173;&#x4E8E;&#x5B89;&#x5168;&#x62A5;&#x544A;&#x7684;&#x4E66;&#x5199;&#x53EF;&#x4EE5;&#x53C2;&#x8003;&#x4E00;&#x4E0B;blog&#xFF1A;</p>
+<p><a target="_blank" rel="noopener" href="https://www.malware-traffic-analysis.net/">https://www.malware-traffic-analysis.net/</a></p>
+<h3 id="&#x6E17;&#x900F;&#x6D4B;&#x8BD5;&#x642D;&#x5EFA;">&#x6E17;&#x900F;&#x6D4B;&#x8BD5;&#x642D;&#x5EFA;</h3>
+<h4 id="&#x653B;&#x51FB;&#x5E73;&#x53F0;">&#x653B;&#x51FB;&#x5E73;&#x53F0;</h4>
+<h5 id="kali">KALI</h5>
+<p>KALI&#x96C6;&#x6210;&#x4E86;&#x4FE1;&#x606F;&#x6536;&#x96C6;&#x3001;&#x6F0F;&#x6D1E;&#x8BC4;&#x4F30;&#x3001;web&#x5E94;&#x7528;&#x3001;&#x5BC6;&#x7801;&#x653B;&#x51FB;&#x3001;&#x6F0F;&#x6D1E;&#x5229;&#x7528;&#x3001;&#x7F51;&#x7EDC;&#x76D1;&#x542C;&#x3001;&#x8BBF;&#x95EE;&#x7EF4;&#x62A4;&#x3001;&#x62A5;&#x544A;&#x5DE5;&#x5177;&#x3001;&#x7CFB;&#x7EDF;&#x670D;&#x52A1;&#x548C;&#x65E0;&#x7EBF;&#x653B;&#x51FB;&#x7B49;&#x591A;&#x79CD;&#x5DE5;&#x5177;&#xFF0C;&#x662F;&#x6E17;&#x900F;&#x6D4B;&#x8BD5;&#x4EBA;&#x5458;&#x5FC5;&#x5907;&#x7684;&#x5DE5;&#x5177;&#x7CFB;&#x7EDF;&#x3002;</p>
+<p><a target="_blank" rel="noopener" href="https://www.kali.org/">kali&#x5B98;&#x7F51;</a></p>
+<h4 id="&#x9776;&#x673A;&#x5E73;&#x53F0;">&#x9776;&#x673A;&#x5E73;&#x53F0;</h4>
+<h5 id="phpstudydvwa">phpStudy+DVWA</h5>
+<h6 id="phpstudy">phpStudy</h6>
+<p>phpStudy&#x662F;&#x4E00;&#x4E2A;php&#x8C03;&#x8BD5;&#x73AF;&#x5883;&#x7684;&#x7A0B;&#x5E8F;&#x96C6;&#x6210;&#x5305;&#xFF0C;&#x8BE5;&#x96C6;&#x6210;&#x5305;&#x96C6;&#x6210;&#x4E86;&#x6700;&#x65B0;&#x7684;Apache&#x3001;PHP&#x3001;MySQL&#x3001;PHPMyAdmin&#xFF0C;&#x4E00;&#x6B21;&#x6027;&#x5B89;&#x88C5;&#x65E0;&#x9700;&#x914D;&#x7F6E;&#x5373;&#x53EF;&#x4F7F;&#x7528;&#xFF0C;&#x662F;&#x4E00;&#x4E2A;&#x975E;&#x5E38;&#x4FBF;&#x6377;&#x7684;PHP&#x8C03;&#x8BD5;&#x73AF;&#x5883;&#x3002;</p>
+<p><a target="_blank" rel="noopener" href="https://www.xp.cn/">phpStudy&#x5B98;&#x7F51;</a></p>
+<h6 id="dvwa">DVWA</h6>
+<p>DVWA&#xFF08;Damn Vulnerable Web Application&#xFF09;DVWA&#xFF08;Damn Vulnerable Web App&#xFF09;&#x662F;&#x4E00;&#x4E2A;&#x57FA;&#x4E8E;PHP/MySql&#x642D;&#x5EFA;&#x7684;Web&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#xFF0C;&#x65E8;&#x5728;&#x4E3A;&#x5B89;&#x5168;&#x4E13;&#x4E1A;&#x4EBA;&#x5458;&#x6D4B;&#x8BD5;&#x81EA;&#x5DF1;&#x7684;&#x4E13;&#x4E1A;&#x6280;&#x80FD;&#x548C;&#x5DE5;&#x5177;&#x63D0;&#x4F9B;&#x5408;&#x6CD5;&#x7684; &#x73AF;&#x5883;&#xFF0C;&#x5E2E;&#x52A9;Web&#x5F00;&#x53D1;&#x8005;&#x66F4;&#x597D;&#x7684;&#x7406;&#x89E3;Web&#x5E94;&#x7528;&#x5B89;&#x5168;&#x9632;&#x8303;&#x7684;&#x8FC7;&#x7A0B;&#x3002;</p>
+<p>DVWA&#x4E00;&#x5171;&#x5305;&#x542B;&#x5341;&#x4E2A;&#x6A21;&#x5757;&#x5206;&#x522B;&#x662F;&#xFF1A;</p>
+<p>1.Bruce Force //&#x66B4;&#x529B;&#x7834;&#x89E3;</p>
+<p>2.Command Injection //&#x547D;&#x4EE4;&#x6CE8;&#x5165;</p>
+<p>3.CSRF //&#x8DE8;&#x7AD9;&#x8BF7;&#x6C42;&#x4F2A;&#x9020;</p>
+<p>4.File Inclusion //&#x6587;&#x4EF6;&#x5305;&#x542B;</p>
+<p>5.File Upload //&#x6587;&#x4EF6;&#x4E0A;&#x4F20;&#x6F0F;&#x6D1E;</p>
+<p>6.Insecure CAPTCHA //&#x4E0D;&#x5B89;&#x5168;&#x7684;&#x9A8C;&#x8BC1;</p>
+<p>7.SQL Injection //sql&#x6CE8;&#x5165;</p>
+<p>8.SQL Injection&#xFF08;Blind&#xFF09; //sql&#x6CE8;&#x5165;&#xFF08;&#x76F2;&#x6CE8;&#xFF09;</p>
+<p>9.XSS&#xFF08;Reflected&#xFF09; //&#x53CD;&#x5C04;&#x578B;XSS</p>
+<p>10.XSS&#xFF08;Stored&#xFF09; //&#x5B58;&#x50A8;&#x578B;XSS</p>
+<p>&#x540C;&#x65F6;&#x6BCF;&#x4E2A;&#x6A21;&#x5757;&#x7684;&#x4EE3;&#x7801;&#x90FD;&#x6709;4&#x79CD;&#x5B89;&#x5168;&#x7B49;&#x7EA7;&#xFF1A;Low&#x3001;Medium&#x3001;High&#x3001;Impossible&#x3002;&#x901A;&#x8FC7;&#x4ECE;&#x4F4E;&#x96BE;&#x5EA6;&#x5230;&#x9AD8;&#x96BE;&#x5EA6;&#x7684;&#x6D4B;&#x8BD5;&#x5E76;&#x53C2;&#x8003;&#x4EE3;&#x7801;&#x53D8;&#x5316;&#x53EF;&#x5E2E;&#x52A9;&#x5B66;&#x4E60;&#x8005;&#x66F4;&#x5FEB;&#x7684;&#x7406;&#x89E3;&#x6F0F;&#x6D1E;&#x7684;&#x539F;&#x7406;&#x3002; <a target="_blank" rel="noopener" href="https://dvwa.co.uk/">DVWA&#x5B98;&#x7F51;</a></p>
+<h5 id="vulhub">vulhub</h5>
+<p>vulhub&#x662F;&#x4E00;&#x4E2A;&#x57FA;&#x4E8E;docker&#x548C;docker-compose&#x7684;&#x6F0F;&#x6D1E;&#x73AF;&#x5883;&#x96C6;&#x5408;&#xFF0C;&#x8FDB;&#x5165;&#x5BF9;&#x5E94;&#x7684;&#x76EE;&#x5F55;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x6267;&#x884C;&#x4E00;&#x6761;&#x547D;&#x4EE4;&#x5C31;&#x53EF;&#x4EE5;&#x542F;&#x52A8;&#x4E00;&#x4E2A;&#x5168;&#x65B0;&#x7684;&#x6F0F;&#x6D1E;&#x73AF;&#x5883;&#xFF0C;&#x8BA9;&#x6F0F;&#x6D1E;&#x590D;&#x73B0;&#x66F4;&#x52A0;&#x7B80;&#x5355;&#xFF0C;&#x8FD9;&#x6837;&#x8BA9;&#x5B89;&#x5168;&#x7814;&#x7A76;&#x8005;&#x53EF;&#x4EE5;&#x66F4;&#x52A0;&#x4E13;&#x6CE8;&#x4E8E;&#x6F0F;&#x6D1E;&#x539F;&#x7406;&#x672C;&#x8EAB;&#x3002;&#x76EE;&#x524D;vulhub&#x652F;&#x6301;200&#x5DE6;&#x53F3;&#x7684;&#x6F0F;&#x6D1E;&#x73AF;&#x5883;&#x3002;</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/vulhub/vulhub">vulhub&#x7684;github</a></p>
+<h5 id="metasploitable">metasploitable</h5>
+<p>metasploitable&#x662F;&#x4E00;&#x4E2A;&#x7279;&#x522B;&#x5236;&#x4F5C;&#x7684;ubuntu&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#xFF0C;&#x5176;&#x8BBE;&#x8BA1;&#x672C;&#x8EAB;&#x662F;&#x4F5C;&#x4E3A;&#x5B89;&#x5168;&#x5DE5;&#x5177;&#x6D4B;&#x8BD5;&#x548C;&#x6F14;&#x793A;&#x5E38;&#x89C1;&#x6F0F;&#x6D1E;&#x653B;&#x51FB;&#x7684;&#x73AF;&#x5883;&#x3002;&#x5176;&#x4E2D;&#x6700;&#x91CD;&#x8981;&#x7684;&#x662F;&#x53EF;&#x4EE5;&#x7528;&#x6765;&#x4F5C;&#x4E3A;MSF&#xFF08;The Metasploit Framework&#xFF09;&#x653B;&#x51FB;&#x7528;&#x7684;&#x9776;&#x673A;&#x3002;&#x8BE5;&#x9776;&#x673A;&#x7CFB;&#x7EDF;&#x5F00;&#x653E;&#x4E86;&#x5F88;&#x591A;&#x9AD8;&#x5371;&#x7AEF;&#x53E3;&#x5982;22&#x3001;23&#x3001;445&#x7B49;&#xFF0C;&#x5E76;&#x4E14;&#x5177;&#x6709;&#x5F88;&#x591A;&#x672A;&#x6253;&#x8865;&#x4E01;&#x7684;&#x9AD8;&#x5371;&#x6F0F;&#x6D1E;&#xFF0C;&#x4F8B;&#x5982;samba&#x3001;MS-RPC&#x3001;Shell&#x547D;&#x4EE4;&#x6CE8;&#x5165;&#x6F0F;&#x6D1E;&#x7B49;&#xFF0C;&#x800C;&#x4E14;&#x5BF9;&#x5916;&#x5F00;&#x653E;&#x4E86;&#x5F88;&#x591A;&#x670D;&#x52A1;&#xFF0C;&#x5141;&#x8BB8;&#x6570;&#x636E;&#x5916;&#x8FDE;&#x7B49;&#x5F02;&#x5E38;&#x64CD;&#x4F5C;&#x3002;</p>
+<p>&#x8BE5;&#x7CFB;&#x7EDF;&#x4E2D;&#x7684;&#x7528;&#x6237;&#x53E3;&#x4EE4;&#x5747;&#x4E3A;&#x5F31;&#x5BC6;&#x7801;&#xFF0C;&#x7CFB;&#x7EDF;&#x6253;&#x5728;&#x4E86;DMA&#x3001;Mutillidae&#x7B49;web&#x6F0F;&#x6D1E;&#x6F14;&#x7EC3;&#x5E73;&#x53F0;&#x3002;&#x76EE;&#x524D;&#x4E3A;&#x6B62;metasploitable3&#x5305;&#x542B;&#x4EE5;&#x4E0B;&#x6F0F;&#x6D1E;&#x5E94;&#x7528;&#x6216;&#x670D;&#x52A1;&#xFF1A;</p>
+<table>
+<thead>
+<tr class="header">
+<th>&#x5E94;&#x7528;&#x6216;&#x670D;&#x52A1;</th>
+<th>&#x5E94;&#x7528;&#x6216;&#x670D;&#x52A1;</th>
+<th>&#x5E94;&#x7528;&#x6216;&#x670D;&#x52A1;</th>
+<th>&#x5E94;&#x7528;&#x6216;&#x670D;&#x52A1;</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>GlassFish</td>
+<td>Apache Struts</td>
+<td>Tomcat</td>
+<td>jenkins</td>
+</tr>
+<tr class="even">
+<td>IIS FTP</td>
+<td>IIS HTTP</td>
+<td>psexec SSH</td>
+<td>WinRM</td>
+</tr>
+<tr class="odd">
+<td>chinese caidao</td>
+<td>ManageEngine</td>
+<td>ElasticSearch</td>
+<td>Apache Axis2</td>
+</tr>
+<tr class="even">
+<td>WebDAV</td>
+<td>SNMP</td>
+<td>MySQL</td>
+<td>JMX</td>
+</tr>
+<tr class="odd">
+<td>WordPress</td>
+<td>SMB</td>
+<td>Remote Desktop</td>
+<td>PHPMyAdmin</td>
+</tr>
+</tbody>
+</table>
+<p><a target="_blank" rel="noopener" href="https://github.com/rapid7/metasploitable3">metasploitable&#x7684;github</a></p>
+<h3 id="&#x6E17;&#x900F;&#x6D4B;&#x8BD5;&#x5B9E;&#x4F8B;-&#x6C38;&#x6052;&#x4E4B;&#x84DD;">&#x6E17;&#x900F;&#x6D4B;&#x8BD5;&#x5B9E;&#x4F8B;-&#x6C38;&#x6052;&#x4E4B;&#x84DD;</h3>
+<p>&#x53C2;&#x8003;&#x535A;&#x5BA2;&#xFF1A;https://www.jianshu.com/p/190186c96fc7</p>
+<p>&#x653B;&#x51FB;&#x673A;&#xFF1A;kali IP&#xFF1A;192.168.222.153</p>
+<p>&#x9776;&#x673A; win7 IP&#xFF1A;192.168.222.142</p>
+<h4 id="&#x5224;&#x65AD;&#x9776;&#x673A;&#x662F;&#x5426;&#x5728;&#x7EBF;">&#x5224;&#x65AD;&#x9776;&#x673A;&#x662F;&#x5426;&#x5728;&#x7EBF;</h4>
+<p>&#x4F7F;&#x7528;ping&#x547D;&#x4EE4;&#x68C0;&#x6D4B;&#x9776;&#x673A;&#x662F;&#x5426;&#x5B58;&#x6D3B;</p>
+<p><img src="/2022/03/05/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/16331557-70700231f24367c2.png" alt="img"></p>
+<h4 id="&#x67E5;&#x770B;&#x7AEF;&#x53E3;&#x5F00;&#x653E;&#x60C5;&#x51B5;">&#x67E5;&#x770B;&#x7AEF;&#x53E3;&#x5F00;&#x653E;&#x60C5;&#x51B5;</h4>
+<p>&#x4F7F;&#x7528;nmap&#x5DE5;&#x5177;&#x5BF9;&#x9776;&#x673A;&#x8FDB;&#x884C;&#x4FE1;&#x606F;&#x6536;&#x96C6;</p>
+<p><img src="/2022/03/05/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/16331557-3d358a7ade200651.png" alt="img"></p>
+<p>&#x53D1;&#x73B0;&#x9776;&#x673A;&#x5F00;&#x542F;445&#x7AEF;&#x53E3;&#xFF0C;&#x5E76;&#x4E14;&#x662F;win7-win10&#x7CFB;&#x7EDF;&#xFF0C;&#x53EF;&#x4EE5;&#x5927;&#x80C6;&#x7684;&#x731C;&#x6D4B;&#x5B58;&#x5728;&#x2018;&#x6C38;&#x6052;&#x4E4B;&#x84DD;&#x2019;&#x6F0F;&#x6D1E;&#xFF0C;&#x8FD9;&#x4E00;&#x6B65;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x4EE5;&#x4E0B;&#x547D;&#x4EE4;&#x626B;&#x63CF;&#x6C38;&#x6052;&#x4E4B;&#x84DD;&#x6F0F;&#x6D1E;&#x662F;&#x5426;&#x5B58;&#x5728;&#xFF1A;</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmap -p 445 --script smb-vuln-ms17-010 192.168.222.142</span><br></pre></td></tr></table></figure>
+<h4 id="&#x542F;&#x7528;msf">&#x542F;&#x7528;MSF</h4>
+<p>&#x4F7F;&#x7528;search ms17-010&#x8FDB;&#x884C;&#x641C;&#x7D22;&#x76F8;&#x5173;&#x6A21;&#x5757;</p>
+<p><img src="/2022/03/05/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/16331557-8398c1d1436c5b8a.png" alt="img"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">auxiliary/scanner/smb/smb_ms17_010  #&#x6F0F;&#x6D1E;&#x626B;&#x63CF;&#x6A21;&#x5757;</span><br><span class="line"></span><br><span class="line">exploit/windows/smb/ms17_010/eternalblue #&#x6E17;&#x900F;&#x6A21;&#x5757;</span><br></pre></td></tr></table></figure>
+<h4 id="&#x4F7F;&#x7528;&#x653B;&#x51FB;&#x6A21;&#x5757;&#x8FDB;&#x884C;&#x6E17;&#x900F;">&#x4F7F;&#x7528;&#x653B;&#x51FB;&#x6A21;&#x5757;&#x8FDB;&#x884C;&#x6E17;&#x900F;</h4>
+<p>&#x8C03;&#x7528;&#x6A21;&#x5757;&#xFF0C;&#x8BBE;&#x7F6E;&#x9700;&#x8981;&#x8BBE;&#x7F6E;&#x7684;&#x53C2;&#x6570;</p>
+<p><img src="/2022/03/05/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/16331557-0f7487c511fb589a.png" alt="img"></p>
+<h4 id="&#x6267;&#x884C;exploit&#x8FDB;&#x884C;&#x653B;&#x51FB;">&#x6267;&#x884C;exploit&#x8FDB;&#x884C;&#x653B;&#x51FB;</h4>
+<p>exploit&#x653B;&#x51FB;&#x65F6;&#x95F4;&#x6709;&#x70B9;&#x957F;&#xFF0C;&#x7A0D;&#x5FAE;&#x7B49;&#x5F85;&#x4E00;&#x4E0B;&#x5C31;&#x53EF;&#x4EE5;</p>
+<p><img src="/2022/03/05/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/16331557-badad40ad32e9c61.png" alt="img"></p>
+<h4 id="&#x83B7;&#x53D6;&#x76EE;&#x6807;&#x7684;shell">&#x83B7;&#x53D6;&#x76EE;&#x6807;&#x7684;shell</h4>
+<p>&#x6E17;&#x900F;&#x5B8C;&#x6210;&#x540E;&#xFF0C;&#x4ED6;&#x4F1A;&#x76F4;&#x63A5;&#x7ED9;&#x4F60;&#x4E00;&#x4E2A;shell&#x7684;&#x56DE;&#x663E;&#xFF0C;&#x800C;&#x4E0D;&#x662F;meterpreter&#x56DE;&#x663E;&#xFF0C;&#x56E0;&#x4E3A;&#x6CA1;&#x6709;&#x8BBE;&#x7F6E;payload</p>
+<p><img src="/2022/03/05/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/16331557-273c0b01fd1eee17.png" alt="img"></p>
+<h4 id="&#x8BBE;&#x7F6E;payload&#x83B7;&#x53D6;meterpreter&#x56DE;&#x663E;">&#x8BBE;&#x7F6E;payload&#x83B7;&#x53D6;meterpreter&#x56DE;&#x663E;</h4>
+<p>&#x8BBE;&#x7F6E;payload&#x548C;&#x653B;&#x51FB;&#x673A;IP</p>
+<p><img src="/2022/03/05/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/16331557-04ad3fc656c71420.png" alt="img"></p>
+<p>&#x6E17;&#x900F;&#x5B8C;&#x6210;&#x540E;&#x5F97;&#x5230;&#x4E00;&#x4E2A;meterpreter&#x56DE;&#x663E;</p>
+<p><img src="/2022/03/05/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/16331557-6837d49e474dc7b3.png" alt="img"></p>
+<h4 id="background&#x540E;&#x53F0;&#x6267;&#x884C;">background&#x540E;&#x53F0;&#x6267;&#x884C;</h4>
+<p>&#x4F7F;&#x7528;background&#x547D;&#x4EE4;&#xFF0C;&#x662F;&#x653E;&#x5728;&#x540E;&#x53F0;&#x8FD0;&#x884C;&#x5982;&#x679C;&#x5728;&#x9700;&#x8981;&#x8FD0;&#x884C;&#xFF0C;&#x5219;&#x9700;&#x8981;&#x4F7F;&#x7528;sessions&#x547D;&#x4EE4;&#xFF0C;sessions +id&#x5373;&#x53EF;</p>
+<p><img src="/2022/03/05/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/16331557-9760b9c3975f6235.png" alt="img"></p>
+<p>&#x8F93;&#x5165;&#x547D;&#x4EE4;shell&#xFF0C;&#x662F;&#x8FDB;&#x5165;shell&#x4EA4;&#x4E92;&#x6A21;&#x5F0F;</p>
+<p><img src="/2022/03/05/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/16331557-68b6fcb0fc4291c2.png" alt="img"></p>
+<h4 id="&#x83B7;&#x53D6;&#x7528;&#x6237;&#x7684;&#x54C8;&#x5E0C;">&#x83B7;&#x53D6;&#x7528;&#x6237;&#x7684;&#x54C8;&#x5E0C;</h4>
+<p>&#x8F93;&#x5165;&#x547D;&#x4EE4;hashdump&#x547D;&#x4EE4;&#xFF0C;&#x5C06;&#x6240;&#x6709;&#x7528;&#x6237;&#x7684;&#x54C8;&#x5E0C;&#x503C;&#x5217;&#x4E3E;&#x51FA;&#x6765;</p>
+<p><img src="/2022/03/05/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/16331557-417732fcac44beb3.png" alt="img"></p>
+<h4 id="&#x6587;&#x4EF6;&#x4E0B;&#x8F7D;">&#x6587;&#x4EF6;&#x4E0B;&#x8F7D;</h4>
+<p>&#x8F93;&#x5165;&#x547D;&#x4EE4;download&#x547D;&#x4EE4;&#xFF0C;&#x4E0B;&#x8F7D;&#x6587;&#x4EF6;&#x3002;download&#x547D;&#x4EE4;&#x540E;&#x9762;&#x9700;&#x8981;&#x52A0; &#x2018;&#x6587;&#x4EF6;&#x8DEF;&#x5F84;&#x2019;</p>
+<p><img src="/2022/03/05/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/16331557-05ced0a08f59a553.png" alt="img"></p>
+<h4 id="&#x83B7;&#x53D6;winscp&#x7684;&#x8D26;&#x53F7;&#x548C;&#x5BC6;&#x7801;">&#x83B7;&#x53D6;winscp&#x7684;&#x8D26;&#x53F7;&#x548C;&#x5BC6;&#x7801;</h4>
+<p>&#x5229;&#x7528;meterpreter&#x83B7;&#x53D6;winscp&#x4FDD;&#x5B58;&#x7684;&#x7528;&#x6237;&#x540D;&#x548C;&#x5BC6;&#x7801;</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">run post/windows/gather/credentials/winscp</span><br></pre></td></tr></table></figure>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="reward-container">
+  <div>感谢支持，鼓励成就原创！</div>
+  <button>
+    赞赏
+  </button>
+  <div class="post-reward">
+      <div>
+        <img src="/images/wc.jpg" alt="Yoo Shen 微信">
+        <span>微信</span>
+      </div>
+      <div>
+        <img src="/images/zfb.jpg" alt="Yoo Shen 支付宝">
+        <span>支付宝</span>
+      </div>
+
+  </div>
+</div>
+
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>Yoo Shen
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://sidney-neu.github.io/2022/03/05/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/" title="渗透测试初探">https://sidney-neu.github.io/2022/03/05/渗透测试/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2022/02/26/ATT&CK/" rel="prev" title="ATT&CK简述">
+                  <i class="fa fa-chevron-left"></i> ATT&CK简述
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2022/03/12/%E4%BA%91%E5%8E%9F%E7%94%9F%E7%AE%80%E4%BB%8B/" rel="next" title="云原生简介">
+                  云原生简介 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments gitalk-container"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Yoo Shen</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/next-boot.js"></script>
+
+  
+<script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.0/dist/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+
+
+  <script class="next-config" data-name="leancloud_visitors" type="application/json">{"enable":true,"app_id":"nG09szIvM8x9ehgslCULWzg2-MdYXbMMI","app_key":"yHykoRL88ikgLTqsUC0xIMvY","server_url":null,"security":false}</script>
+  <script src="/js/third-party/statistics/lean-analytics.js"></script>
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdn.jsdelivr.net/npm/mathjax@3.2.0/es5/tex-mml-chtml.js","integrity":"sha256-r+3itOMtGGjap0x+10hu6jW/gZCzxHsoKrOd7gyRSGY="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
+
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"sidney-neu","repo":"sidney-neu.github.io","client_id":"04c1120504d2e421fa7d","client_secret":"389710c48c007c80cfbb7b9788d01e674ab31c00","admin_user":"sidney-neu","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":"zh-CN","js":{"url":"https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js","integrity":"sha256-Pmj85ojLaPOWwRtlMJwmezB/Qg8BzvJp5eTzvXaYAfA="},"path_md5":"7b1ed6ec33bf53e4bfd3d521aecf7991"}</script>
+<script src="/js/third-party/comments/gitalk.js"></script>
+
+</body>
+</html>

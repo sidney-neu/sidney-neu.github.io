@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.0.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"sidney-neu.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.8.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":{"gitalk":{"order":-1}},"activeClass":"gitalk"},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.json","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+<meta name="description" content="&amp;#x672C;&amp;#x671F;&amp;#x4E3B;&amp;#x8981;&amp;#x4EE5;Sophos&amp;#x7684;ai&amp;#x9879;&amp;#x76EE;&amp;#x4E3A;&amp;#x4F8B;&amp;#x5B50;&amp;#xFF0C;&amp;#x5BF9;&amp;#x673A;&amp;#x5668;&amp;#x5B66;&amp;#x4E60;&amp;#x8BFB;&amp;#x5165;pb&amp;#x6A21;&amp;#x578B;&amp;#x4EE5;&amp;#x53CA;&amp;#x68C">
+<meta property="og:type" content="article">
+<meta property="og:title" content="如何在C语言中使用tensorflow（五）检测">
+<meta property="og:url" content="https://sidney-neu.github.io/2020/05/16/%E5%A6%82%E4%BD%95%E5%9C%A8C%E8%AF%AD%E8%A8%80%E4%B8%AD%E4%BD%BF%E7%94%A8tensorflow%EF%BC%88%E4%BA%94%EF%BC%89%E6%A3%80%E6%B5%8B/index.html">
+<meta property="og:site_name" content="Yoo shen的博客">
+<meta property="og:description" content="&amp;#x672C;&amp;#x671F;&amp;#x4E3B;&amp;#x8981;&amp;#x4EE5;Sophos&amp;#x7684;ai&amp;#x9879;&amp;#x76EE;&amp;#x4E3A;&amp;#x4F8B;&amp;#x5B50;&amp;#xFF0C;&amp;#x5BF9;&amp;#x673A;&amp;#x5668;&amp;#x5B66;&amp;#x4E60;&amp;#x8BFB;&amp;#x5165;pb&amp;#x6A21;&amp;#x578B;&amp;#x4EE5;&amp;#x53CA;&amp;#x68C">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-05-16T12:21:00.000Z">
+<meta property="article:modified_time" content="2022-06-27T14:37:31.715Z">
+<meta property="article:author" content="Yoo Shen">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://sidney-neu.github.io/2020/05/16/%E5%A6%82%E4%BD%95%E5%9C%A8C%E8%AF%AD%E8%A8%80%E4%B8%AD%E4%BD%BF%E7%94%A8tensorflow%EF%BC%88%E4%BA%94%EF%BC%89%E6%A3%80%E6%B5%8B/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://sidney-neu.github.io/2020/05/16/%E5%A6%82%E4%BD%95%E5%9C%A8C%E8%AF%AD%E8%A8%80%E4%B8%AD%E4%BD%BF%E7%94%A8tensorflow%EF%BC%88%E4%BA%94%EF%BC%89%E6%A3%80%E6%B5%8B/","path":"2020/05/16/如何在C语言中使用tensorflow（五）检测/","title":"如何在C语言中使用tensorflow（五）检测"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>如何在C语言中使用tensorflow（五）检测 | Yoo shen的博客</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Yoo shen的博客</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">sy071600sy@163.com</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">13</span></a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">35</span></a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-overview-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Yoo Shen</p>
+  <div class="site-description" itemprop="description">学习、记录、分享</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">35</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/sidney-neu" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;sidney-neu" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://sidney-neu.github.io/2020/05/16/%E5%A6%82%E4%BD%95%E5%9C%A8C%E8%AF%AD%E8%A8%80%E4%B8%AD%E4%BD%BF%E7%94%A8tensorflow%EF%BC%88%E4%BA%94%EF%BC%89%E6%A3%80%E6%B5%8B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Yoo Shen">
+      <meta itemprop="description" content="学习、记录、分享">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Yoo shen的博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          如何在C语言中使用tensorflow（五）检测
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-05-16 20:21:00" itemprop="dateCreated datePublished" datetime="2020-05-16T20:21:00+08:00">2020-05-16</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-06-27 22:37:31" itemprop="dateModified" datetime="2022-06-27T22:37:31+08:00">2022-06-27</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/AI%E5%B7%A5%E7%A8%8B%E5%8C%96%E6%A1%86%E6%9E%B6/" itemprop="url" rel="index"><span itemprop="name">-AI工程化框架</span></a>
+        </span>
+    </span>
+
+  
+    <span id="/2020/05/16/%E5%A6%82%E4%BD%95%E5%9C%A8C%E8%AF%AD%E8%A8%80%E4%B8%AD%E4%BD%BF%E7%94%A8tensorflow%EF%BC%88%E4%BA%94%EF%BC%89%E6%A3%80%E6%B5%8B/" class="post-meta-item leancloud_visitors" data-flag-title="如何在C语言中使用tensorflow（五）检测" title="阅读次数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span class="leancloud-visitors-count"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>&#x672C;&#x671F;&#x4E3B;&#x8981;&#x4EE5;<a target="_blank" rel="noopener" href="https://github.com/sophos-ai/tensorflow-cmake/blob/master/inference/c/inference_c.c">Sophos&#x7684;ai&#x9879;&#x76EE;</a>&#x4E3A;&#x4F8B;&#x5B50;&#xFF0C;&#x5BF9;&#x673A;&#x5668;&#x5B66;&#x4E60;&#x8BFB;&#x5165;pb&#x6A21;&#x578B;&#x4EE5;&#x53CA;&#x68C0;&#x6D4B;&#x6D41;&#x7A0B;&#x8FDB;&#x884C;&#x5206;&#x6790;&#x3002;</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">#include &lt;stdlib.h&gt;</span><br><span class="line">#include &lt;string.h&gt;</span><br><span class="line">#include &lt;tensorflow/c/c_api.h&gt;</span><br><span class="line"></span><br><span class="line">TF_Buffer* read_file(const char* file); //&#x8BFB;&#x53D6;pb&#x6A21;&#x578B;&#x6587;&#x4EF6;&#xFF0C;&#x5728;tensorflow-c&#x7684;api&#x4E2D;&#x6CA1;&#x6709;&#x8FD9;&#x90E8;&#x5206;&#x4EE3;&#x7801;&#xFF0C;&#x9700;&#x8981;&#x81EA;&#x5DF1;&#x5199;</span><br><span class="line"></span><br><span class="line">void free_buffer(void* data, size_t length) { free(data); } //&#x91CA;&#x653E;&#x5185;&#x5B58;&#x7684;&#x51FD;&#x6570;&#xFF0C;&#x5728;&#x8BFB;&#x5165;pb&#x6A21;&#x578B;&#x5230;TF_NewBuffer&#x4F1A;&#x7528;&#x5230;</span><br><span class="line"></span><br><span class="line">void deallocator(void* ptr, size_t len, void* arg) { free((void*)ptr); } //&#x7B14;&#x8005;&#x5728;&#x7528;&#x7684;&#x65F6;&#x5019;&#x4F7F;&#x7528;&#x8FD9;&#x4E2A;&#x51FD;&#x6570;&#x4F1A;&#x5BFC;&#x81F4;&#x9519;&#x8BEF;&#xFF0C;&#x5C06;&#x4EE3;&#x7801;&#x5B8C;&#x5168;&#x6CE8;&#x91CA;&#x540E;&#x6B63;&#x5E38;</span><br><span class="line"></span><br><span class="line">int main(int argc, char const* argv[]) {</span><br><span class="line">  // load graph</span><br><span class="line">  // ================================================================================</span><br><span class="line">  TF_Buffer* graph_def = read_file(&quot;./exported/graph.pb&quot;); //&#x8BFB;&#x53D6;pb&#x6A21;&#x578B;&#x6587;&#x4EF6;&#xFF0C;&#x8FD9;&#x4E2A;&#x8DEF;&#x5F84;&#x5C31;&#x662F;&#x6A21;&#x578B;&#x6587;&#x4EF6;&#x7684;&#x8DEF;&#x5F84;</span><br><span class="line">  TF_Graph* graph = TF_NewGraph(); //&#x65B0;&#x5EFA;Graph</span><br><span class="line">  TF_Status* status = TF_NewStatus(); //status&#x8868;&#x793A;&#x51FD;&#x6570;&#x64CD;&#x4F5C;&#x7684;&#x8FD4;&#x56DE;&#x72B6;&#x6001;&#xFF0C;TF_Message(status)&#x53EF;&#x4EE5;&#x8F93;&#x51FA;&#x72B6;&#x6001;&#x4FE1;&#x606F;</span><br><span class="line">  TF_ImportGraphDefOptions* opts = TF_NewImportGraphDefOptions();</span><br><span class="line">  TF_GraphImportGraphDef(graph, graph_def, opts, status);</span><br><span class="line">  TF_DeleteImportGraphDefOptions(opts);//&#x5C06;&#x6A21;&#x578B;&#x8BFB;&#x5165;graph</span><br><span class="line">  if (TF_GetCode(status) != TF_OK) { //&#x5224;&#x65AD;&#x8BFB;&#x5165;graph&#x662F;&#x5426;&#x6210;&#x529F;&#xFF0C;TF_OK&#x8868;&#x793A;&#x64CD;&#x4F5C;&#x6210;&#x529F;</span><br><span class="line">    fprintf(stderr, &quot;ERROR: Unable to import graph %s\n&quot;, TF_Message(status));</span><br><span class="line">    return 1;</span><br><span class="line">  }</span><br><span class="line">  fprintf(stdout, &quot;Successfully imported graph\n&quot;);</span><br><span class="line"></span><br><span class="line">  // create session</span><br><span class="line">  // ================================================================================</span><br><span class="line">  TF_SessionOptions* opt = TF_NewSessionOptions();</span><br><span class="line">  TF_Session* sess = TF_NewSession(graph, opt, status);//&#x5C06;&#x6A21;&#x578B;&#x8BFB;&#x5165;session</span><br><span class="line">  TF_DeleteSessionOptions(opt); //&#x8BFB;&#x5165;session&#x540E;&#x53EF;&#x4EE5;&#x5220;&#x9664;graph</span><br><span class="line">  if (TF_GetCode(status) != TF_OK) {</span><br><span class="line">    fprintf(stderr, &quot;ERROR: Unable to create session %s\n&quot;, TF_Message(status));</span><br><span class="line">    return 1;</span><br><span class="line">  }</span><br><span class="line">  fprintf(stdout, &quot;Successfully created session\n&quot;);</span><br><span class="line"></span><br><span class="line">  // run init operation&#xFF0C;&#x8BF4;session&#x521D;&#x59CB;&#x5316;&#xFF0C;&#x8FD9;&#x4E2A;&#x5728;&#x5E94;&#x7528;&#x4E2D;&#x53EF;&#x4EE5;&#x4E0D;&#x505A;</span><br><span class="line">  // ================================================================================</span><br><span class="line">  const TF_Operation* init_op = TF_GraphOperationByName(graph, &quot;init&quot;); //&#x521D;&#x59CB;&#x5316;session&#xFF0C;&#x7B14;&#x8005;&#x5728;&#x5E94;&#x7528;&#x4E2D;&#x5E76;&#x6CA1;&#x6709;&#x6D4B;&#x8BD5;&#x8BE5;&#x529F;&#x80FD;</span><br><span class="line">  const TF_Operation* const* targets_ptr = &amp;init_op;</span><br><span class="line"></span><br><span class="line">  TF_SessionRun(sess,</span><br><span class="line">                /* RunOptions */ NULL,</span><br><span class="line">                /* Input tensors */ NULL, NULL, 0,</span><br><span class="line">                /* Output tensors */ NULL, NULL, 0,</span><br><span class="line">                /* Target operations */ targets_ptr, 1,</span><br><span class="line">                /* RunMetadata */ NULL,</span><br><span class="line">                /* Output status */ status);</span><br><span class="line">  if (TF_GetCode(status) != TF_OK) {</span><br><span class="line">    fprintf(stderr, &quot;ERROR: Unable to run init_op: %s\n&quot;, TF_Message(status));</span><br><span class="line">    return 1;</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  // run restore&#xFF0C;session&#x4E2D;&#x7684;&#x6A21;&#x578B;&#x8FDB;&#x884C;&#x518D;&#x6B21;&#x5B58;&#x50A8;&#xFF0C;&#x8FD9;&#x4E2A;&#x5728;&#x5E94;&#x7528;&#x4E2D;&#x53EF;&#x4EE5;&#x4E0D;&#x505A;</span><br><span class="line">  // ================================================================================</span><br><span class="line">  TF_Operation* checkpoint_op = TF_GraphOperationByName(graph, &quot;save/Const&quot;);</span><br><span class="line">  TF_Operation* restore_op = TF_GraphOperationByName(graph, &quot;save/restore_all&quot;);</span><br><span class="line"></span><br><span class="line">  char* checkpoint_path_str = &quot;./exported/my_model&quot;;</span><br><span class="line">  size_t checkpoint_path_str_len = strlen(checkpoint_path_str);</span><br><span class="line">  size_t encoded_size = TF_StringEncodedSize(checkpoint_path_str_len);</span><br><span class="line"></span><br><span class="line">  // The format for TF_STRING tensors is:</span><br><span class="line">  //   start_offset: array[uint64]</span><br><span class="line">  //   data:         byte[...]</span><br><span class="line">  size_t total_size = sizeof(int64_t) + encoded_size;</span><br><span class="line">  char* input_encoded = (char*)malloc(total_size);</span><br><span class="line">  memset(input_encoded, 0, total_size);</span><br><span class="line">  TF_StringEncode(checkpoint_path_str, checkpoint_path_str_len,</span><br><span class="line">                  input_encoded + sizeof(int64_t), encoded_size, status);</span><br><span class="line">  if (TF_GetCode(status) != TF_OK) {</span><br><span class="line">    fprintf(stderr, &quot;ERROR: something wrong with encoding: %s&quot;,</span><br><span class="line">            TF_Message(status));</span><br><span class="line">    return 1;</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  TF_Tensor* path_tensor = TF_NewTensor(TF_STRING, NULL, 0, input_encoded,</span><br><span class="line">                                        total_size, &amp;deallocator, 0);</span><br><span class="line"></span><br><span class="line">  TF_Output* run_path = (TF_Output*)malloc(1 * sizeof(TF_Output));</span><br><span class="line">  run_path[0].oper = checkpoint_op;</span><br><span class="line">  run_path[0].index = 0;</span><br><span class="line"></span><br><span class="line">  TF_Tensor** run_path_tensors = (TF_Tensor**)malloc(1 * sizeof(TF_Tensor*));</span><br><span class="line">  run_path_tensors[0] = path_tensor;</span><br><span class="line"></span><br><span class="line">  TF_SessionRun(sess,</span><br><span class="line">                /* RunOptions */ NULL,</span><br><span class="line">                /* Input tensors */ run_path, run_path_tensors, 1,</span><br><span class="line">                /* Output tensors */ NULL, NULL, 0,</span><br><span class="line">                /* Target operations */ &amp;restore_op, 1,</span><br><span class="line">                /* RunMetadata */ NULL,</span><br><span class="line">                /* Output status */ status);</span><br><span class="line">  if (TF_GetCode(status) != TF_OK) {</span><br><span class="line">    fprintf(stderr, &quot;ERROR: Unable to run restore_op: %s\n&quot;,</span><br><span class="line">            TF_Message(status));</span><br><span class="line">    return 1;</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  // gerenate input</span><br><span class="line">  // ================================================================================</span><br><span class="line">  TF_Operation* input_op = TF_GraphOperationByName(graph, &quot;input&quot;); //&#x660E;&#x786E;&#x6A21;&#x578B;&#x7684;&#x8F93;&#x5165;&#x5C42;&#xFF0C;&#x6BCF;&#x4E2A;&#x6A21;&#x578B;&#x4E0D;&#x540C;</span><br><span class="line">  printf(&quot;input_op has %i inputs\n&quot;, TF_OperationNumOutputs(input_op));</span><br><span class="line">  float* raw_input_data = (float*)malloc(2 * sizeof(float));//&#x8F93;&#x5165;&#x7279;&#x5F81;&#x6709;&#x4E24;&#x4E2A;&#x7EF4;&#x5EA6;&#xFF0C;&#x4E14;&#x90FD;&#x662F;&#x6D6E;&#x70B9;&#x6570;&#x7279;&#x5F81;</span><br><span class="line">  raw_input_data[0] = 1.f;</span><br><span class="line">  raw_input_data[1] = 1.f;</span><br><span class="line">  int64_t* raw_input_dims = (int64_t*)malloc(2 * sizeof(int64_t)); //&#x8F93;&#x5165;&#x6570;&#x636E;&#x4E24;&#x4E2A;&#x7EF4;&#x5EA6;</span><br><span class="line">  raw_input_dims[0] = 1;</span><br><span class="line">  raw_input_dims[1] = 2;</span><br><span class="line"></span><br><span class="line">  /*</span><br><span class="line">  TF_CAPI_EXPORT extern TF_Tensor* TF_NewTensor(</span><br><span class="line">      TF_DataType,</span><br><span class="line">      const int64_t* dims, int num_dims,</span><br><span class="line">      void* data, size_t len,</span><br><span class="line">      void (*deallocator)(void* data, size_t len, void* arg),</span><br><span class="line">      void* deallocator_arg);</span><br><span class="line">  */</span><br><span class="line">  // prepare inputs</span><br><span class="line">  TF_Tensor* input_tensor =</span><br><span class="line">      TF_NewTensor(TF_FLOAT, raw_input_dims, 2, raw_input_data,</span><br><span class="line">                   2 * sizeof(float), &amp;deallocator, NULL);</span><br><span class="line"></span><br><span class="line">  // void* input_data = TF_TensorData(input_tensor);</span><br><span class="line">  // printf(&quot;input_data[0] = %f\n&quot;, ((float*)input_data)[0]);</span><br><span class="line">  // printf(&quot;input_data[1] = %f\n&quot;, ((float*)input_data)[1]);</span><br><span class="line"></span><br><span class="line">  TF_Output* run_inputs = (TF_Output*)malloc(1 * sizeof(TF_Output));</span><br><span class="line">  run_inputs[0].oper = input_op;</span><br><span class="line">  run_inputs[0].index = 0;</span><br><span class="line"></span><br><span class="line">  TF_Tensor** run_inputs_tensors = (TF_Tensor**)malloc(1 * sizeof(TF_Tensor*)); //&#x5C06;&#x8F93;&#x5165;&#x6570;&#x636E;&#x8F93;&#x5165;&#x5230;TF_Tensor</span><br><span class="line">  run_inputs_tensors[0] = input_tensor;</span><br><span class="line"></span><br><span class="line">  // prepare outputs</span><br><span class="line">  // ================================================================================</span><br><span class="line">  TF_Operation* output_op = TF_GraphOperationByName(graph, &quot;output&quot;);//&#x660E;&#x786E;&#x6A21;&#x578B;&#x7684;&#x8F93;&#x51FA;&#x5C42;&#xFF0C;&#x6BCF;&#x4E2A;&#x6A21;&#x578B;&#x4E0D;&#x540C;</span><br><span class="line">  // printf(&quot;output_op has %i outputs\n&quot;, TF_OperationNumOutputs(output_op));</span><br><span class="line"></span><br><span class="line">  TF_Output* run_outputs = (TF_Output*)malloc(1 * sizeof(TF_Output));</span><br><span class="line">  run_outputs[0].oper = output_op;</span><br><span class="line">  run_outputs[0].index = 0;</span><br><span class="line"></span><br><span class="line">  TF_Tensor** run_output_tensors = (TF_Tensor**)malloc(1 * sizeof(TF_Tensor*)); //&#x7B14;&#x8005;&#x5728;&#x4F7F;&#x7528;&#x8FD9;&#x79CD;&#x65B9;&#x6CD5;&#x7684;&#x65F6;&#x5019;&#x4F1A;&#x5BFC;&#x81F4;&#x5185;&#x5B58;&#x6CC4;&#x9732;&#xFF0C;&#x56E0;&#x6B64;&#x9700;&#x8981;&#x6CE8;&#x610F;</span><br><span class="line">  float* raw_output_data = (float*)malloc(1 * sizeof(float));</span><br><span class="line">  raw_output_data[0] = 1.f;</span><br><span class="line">  int64_t* raw_output_dims = (int64_t*)malloc(1 * sizeof(int64_t));</span><br><span class="line">  raw_output_dims[0] = 1;</span><br><span class="line"></span><br><span class="line">  TF_Tensor* output_tensor =</span><br><span class="line">      TF_NewTensor(TF_FLOAT, raw_output_dims, 1, raw_output_data,</span><br><span class="line">                   1 * sizeof(float), &amp;deallocator, NULL);</span><br><span class="line">  run_output_tensors[0] = output_tensor;</span><br><span class="line"></span><br><span class="line">  // run network</span><br><span class="line">  // ================================================================================</span><br><span class="line">  TF_SessionRun(sess,</span><br><span class="line">                /* RunOptions */ NULL,</span><br><span class="line">                /* Input tensors */ run_inputs, run_inputs_tensors, 1,</span><br><span class="line">                /* Output tensors */ run_outputs, run_output_tensors, 1,</span><br><span class="line">                /* Target operations */ NULL, 0,</span><br><span class="line">                /* RunMetadata */ NULL,</span><br><span class="line">                /* Output status */ status);</span><br><span class="line">  if (TF_GetCode(status) != TF_OK) {</span><br><span class="line">    fprintf(stderr, &quot;ERROR: Unable to run output_op: %s\n&quot;, TF_Message(status));</span><br><span class="line">    return 1;</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  // printf(&quot;output-tensor has %i dims\n&quot;, TF_NumDims(run_output_tensors[0]));</span><br><span class="line"></span><br><span class="line">  void* output_data = TF_TensorData(run_output_tensors[0]);</span><br><span class="line">  printf(&quot;output %f\n&quot;, ((float*)output_data)[0]);</span><br><span class="line">  // you do not want see me creating all the other tensors; Enough lines for</span><br><span class="line">  // this simple example!</span><br><span class="line"></span><br><span class="line">  // free up stuff</span><br><span class="line">  // ================================================================================</span><br><span class="line">  // I probably missed something here</span><br><span class="line">  TF_CloseSession(sess, status);</span><br><span class="line">  TF_DeleteSession(sess, status);</span><br><span class="line"></span><br><span class="line">  TF_DeleteStatus(status);</span><br><span class="line">  TF_DeleteBuffer(graph_def);</span><br><span class="line"></span><br><span class="line">  TF_DeleteGraph(graph);</span><br><span class="line"></span><br><span class="line">  free((void*)input_encoded);</span><br><span class="line">  free((void*)raw_input_data);</span><br><span class="line">  free((void*)raw_input_dims);</span><br><span class="line">  free((void*)run_inputs);</span><br><span class="line">  return 0;</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line">TF_Buffer* read_file(const char* file) {</span><br><span class="line">  FILE* f = fopen(file, &quot;rb&quot;);</span><br><span class="line">  fseek(f, 0, SEEK_END);</span><br><span class="line">  long fsize = ftell(f);</span><br><span class="line">  fseek(f, 0, SEEK_SET);  // same as rewind(f);</span><br><span class="line"></span><br><span class="line">  void* data = malloc(fsize);</span><br><span class="line">  fread(data, fsize, 1, f);</span><br><span class="line">  fclose(f);</span><br><span class="line"></span><br><span class="line">  TF_Buffer* buf = TF_NewBuffer();</span><br><span class="line">  buf-&gt;data = data;</span><br><span class="line">  buf-&gt;length = fsize;</span><br><span class="line">  buf-&gt;data_deallocator = free_buffer;</span><br><span class="line">  return buf;</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line">/*</span><br><span class="line">TF_CAPI_EXPORT extern void TF_SessionRun(</span><br><span class="line">    TF_Session* session,</span><br><span class="line">    // RunOptions</span><br><span class="line">    const TF_Buffer* run_options,</span><br><span class="line">    // Input tensors</span><br><span class="line">    const TF_Output* inputs, TF_Tensor* const* input_values, int ninputs,</span><br><span class="line">    // Output tensors</span><br><span class="line">    const TF_Output* outputs, TF_Tensor** output_values, int noutputs,</span><br><span class="line">    // Target operations</span><br><span class="line">    const TF_Operation* const* target_opers, int ntargets,</span><br><span class="line">    // RunMetadata</span><br><span class="line">    TF_Buffer* run_metadata,</span><br><span class="line">    // Output status</span><br><span class="line">    TF_Status*);</span><br><span class="line">*/</span><br></pre></td></tr></table></figure>
+<p>1.&#x8FD9;&#x6BB5;&#x4EE3;&#x7801;&#x5DF2;&#x7ECF;&#x57FA;&#x672C;&#x5C06;tensorflow&#x7684;C&#x8BED;&#x8A00;&#x7684;api&#x4ECB;&#x7ECD;&#x7684;&#x5F88;&#x6E05;&#x695A;&#xFF0C;&#x4F46;&#x662F;&#x8FD8;&#x6709;&#x914D;&#x7F6E;&#x5E76;&#x884C;&#x8BA1;&#x7B97;&#x7684;TF_SetConfig&#x6CA1;&#x6709;&#x63D0;&#x53CA;&#x3002;</p>
+<p>2.&#x6B64;&#x5916;bp&#x6A21;&#x578B;&#x662F;tensorflow&#x8BAD;&#x7EC3;&#x51FA;&#x7684;&#x6A21;&#x578B;&#x7684;&#x56FA;&#x5316;&#xFF08;freeze&#xFF09;&#x540E;&#xFF0C;&#x4E5F;&#x5C31;&#x662F;&#x5C06;&#x6A21;&#x578B;&#x4E2D;&#x7684;&#x53D8;&#x91CF;&#x53D8;&#x6210;&#x5E38;&#x91CF;&#x7684;&#x8FC7;&#x7A0B;&#x3002;</p>
+<p>3.&#x9700;&#x8981;&#x7528;&#x53E6;&#x5916;&#x7684;&#x4EE3;&#x7801;&#x660E;&#x786E;tensorflow&#x6A21;&#x578B;&#x7684;&#x8F93;&#x5165;&#x5C42;&#x548C;&#x8F93;&#x51FA;&#x5C42;&#x7684;&#x540D;&#x5B57;&#xFF0C;&#x6BD5;&#x7ADF;&#x4E0D;&#x662F;&#x6240;&#x6709;&#x7684;&#x6A21;&#x578B;&#x90FD;&#x628A;&#x8F93;&#x5165;&#x5C42;&#x5B9A;&#x4E49;&#x4E3A;input&#xFF0C;&#x8F93;&#x51FA;&#x5C42;&#x90FD;&#x5B9A;&#x4E49;&#x4E3A;output&#x3002;</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="reward-container">
+  <div>感谢支持，鼓励成就原创！</div>
+  <button>
+    赞赏
+  </button>
+  <div class="post-reward">
+      <div>
+        <img src="/images/wc.jpg" alt="Yoo Shen 微信">
+        <span>微信</span>
+      </div>
+      <div>
+        <img src="/images/zfb.jpg" alt="Yoo Shen 支付宝">
+        <span>支付宝</span>
+      </div>
+
+  </div>
+</div>
+
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>Yoo Shen
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://sidney-neu.github.io/2020/05/16/%E5%A6%82%E4%BD%95%E5%9C%A8C%E8%AF%AD%E8%A8%80%E4%B8%AD%E4%BD%BF%E7%94%A8tensorflow%EF%BC%88%E4%BA%94%EF%BC%89%E6%A3%80%E6%B5%8B/" title="如何在C语言中使用tensorflow（五）检测">https://sidney-neu.github.io/2020/05/16/如何在C语言中使用tensorflow（五）检测/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2020/05/16/%E5%A6%82%E4%BD%95%E5%9C%A8C%E8%AF%AD%E8%A8%80%E4%B8%AD%E4%BD%BF%E7%94%A8tensorflow%EF%BC%88%E5%9B%9B%EF%BC%89%E5%AE%9E%E4%BE%8B/" rel="prev" title="如何在C语言中使用tensorflow（四）实例">
+                  <i class="fa fa-chevron-left"></i> 如何在C语言中使用tensorflow（四）实例
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2020/12/12/%E4%BB%80%E4%B9%88%E6%98%AF%E4%B8%8B%E4%B8%80%E4%BB%A3%E9%98%B2%E7%81%AB%E5%A2%99NGFW(Next%20Generation%20Firewall)%EF%BC%9F/" rel="next" title="什么是下一代防火墙NGFW(Next Generation Firewall)？">
+                  什么是下一代防火墙NGFW(Next Generation Firewall)？ <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments gitalk-container"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Yoo Shen</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/next-boot.js"></script>
+
+  
+<script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.0/dist/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+
+
+  <script class="next-config" data-name="leancloud_visitors" type="application/json">{"enable":true,"app_id":"nG09szIvM8x9ehgslCULWzg2-MdYXbMMI","app_key":"yHykoRL88ikgLTqsUC0xIMvY","server_url":null,"security":false}</script>
+  <script src="/js/third-party/statistics/lean-analytics.js"></script>
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdn.jsdelivr.net/npm/mathjax@3.2.0/es5/tex-mml-chtml.js","integrity":"sha256-r+3itOMtGGjap0x+10hu6jW/gZCzxHsoKrOd7gyRSGY="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
+
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"sidney-neu","repo":"sidney-neu.github.io","client_id":"04c1120504d2e421fa7d","client_secret":"389710c48c007c80cfbb7b9788d01e674ab31c00","admin_user":"sidney-neu","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":"zh-CN","js":{"url":"https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js","integrity":"sha256-Pmj85ojLaPOWwRtlMJwmezB/Qg8BzvJp5eTzvXaYAfA="},"path_md5":"a458b62d18917f1e1392234d198a928f"}</script>
+<script src="/js/third-party/comments/gitalk.js"></script>
+
+</body>
+</html>

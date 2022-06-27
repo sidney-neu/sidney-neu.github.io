@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.0.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"sidney-neu.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.8.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":{"gitalk":{"order":-1}},"activeClass":"gitalk"},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.json","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+<meta name="description" content="vim &amp;#x4F7F;&amp;#x7528;vim&amp;#x80FD;&amp;#x63D0;&amp;#x9AD8;&amp;#x4EE3;&amp;#x7801;&amp;#x7F16;&amp;#x5199;&amp;#x7684;&amp;#x5DE5;&amp;#x4F5C;&amp;#x6548;&amp;#x7387;&amp;#x3002; &amp;#x5B89;&amp;#x88C5; 1apt-get install vim &amp;#x5E38;&amp;#x7528;&amp;#x547D;&amp;#x4EE4; &amp;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="vim配置">
+<meta property="og:url" content="https://sidney-neu.github.io/2018/10/19/vim%E9%85%8D%E7%BD%AE/index.html">
+<meta property="og:site_name" content="Yoo shen的博客">
+<meta property="og:description" content="vim &amp;#x4F7F;&amp;#x7528;vim&amp;#x80FD;&amp;#x63D0;&amp;#x9AD8;&amp;#x4EE3;&amp;#x7801;&amp;#x7F16;&amp;#x5199;&amp;#x7684;&amp;#x5DE5;&amp;#x4F5C;&amp;#x6548;&amp;#x7387;&amp;#x3002; &amp;#x5B89;&amp;#x88C5; 1apt-get install vim &amp;#x5E38;&amp;#x7528;&amp;#x547D;&amp;#x4EE4; &amp;">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2018-10-19T09:20:00.000Z">
+<meta property="article:modified_time" content="2022-06-27T14:37:31.703Z">
+<meta property="article:author" content="Yoo Shen">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://sidney-neu.github.io/2018/10/19/vim%E9%85%8D%E7%BD%AE/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://sidney-neu.github.io/2018/10/19/vim%E9%85%8D%E7%BD%AE/","path":"2018/10/19/vim配置/","title":"vim配置"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>vim配置 | Yoo shen的博客</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Yoo shen的博客</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">sy071600sy@163.com</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">13</span></a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">35</span></a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#vim"><span class="nav-number">1.</span> <span class="nav-text">vim</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%89%E8%A3%85"><span class="nav-number">2.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4"><span class="nav-number">3.</span> <span class="nav-text">常用命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BF%AB%E6%8D%B7%E6%93%8D%E4%BD%9C"><span class="nav-number">4.</span> <span class="nav-text">快捷操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E6%B5%8F%E8%A7%88"><span class="nav-number">5.</span> <span class="nav-text">代码浏览</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9D%97%E6%93%8D%E4%BD%9C"><span class="nav-number">6.</span> <span class="nav-text">块操作</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Yoo Shen</p>
+  <div class="site-description" itemprop="description">学习、记录、分享</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">35</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/sidney-neu" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;sidney-neu" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://sidney-neu.github.io/2018/10/19/vim%E9%85%8D%E7%BD%AE/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Yoo Shen">
+      <meta itemprop="description" content="学习、记录、分享">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Yoo shen的博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          vim配置
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2018-10-19 17:20:00" itemprop="dateCreated datePublished" datetime="2018-10-19T17:20:00+08:00">2018-10-19</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-06-27 22:37:31" itemprop="dateModified" datetime="2022-06-27T22:37:31+08:00">2022-06-27</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Linux/" itemprop="url" rel="index"><span itemprop="name">-Linux</span></a>
+        </span>
+    </span>
+
+  
+    <span id="/2018/10/19/vim%E9%85%8D%E7%BD%AE/" class="post-meta-item leancloud_visitors" data-flag-title="vim配置" title="阅读次数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span class="leancloud-visitors-count"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h3 id="vim">vim</h3>
+<p>&#x4F7F;&#x7528;vim&#x80FD;&#x63D0;&#x9AD8;&#x4EE3;&#x7801;&#x7F16;&#x5199;&#x7684;&#x5DE5;&#x4F5C;&#x6548;&#x7387;&#x3002;</p>
+<h3 id="&#x5B89;&#x88C5;">&#x5B89;&#x88C5;</h3>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt-get install vim</span><br></pre></td></tr></table></figure>
+<h3 id="&#x5E38;&#x7528;&#x547D;&#x4EE4;">&#x5E38;&#x7528;&#x547D;&#x4EE4;</h3>
+<p>&#x6309;ESC&#x540E;&#xFF0C;&#x8F93;&#x5165;&#x201C;:&#x201D;&#xFF0C;&#x8FDB;&#x884C;&#x547D;&#x4EE4;&#x64CD;&#x4F5C; w &#x4FDD;&#x5B58; q &#x9000;&#x51FA; /[&#x5B57;&#x7B26;&#x4E32;] &#x67E5;&#x627E;&#x5B57;&#x7B26;&#x4E32;&#xFF0C;&#x7136;&#x540E;&#x6309;n&#x67E5;&#x627E;&#x4E0B;&#x4E00;&#x4E2A;&#xFF0C;N&#x67E5;&#x627E;&#x4E0A;&#x4E00;&#x4E2A; &#xFF05;s &#x66FF;&#x6362;&#xFF0C;&#x4F8B;&#xFF1A;&#x5C06;&#x6574;&#x4E2A;&#x6587;&#x4EF6;&#x91CC;&#x7684;abcd&#x5168;&#x90E8;&#x66FF;&#x6362;&#x4E3A;efgh %s/abcd/efgh/g &#x8F93;&#x5165;&#x884C;&#x53F7;&#x56DE;&#x8F66;&#xFF0C;&#x8F6C;&#x5230;&#x884C; set paste &#x5207;&#x6362;&#x81F3;&#x7C98;&#x8D34;&#x6A21;&#x5F0F;&#xFF0C;&#x7C98;&#x4EE3;&#x7801;&#x65F6;&#x4E0D;&#x4F1A;&#x81EA;&#x52A8;&#x8865;&#x9F50;&#x53CA;&#x81EA;&#x52A8;&#x6CE8;&#x91CA; set nu/set nonu &#x663E;&#x793A;&#x5173;&#x95ED;&#x884C;&#x53F7;</p>
+<h3 id="&#x5FEB;&#x6377;&#x64CD;&#x4F5C;">&#x5FEB;&#x6377;&#x64CD;&#x4F5C;</h3>
+<p>i &#x63D2;&#x5165; x &#x5220;&#x9664;&#xFF08;&#x526A;&#x5207;&#xFF09; dd &#x5220;&#x9664;&#xFF08;&#x526A;&#x5207;&#xFF09;&#x4E00;&#x884C; yy &#x590D;&#x5236;&#x4E00;&#x884C; p &#x7C98;&#x8D34; v &#x5F00;&#x59CB;&#x9009;&#x4E2D;&#xFF0C;&#x53EF;&#x4EE5;&#x79FB;&#x52A8;&#x5149;&#x6807;&#x9009;&#x4E2D; $ &#x79FB;&#x5230;&#x884C;&#x5C3E; 0 &#x79FB;&#x5230;&#x884C;&#x9996; D &#x4ECE;&#x5F53;&#x524D;&#x4F4D;&#x7F6E;&#x5220;&#x9664;&#x5230;&#x884C;&#x5C3E; J &#x5220;&#x9664;&#x8BE5;&#x884C;&#x7684;&#x6362;&#x884C;&#x7B26;&#xFF0C;&#x4E0E;&#x4E0B;&#x4E00;&#x884C;&#x53D8;&#x6210;&#x4E00;&#x884C; u &#x64A4;&#x6D88;(&#x547D;&#x4EE4;red&#x662F;&#x91CD;&#x505A;) % &#x62EC;&#x53F7;&#x914D;&#x5BF9;(){}&#x7B49; &#x67E5;&#x627E;&#xFF1A;&#x5149;&#x6807;&#x79FB;&#x5230;&#x5355;&#x8BCD;&#x4E0A;&#xFF0C;&#x6309;*&#xFF0C;&#x76F4;&#x63A5;&#x67E5;&#x627E;&#x8FD9;&#x4E2A;&#x5355;&#x8BCD; &#x683C;&#x5F0F;&#x5316;&#x5BF9;&#x9F50;&#xFF1A;&#x6309;V&#x540E;&#xFF0C;&#x79FB;&#x52A8;&#x5149;&#x6807;&#xFF0C;&#x9009;&#x4E2D;&#x591A;&#x884C;&#x6587;&#x672C;&#xFF0C;&#x6309;=</p>
+<h3 id="&#x4EE3;&#x7801;&#x6D4F;&#x89C8;">&#x4EE3;&#x7801;&#x6D4F;&#x89C8;</h3>
+<p>&#x501F;&#x52A9;cscope&#x548C;ctags&#x80FD;&#x5728;vim&#x4E2D;&#x6D4F;&#x89C8;&#x4EE3;&#x7801;&#xFF0C;&#x8DF3;&#x8F6C;&#x51FD;&#x6570;&#xFF0C;&#x67E5;&#x627E;&#x5B9A;&#x4E49;&#x7B49;</p>
+<p>&#x5B89;&#x88C5;cscope&#x548C;ctags:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">apt-get install cscope</span><br><span class="line">apt-get install exuberant-ctags</span><br></pre></td></tr></table></figure>
+<p>&#x8F6C;&#x5230;&#x4EE3;&#x7801;&#x76EE;&#x5F55;&#x6267;&#x884C;&#xFF1A;</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cscope -Rbq; ctags -R</span><br></pre></td></tr></table></figure>
+<p>&#x5F53;&#x9879;&#x76EE;&#x4E3A;C&#x8BED;&#x8A00;&#x9879;&#x76EE;&#x7684;&#x65F6;&#x5019;&#x4E0D;&#x4F1A;&#x51FA;&#x95EE;&#x9898;&#xFF0C;&#x5982;&#x679C;&#x64CD;&#x4F5C;python&#x9879;&#x76EE;&#x7684;&#x65F6;&#x5019;&#x53EF;&#x80FD;&#x4F1A;&#x51FA;&#x73B0;&#x5982;&#x4E0B;&#x9519;&#x8BEF;&#xFF1A;</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cscope: no source files found</span><br></pre></td></tr></table></figure>
+<p>&#x8FD9;&#x79CD;&#x662F;&#x56E0;&#x4E3A;&#x9ED8;&#x8BA4;&#x60C5;&#x51B5;&#x4E0B;cscope&#x4EC5;&#x4EC5;&#x4F1A;&#x5728;&#x5F53;&#x524D;&#x76EE;&#x5F55;&#x4E0B;&#x9488;&#x5BF9;c&#x3001;iex&#x548C;yacc&#xFF08;&#x6269;&#x5C55;&#x540D;&#x5206;&#x522B;&#x4E3A;.c&#x3001;.h&#x3001;.I&#x3001;.y&#xFF09;&#x7A0B;&#x5E8F;&#x6587;&#x4EF6;&#x8FDB;&#x884C;&#x89E3;&#x6790;&#xFF08;&#x5982;&#x679C;&#x6307;&#x5B9A;&#x4E86;-R&#x53C2;&#x6570;&#x5219;&#x5305;&#x542B;&#x5176;&#x81EA;&#x8EAB;&#x7684;&#x5B50;&#x76EE;&#x5F55;&#xFF09;&#x3002;py&#x6587;&#x4EF6;&#x4E0D;&#x5728;&#x8FD9;&#x4E2A;&#x8303;&#x7574;&#x4E4B;&#x5185;&#xFF0C;&#x56E0;&#x6B64;&#x9700;&#x8981;&#x5728;&#x4EE3;&#x7801;&#x8DEF;&#x5F84;&#x4E2D;&#x6267;&#x884C;&#x4EE5;&#x4E0B;&#x547D;&#x4EE4;&#xFF08;&#x4EE5;python&#x4E3A;&#x4F8B;&#xFF09;&#xFF1A;</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">find . -name &apos;*.py&apos; &gt; cscope.files</span><br><span class="line">cscope -Rbq; ctags -R</span><br></pre></td></tr></table></figure>
+<p>vim&#x652F;&#x6301;cscope&#x7684;&#x914D;&#x7F6E;&#x6587;&#x4EF6;<a target="_blank" rel="noopener" href="https://pan.baidu.com/s/1JnMc5Ctz6_UjXdy6iiEUWw">vimcfg.tar.gz</a>(&#x63D0;&#x53D6;&#x7801;&#xFF1A;jqhm)&#x89E3;&#x538B;&#x5230;&#x4E3B;&#x76EE;&#x5F55;</p>
+<p>vim -t <函数名>&#x76F4;&#x63A5;&#x80FD;&#x8DF3;&#x8F6C;&#x5230;&#x51FD;&#x6570; &#x8FDB;&#x5165;vim&#x540E;&#xFF0C;&#x5149;&#x6807;&#x8F6C;&#x5230;&#x51FD;&#x6570;&#x540D;&#x4E0A;&#xFF0C;&#x5FEB;&#x6377;&#x952E;&#xFF1A; &#x8F6C;&#x5230;&#x51FD;&#x6570;&#x5B9A;&#x4E49;&#xFF1A;Ctrl+] &#x5BF9;&#x5E94;&#x547D;&#x4EE4;cs f g <函数名> &#x8FD4;&#x56DE;&#x8DF3;&#x8F6C;&#xFF1A;Ctrl+t &#x8F6C;&#x5230;&#x8C03;&#x7528;&#x5904;&#xFF1A;Ctrl+ &#x5168;&#x6587;&#x67E5;&#x627E;&#xFF1A;Ctrl+</函数名></函数名></p>
+<p>F8&#x51FD;&#x6570;&#x53D8;&#x91CF;&#x5B9A;&#x4E49;&#x5217;&#x8868; F6,F7&#x591A;&#x7A97;&#x53E3;&#x5207;&#x6362;</p>
+<h3 id="&#x5757;&#x64CD;&#x4F5C;">&#x5757;&#x64CD;&#x4F5C;</h3>
+<p>&#x6309;&#x5FEB;&#x6377;&#x952E;v&#x540E;&#xFF0C;&#x53EF;&#x8FDB;&#x884C;&#x5757;&#x64CD;&#x4F5C;&#xFF0C;&#x79FB;&#x52A8;&#x5149;&#x6807;&#x9009;&#x62E9;&#x6587;&#x672C;&#x5757;&#xFF0C;&#x5E76;&#x53EF;&#x9009;&#x62E9;&#x591A;&#x884C;&#x6587;&#x672C;&#x5757;&#xFF0C; &#x9009;&#x5B9A;&#x540E;&#x53EF;&#x8FDB;&#x884C;x&#x5220;&#x9664;&#xFF08;&#x526A;&#x5207;&#xFF09;&#x3001;y&#x590D;&#x5236;&#x7B49;&#x64CD;&#x4F5C;&#x3002; V(shift+v)&#x9009;&#x62E9;&#x6574;&#x884C;&#xFF1B; Ctrl+v&#x53EF;&#x4EE5;&#x9009;&#x62E9;&#x6574;&#x5217;&#x8FDB;&#x884C;&#x64CD;&#x4F5C;&#x3002; &#x9009;&#x62E9;&#x5217;&#x540E;&#xFF0C;&#x6309;x&#x5220;&#x9664;&#x4E00;&#x5217;&#xFF1B; &#x9009;&#x62E9;&#x5217;&#x540E;&#xFF0C;&#x4F9D;&#x6B21;&#x6309;I&#xFF0C;&#x5B57;&#x7B26;(&#x53EF;&#x591A;&#x4E2A;)&#xFF0C;ESC&#x3002;&#x53EF;&#x4EE5;&#x589E;&#x52A0;&#x4E00;&#x5217;&#x5B57;&#x7B26;&#xFF1B;</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="reward-container">
+  <div>感谢支持，鼓励成就原创！</div>
+  <button>
+    赞赏
+  </button>
+  <div class="post-reward">
+      <div>
+        <img src="/images/wc.jpg" alt="Yoo Shen 微信">
+        <span>微信</span>
+      </div>
+      <div>
+        <img src="/images/zfb.jpg" alt="Yoo Shen 支付宝">
+        <span>支付宝</span>
+      </div>
+
+  </div>
+</div>
+
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>Yoo Shen
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://sidney-neu.github.io/2018/10/19/vim%E9%85%8D%E7%BD%AE/" title="vim配置">https://sidney-neu.github.io/2018/10/19/vim配置/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2016/05/16/ROS%E4%BD%BF%E7%94%A8openni%E8%8E%B7%E5%8F%96Kinect%E5%BD%A9%E8%89%B2%E5%9B%BE%E5%83%8F%E5%92%8C%E6%B7%B1%E5%BA%A6%E5%9B%BE%E5%83%8F/" rel="prev" title="ROS使用openni获取Kinect彩色图像和深度图像">
+                  <i class="fa fa-chevron-left"></i> ROS使用openni获取Kinect彩色图像和深度图像
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2018/10/19/sed%E6%88%96perl%E5%AE%9E%E7%8E%B0%E8%B4%AA%E5%A9%AA%E5%8C%B9%E9%85%8D%E5%92%8C%E6%9C%80%E5%B0%8F%E5%8C%B9%E9%85%8D/" rel="next" title="sed或perl实现贪婪匹配和最小匹配">
+                  sed或perl实现贪婪匹配和最小匹配 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments gitalk-container"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Yoo Shen</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/next-boot.js"></script>
+
+  
+<script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.0/dist/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+
+
+  <script class="next-config" data-name="leancloud_visitors" type="application/json">{"enable":true,"app_id":"nG09szIvM8x9ehgslCULWzg2-MdYXbMMI","app_key":"yHykoRL88ikgLTqsUC0xIMvY","server_url":null,"security":false}</script>
+  <script src="/js/third-party/statistics/lean-analytics.js"></script>
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdn.jsdelivr.net/npm/mathjax@3.2.0/es5/tex-mml-chtml.js","integrity":"sha256-r+3itOMtGGjap0x+10hu6jW/gZCzxHsoKrOd7gyRSGY="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
+
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"sidney-neu","repo":"sidney-neu.github.io","client_id":"04c1120504d2e421fa7d","client_secret":"389710c48c007c80cfbb7b9788d01e674ab31c00","admin_user":"sidney-neu","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":"zh-CN","js":{"url":"https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js","integrity":"sha256-Pmj85ojLaPOWwRtlMJwmezB/Qg8BzvJp5eTzvXaYAfA="},"path_md5":"5093b42c91e565572af7aba061c7d02b"}</script>
+<script src="/js/third-party/comments/gitalk.js"></script>
+
+</body>
+</html>

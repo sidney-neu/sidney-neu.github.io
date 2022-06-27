@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.0.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"sidney-neu.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.8.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":{"gitalk":{"order":-1}},"activeClass":"gitalk"},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.json","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+<meta name="description" content="1.&amp;#x64CD;&amp;#x4F5C;&amp;#x7CFB;&amp;#x7EDF;&amp;#x4E0E;&amp;#x8F6F;&amp;#x4EF6;&amp;#x7248;&amp;#x672C; &amp;#x672C;&amp;#x5B9E;&amp;#x9A8C;&amp;#x4F7F;&amp;#x7528;Ubuntu14.04&amp;#x7684;64bit&amp;#x7248;&amp;#x672C;&amp;#xFF0C;ROS&amp;#x4F7F;&amp;#x7528;Indigo&amp;#x7248;&amp;#x6">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ROS使用openni获取Kinect彩色图像和深度图像">
+<meta property="og:url" content="https://sidney-neu.github.io/2016/05/16/ROS%E4%BD%BF%E7%94%A8openni%E8%8E%B7%E5%8F%96Kinect%E5%BD%A9%E8%89%B2%E5%9B%BE%E5%83%8F%E5%92%8C%E6%B7%B1%E5%BA%A6%E5%9B%BE%E5%83%8F/index.html">
+<meta property="og:site_name" content="Yoo shen的博客">
+<meta property="og:description" content="1.&amp;#x64CD;&amp;#x4F5C;&amp;#x7CFB;&amp;#x7EDF;&amp;#x4E0E;&amp;#x8F6F;&amp;#x4EF6;&amp;#x7248;&amp;#x672C; &amp;#x672C;&amp;#x5B9E;&amp;#x9A8C;&amp;#x4F7F;&amp;#x7528;Ubuntu14.04&amp;#x7684;64bit&amp;#x7248;&amp;#x672C;&amp;#xFF0C;ROS&amp;#x4F7F;&amp;#x7528;Indigo&amp;#x7248;&amp;#x6">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://sidney-neu.github.io/2016/05/16/ROS%E4%BD%BF%E7%94%A8openni%E8%8E%B7%E5%8F%96Kinect%E5%BD%A9%E8%89%B2%E5%9B%BE%E5%83%8F%E5%92%8C%E6%B7%B1%E5%BA%A6%E5%9B%BE%E5%83%8F/20160516204932422.jpg">
+<meta property="article:published_time" content="2016-05-16T12:55:00.000Z">
+<meta property="article:modified_time" content="2022-06-27T14:37:31.698Z">
+<meta property="article:author" content="Yoo Shen">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://sidney-neu.github.io/2016/05/16/ROS%E4%BD%BF%E7%94%A8openni%E8%8E%B7%E5%8F%96Kinect%E5%BD%A9%E8%89%B2%E5%9B%BE%E5%83%8F%E5%92%8C%E6%B7%B1%E5%BA%A6%E5%9B%BE%E5%83%8F/20160516204932422.jpg">
+
+
+<link rel="canonical" href="https://sidney-neu.github.io/2016/05/16/ROS%E4%BD%BF%E7%94%A8openni%E8%8E%B7%E5%8F%96Kinect%E5%BD%A9%E8%89%B2%E5%9B%BE%E5%83%8F%E5%92%8C%E6%B7%B1%E5%BA%A6%E5%9B%BE%E5%83%8F/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://sidney-neu.github.io/2016/05/16/ROS%E4%BD%BF%E7%94%A8openni%E8%8E%B7%E5%8F%96Kinect%E5%BD%A9%E8%89%B2%E5%9B%BE%E5%83%8F%E5%92%8C%E6%B7%B1%E5%BA%A6%E5%9B%BE%E5%83%8F/","path":"2016/05/16/ROS使用openni获取Kinect彩色图像和深度图像/","title":"ROS使用openni获取Kinect彩色图像和深度图像"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>ROS使用openni获取Kinect彩色图像和深度图像 | Yoo shen的博客</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Yoo shen的博客</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">sy071600sy@163.com</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">13</span></a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">35</span></a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%B8%8E%E8%BD%AF%E4%BB%B6%E7%89%88%E6%9C%AC"><span class="nav-number">1.</span> <span class="nav-text">1.操作系统与软件版本</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%85%8D%E7%BD%AEopenni"><span class="nav-number">2.</span> <span class="nav-text">2.配置OpenNI</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%89%E8%A3%85opencv2"><span class="nav-number">3.</span> <span class="nav-text">3.安装OpenCV2</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%89%E8%A3%85ros"><span class="nav-number">4.</span> <span class="nav-text">4.安装ROS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%8E%B7%E5%8F%96kinect%E7%9A%84%E5%BD%A9%E8%89%B2%E5%9B%BE%E5%83%8F%E5%92%8C%E6%B7%B1%E5%BA%A6%E5%9B%BE%E5%83%8F"><span class="nav-number">5.</span> <span class="nav-text">5.获取kinect的彩色图像和深度图像</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Yoo Shen</p>
+  <div class="site-description" itemprop="description">学习、记录、分享</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">35</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/sidney-neu" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;sidney-neu" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://sidney-neu.github.io/2016/05/16/ROS%E4%BD%BF%E7%94%A8openni%E8%8E%B7%E5%8F%96Kinect%E5%BD%A9%E8%89%B2%E5%9B%BE%E5%83%8F%E5%92%8C%E6%B7%B1%E5%BA%A6%E5%9B%BE%E5%83%8F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Yoo Shen">
+      <meta itemprop="description" content="学习、记录、分享">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Yoo shen的博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          ROS使用openni获取Kinect彩色图像和深度图像
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2016-05-16 20:55:00" itemprop="dateCreated datePublished" datetime="2016-05-16T20:55:00+08:00">2016-05-16</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-06-27 22:37:31" itemprop="dateModified" datetime="2022-06-27T22:37:31+08:00">2022-06-27</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/" itemprop="url" rel="index"><span itemprop="name">-图像处理</span></a>
+        </span>
+    </span>
+
+  
+    <span id="/2016/05/16/ROS%E4%BD%BF%E7%94%A8openni%E8%8E%B7%E5%8F%96Kinect%E5%BD%A9%E8%89%B2%E5%9B%BE%E5%83%8F%E5%92%8C%E6%B7%B1%E5%BA%A6%E5%9B%BE%E5%83%8F/" class="post-meta-item leancloud_visitors" data-flag-title="ROS使用openni获取Kinect彩色图像和深度图像" title="阅读次数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span class="leancloud-visitors-count"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h3 id="&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#x4E0E;&#x8F6F;&#x4EF6;&#x7248;&#x672C;">1.&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#x4E0E;&#x8F6F;&#x4EF6;&#x7248;&#x672C;</h3>
+<p>&#x672C;&#x5B9E;&#x9A8C;&#x4F7F;&#x7528;Ubuntu14.04&#x7684;64bit&#x7248;&#x672C;&#xFF0C;ROS&#x4F7F;&#x7528;Indigo&#x7248;&#x672C;&#xFF0C;&#x56FE;&#x50CF;&#x83B7;&#x53D6;&#x4F7F;&#x7528;OpenNI1(&#x56E0;&#x4E3A;OpenNI2&#x4E2D;&#x672A;&#x627E;&#x5230;&#x5F69;&#x8272;&#x56FE;&#x50CF;&#x548C;&#x6DF1;&#x5EA6;&#x56FE;&#x50CF;&#x5BF9;&#x9F50;&#x529F;&#x80FD;&#xFF0C;&#x53F0;&#x6E7E;&#x7684;&#x4E00;&#x4EE3;&#x5927;&#x795E;Heresy&#x5DF2;&#x7ECF;&#x5B9E;&#x73B0;&#x8FD9;&#x4E00;&#x529F;&#x80FD;&#xFF0C;&#x4F46;&#x662F;&#x6211;&#x66F4;&#x559C;&#x6B22;OpenNI1&#x5B98;&#x65B9;&#x5BF9;&#x9F50;&#x65B9;&#x6CD5;)&#xFF0C;&#x56FE;&#x50CF;&#x5904;&#x7406;&#x4F7F;&#x7528;OpenCV2&#xFF0C;&#x56E0;&#x5176;&#x66F4;&#x597D;&#x7684;&#x901A;&#x7528;&#x6027;&#x3002; <img src="/2016/05/16/ROS%E4%BD%BF%E7%94%A8openni%E8%8E%B7%E5%8F%96Kinect%E5%BD%A9%E8%89%B2%E5%9B%BE%E5%83%8F%E5%92%8C%E6%B7%B1%E5%BA%A6%E5%9B%BE%E5%83%8F/20160516204932422.jpg" alt="img"></p>
+<h3 id="&#x914D;&#x7F6E;openni">2.&#x914D;&#x7F6E;OpenNI</h3>
+<p>openni&#x7684;&#x914D;&#x7F6E;&#x53C2;&#x8003;&#x94FE;&#x63A5;&#x4E2D;&#x7684;blog&#xFF0C;&#x6839;&#x636E;&#x529F;&#x8BFE;&#x6559;&#x7A0B;&#x53EF;&#x4EE5;&#x63D0;&#x53D6;Kinect&#x7684;&#x5F69;&#x8272;&#x56FE;&#x50CF;&#x548C;&#x6DF1;&#x5EA6;&#x56FE;&#x50CF;&#xFF1A;</p>
+<p><a target="_blank" rel="noopener" href="http://www.20papercups.net/programming/kinect-on-ubuntu-with-openni/">http://www.20papercups.net/programming/kinect-on-ubuntu-with-openni/</a></p>
+<h3 id="&#x5B89;&#x88C5;opencv2">3.&#x5B89;&#x88C5;OpenCV2</h3>
+<p>&#x9996;&#x5148;&#x5728;OpenCV2&#x7684;&#x5B98;&#x65B9;&#x7F51;&#x7AD9;&#x9009;&#x62E9;&#x5BF9;&#x5E94;&#x7248;&#x672C;&#x7684;&#x6E90;&#x4EE3;&#x7801;&#xFF1A;</p>
+<p><a target="_blank" rel="noopener" href="http://opencv.org/downloads.html">http://opencv.org/downloads.html</a></p>
+<p>&#x540C;&#x65F6;&#x5B89;&#x88C5;&#x4F9D;&#x8D56;&#xFF1A;</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install build-essential libgtk2.0-dev libjpeg-dev libtiff4-dev libjasper-dev libopenexr-dev cmake python-dev python-numpy python-tk libtbb-dev libeigen2-dev yasm libfaac-dev libopencore-amrnb-dev libopencore-amrwb-dev libtheora-dev libvorbis-dev libxvidcore-dev libx264-dev libqt4-dev libqt4-opengl-dev sphinx-common texlive-latex-extra libv4l-dev libdc1394-22-dev libavcodec-dev libavformat-dev libswscale-dev</span><br></pre></td></tr></table></figure>
+<p>&#x5F53;&#x4F9D;&#x8D56;&#x5B89;&#x88C5;&#x5B8C;&#x6210;&#x540E;&#xFF0C;&#x5B89;&#x88C5;OpenCV,&#x9996;&#x5148;&#x89E3;&#x538B;OpenCV&#x538B;&#x7F29;&#x5305;&#x5E76;&#x8FDB;&#x5165;OpenCV&#x76EE;&#x5F55;&#xFF0C;&#x8FDB;&#x884C;&#x5982;&#x4E0B;&#x64CD;&#x4F5C;&#xFF1A;</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">mkdir build</span><br><span class="line">cd build</span><br><span class="line">cmake ..</span><br><span class="line">make</span><br><span class="line">sudo make install</span><br></pre></td></tr></table></figure>
+<h3 id="&#x5B89;&#x88C5;ros">4.&#x5B89;&#x88C5;ROS</h3>
+<p>&#x5B89;&#x88C5;ROS&#x53EF;&#x4EE5;&#x53C2;&#x8003;<a target="_blank" rel="noopener" href="http://wiki.ros.org/kinetic/Installation">ROS&#x5B98;&#x7F51;&#x7684;&#x5B89;&#x88C5;&#x6559;&#x7A0B;</a>&#xFF0C;&#x7531;&#x4E8E;ROS&#x7684;&#x7248;&#x672C;&#x66F4;&#x65B0;&#x901F;&#x5EA6;&#x8F83;&#x5FEB;&#xFF0C;&#x5728;ROS&#x7684;Groovy&#x7248;&#x672C;&#x4E4B;&#x540E;&#xFF0C;ROS&#x91C7;&#x7528;catkin&#x6765;&#x53D6;&#x4EE3;&#x4E4B;&#x524D;&#x7684;rosbuild&#x7684;&#x5305;&#x7F16;&#x8BD1;&#x65B9;&#x5F0F;,&#x4F46;&#x603B;&#x4F53;&#x4E0A;&#x6765;&#x8BF4;&#x662F;&#x5BF9;CMake&#x7684;&#x53C8;&#x4E00;&#x5C42;&#x5C01;&#x88C5;.&#x56E0;&#x6B64;&#x4E0D;&#x5FC5;&#x62C5;&#x5FC3;&#xFF0C;&#x5982;&#x679C;&#x719F;&#x6089;CMake&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x4ED6;&#x6765;&#x7F16;&#x8BD1;ROS&#xFF0C;ROS&#x7684;&#x4E00;&#x4E9B;&#x529F;&#x80FD;&#x5305;&#x7684;&#x63A5;&#x53E3;&#x53EF;&#x80FD;&#x4F1A;&#x56E0;&#x4E3A;&#x7248;&#x672C;&#x53D8;&#x5316;&#x800C;&#x53D1;&#x751F;&#x53D8;&#x5316;,&#x9700;&#x8981;&#x6CE8;&#x610F;&#x3002;</p>
+<h3 id="&#x83B7;&#x53D6;kinect&#x7684;&#x5F69;&#x8272;&#x56FE;&#x50CF;&#x548C;&#x6DF1;&#x5EA6;&#x56FE;&#x50CF;">5.&#x83B7;&#x53D6;kinect&#x7684;&#x5F69;&#x8272;&#x56FE;&#x50CF;&#x548C;&#x6DF1;&#x5EA6;&#x56FE;&#x50CF;</h3>
+<p>&#x4F7F;&#x7528;ROS&#x81EA;&#x5E26;&#x7684;Package&#x83B7;&#x53D6;&#x5F69;&#x8272;&#x56FE;&#x50CF;&#x548C;&#x6DF1;&#x5EA6;&#x56FE;&#x50CF;&#xFF0C;&#x53EF;&#x4EE5;&#x53C2;&#x8003;&#x53E4;&#x6708;&#x5C45;&#x7684;blog&#xFF1A;</p>
+<p><a target="_blank" rel="noopener" href="http://www.guyuehome.com/262">http://www.guyuehome.com/262</a></p>
+<p>&#x4F7F;&#x7528;OpenNI&#x83B7;&#x53D6;&#x83B7;&#x53D6;&#x6DF1;&#x5EA6;&#x56FE;&#x50CF;&#x548C;&#x5F69;&#x8272;&#x56FE;&#x50CF;&#x53EF;&#x4EE5;&#x53C2;&#x8003;&#x53E6;&#x4E00;&#x7BC7;&#x535A;&#x5BA2;:</p>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/tornadomeet/archive/2012/10/01/2709851.html">https://www.cnblogs.com/tornadomeet/archive/2012/10/01/2709851.html</a></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="reward-container">
+  <div>感谢支持，鼓励成就原创！</div>
+  <button>
+    赞赏
+  </button>
+  <div class="post-reward">
+      <div>
+        <img src="/images/wc.jpg" alt="Yoo Shen 微信">
+        <span>微信</span>
+      </div>
+      <div>
+        <img src="/images/zfb.jpg" alt="Yoo Shen 支付宝">
+        <span>支付宝</span>
+      </div>
+
+  </div>
+</div>
+
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>Yoo Shen
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://sidney-neu.github.io/2016/05/16/ROS%E4%BD%BF%E7%94%A8openni%E8%8E%B7%E5%8F%96Kinect%E5%BD%A9%E8%89%B2%E5%9B%BE%E5%83%8F%E5%92%8C%E6%B7%B1%E5%BA%A6%E5%9B%BE%E5%83%8F/" title="ROS使用openni获取Kinect彩色图像和深度图像">https://sidney-neu.github.io/2016/05/16/ROS使用openni获取Kinect彩色图像和深度图像/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+            </div>
+            <div class="post-nav-item">
+                <a href="/2018/10/19/vim%E9%85%8D%E7%BD%AE/" rel="next" title="vim配置">
+                  vim配置 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments gitalk-container"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Yoo Shen</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/next-boot.js"></script>
+
+  
+<script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.0/dist/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+
+
+  <script class="next-config" data-name="leancloud_visitors" type="application/json">{"enable":true,"app_id":"nG09szIvM8x9ehgslCULWzg2-MdYXbMMI","app_key":"yHykoRL88ikgLTqsUC0xIMvY","server_url":null,"security":false}</script>
+  <script src="/js/third-party/statistics/lean-analytics.js"></script>
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdn.jsdelivr.net/npm/mathjax@3.2.0/es5/tex-mml-chtml.js","integrity":"sha256-r+3itOMtGGjap0x+10hu6jW/gZCzxHsoKrOd7gyRSGY="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
+
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"sidney-neu","repo":"sidney-neu.github.io","client_id":"04c1120504d2e421fa7d","client_secret":"389710c48c007c80cfbb7b9788d01e674ab31c00","admin_user":"sidney-neu","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":"zh-CN","js":{"url":"https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js","integrity":"sha256-Pmj85ojLaPOWwRtlMJwmezB/Qg8BzvJp5eTzvXaYAfA="},"path_md5":"52289a587edae3779b3e48da7efad57b"}</script>
+<script src="/js/third-party/comments/gitalk.js"></script>
+
+</body>
+</html>

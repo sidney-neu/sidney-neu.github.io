@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.0.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"sidney-neu.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.8.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":{"gitalk":{"order":-1}},"activeClass":"gitalk"},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.json","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+<meta name="description" content="ATT&amp;CK&amp;#x7684;&amp;#x7F14;&amp;#x9020;&amp;#x8005;-Mitre &amp;#x6839;&amp;#x636E;&amp;#x67D0;&amp;#x5B89;&amp;#x5168;&amp;#x516C;&amp;#x53F8;&amp;#x7684;&amp;#x8D44;&amp;#x6599;&amp;#xFF0C;MITRE&amp;#xFF08;&amp;#x9EBB;&amp;#x7701;&amp;#x7406;&amp;#x5DE5;&amp;#x5B66;&amp;#x9662;&amp;#">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ATT&amp;CK简述">
+<meta property="og:url" content="https://sidney-neu.github.io/2022/02/26/ATT&CK/index.html">
+<meta property="og:site_name" content="Yoo shen的博客">
+<meta property="og:description" content="ATT&amp;CK&amp;#x7684;&amp;#x7F14;&amp;#x9020;&amp;#x8005;-Mitre &amp;#x6839;&amp;#x636E;&amp;#x67D0;&amp;#x5B89;&amp;#x5168;&amp;#x516C;&amp;#x53F8;&amp;#x7684;&amp;#x8D44;&amp;#x6599;&amp;#xFF0C;MITRE&amp;#xFF08;&amp;#x9EBB;&amp;#x7701;&amp;#x7406;&amp;#x5DE5;&amp;#x5B66;&amp;#x9662;&amp;#">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://sidney-neu.github.io/2022/02/26/ATT&amp;CK/&#x56FE;&#x7247;1.png">
+<meta property="og:image" content="https://sidney-neu.github.io/2022/02/26/ATT&amp;CK/THE-CYBER-KILL-CHAIN-body.png">
+<meta property="og:image" content="https://sidney-neu.github.io/2022/02/26/ATT&amp;CK/&#x56FE;&#x7247;2.png">
+<meta property="og:image" content="https://sidney-neu.github.io/2022/02/26/ATT&amp;CK/&#x56FE;&#x7247;3.png">
+<meta property="og:image" content="https://sidney-neu.github.io/2022/02/26/ATT&amp;CK/&#x56FE;&#x7247;4.png">
+<meta property="og:image" content="https://sidney-neu.github.io/2022/02/26/ATT&amp;CK/&#x56FE;&#x7247;5.png">
+<meta property="og:image" content="https://sidney-neu.github.io/2022/02/26/ATT&amp;CK/&#x56FE;&#x7247;6.png">
+<meta property="og:image" content="https://sidney-neu.github.io/2022/02/26/ATT&amp;CK/&#x56FE;&#x7247;7.png">
+<meta property="article:published_time" content="2022-02-26T09:05:00.000Z">
+<meta property="article:modified_time" content="2022-06-27T14:37:31.644Z">
+<meta property="article:author" content="Yoo Shen">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://sidney-neu.github.io/2022/02/26/ATT&amp;CK/&#x56FE;&#x7247;1.png">
+
+
+<link rel="canonical" href="https://sidney-neu.github.io/2022/02/26/ATT&CK/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://sidney-neu.github.io/2022/02/26/ATT&CK/","path":"2022/02/26/ATT&CK/","title":"ATT&CK简述"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>ATT&CK简述 | Yoo shen的博客</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Yoo shen的博客</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">sy071600sy@163.com</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">13</span></a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">35</span></a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#attck%E7%9A%84%E7%BC%94%E9%80%A0%E8%80%85-mitre"><span class="nav-number">1.</span> <span class="nav-text">ATT&amp;CK的缔造者-Mitre</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B3%E4%BA%8Eattck"><span class="nav-number">2.</span> <span class="nav-text">关于ATT&amp;CK</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#attck%E7%9A%84%E7%94%A8%E9%80%94"><span class="nav-number">3.</span> <span class="nav-text">ATT&amp;CK的用途</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#attck%E7%9A%84%E5%BA%94%E7%94%A8%E4%B8%BE%E4%BE%8B"><span class="nav-number">4.</span> <span class="nav-text">ATT&amp;CK的应用举例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#attck%E4%BD%BF%E7%94%A8%E7%9A%84%E5%B1%80%E9%99%90%E6%80%A7"><span class="nav-number">5.</span> <span class="nav-text">ATT&amp;CK使用的局限性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#attck%E7%9A%84%E5%89%8D%E6%99%AF"><span class="nav-number">6.</span> <span class="nav-text">ATT&amp;CK的前景</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Yoo Shen</p>
+  <div class="site-description" itemprop="description">学习、记录、分享</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">35</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/sidney-neu" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;sidney-neu" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://sidney-neu.github.io/2022/02/26/ATT&CK/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Yoo Shen">
+      <meta itemprop="description" content="学习、记录、分享">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Yoo shen的博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          ATT&CK简述
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-02-26 17:05:00" itemprop="dateCreated datePublished" datetime="2022-02-26T17:05:00+08:00">2022-02-26</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-06-27 22:37:31" itemprop="dateModified" datetime="2022-06-27T22:37:31+08:00">2022-06-27</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8-%E6%A1%86%E6%9E%B6%E4%B8%8E%E6%9E%B6%E6%9E%84/" itemprop="url" rel="index"><span itemprop="name">-网络安全 -框架与架构</span></a>
+        </span>
+    </span>
+
+  
+    <span id="/2022/02/26/ATT&CK/" class="post-meta-item leancloud_visitors" data-flag-title="ATT&CK简述" title="阅读次数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span class="leancloud-visitors-count"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h3 id="attck&#x7684;&#x7F14;&#x9020;&#x8005;-mitre">ATT&amp;CK&#x7684;&#x7F14;&#x9020;&#x8005;-Mitre</h3>
+<p>&#x6839;&#x636E;&#x67D0;&#x5B89;&#x5168;&#x516C;&#x53F8;&#x7684;<a target="_blank" rel="noopener" href="http://www.tdhxkj.com/news/651.html">&#x8D44;&#x6599;</a>&#xFF0C;<a target="_blank" rel="noopener" href="https://www.mitre.org/">MITRE</a>&#xFF08;&#x9EBB;&#x7701;&#x7406;&#x5DE5;&#x5B66;&#x9662;&#x7814;&#x7A76;&#x4E0E;&#x5DE5;&#x7A0B;&#x7EC4;&#xFF09;&#x8BDE;&#x751F;&#x4E8E;&#x51B7;&#x6218;&#x65F6;&#x4EE3;&#xFF0C;&#x5176;&#x524D;&#x8EAB;&#x662F;&#x9EBB;&#x7701;&#x7406;&#x5DE5;&#x5B66;&#x9662;&#x7684;&#x6797;&#x80AF;&#x5B9E;&#x9A8C;&#x5BA4;&#xFF0C;&#x5F53;&#x65F6;&#x7F8E;&#x56FD;&#x7A7A;&#x519B;&#x4E3A;&#x4E86;&#x80FD;&#x591F;&#x7CBE;&#x786E;&#x638C;&#x63E1;&#x654C;&#x519B;&#x6218;&#x673A;&#x7684;&#x6765;&#x88AD;&#x52A8;&#x6001;&#xFF0C;&#x4FBF;&#x8BF7;&#x6C42;&#x9EBB;&#x7701;&#x7406;&#x5DE5;&#x5B66;&#x9662;&#x5E2E;&#x52A9;&#x4ED6;&#x4EEC;&#x5EFA;&#x7ACB;&#x4E00;&#x4E2A;&#x9632;&#x7A7A;&#x7CFB;&#x7EDF;&#xFF0C;&#x4E8E;&#x662F;&#x5EFA;&#x7ACB;&#x6210;&#x4E86;&#x7814;&#x7A76;&#x6240;&#xFF0C;&#x5E76;&#x63D0;&#x51FA;&#x534A;&#x81EA;&#x52A8;&#x5730;&#x9762;&#x73AF;&#x5883;(SAGE)&#xFF0C;&#x901A;&#x8FC7;&#x89E3;&#x548C;&#x96F7;&#x8FBE;&#x3001;&#x65E0;&#x7EBF;&#x7535;&#x548C;&#x7F51;&#x7EDC;&#x901A;&#x4FE1;&#x7B49;&#x6280;&#x672F;&#x6765;&#x68C0;&#x6D4B;&#x654C;&#x673A;&#x3002;&#x8BE5;&#x7814;&#x7A76;&#x6240;&#x7BA1;&#x7406;&#x8005;&#x4E8E;1958&#x5E74;&#x5EFA;&#x7ACB;Mitre&#x516C;&#x53F8;&#xFF0C;&#x5E76;&#x7BA1;&#x7406;SAGE&#x672A;&#x6765;&#x53D1;&#x5C55;&#x3002;SAGE&#x4E8E;1963&#x5E74;&#x5F00;&#x59CB;&#x8FD0;&#x4F5C;&#xFF0C;&#x901A;&#x8FC7;&#x4E00;&#x6B21;&#x6B21;&#x6280;&#x672F;&#x7684;&#x878D;&#x5165;&#x4E0E;&#x8FDB;&#x6B65;&#xFF0C;SAGE&#x4E5F;&#x6210;&#x4E3A;&#x4E86;&#x7F8E;&#x56FD;&#x7B2C;&#x4E00;&#x4E2A;&#x73B0;&#x4EE3;&#x5316;&#x9632;&#x7A7A;&#x7CFB;&#x7EDF;&#x3002;</p>
+<p>&#x3000;&#x3000;1970&#x8FDB;&#x5165;&#x4E0B;&#x4E00;&#x4E2A;&#x4E3B;&#x8981;&#x8BA1;&#x5212;&#xFF1A;&#x56FD;&#x9632;&#x90E8;&#x60C5;&#x62A5;&#x4FE1;&#x606F;&#x7CFB;&#x7EDF;&#xFF0C;&#x81F3;&#x4ECA;&#x4ECD;&#x5728;&#x4F7F;&#x7528;;</p>
+<p>&#x3000;&#x3000;1990&#x4E0E;&#x7F8E;&#x56FD;&#x8054;&#x90A6;&#x822A;&#x7A7A;&#x5C40;&#x9996;&#x6B21;&#x5408;&#x4F5C;&#xFF0C;&#x5EFA;&#x7ACB;&#x4E00;&#x4E2A;&#x5FC3;&#x5F97;FFRDCs(&#x519B;&#x65B9;&#x7F16;&#x5916;&#x7814;&#x7A76;&#x673A;&#x6784;);</p>
+<p>&#x3000;&#x3000;2010-2014 Mitre&#x6210;&#x4E3A;&#x4E09;&#x4E2A;FFRDCs&#x7684;&#x7BA1;&#x7406;&#x8005;;</p>
+<p>&#x3000;&#x3000;&#x81F3;&#x4ECA;&#xFF1A;&#x4ED6;&#x4EEC;&#x5728;&#x4E0E;&#x7F8E;&#x56FD;&#x75BE;&#x63A7;&#x4E2D;&#x5FC3;&#x5408;&#x4F5C;&#xFF0C;&#x5171;&#x540C;&#x5BF9;&#x6297;&#x65B0;&#x578B;&#x51A0;&#x72B6;&#x75C5;&#x6BD2;&#xFF0C;&#x901A;&#x8FC7;&#x521B;&#x5EFA;&#x6A21;&#x578B;&#x6765;&#x8FFD;&#x8E2A;&#x6D41;&#x884C;&#x75C5;&#xFF0C;&#x5E76;&#x4E14;&#x7814;&#x53D1;&#x51FA;&#x8FDC;&#x7A0B;&#x533B;&#x7597;&#x5957;&#x4EF6;&#x7B49;&#x6765;&#x5E2E;&#x52A9;&#x4EBA;&#x4EEC;&#x5BF9;&#x6297;&#x6D41;&#x884C;&#x75C5;&#x3002;&#x7EB5;&#x89C2;MITRE&#x7684;&#x53D1;&#x5C55;&#x53F2;&#xFF0C;&#x4EE5;&#x5BF9;&#x7A7A;&#x9886;&#x57DF;&#x4E3A;&#x8D77;&#x70B9;&#xFF0C;&#x6A2A;&#x5411;&#x7684;&#x53D1;&#x5C55;&#x4E4B;&#x5E7F;&#xFF0C;&#x6363;&#x6BC1;&#x8FC7;&#x6697;&#x7F51;&#x5E02;&#x573A;&#xFF0C;&#x7814;&#x7A76;&#x8FC7;&#x751F;&#x7269;&#x79D1;&#x6280;&#xFF0C;&#x7F51;&#x7EDC;&#x5B89;&#x5168;&#xFF0C;&#x7814;&#x53D1;&#x8FC7;&#x5D4C;&#x5165;&#x5F0F;&#x5165;&#x4FB5;&#x68C0;&#x6D4B;&#x7CFB;&#x7EDF;&#xFF0C;&#x62B5;&#x6297;&#x8FC7;&#x65B0;&#x51A0;&#x75C5;&#x6BD2;&#xFF0C;&#x53C2;&#x4E0E;&#x56FD;&#x9632;&#x5EFA;&#x8BBE;&#x7B49;&#x7B49;&#xFF0C;&#x4F46;&#x4ECE;&#x7EB5;&#x5411;&#x53D1;&#x5C55;&#x6765;&#x770B;&#xFF0C;&#x4ED6;&#x4EEC;&#x7684;&#x6DF1;&#x5EA6;&#x4F9D;&#x65E7;&#x5F88;&#x6DF1;&#xFF0C;&#x638C;&#x63E1;&#x7740;&#x6838;&#x5FC3;&#x6280;&#x672F;&#xFF0C;&#x5F15;&#x9886;&#x4E16;&#x754C;&#x6F6E;&#x6D41;&#xFF0C;&#x8FD9;&#x5C31;&#x662F;MITRE&#x5728;&#x6280;&#x672F;&#x9886;&#x57DF;&#x7684;&#x5E9E;&#x5927;&#x201C;&#x5E1D;&#x56FD;&#x201D;&#x3002;</p>
+<p>&#x5728;&#x5B89;&#x5168;&#x9886;&#x57DF;&#xFF0C;&#x4EE3;&#x8868;&#x7F8E;&#x56FD;&#x7814;&#x53D1;&#x56FD;&#x5BB6;&#x961F;&#x3001;&#x66F4;&#x662F;&#x7F8E;&#x56FD;&#x519B;&#x65B9;&#x7684;&#x7F16;&#x5916;&#x7814;&#x7A76;&#x673A;&#x6784;&#x7684;Mitre&#x5EFA;&#x6811;&#x9887;&#x591A;&#xFF0C;&#x4F8B;&#x5982;&#x5927;&#x540D;&#x9F0E;&#x9F0E;&#x7684;<a target="_blank" rel="noopener" href="https://cve.mitre.org/">CVE</a>&#xFF08;Common Vulnerabilities and Exposures&#xFF09;&#x6F0F;&#x6D1E;&#x5C31;&#x6240;&#x5C5E;&#x4ED6;&#x7684;&#x9EBE;&#x4E0B;&#xFF0C;&#x9664;&#x6B64;&#x4E4B;&#x5916;&#x8FD8;&#x5305;&#x62EC;CWE&#x3001;CPE&#x3001;CAPEC&#x3001;MAEC&#x3001;STIX/TAXII&#x3001;Cygraph&#x3001;AYY&amp;CK&#x3001;Sheild&#x7B49;&#x4F17;&#x591A;&#x91CD;&#x8981;&#x9879;&#x76EE;&#x3002;&#x4ECA;&#x5929;&#x4E3B;&#x8981;&#x4ECB;&#x7ECD;&#x5176;&#x4E2D;&#x4E4B;&#x4E00;ATT&amp;CK&#x3002;</p>
+<h3 id="&#x5173;&#x4E8E;attck">&#x5173;&#x4E8E;ATT&amp;CK</h3>
+<p><a target="_blank" rel="noopener" href="https://attack.mitre.org/">ATT&amp;CK</a>&#x9996;&#x5148;&#x8981;&#x660E;&#x786E;&#x4ED6;&#x662F;&#x4E00;&#x4E2A;&#x77E5;&#x8BC6;&#x5E93;&#xFF0C;&#x65E8;&#x5728;&#x4ECE;&#x653B;&#x51FB;&#x8005;&#x7684;&#x89C6;&#x89D2;&#x5F52;&#x7EB3;&#x7F51;&#x7EDC;&#x653B;&#x51FB;&#x884C;&#x4E3A;&#x7684;&#x6280;&#x6218;&#x672F;&#xFF0C;&#x5E76;&#x4E3A;&#x7F51;&#x7EDC;&#x5B89;&#x5168;&#x9886;&#x57DF;&#x7684;&#x5A01;&#x80C1;&#x6A21;&#x578B;&#x548C;&#x65B9;&#x6CD5;&#x8BBA;&#xFF0C;&#x5B98;&#x7F51;&#x4E0A;&#x7684;&#x5B9A;&#x4E49;&#x5982;&#x4E0B;&#xFF1A;</p>
+<p><strong>MITRE ATT&amp;CK&#xAE; is a globally-accessible knowledge base of adversary tactics and techniques based on real-world observations. The ATT&amp;CK knowledge base is used as a foundation for the development of specific threat models and methodologies in the private sector, in government, and in the cybersecurity product and service community.</strong></p>
+<p><strong>With the creation of ATT&amp;CK, MITRE is fulfilling its mission to solve problems for a safer world &#x2014; by bringing communities together to develop more effective cybersecurity. ATT&amp;CK is open and available to any person or organization for use at no charge.</strong></p>
+<p>&#x7B14;&#x8005;&#x8BA4;&#x4E3A;ATT&amp;CK&#x7684;&#x4E3B;&#x8981;&#x7279;&#x70B9;&#x4E3B;&#x8981;&#x6709;&#x51E0;&#x70B9;&#xFF1A;</p>
+<p>&#x200B; 1.ATT&amp;CK&#x91C7;&#x7528;&#x7684;&#x662F;&#x653B;&#x51FB;&#x8005;&#x7684;&#x89C6;&#x89D2;&#xFF0C;&#x4E5F;&#x5C31;&#x662F;&#x8BF4;&#x5728;ATT&amp;CK&#x7684;&#x77E9;&#x9635;&#x6846;&#x67B6;&#x4E2D;&#x6240;&#x9648;&#x5217;&#x7684;&#x6BCF;&#x4E00;&#x79CD;&#x6280;&#x6218;&#x672F;&#xFF0C;&#x90FD;&#x53EF;&#x4EE5;&#x548C;&#x73B0;&#x5B9E;&#x4E2D;&#x5BF9;&#x5E94;&#xFF0C;&#x6BD4;&#x5982;&#x6C38;&#x6052;&#x4E4B;&#x84DD;&#x653B;&#x51FB;&#xFF0C;&#x4ECE;&#x626B;&#x63CF;&#x884C;&#x4E3A;&#x5230;&#x6F0F;&#x6D1E;&#x5229;&#x7528;&#xFF0C;&#x4ECE;&#x63D0;&#x6743;&#x64CD;&#x4F5C;&#x5230;&#x6301;&#x4E45;&#x5316;&#xFF0C;&#x4ECE;C2&#x8FDE;&#x63A5;&#x5230;&#x6700;&#x540E;&#x7684;&#x9020;&#x6210;&#x5F71;&#x54CD;&#xFF0C;&#x90FD;&#x53EF;&#x4EE5;&#x5728;ATT&amp;CK&#x4E2D;&#x627E;&#x5230;&#x5BF9;&#x5E94;&#x7684;&#x52A8;&#x4F5C;&#x3002;&#x6211;&#x4EEC;&#x901A;&#x8FC7;&#x67D0;&#x6076;&#x610F;&#x8F6F;&#x4EF6;&#x7684;&#x653B;&#x51FB;&#x884C;&#x4E3A;&#x4E3E;&#x4E2A;&#x4F8B;&#x5B50;&#xFF08;&#x7B14;&#x8005;&#x4E2A;&#x4EBA;&#x539F;&#x521B;&#xFF0C;&#x5982;&#x6709;&#x4E0D;&#x51C6;&#x786E;&#x4E4B;&#x5904;&#x6B22;&#x8FCE;&#x53D1;&#x90AE;&#x4EF6;&#x6307;&#x6B63;&#xFF09;&#x3002;</p>
+<p><img src="/2022/02/26/ATT&amp;CK/&#x56FE;&#x7247;1.png" alt="ATT&amp;CK&#x6846;&#x67B6;&#x4E0E;&#x67D0;&#x4E00;&#x79CD;APT&#x653B;&#x51FB;&#x7684;&#x5BF9;&#x5E94;&#x5173;&#x7CFB;"></p>
+<p>&#x200B; 2.ATT&amp;CK&#x53EF;&#x4EE5;&#x5C06;&#x653B;&#x51FB;&#x4E8B;&#x4EF6;&#x7EC6;&#x5316;&#x5230;&#x6BCF;&#x4E00;&#x4E2A;&#x653B;&#x51FB;&#x52A8;&#x4F5C;&#xFF0C;&#x66F4;&#x65B0;&#x4E8E;2021&#x5E74;10&#x6708;21&#x65E5;&#x7684;V10.1&#x7248;&#x672C;&#x7684;ATT&amp;CK&#xFF0C;&#x5305;&#x542B;14&#x4E2A;&#x6218;&#x672F;&#xFF0C;188&#x4E2A;&#x6280;&#x672F;&#xFF0C;&#x4EE5;&#x53CA;379&#x4E2A;&#x81EA;&#x6280;&#x672F;&#x3002;&#x5176;&#x4E2D;14&#x4E2A;&#x6218;&#x672F;&#x4E0E;&#x6D1B;&#x9A6C;&#x63D0;&#x51FA;&#x7684;&#x6740;&#x4F24;&#x94FE;&#xFF08;<a target="_blank" rel="noopener" href="https://www.lockheedmartin.com/en-us/capabilities/cyber/cyber-kill-chain.html">syber kill chain</a>&#xFF09;&#x5B58;&#x5728;&#x76F8;&#x5173;&#x6027;&#xFF0C;&#x4F46;&#x662F;&#x5BF9;APT&#x653B;&#x51FB;&#x7684;&#x653B;&#x51FB;&#x6B65;&#x9AA4;&#x4ECE;&#x4E03;&#x4E2A;&#x7EC6;&#x5316;&#x5230;&#x4E86;14&#x4E2A;&#x3002;188&#x4E2A;&#x6280;&#x672F;&#x4EE5;&#x53CA;379&#x4E2A;&#x81EA;&#x6280;&#x672F;&#x5BF9;&#x5E94;&#x7684;&#x90FD;&#x662F;&#x653B;&#x51FB;&#x8005;&#x5E38;&#x7528;&#x7684;&#x653B;&#x51FB;&#x52A8;&#x4F5C;&#x3002;&#x56FD;&#x5185;&#x5982;&#x5929;&#x878D;&#x4FE1;&#x3001;&#x5B89;&#x5929;&#x7B49;&#x5B89;&#x5168;&#x516C;&#x53F8;&#x5DF2;&#x7ECF;&#x5B8C;&#x6210;&#x81EA;&#x5DF1;&#x5B89;&#x5168;&#x4EA7;&#x54C1;&#x7684;&#x5A01;&#x80C1;&#x8B66;&#x544A;&#x4E0E;ATT&amp;CK&#x4E4B;&#x95F4;&#x7684;&#x8054;&#x52A8;&#xFF0C;&#x9752;&#x85E4;&#x4E91;&#x4E5F;&#x5728;&#x81EA;&#x5DF1;&#x7684;Threat Hunting&#x4EA7;&#x54C1;&#x4E2D;&#x5E94;&#x7528;&#x4E86;ATT&amp;CK&#x7684;&#x76F8;&#x5173;&#x6280;&#x672F;&#x3002;</p>
+<p><img src="/2022/02/26/ATT&amp;CK/THE-CYBER-KILL-CHAIN-body.png" alt="Syber kill chain&#x6D41;&#x7A0B;"></p>
+<p>&#x200B; 3.ATT&amp;CK&#x7CFB;&#x7EDF;&#x5316;&#x3001;&#x5C42;&#x6B21;&#x5316;&#x7684;&#x77E5;&#x8BC6;&#x5E93;&#x3002;&#x76F8;&#x6BD4;&#x4E8E;&#x6740;&#x4F24;&#x94FE;&#xFF0C;ATT&amp;CK&#x6709;&#x7740;&#x66F4;&#x4E30;&#x5BCC;&#x7684;&#x5185;&#x5BB9;&#xFF0C;&#x6BD4;&#x5982;&#x4F7F;&#x7528;&#x8005;&#x53EF;&#x4EE5;&#x5BF9;&#x81EA;&#x5DF1;&#x906D;&#x53D7;&#x7684;&#x5B89;&#x5168;&#x653B;&#x51FB;&#x8FDB;&#x884C;&#x540E;&#x7EED;&#x7684;&#x5206;&#x6790;&#x3002;&#x660E;&#x786E;&#x6BCF;&#x4E00;&#x4E2A;&#x653B;&#x51FB;&#x52A8;&#x4F5C;&#x5BF9;&#x5E94;&#x7684;&#x6280;&#x672F;&#xFF0C;&#x5305;&#x62EC;&#x4E86;&#x89E3;&#x5E38;&#x7528;&#x8FD9;&#x4E2A;&#x653B;&#x51FB;&#x6280;&#x672F;&#x7684;&#x9ED1;&#x5BA2;&#x7EC4;&#x7EC7;&#x4EE5;&#x53CA;&#x653B;&#x51FB;&#x4E8B;&#x4EF6;&#x3001;&#x5B9E;&#x65BD;&#x8FD9;&#x4E2A;&#x653B;&#x51FB;&#x6280;&#x672F;&#x7684;&#x6076;&#x610F;&#x8F6F;&#x4EF6;&#x6216;&#x547D;&#x4EE4;&#x3001;&#x660E;&#x786E;&#x653B;&#x51FB;&#x884C;&#x4E3A;&#x7684;&#x7F13;&#x89E3;&#x63AA;&#x65BD;&#x4EE5;&#x53CA;&#x9632;&#x5FA1;&#x65B9;&#x6CD5;&#x3001;&#x6307;&#x5BFC;&#x8FD9;&#x79CD;&#x653B;&#x51FB;&#x6280;&#x672F;&#x7684;&#x68C0;&#x6D4B;&#x65B9;&#x6CD5;&#x548C;&#x53CD;&#x5236;&#x63AA;&#x65BD;&#x7B49;&#x3002;ATT&amp;CK&#x8FD8;&#x8D34;&#x5FC3;&#x7684;&#x4F7F;&#x7528;&#x8005;&#x63D0;&#x4F9B;&#x4E86;<a target="_blank" rel="noopener" href="https://mitre-attack.github.io/attack-navigator/">ATT&amp;CK Navigator</a>&#x8FD9;&#x4E00;&#x5A01;&#x80C1;&#x53EF;&#x89C6;&#x5316;&#x5DE5;&#x5177;&#xFF0C;&#x53EF;&#x4EE5;&#x5E2E;&#x52A9;&#x88AB;&#x653B;&#x51FB;&#x8005;&#x660E;&#x786E;&#x5F53;&#x524D;&#x653B;&#x51FB;&#x6001;&#x52BF;&#xFF1B;&#x901A;&#x8FC7;<a target="_blank" rel="noopener" href="https://car.mitre.org/">CAR</a>)&#x53EF;&#x4EE5;&#x68C0;&#x6D4B;&#x548C;&#x5206;&#x6790;&#x5B89;&#x5168;&#x80FD;&#x529B;&#xFF0C;&#x751A;&#x81F3;&#x901A;&#x8FC7;<a target="_blank" rel="noopener" href="https://shield.mitre.org/">SHIELD</a>&#x5B9E;&#x73B0;&#x901A;&#x8FC7;&#x653B;&#x51FB;&#x884C;&#x4E3A;&#x627E;&#x5230;&#x9632;&#x5FA1;&#x65B9;&#x6CD5;&#x7684;&#x9B54;&#x6CD5;&#x79D8;&#x7C4D;&#x3002;</p>
+<h3 id="attck&#x7684;&#x7528;&#x9014;">ATT&amp;CK&#x7684;&#x7528;&#x9014;</h3>
+<p>&#x6839;&#x636E;ATT&amp;CK&#x7684;&#x4E3B;&#x8981;&#x67B6;&#x6784;&#x8BBE;&#x8BA1;&#x8005;&#x4E4B;&#x4E00;Blake Strom&#x5728;2018&#x5E74;&#x53D1;&#x5E03;&#x5728;<a target="_blank" rel="noopener" href="https://www.mitre.org/capabilities/cybersecurity/overview/cybersecurity-blog/attck-101">Mitre</a>&#x4E0A;&#x5173;&#x4E8E;ATT&amp;CK&#x7684;&#x4ECB;&#x7ECD;&#xFF0C;ATT&amp;CK&#x6846;&#x67B6;&#x65E8;&#x5728;&#x89E3;&#x51B3;&#x56DB;&#x4E2A;&#x4E3B;&#x8981;&#x95EE;&#x9898;;</p>
+<p>&#x7B2C;&#x4E00;&#xFF0C;&#x5173;&#x6CE8;&#x653B;&#x51FB;&#x8005;&#x7684;&#x884C;&#x4E3A;&#xFF0C;&#x901A;&#x8FC7;&#x5206;&#x6790;&#x653B;&#x51FB;&#x8005;&#x7684;&#x6280;&#x6218;&#x672F;&#xFF0C;&#x4EE5;&#x5B9E;&#x73B0;&#x9488;&#x5BF9;&#x653B;&#x51FB;&#x6280;&#x6218;&#x672F;&#x7684;&#x5177;&#x4F53;&#x68C0;&#x6D4B;&#x548C;&#x5206;&#x6790;&#x65B9;&#x6CD5;&#x3002;&#x653B;&#x51FB;&#x8005;&#x53EF;&#x4EE5;&#x57DF;&#x540D;&#x3001;IP&#x3001;HASH&#x7B49;&#x8868;&#x8C61;&#xFF0C;&#x4F46;&#x662F;&#x65E0;&#x6CD5;&#x6539;&#x53D8;&#x5176;&#x653B;&#x51FB;&#x624B;&#x6CD5;&#x4EE5;&#x53CA;&#x4E0E;&#x88AB;&#x653B;&#x51FB;&#x8005;&#x4E4B;&#x95F4;&#x7684;&#x4EA4;&#x4E92;&#x65B9;&#x5F0F;&#x3002;&#x4E3E;&#x4F8B;&#x6765;&#x8BF4;&#xFF0C;&#x4E00;&#x4E2A;&#x653B;&#x51FB;&#x8005;&#x53EF;&#x80FD;&#x4F1A;&#x56E0;&#x4E3A;&#x52A8;&#x6001;IP&#x5730;&#x5740;&#x7684;&#x65B9;&#x6CD5;&#x5E38;&#x5E38;&#x66F4;&#x6539;&#x5176;&#x653B;&#x51FB;&#x6E90;&#x7684;IP&#x5730;&#x5740;&#xFF0C;&#x4F46;&#x662F;&#x4ED6;&#x4F7F;&#x7528;&#x7684;nmap&#x626B;&#x63CF;&#x65B9;&#x6CD5;&#x4E0D;&#x4F1A;&#x53D8;&#x3002;&#x53E6;&#x4E00;&#x4E2A;&#x653B;&#x51FB;&#x8005;&#x53EF;&#x80FD;&#x4F1A;&#x5E38;&#x5E38;&#x66F4;&#x6539;&#x5176;&#x50F5;&#x5C38;&#x7F51;&#x7EDC;&#x7684;&#x63A7;&#x5236;&#x7AEF;IP&#x5730;&#x5740;&#xFF0C;&#x4F46;&#x662F;&#x5176;DGA&#x7684;&#x5185;&#x5728;&#x903B;&#x8F91;&#x4E0D;&#x4F1A;&#x53D8;&#x3002;</p>
+<p>&#x7B2C;&#x4E8C;&#xFF0C;&#x6740;&#x4F24;&#x94FE;&#x7B49;&#x751F;&#x547D;&#x5468;&#x671F;&#x6A21;&#x578B;&#x56E0;&#x4E3A;&#x8FC7;&#x4E8E;&#x6982;&#x62EC;&#x4E0E;&#x7B3C;&#x7EDF;&#xFF0C;&#x5BFC;&#x81F4;&#x5176;&#x65E0;&#x6CD5;&#x5177;&#x4F53;&#x7684;&#x653B;&#x9632;&#x884C;&#x4E3A;&#x76F8;&#x5173;&#x8054;&#xFF0C;&#x57FA;&#x4E8E;&#x6280;&#x6218;&#x672F;&#x7684;TTPS&#x5219;&#x53EF;&#x4EE5;&#x3002;&#x4E3E;&#x4F8B;&#x6765;&#x8BF4;&#xFF0C;&#x540C;&#x6837;&#x662F;&#x547D;&#x4EE4;&#x4E0E;&#x63A7;&#x5236;&#xFF08;C2&#xFF09;&#xFF0C;&#x76F8;&#x6BD4;&#x4E8E;&#x6740;&#x4F24;&#x94FE;&#xFF0C;ATT&amp;CK&#x4F1A;&#x5C06;&#x5176;&#x7EC6;&#x5206;&#x4E3A;&#x5305;&#x62EC;DGA&#x5728;&#x5185;&#x7684;16&#x4E2A;&#x6280;&#x672F;&#x3002;</p>
+<p>&#x7B2C;&#x4E09;&#xFF0C;&#x53EF;&#x4EE5;&#x5E94;&#x7528;&#x4E8E;&#x5B9E;&#x9645;&#x73AF;&#x5883;&#x3002;&#x57FA;&#x4E8E;&#x6280;&#x6218;&#x672F;&#x7684;TTPS&#x53EF;&#x4EE5;&#x4E0E;&#x5177;&#x8C61;&#x7684;&#x653B;&#x9632;&#x884C;&#x4E3A;&#x5EFA;&#x7ACB;&#x8054;&#x7CFB;&#xFF0C;&#x6BCF;&#x4E00;&#x4E2A;&#x6280;&#x672F;&#x90FD;&#x53EF;&#x89C1;&#x4E14;&#x53EF;&#x7528;&#x3002;&#x4E3E;&#x4F8B;&#x6765;&#x8BF4;&#xFF0C;&#x5305;&#x62EC;&#x7AEF;&#x53E3;&#x626B;&#x63CF;&#x3001;&#x6F0F;&#x6D1E;&#x5229;&#x7528;&#x3001;&#x90AE;&#x4EF6;&#x9493;&#x9C7C;&#x3001;&#x7F51;&#x7AD9;&#x6C34;&#x5751;&#x3001;&#x66B4;&#x529B;&#x7834;&#x89E3;&#x5728;&#x5185;&#x7684;&#x5E38;&#x89C1;&#x653B;&#x51FB;&#x65B9;&#x6CD5;&#x90FD;&#x53EF;&#x4EE5;&#x5728;aTT&amp;CK&#x5185;&#x627E;&#x5230;&#x5BF9;&#x7528;&#x7684;&#x6280;&#x672F;&#x70B9;&#x3002;</p>
+<p>&#x7B2C;&#x56DB;&#xFF0C;&#x66F4;&#x52A0;&#x901A;&#x7528;&#x7684;&#x6392;&#x5217;&#x7EC4;&#x5408;&#xFF0C;&#x901A;&#x8FC7;&#x4E0D;&#x540C;&#x6218;&#x672F;&#x4E2D;&#x7684;&#x6280;&#x672F;&#x70B9;&#xFF0C;&#x53EF;&#x4EE5;&#x5B9E;&#x73B0;&#x5BF9;&#x653B;&#x51FB;&#x4E8B;&#x4EF6;&#x7684;&#x5177;&#x4F53;&#x63CF;&#x8FF0;&#x3002;&#x65E2;&#x53EF;&#x4EE5;&#x63CF;&#x8FF0;&#x718A;&#x732B;&#x70E7;&#x9999;&#xFF0C;&#x4E5F;&#x53EF;&#x4EE5;&#x63CF;&#x8FF0;&#x6C38;&#x6052;&#x4E4B;&#x84DD;&#x3002;</p>
+<p>ATT&amp;CK&#x8FD8;&#x5BF9;&#x5177;&#x4F53;&#x7684;&#x5E94;&#x7528;&#x65B9;&#x5411;&#x8FDB;&#x884C;&#x4E86;&#x6307;&#x5F15;&#xFF0C;&#x65E0;&#x8BBA;&#x662F;&#x5173;&#x6CE8;&#x4FE1;&#x606F;&#x5B89;&#x5168;&#x7684;&#x5B89;&#x5168;&#x5BA2;&#x6237;&#xFF0C;&#x8FD8;&#x662F;&#x5173;&#x6CE8;&#x63D0;&#x5347;&#x5B89;&#x5168;&#x80FD;&#x529B;&#x7684;&#x5B89;&#x5168;&#x5382;&#x5546;&#xFF0C;&#x90FD;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x4F7F;&#x7528;ATTT&amp;CK&#x6846;&#x67B6;&#x53D7;&#x76CA;&#x3002;ATT&amp;CK&#x603B;&#x7ED3;&#x4E86;&#x56DB;&#x4E2A;&#x5E38;&#x89C1;&#x7684;&#x5E94;&#x7528;&#x573A;&#x666F;&#xFF1A;1.&#x6574;&#x5408;&#x5A01;&#x80C1;&#x60C5;&#x62A5;&#xFF1B;2.&#x63D0;&#x9AD8;&#x68C0;&#x6D4B;&#x548C;&#x5206;&#x6790;&#x80FD;&#x529B;&#xFF1B;3.&#x653B;&#x9632;&#x6A21;&#x62DF;&#x7684;&#x7EA2;&#x84DD;&#x5BF9;&#x6297;&#xFF1B;4.&#x5B89;&#x5168;&#x8BC4;&#x4F30;&#x4E0E;&#x5DE5;&#x7A0B;&#x5316;&#x5E94;&#x7528;&#x3002;</p>
+<h3 id="attck&#x7684;&#x5E94;&#x7528;&#x4E3E;&#x4F8B;">ATT&amp;CK&#x7684;&#x5E94;&#x7528;&#x4E3E;&#x4F8B;</h3>
+<p>&#x5FAE;&#x8F6F;&#xFF1A;</p>
+<p>&#x5FAE;&#x8F6F;&#x60C5;&#x62A5;&#x4E2D;&#x5FC3;&#x4E3B;&#x7BA1;John Lambert&#x8BA4;&#x4E3A;&#x4FE1;&#x606F;&#x5B89;&#x5168;&#x7684;&#x6301;&#x7EED;&#x6027;&#x7531;&#x4E00;&#x4E0B;&#x56DB;&#x4E2A;&#x90E8;&#x5206;&#x7EC4;&#x6210;&#xFF0C;&#x5176;&#x4E2D;&#x7ED3;&#x6784;&#x6027;&#x77E5;&#x8BC6;&#x5206;&#x6790;&#xFF0C;&#x5FAE;&#x8F6F;&#x91C7;&#x7528;&#x4E86;ATT&amp;CK Navigator &#x5206;&#x6790;&#x5DE5;&#x5177;&#x3002;</p>
+<p><img src="/2022/02/26/ATT&amp;CK/&#x56FE;&#x7247;2.png" alt="&#x4FE1;&#x606F;&#x5B89;&#x5168;&#x53EF;&#x6301;&#x7EED;&#x7684;&#x56DB;&#x4E2A;&#x7EC4;&#x6210;&#x90E8;&#x5206;"></p>
+<p>&#x540C;&#x65F6;&#xFF0C;&#x5FAE;&#x8F6F;&#x7684;&#x5546;&#x7528;&#x6740;&#x6BD2;&#x4EA7;&#x54C1;Defender Advanced Threat Protection (ATP)&#x7684;&#x5B89;&#x5168;&#x544A;&#x8B66;&#x65E5;&#x5FD7;&#x7C7B;&#x522B;&#x4E0E;MITER ATT&amp;CK&#x6846;&#x67B6;&#x5B9E;&#x73B0;&#x6620;&#x5C04;&#xFF0C;&#x4EE5;&#x4FBF;&#x5728;&#x5B89;&#x5168;&#x544A;&#x8B66;&#x65E5;&#x5FD7;&#x4E2D;&#x5C55;&#x793A;MITER ATT&amp;CK&#x6846;&#x67B6;&#x5185;&#x7684;Tactic&#x3001; Techniques&#x4FE1;&#x606F;&#x3002;&#x65B9;&#x4FBF;&#x5176;Microsoft Azure Sentinel&#x4EA7;&#x54C1;&#x8FDB;&#x884C;&#x7CFB;&#x7EDF;&#x6027;&#x5206;&#x6790;&#x4EE5;&#x53CA;ATT&amp;CK&#x7684;&#x9002;&#x914D;&#x3002;</p>
+<p><img src="/2022/02/26/ATT&amp;CK/&#x56FE;&#x7247;3.png" alt="&#x5FAE;&#x8F6F;ATP&#x4EA7;&#x54C1;&#x65E5;&#x5FD7;&#x544A;&#x8B66;&#x7EC6;&#x8282;"></p>
+<p>&#x4F5C;&#x4E3A;&#x5FAE;&#x8F6F;&#x5B89;&#x5168;&#x7684;&#x91CD;&#x8981;&#x4EA7;&#x54C1;&#xFF0C;Microsoft Azure Sentinel&#x662F;&#x53EF;&#x7F29;&#x653E;&#x7684;&#x4E91;&#x539F;&#x751F;&#x7684;&#x5B89;&#x5168;&#x4FE1;&#x606F;&#x4E8B;&#x4EF6;&#x7BA1;&#x7406; (SIEM) &#x548C; &#x5B89;&#x5168;&#x4E1A;&#x52A1;&#x6D41;&#x7A0B;&#x81EA;&#x52A8;&#x54CD;&#x5E94; (SOAR) &#x89E3;&#x51B3;&#x65B9;&#x6848;&#x3002;</p>
+<p><img src="/2022/02/26/ATT&amp;CK/&#x56FE;&#x7247;4.png" alt="Azure&#x7684;&#x6838;&#x5FC3;&#x80FD;&#x529B;"></p>
+<p>&#x5728;&#x5176;&#x201C;&#x9AD8;&#x7EA7;&#x591A;&#x9636;&#x6BB5;&#x653B;&#x51FB;&#x68C0;&#x6D4B;&#x5206;&#x7C7B;&#x201D;&#x4EE5;&#x53CA;&#x201C;&#x901A;&#x8FC7;REST API &#x521B;&#x5EFA;&#x548C;&#x7BA1;&#x7406;&#x641C;&#x5BFB;&#x67E5;&#x8BE2;&#x201D;&#x4EE5;&#x53CA;&#x201C;<a target="_blank" rel="noopener" href="https://docs.microsoft.com/zh-cn/rest/api/securitycenter/alerts/list">Alerts</a>&#x7684;&#x65E5;&#x5FD7;&#x5206;&#x7C7B;&#x201D;&#x4EE5;&#x53CA;&#x201C;&#x54CD;&#x5E94;&#x5B89;&#x5168;&#x8B66;&#x62A5;&#x201D;&#x4E2D;&#x90FD;&#x91C7;&#x7528;&#x4E86;ATT&amp;CK&#x6846;&#x67B6;&#x7684;Tactics&#x4EE5;&#x53CA;Techniques&#x7684;&#x5185;&#x5BB9;&#x3002;</p>
+<p><img src="/2022/02/26/ATT&amp;CK/&#x56FE;&#x7247;5.png" alt="Azure&#x7684;REST API&#x68C0;&#x7D22;&#x4FE1;&#x606F;"></p>
+<p><img src="/2022/02/26/ATT&amp;CK/&#x56FE;&#x7247;6.png" alt="Azure&#x4E2D;&#x65E5;&#x5FD7;&#x8B66;&#x62A5;&#x4E0E;ATT&amp;CK&#x5173;&#x8054;"></p>
+<p>Crowdstrike&#xFF1A;</p>
+<p>Crowdstrike&#x4F5C;&#x4E3A;EDR&#x4E0E;&#x4E91;&#x5B89;&#x5168;&#x7684;&#x9ED1;&#x9A6C;&#x72EC;&#x89D2;&#x517D;&#x5B89;&#x5168;&#x4F01;&#x4E1A;&#xFF0C;&#x4E00;&#x76F4;&#x4EE5;Threat Graph&#x7684;&#x5F62;&#x5F0F;&#x5BF9;&#x653B;&#x51FB;&#x884C;&#x4E3A;&#x8FDB;&#x884C;&#x53EF;&#x89C6;&#x5316;&#x5C55;&#x793A;&#xFF0C;&#x5E76;&#x4F5C;&#x4E3A;&#x5176;&#x4E09;&#x4E2A;&#x6838;&#x5FC3;&#x6280;&#x672F;&#x4E4B;&#x4E00;&#x3002;&#x4E0E;&#x6B64;&#x540C;&#x65F6;Threat Graph&#x4E2D;&#x7684;&#x5177;&#x4F53;&#x653B;&#x51FB;&#x884C;&#x4E3A;&#x4F1A;&#x4E0E;ATT&amp;CK&#x6846;&#x67B6;&#x4E2D;&#x7684;Tactic&#x548C;Technique&#x8FDB;&#x884C;&#x6620;&#x5C04;&#xFF0C;&#x63D0;&#x9AD8;&#x5C06;&#x68C0;&#x6D4B;&#x5230;&#x7684;&#x653B;&#x51FB;&#x884C;&#x4E3A;&#x8FDB;&#x884C;&#x7CFB;&#x7EDF;&#x6027;&#x7684;&#x7684;&#x53EF;&#x89C6;&#x5316;&#x5C55;&#x793A;&#x3002;&#x540C;&#x65F6;&#x5728;MITRE ATT&amp;CK&#x8BC4;&#x4F30;&#x4E2D;CrowdStrike Falcon&#x4F18;&#x52BF;&#x660E;&#x663E;&#xFF0C;&#x5728;&#x6240;&#x6709;19&#x4E2A;&#x653B;&#x51FB;&#x9636;&#x6BB5;&#x68C0;&#x6D4B;&#x7387;&#x4E3A;100%&#x3002;</p>
+<p><img src="/2022/02/26/ATT&amp;CK/&#x56FE;&#x7247;7.png" alt="Crowdstrike&#x7684;Falcon&#x4E2D;ATT&amp;CK&#x6846;&#x67B6;&#x7684;&#x5E94;&#x7528;"></p>
+<h3 id="attck&#x4F7F;&#x7528;&#x7684;&#x5C40;&#x9650;&#x6027;">ATT&amp;CK&#x4F7F;&#x7528;&#x7684;&#x5C40;&#x9650;&#x6027;</h3>
+<p>1.ATT&amp;CK&#x4F5C;&#x4E3A;&#x540E;&#x6765;&#x8005;&#xFF0C;&#x5728;&#x5E94;&#x7528;&#x7684;&#x5E7F;&#x6CDB;&#x6027;&#x4E0A;&#x4E0E;Syber Kill Chain&#x5B58;&#x5728;&#x660E;&#x663E;&#x5DEE;&#x8DDD;&#xFF0C;&#x66F4;&#x591A;&#x7684;&#x5B89;&#x5168;&#x5382;&#x5546;&#x559C;&#x6B22;&#x4F7F;&#x7528;Syber Kill Chain&#x4F5C;&#x4E3A;&#x4E3B;&#x8981;&#x624B;&#x6BB5;&#x5206;&#x6790;&#x653B;&#x51FB;&#x4E8B;&#x4EF6;&#x3002;&#x4F8B;&#x5982;&#x7B14;&#x8005;&#x66FE;&#x7ECF;&#x5728;&#x67D0;&#x4E00;&#x5BB6;&#x5B89;&#x5168;&#x516C;&#x53F8;&#x4ECB;&#x7ECD;ATT&amp;CK&#x76F8;&#x5173;&#x5185;&#x5BB9;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x67D0;&#x8D44;&#x6DF1;&#x7684;&#x5B89;&#x5168;&#x5F00;&#x53D1;&#x4EBA;&#x5458;&#x5E76;&#x4E0D;&#x611F;&#x5192;&#xFF0C;&#x5F53;&#x8BB2;&#x5230;ATT&amp;CK&#x4E0E;Syber Kill Chain&#x7684;&#x5173;&#x7CFB;&#x548C;&#x4F18;&#x52A3;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x4ED6;&#x8868;&#x793A;&#x5F88;&#x611F;&#x5174;&#x8DA3;&#x5E76;&#x5E0C;&#x671B;&#x540E;&#x7EED;&#x4E86;&#x89E3;&#x3002;</p>
+<p>2.&#x5B89;&#x5168;&#x80FD;&#x529B;&#x7684;&#x5386;&#x53F2;&#x79EF;&#x7D2F;&#x5927;&#x90E8;&#x5206;&#x662F;&#x57FA;&#x4E8E;Syber Kill Chain&#x7B49;&#x65E9;&#x671F;&#x6846;&#x67B6;&#xFF0C;&#x56E0;&#x6B64;&#x5B9E;&#x73B0;&#x4E0E;ATT&amp;CK&#x7684;&#x5173;&#x8054;&#x4E0E;&#x5339;&#x914D;&#x9700;&#x8981;&#x5F88;&#x7E41;&#x91CD;&#x7684;&#x4FEE;&#x6539;&#x5DE5;&#x4F5C;&#xFF0C;&#x5386;&#x53F2;&#x7684;&#x80FD;&#x529B;&#x79EF;&#x7D2F;&#x5728;&#x8FD9;&#x4E00;&#x523B;&#x6210;&#x4E3A;&#x4E86;&#x5386;&#x53F2;&#x7684;&#x5305;&#x88B1;&#xFF0C;&#x4E14;&#x5F88;&#x591A;&#x5B89;&#x5168;&#x529F;&#x80FD;&#x5BF9;&#x5E94;&#x7684;Signature&#x9700;&#x8981;&#x5F88;&#x8D44;&#x6DF1;&#x7684;&#x5B89;&#x5168;&#x4EBA;&#x5458;&#x8FDB;&#x884C;&#x5206;&#x6790;&#x548C;&#x4FEE;&#x6539;&#x3002;</p>
+<p>3.&#x4F5C;&#x4E3A;&#x4E00;&#x79CD;&#x53EF;&#x4EE5;&#x68B3;&#x7406;&#x5B89;&#x5168;&#x80FD;&#x529B;&#x7684;&#x77E5;&#x8BC6;&#x6846;&#x67B6;&#xFF0C;&#x5F88;&#x96BE;&#x5728;&#x6709;&#x9650;&#x7684;&#x65F6;&#x95F4;&#x5185;&#x6210;&#x4E3A;&#x5229;&#x6DA6;&#x589E;&#x957F;&#x70B9;&#xFF0C;&#x4E14;&#x9700;&#x8981;&#x8981;&#x4E00;&#x5B9A;&#x7684;&#x5F00;&#x53D1;&#x6295;&#x5165;&#xFF0C;&#x5728;&#x5B89;&#x5168;&#x884C;&#x4E1A;&#x5185;&#x5377;&#x5982;&#x65AF;&#x7684;&#x4ECA;&#x5929;&#xFF0C;&#x6709;&#x5F88;&#x591A;&#x4E3A;&#x4E86;&#x6D3B;&#x4E0B;&#x53BB;&#x6216;&#x8005;&#x4E3A;&#x4E86;&#x4E1A;&#x7EE9;&#x589E;&#x957F;&#x7684;&#x5B89;&#x5168;&#x516C;&#x53F8;&#x4F1A;&#x8BA4;&#x4E3A;ATT&amp;CK&#x98DF;&#x4E4B;&#x65E0;&#x5473;&#xFF0C;&#x5F03;&#x4E4B;&#x53EF;&#x60DC;&#x3002;</p>
+<h3 id="attck&#x7684;&#x524D;&#x666F;">ATT&amp;CK&#x7684;&#x524D;&#x666F;</h3>
+<p>&#x7B14;&#x8005;&#x4ECE;&#x4E8B;&#x7F51;&#x7EDC;&#x5B89;&#x5168;&#x884C;&#x4E1A;&#x7814;&#x7A76;&#x4E94;&#x5E74;&#xFF0C;&#x4F5C;&#x4E3A;&#x4E00;&#x53EA;&#x80FD;&#x529B;&#x5E73;&#x5E73;&#x7684;&#x8001;&#x9E1F;&#xFF0C;&#x6211;&#x8BA4;&#x4E3A;ATT&amp;CK&#x4F5C;&#x4E3A;&#x68B3;&#x7406;&#x5B89;&#x5168;&#x80FD;&#x529B;&#x548C;&#x7ED3;&#x6784;&#x5316;&#x7F51;&#x7EDC;&#x5A01;&#x80C1;&#x7684;&#x5229;&#x5668;&#xFF0C;&#x672A;&#x6765;&#x4F1A;&#x7206;&#x53D1;&#x51FA;&#x6781;&#x5927;&#x7684;&#x80FD;&#x91CF;&#x3002;&#x4F5C;&#x4E3A;&#x7F51;&#x7EDC;&#x5B89;&#x5168;&#x884C;&#x4E1A;&#x7684;&#x4ECE;&#x4E1A;&#x4EBA;&#x5458;&#x53EF;&#x4EE5;&#x4E0D;&#x5FC5;&#x7CBE;&#x901A;&#xFF0C;&#x4F46;&#x662F;&#x4E00;&#x5B9A;&#x9700;&#x8981;&#x4E86;&#x89E3;&#x3002;</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="reward-container">
+  <div>感谢支持，鼓励成就原创！</div>
+  <button>
+    赞赏
+  </button>
+  <div class="post-reward">
+      <div>
+        <img src="/images/wc.jpg" alt="Yoo Shen 微信">
+        <span>微信</span>
+      </div>
+      <div>
+        <img src="/images/zfb.jpg" alt="Yoo Shen 支付宝">
+        <span>支付宝</span>
+      </div>
+
+  </div>
+</div>
+
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>Yoo Shen
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://sidney-neu.github.io/2022/02/26/ATT&CK/" title="ATT&amp;CK简述">https://sidney-neu.github.io/2022/02/26/ATT&CK/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2022/02/22/DGA%E7%AE%80%E8%BF%B0/" rel="prev" title="DGA简述">
+                  <i class="fa fa-chevron-left"></i> DGA简述
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2022/03/05/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/" rel="next" title="渗透测试初探">
+                  渗透测试初探 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments gitalk-container"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Yoo Shen</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/next-boot.js"></script>
+
+  
+<script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.0/dist/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+
+
+  <script class="next-config" data-name="leancloud_visitors" type="application/json">{"enable":true,"app_id":"nG09szIvM8x9ehgslCULWzg2-MdYXbMMI","app_key":"yHykoRL88ikgLTqsUC0xIMvY","server_url":null,"security":false}</script>
+  <script src="/js/third-party/statistics/lean-analytics.js"></script>
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdn.jsdelivr.net/npm/mathjax@3.2.0/es5/tex-mml-chtml.js","integrity":"sha256-r+3itOMtGGjap0x+10hu6jW/gZCzxHsoKrOd7gyRSGY="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
+
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"sidney-neu","repo":"sidney-neu.github.io","client_id":"04c1120504d2e421fa7d","client_secret":"389710c48c007c80cfbb7b9788d01e674ab31c00","admin_user":"sidney-neu","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":"zh-CN","js":{"url":"https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js","integrity":"sha256-Pmj85ojLaPOWwRtlMJwmezB/Qg8BzvJp5eTzvXaYAfA="},"path_md5":"739c25aa66444ffbb13e6322f00377f2"}</script>
+<script src="/js/third-party/comments/gitalk.js"></script>
+
+</body>
+</html>
