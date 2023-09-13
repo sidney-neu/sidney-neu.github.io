@@ -39,4 +39,49 @@ https://arxiv.org/abs/1409.0473
 
 https://zhuanlan.zhihu.com/p/37212011 (论文解读)
 
-https://blog.51cto.com/u_15995006/6109244 (代码逻辑解析)
+https://blog.51cto.com/u_15995006/6109244 (逻辑解析)
+
+## Attention Is All You Need
+
+这一篇是引用最为广泛的经典论文，介绍了最初的Transformer架构，包括后来成为单独模块的编码器和解码器部分。此外，还介绍了缩放点积注意力机制、多头注意力块和位置输入编码等概念，这些概念仍然是现代Transformer的基础。
+
+原始论文：
+
+https://arxiv.org/abs/1706.03762
+
+平替博客：
+
+https://zhuanlan.zhihu.com/p/350739760 （论文解读）
+
+https://zhuanlan.zhihu.com/p/62397974 （逻辑解析）
+
+https://zhuanlan.zhihu.com/p/44731789 （逻辑解析）
+
+## BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding
+
+沿用原始的Transformer架构，大型语言模型研究开始分为两个方向：编码器风格的Transformer用于预测建模任务，如文本分类，解码器风格的Transformer用于生成建模任务，如翻译，摘要和其他形式的文本创作。而这一篇介绍了BERT掩码语言建模的原始概念，而下一个句子的预测仍然是一种有影响力的解码器风格架构。可以继续关注RoBERTa，它通过删除下一个句子的预测任务简化了预训练目标。
+
+原始论文：
+
+https://arxiv.org/abs/1810.04805
+
+Code：
+
+https://github.com/codertimo/BERT-pytorch
+
+平替博客：
+
+
+
+# 参考文献
+
+[系统学习大模型的20篇论文](https://blog.csdn.net/wireless_com/article/details/130798925)
+
+
+
+
+
+
+
+
+
