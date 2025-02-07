@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.0.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"shenyong.zone","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.8.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":{"gitalk":{"order":-1}},"activeClass":"gitalk"},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.json","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+<meta name="description" content="&amp;#x5927;&amp;#x8BED;&amp;#x8A00;&amp;#x6A21;&amp;#x578B;&amp;#x6709;&amp;#x4EF7;&amp;#x503C;&amp;#x7684;&amp;#x535A;&amp;#x5BA2; &amp;#x968F;&amp;#x7740;chatgpt&amp;#x7684;&amp;#x706B;&amp;#x7206;&amp;#xFF0C;&amp;#x5927;&amp;#x8BED;&amp;#x8A00;&amp;#x6A21;&amp;#x578B;(Large Language">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LLM学习流程">
+<meta property="og:url" content="https://shenyong.zone/2022/03/12/LLM%E5%AD%A6%E4%B9%A0%E6%B5%81%E7%A8%8B/index.html">
+<meta property="og:site_name" content="Yoo shen的博客">
+<meta property="og:description" content="&amp;#x5927;&amp;#x8BED;&amp;#x8A00;&amp;#x6A21;&amp;#x578B;&amp;#x6709;&amp;#x4EF7;&amp;#x503C;&amp;#x7684;&amp;#x535A;&amp;#x5BA2; &amp;#x968F;&amp;#x7740;chatgpt&amp;#x7684;&amp;#x706B;&amp;#x7206;&amp;#xFF0C;&amp;#x5927;&amp;#x8BED;&amp;#x8A00;&amp;#x6A21;&amp;#x578B;(Large Language">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-03-12T15:57:00.000Z">
+<meta property="article:modified_time" content="2025-02-07T13:21:12.447Z">
+<meta property="article:author" content="Yoo Shen">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://shenyong.zone/2022/03/12/LLM%E5%AD%A6%E4%B9%A0%E6%B5%81%E7%A8%8B/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://shenyong.zone/2022/03/12/LLM%E5%AD%A6%E4%B9%A0%E6%B5%81%E7%A8%8B/","path":"2022/03/12/LLM学习流程/","title":"LLM学习流程"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>LLM学习流程 | Yoo shen的博客</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Yoo shen的博客</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">sy071600sy@163.com</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">17</span></a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">44</span></a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E6%9C%89%E4%BB%B7%E5%80%BC%E7%9A%84%E5%8D%9A%E5%AE%A2"><span class="nav-number">1.</span> <span class="nav-text">大语言模型有价值的博客</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%90%86%E8%A7%A3%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E7%9A%84%E4%B8%BB%E8%A6%81%E6%9E%B6%E6%9E%84%E5%92%8C%E4%BB%BB%E5%8A%A1"><span class="nav-number">2.</span> <span class="nav-text">理解大语言模型的主要架构和任务</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#neural-machine-translation-by-jointly-learning-to-align-and-translate"><span class="nav-number">2.1.</span> <span class="nav-text">Neural Machine Translation by Jointly Learning to Align and Translate</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#attention-is-all-you-need"><span class="nav-number">2.2.</span> <span class="nav-text">Attention Is All You Need</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#bert-pre-training-of-deep-bidirectional-transformers-for-language-understanding"><span class="nav-number">2.3.</span> <span class="nav-text">BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE"><span class="nav-number">3.</span> <span class="nav-text">参考文献</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Yoo Shen</p>
+  <div class="site-description" itemprop="description">学习、记录、分享</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">44</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/sidney-neu" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;sidney-neu" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://shenyong.zone/2022/03/12/LLM%E5%AD%A6%E4%B9%A0%E6%B5%81%E7%A8%8B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Yoo Shen">
+      <meta itemprop="description" content="学习、记录、分享">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Yoo shen的博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          LLM学习流程
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-03-12 23:57:00" itemprop="dateCreated datePublished" datetime="2022-03-12T23:57:00+08:00">2022-03-12</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-02-07 21:21:12" itemprop="dateModified" datetime="2025-02-07T21:21:12+08:00">2025-02-07</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/LLM/" itemprop="url" rel="index"><span itemprop="name">-LLM</span></a>
+        </span>
+    </span>
+
+  
+    <span id="/2022/03/12/LLM%E5%AD%A6%E4%B9%A0%E6%B5%81%E7%A8%8B/" class="post-meta-item leancloud_visitors" data-flag-title="LLM学习流程" title="阅读次数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span class="leancloud-visitors-count"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1 id="&#x5927;&#x8BED;&#x8A00;&#x6A21;&#x578B;&#x6709;&#x4EF7;&#x503C;&#x7684;&#x535A;&#x5BA2;">&#x5927;&#x8BED;&#x8A00;&#x6A21;&#x578B;&#x6709;&#x4EF7;&#x503C;&#x7684;&#x535A;&#x5BA2;</h1>
+<p>&#x968F;&#x7740;chatgpt&#x7684;&#x706B;&#x7206;&#xFF0C;&#x5927;&#x8BED;&#x8A00;&#x6A21;&#x578B;(Large Language Models)&#x6210;&#x4E3A;&#x4E86;AI&#x4E4B;&#x5149;&#xFF0C;AI&#x4E5F;&#x9010;&#x6E10;&#x4ECE;&#x89E3;&#x51B3;&#x67D0;&#x4E00;&#x4E2A;&#x5782;&#x76F4;&#x9886;&#x57DF;&#x95EE;&#x9898;&#x7684;&#x6253;&#x5DE5;&#x4ED4;&#xFF0C;&#x5411;&#x89E3;&#x51B3;&#x901A;&#x7528;&#x95EE;&#x9898;&#x7684;&#x767E;&#x79D1;&#x7BA1;&#x5BB6;&#x7684;&#x901A;&#x7528;&#x6A21;&#x578B;&#x66F4;&#x8FDB;&#x4E00;&#x6B65;&#x3002;</p>
+<p>&#x5982;&#x679C;&#x60F3;&#x66F4;&#x591A;&#x7684;&#x4E86;&#x89E3;&#x5927;&#x8BED;&#x8A00;&#x6A21;&#x578B;&#x4EE5;&#x53CA;&#x66F4;&#x591A;AI&#x4E13;&#x4E1A;&#x77E5;&#x8BC6;&#x53EF;&#x4EE5;&#x5173;&#x6CE8;&#x4EE5;&#x4E0B;&#x535A;&#x5BA2;&#xFF1A;</p>
+<p>1.<a target="_blank" rel="noopener" href="https://magazine.sebastianraschka.com/">AHEAD OF AI(By Sebastian Raschka, PhD)</a></p>
+<p>2.the <a target="_blank" rel="noopener" href="http://jalammar.github.io/illustrated-transformer/">Illustrated Transformer</a> by Jay Alammar</p>
+<p>3.a <a target="_blank" rel="noopener" href="https://lilianweng.github.io/posts/2020-04-07-the-transformer-family/">more technical blog article</a> by Lilian Weng</p>
+<p>4.<a target="_blank" rel="noopener" href="https://amatriain.net/blog/transformer-models-an-introduction-and-catalog-2d1e9039f376/">a catalog and family tree</a> of all major transformers to date by Xavier Amatriain</p>
+<p>5.<a target="_blank" rel="noopener" href="https://github.com/karpathy/nanoGPT">a minimal code implementation</a> of a generative language model for educational purposes by Andrej Karpathy</p>
+<p>6.<a target="_blank" rel="noopener" href="https://sebastianraschka.com/blog/2021/dl-course.html#l19-self-attention-and-transformer-networks">a lecture series</a> and <a target="_blank" rel="noopener" href="https://github.com/rasbt/machine-learning-book/tree/main/ch16">book chapter</a> by yours truly</p>
+<p>&#x5176;&#x4E2D;6&#x662F;Sebastian Raschka&#x7684;&#x4E66;&#x7C4D;&#x5BF9;&#x5E94;&#x7684;&#x89C6;&#x9891;&#x548C;&#x4E66;&#x7C4D;&#x8D44;&#x6599;&#x3002;</p>
+<h1 id="&#x7406;&#x89E3;&#x5927;&#x8BED;&#x8A00;&#x6A21;&#x578B;&#x7684;&#x4E3B;&#x8981;&#x67B6;&#x6784;&#x548C;&#x4EFB;&#x52A1;">&#x7406;&#x89E3;&#x5927;&#x8BED;&#x8A00;&#x6A21;&#x578B;&#x7684;&#x4E3B;&#x8981;&#x67B6;&#x6784;&#x548C;&#x4EFB;&#x52A1;</h1>
+<h2 id="neural-machine-translation-by-jointly-learning-to-align-and-translate">Neural Machine Translation by Jointly Learning to Align and Translate</h2>
+<p>&#x8BBA;&#x6587;&#x4ECB;&#x7ECD;&#x4E86;&#x4E00;&#x79CD;&#x6CE8;&#x610F;&#x529B;&#x673A;&#x5236;&#xFF0C;&#x7528;&#x4E8E;&#x6539;&#x8FDB;&#x5FAA;&#x73AF;&#x795E;&#x7ECF;&#x7F51;&#x7EDC;&#x7684;&#x957F;&#x5E8F;&#x5217;&#x5EFA;&#x6A21;&#x80FD;&#x529B;&#x3002;&#x8FD9;&#x4F7F;&#x5F97;RNN&#x80FD;&#x591F;&#x51C6;&#x786E;&#x7FFB;&#x8BD1;&#x66F4;&#x957F;&#x7684;&#x53E5;&#x5B50;&#xFF0C;&#x8FD9;&#x4E5F;&#x662F;&#x540E;&#x6765;&#x5F00;&#x53D1;Transformer&#x67B6;&#x6784;&#x7684;&#x52A8;&#x673A;&#x3002;</p>
+<p>&#x539F;&#x59CB;&#x8BBA;&#x6587;&#xFF1A;</p>
+<p>https://arxiv.org/abs/1409.0473</p>
+<p>&#x5E73;&#x66FF;&#x535A;&#x5BA2;&#xFF1A;</p>
+<p>https://zhuanlan.zhihu.com/p/37212011 (&#x8BBA;&#x6587;&#x89E3;&#x8BFB;)</p>
+<p>https://blog.51cto.com/u_15995006/6109244 (&#x903B;&#x8F91;&#x89E3;&#x6790;)</p>
+<h2 id="attention-is-all-you-need">Attention Is All You Need</h2>
+<p>&#x8FD9;&#x4E00;&#x7BC7;&#x662F;&#x5F15;&#x7528;&#x6700;&#x4E3A;&#x5E7F;&#x6CDB;&#x7684;&#x7ECF;&#x5178;&#x8BBA;&#x6587;&#xFF0C;&#x4ECB;&#x7ECD;&#x4E86;&#x6700;&#x521D;&#x7684;Transformer&#x67B6;&#x6784;&#xFF0C;&#x5305;&#x62EC;&#x540E;&#x6765;&#x6210;&#x4E3A;&#x5355;&#x72EC;&#x6A21;&#x5757;&#x7684;&#x7F16;&#x7801;&#x5668;&#x548C;&#x89E3;&#x7801;&#x5668;&#x90E8;&#x5206;&#x3002;&#x6B64;&#x5916;&#xFF0C;&#x8FD8;&#x4ECB;&#x7ECD;&#x4E86;&#x7F29;&#x653E;&#x70B9;&#x79EF;&#x6CE8;&#x610F;&#x529B;&#x673A;&#x5236;&#x3001;&#x591A;&#x5934;&#x6CE8;&#x610F;&#x529B;&#x5757;&#x548C;&#x4F4D;&#x7F6E;&#x8F93;&#x5165;&#x7F16;&#x7801;&#x7B49;&#x6982;&#x5FF5;&#xFF0C;&#x8FD9;&#x4E9B;&#x6982;&#x5FF5;&#x4ECD;&#x7136;&#x662F;&#x73B0;&#x4EE3;Transformer&#x7684;&#x57FA;&#x7840;&#x3002;</p>
+<p>&#x539F;&#x59CB;&#x8BBA;&#x6587;&#xFF1A;</p>
+<p>https://arxiv.org/abs/1706.03762</p>
+<p>&#x5E73;&#x66FF;&#x535A;&#x5BA2;&#xFF1A;</p>
+<p>https://zhuanlan.zhihu.com/p/350739760 &#xFF08;&#x8BBA;&#x6587;&#x89E3;&#x8BFB;&#xFF09;</p>
+<p>https://zhuanlan.zhihu.com/p/62397974 &#xFF08;&#x903B;&#x8F91;&#x89E3;&#x6790;&#xFF09;</p>
+<p>https://zhuanlan.zhihu.com/p/44731789 &#xFF08;&#x903B;&#x8F91;&#x89E3;&#x6790;&#xFF09;</p>
+<h2 id="bert-pre-training-of-deep-bidirectional-transformers-for-language-understanding">BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding</h2>
+<p>&#x6CBF;&#x7528;&#x539F;&#x59CB;&#x7684;Transformer&#x67B6;&#x6784;&#xFF0C;&#x5927;&#x578B;&#x8BED;&#x8A00;&#x6A21;&#x578B;&#x7814;&#x7A76;&#x5F00;&#x59CB;&#x5206;&#x4E3A;&#x4E24;&#x4E2A;&#x65B9;&#x5411;&#xFF1A;&#x7F16;&#x7801;&#x5668;&#x98CE;&#x683C;&#x7684;Transformer&#x7528;&#x4E8E;&#x9884;&#x6D4B;&#x5EFA;&#x6A21;&#x4EFB;&#x52A1;&#xFF0C;&#x5982;&#x6587;&#x672C;&#x5206;&#x7C7B;&#xFF0C;&#x89E3;&#x7801;&#x5668;&#x98CE;&#x683C;&#x7684;Transformer&#x7528;&#x4E8E;&#x751F;&#x6210;&#x5EFA;&#x6A21;&#x4EFB;&#x52A1;&#xFF0C;&#x5982;&#x7FFB;&#x8BD1;&#xFF0C;&#x6458;&#x8981;&#x548C;&#x5176;&#x4ED6;&#x5F62;&#x5F0F;&#x7684;&#x6587;&#x672C;&#x521B;&#x4F5C;&#x3002;&#x800C;&#x8FD9;&#x4E00;&#x7BC7;&#x4ECB;&#x7ECD;&#x4E86;BERT&#x63A9;&#x7801;&#x8BED;&#x8A00;&#x5EFA;&#x6A21;&#x7684;&#x539F;&#x59CB;&#x6982;&#x5FF5;&#xFF0C;&#x800C;&#x4E0B;&#x4E00;&#x4E2A;&#x53E5;&#x5B50;&#x7684;&#x9884;&#x6D4B;&#x4ECD;&#x7136;&#x662F;&#x4E00;&#x79CD;&#x6709;&#x5F71;&#x54CD;&#x529B;&#x7684;&#x89E3;&#x7801;&#x5668;&#x98CE;&#x683C;&#x67B6;&#x6784;&#x3002;&#x53EF;&#x4EE5;&#x7EE7;&#x7EED;&#x5173;&#x6CE8;RoBERTa&#xFF0C;&#x5B83;&#x901A;&#x8FC7;&#x5220;&#x9664;&#x4E0B;&#x4E00;&#x4E2A;&#x53E5;&#x5B50;&#x7684;&#x9884;&#x6D4B;&#x4EFB;&#x52A1;&#x7B80;&#x5316;&#x4E86;&#x9884;&#x8BAD;&#x7EC3;&#x76EE;&#x6807;&#x3002;</p>
+<p>&#x539F;&#x59CB;&#x8BBA;&#x6587;&#xFF1A;</p>
+<p>https://arxiv.org/abs/1810.04805</p>
+<p>Code&#xFF1A;</p>
+<p>https://github.com/codertimo/BERT-pytorch</p>
+<p>&#x5E73;&#x66FF;&#x535A;&#x5BA2;&#xFF1A;</p>
+<h1 id="&#x53C2;&#x8003;&#x6587;&#x732E;">&#x53C2;&#x8003;&#x6587;&#x732E;</h1>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/wireless_com/article/details/130798925">&#x7CFB;&#x7EDF;&#x5B66;&#x4E60;&#x5927;&#x6A21;&#x578B;&#x7684;20&#x7BC7;&#x8BBA;&#x6587;</a></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="reward-container">
+  <div>感谢支持，鼓励成就原创！</div>
+  <button>
+    赞赏
+  </button>
+  <div class="post-reward">
+      <div>
+        <img src="/images/wc.jpg" alt="Yoo Shen 微信">
+        <span>微信</span>
+      </div>
+      <div>
+        <img src="/images/zfb.jpg" alt="Yoo Shen 支付宝">
+        <span>支付宝</span>
+      </div>
+
+  </div>
+</div>
+
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>Yoo Shen
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://shenyong.zone/2022/03/12/LLM%E5%AD%A6%E4%B9%A0%E6%B5%81%E7%A8%8B/" title="LLM学习流程">https://shenyong.zone/2022/03/12/LLM学习流程/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2022/03/12/%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95%E7%9A%84%E5%BE%AE%E6%9C%8D%E5%8A%A1%E4%B9%8B%E4%B8%80(%E5%BE%AE%E6%9C%8D%E5%8A%A1%E7%BB%84%E4%BB%B6%E4%BB%8B%E7%BB%8D)/" rel="prev" title="创建一个简单的微服务之一(微服务组件介绍)">
+                  <i class="fa fa-chevron-left"></i> 创建一个简单的微服务之一(微服务组件介绍)
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2022/03/19/Docker%E5%AE%89%E8%A3%85/" rel="next" title="Docker安装">
+                  Docker安装 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments gitalk-container"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2025</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Yoo Shen</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/next-boot.js"></script>
+
+  
+<script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.0/dist/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+
+
+  <script class="next-config" data-name="leancloud_visitors" type="application/json">{"enable":true,"app_id":"nG09szIvM8x9ehgslCULWzg2-MdYXbMMI","app_key":"yHykoRL88ikgLTqsUC0xIMvY","server_url":null,"security":false}</script>
+  <script src="/js/third-party/statistics/lean-analytics.js"></script>
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdn.jsdelivr.net/npm/mathjax@3.2.0/es5/tex-mml-chtml.js","integrity":"sha256-r+3itOMtGGjap0x+10hu6jW/gZCzxHsoKrOd7gyRSGY="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
+
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"sidney-neu","repo":"sidney-neu.github.io","client_id":"04c1120504d2e421fa7d","client_secret":"389710c48c007c80cfbb7b9788d01e674ab31c00","admin_user":"sidney-neu","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":"zh-CN","js":{"url":"https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js","integrity":"sha256-Pmj85ojLaPOWwRtlMJwmezB/Qg8BzvJp5eTzvXaYAfA="},"path_md5":"2c4c3a006ba6db7fb5c1b7c9d9e3dfcb"}</script>
+<script src="/js/third-party/comments/gitalk.js"></script>
+
+</body>
+</html>
