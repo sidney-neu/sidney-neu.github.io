@@ -509,6 +509,110 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://shenyong.zone/2018/10/19/sed%E6%88%96perl%E5%AE%9E%E7%8E%B0%E8%B4%AA%E5%A9%AA%E5%8C%B9%E9%85%8D%E5%92%8C%E6%9C%80%E5%B0%8F%E5%8C%B9%E9%85%8D/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Yoo Shen">
+      <meta itemprop="description" content="学习、记录、分享">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Yoo shen的博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2018/10/19/sed%E6%88%96perl%E5%AE%9E%E7%8E%B0%E8%B4%AA%E5%A9%AA%E5%8C%B9%E9%85%8D%E5%92%8C%E6%9C%80%E5%B0%8F%E5%8C%B9%E9%85%8D/" class="post-title-link" itemprop="url">sed或perl实现贪婪匹配和最小匹配</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2018-10-19 17:20:00" itemprop="dateCreated datePublished" datetime="2018-10-19T17:20:00+08:00">2018-10-19</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-11-17 11:07:10" itemprop="dateModified" datetime="2025-11-17T11:07:10+08:00">2025-11-17</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Linux/" itemprop="url" rel="index"><span itemprop="name">-Linux</span></a>
+        </span>
+    </span>
+
+  
+    <span id="/2018/10/19/sed%E6%88%96perl%E5%AE%9E%E7%8E%B0%E8%B4%AA%E5%A9%AA%E5%8C%B9%E9%85%8D%E5%92%8C%E6%9C%80%E5%B0%8F%E5%8C%B9%E9%85%8D/" class="post-meta-item leancloud_visitors" data-flag-title="sed或perl实现贪婪匹配和最小匹配" title="阅读次数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span class="leancloud-visitors-count"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h3 id="sed&#x9ED8;&#x8BA4;&#x4F7F;&#x7528;&#x8D2A;&#x5A6A;&#x5339;&#x914D;">1.sed&#x9ED8;&#x8BA4;&#x4F7F;&#x7528;&#x8D2A;&#x5A6A;&#x5339;&#x914D;</h3>
+<p>&#x6700;&#x8FD1;&#x5728;shell&#x5BF9;&#x6587;&#x672C;&#x8FDB;&#x884C;&#x64CD;&#x4F5C;&#xFF0C;&#x9047;&#x5230;&#x4E86;&#x9700;&#x8981;&#x5BF9;&#x5B57;&#x7B26;&#x4E32;&#x8FDB;&#x884C;&#x6700;&#x5C0F;&#x5339;&#x914D;&#x7684;&#x95EE;&#x9898;&#xFF0C;&#x4F46;&#x662F;&#x4F7F;&#x7528;sed&#x9ED8;&#x8BA4;&#x7684;&#x5339;&#x914D;&#x89C4;&#x5219;&#x662F;&#x8D2A;&#x5A6A;&#x5339;&#x914D;&#xFF0C;&#x8FD9;&#x91CC;&#x6211;&#x4EEC;&#x5C31;&#x5BF9;Linux
+shell&#x5B9E;&#x73B0;&#x6700;&#x5C0F;&#x5339;&#x914D;&#x8FDB;&#x884C;&#x7814;&#x7A76;&#x3002;</p>
+<p>sed&#x9ED8;&#x8BA4;&#x662F;&#x8D2A;&#x5A6A;&#x5339;&#x914D;&#xFF0C;&#x4F7F;&#x7528;&#x5982;&#x4E0B;&#x5B57;&#x7B26;&#x4E32;&#x8FDB;&#x884C;&#x4E3E;&#x4F8B;&#xFF1A;</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(aa)bb(cc)</span><br></pre></td></tr></table></figure>
+<p>&#x4F7F;&#x7528;sed&#x5339;&#x914D;:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">echo &quot;(aa)bb(cc)&quot; | sed &apos;s/(.*)*//g&apos;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>&#x4EE5;&#x4E0A;&#x547D;&#x4EE4;&#x7684;&#x8F93;&#x51FA;&#x7ED3;&#x679C;&#x4E3A;&#x7A7A;&#x3002;&#x4E5F;&#x5C31;&#x662F;&#x8BF4;sed&#x5C06;&#x6700;&#x5927;&#x8303;&#x56F4;&#x7684;(str)&#x90FD;&#x8FDB;&#x884C;&#x4E86;&#x66FF;&#x6362;&#xFF0C;&#x56E0;&#x6B64;sed&#x7684;&#x5339;&#x914D;&#x6A21;&#x5F0F;&#x662F;&#x8D2A;&#x5A6A;&#x5339;&#x914D;&#x3002;</p>
+<h3 id="&#x6700;&#x5C0F;&#x5339;&#x914D;">2.&#x6700;&#x5C0F;&#x5339;&#x914D;</h3>
+<p>&#x6700;&#x5C0F;&#x5339;&#x914D;&#x7684;&#x7ED3;&#x679C;&#x662F;&#x83B7;&#x53D6;&#x6EE1;&#x8DB3;&#x5339;&#x914D;&#x89C4;&#x5219;&#x7684;&#x6700;&#x5C0F;&#x5185;&#x5BB9;&#xFF0C;&#x5982;&#x679C;&#x91C7;&#x7528;&#x6700;&#x5C0F;&#x5339;&#x914D;&#xFF0C;sed&#x7684;&#x5339;&#x914D;&#x7ED3;&#x679C;&#x5E94;&#x8BE5;&#x5982;&#x4E0B;&#xFF1A;</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bb</span><br></pre></td></tr></table></figure>
+<h3 id="&#x4F7F;&#x7528;sed&#x5B9E;&#x73B0;&#x6700;&#x5C0F;&#x5339;&#x914D;">3.&#x4F7F;&#x7528;sed&#x5B9E;&#x73B0;&#x6700;&#x5C0F;&#x5339;&#x914D;</h3>
+<p>sed&#x5B9E;&#x73B0;&#x6700;&#x5C0F;&#x5339;&#x914D;&#x7684;&#x547D;&#x4EE4;&#x5982;&#x4E0B;:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">echo &apos;(aa)bb(cc)&apos; | sed &apos;s/([^)]*)*//g&apos;</span><br><span class="line">bb</span><br></pre></td></tr></table></figure>
+<h3 id="&#x4F7F;&#x7528;perl&#x5B9E;&#x73B0;&#x6700;&#x5C0F;&#x5339;&#x914D;">4.&#x4F7F;&#x7528;perl&#x5B9E;&#x73B0;&#x6700;&#x5C0F;&#x5339;&#x914D;</h3>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">echo &quot;(aa)bb(cc)&quot; | perl -pe &apos;s/\(.*?\)//g&apos;</span><br><span class="line">bb</span><br></pre></td></tr></table></figure>
+<p>&#x53E6;&#x5916;&#xFF0C;sed&#x652F;&#x6301;&#x7684;&#x5339;&#x914D;&#x89C4;&#x5219;&#x4E0E;perl&#x4E0D;&#x540C;&#xFF0C;&#x5173;&#x4E8E;&#x5B57;&#x7B26;&#x662F;&#x5426;&#x9700;&#x8981;&#x8F6C;&#x4E49;&#x4E5F;&#x662F;&#x4E0D;&#x4E00;&#x6837;&#x3002;&#x4F8B;&#x5982;&#xFF0C;&#x4E3E;&#x4F8B;&#x4E2D;&#x7684;
+&quot;(&quot; &#x548C; &quot;)&quot; &#x5728;sed&#x4E2D;&#x4E0D;&#x9700;&#x8981;&#x8F6C;&#x4E49;&#xFF0C;&#x5728;perl&#x4E2D;&#x5219;&#x9700;&#x8981;&#x8F6C;&#x4E49;&#x3002;</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
     <link itemprop="mainEntityOfPage" href="https://shenyong.zone/2018/10/19/vim%E9%85%8D%E7%BD%AE/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -606,110 +710,6 @@ J &#x5220;&#x9664;&#x8BE5;&#x884C;&#x7684;&#x6362;&#x884C;&#x7B26;&#xFF0C;&#x4E0
 &#x9009;&#x5B9A;&#x540E;&#x53EF;&#x8FDB;&#x884C;x&#x5220;&#x9664;&#xFF08;&#x526A;&#x5207;&#xFF09;&#x3001;y&#x590D;&#x5236;&#x7B49;&#x64CD;&#x4F5C;&#x3002; V(shift+v)&#x9009;&#x62E9;&#x6574;&#x884C;&#xFF1B;
 Ctrl+v&#x53EF;&#x4EE5;&#x9009;&#x62E9;&#x6574;&#x5217;&#x8FDB;&#x884C;&#x64CD;&#x4F5C;&#x3002; &#x9009;&#x62E9;&#x5217;&#x540E;&#xFF0C;&#x6309;x&#x5220;&#x9664;&#x4E00;&#x5217;&#xFF1B;
 &#x9009;&#x62E9;&#x5217;&#x540E;&#xFF0C;&#x4F9D;&#x6B21;&#x6309;I&#xFF0C;&#x5B57;&#x7B26;(&#x53EF;&#x591A;&#x4E2A;)&#xFF0C;ESC&#x3002;&#x53EF;&#x4EE5;&#x589E;&#x52A0;&#x4E00;&#x5217;&#x5B57;&#x7B26;&#xFF1B;</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://shenyong.zone/2018/10/19/sed%E6%88%96perl%E5%AE%9E%E7%8E%B0%E8%B4%AA%E5%A9%AA%E5%8C%B9%E9%85%8D%E5%92%8C%E6%9C%80%E5%B0%8F%E5%8C%B9%E9%85%8D/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Yoo Shen">
-      <meta itemprop="description" content="学习、记录、分享">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Yoo shen的博客">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2018/10/19/sed%E6%88%96perl%E5%AE%9E%E7%8E%B0%E8%B4%AA%E5%A9%AA%E5%8C%B9%E9%85%8D%E5%92%8C%E6%9C%80%E5%B0%8F%E5%8C%B9%E9%85%8D/" class="post-title-link" itemprop="url">sed或perl实现贪婪匹配和最小匹配</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2018-10-19 17:20:00" itemprop="dateCreated datePublished" datetime="2018-10-19T17:20:00+08:00">2018-10-19</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-11-17 11:07:10" itemprop="dateModified" datetime="2025-11-17T11:07:10+08:00">2025-11-17</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Linux/" itemprop="url" rel="index"><span itemprop="name">-Linux</span></a>
-        </span>
-    </span>
-
-  
-    <span id="/2018/10/19/sed%E6%88%96perl%E5%AE%9E%E7%8E%B0%E8%B4%AA%E5%A9%AA%E5%8C%B9%E9%85%8D%E5%92%8C%E6%9C%80%E5%B0%8F%E5%8C%B9%E9%85%8D/" class="post-meta-item leancloud_visitors" data-flag-title="sed或perl实现贪婪匹配和最小匹配" title="阅读次数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-eye"></i>
-      </span>
-      <span class="post-meta-item-text">阅读次数：</span>
-      <span class="leancloud-visitors-count"></span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h3 id="sed&#x9ED8;&#x8BA4;&#x4F7F;&#x7528;&#x8D2A;&#x5A6A;&#x5339;&#x914D;">1.sed&#x9ED8;&#x8BA4;&#x4F7F;&#x7528;&#x8D2A;&#x5A6A;&#x5339;&#x914D;</h3>
-<p>&#x6700;&#x8FD1;&#x5728;shell&#x5BF9;&#x6587;&#x672C;&#x8FDB;&#x884C;&#x64CD;&#x4F5C;&#xFF0C;&#x9047;&#x5230;&#x4E86;&#x9700;&#x8981;&#x5BF9;&#x5B57;&#x7B26;&#x4E32;&#x8FDB;&#x884C;&#x6700;&#x5C0F;&#x5339;&#x914D;&#x7684;&#x95EE;&#x9898;&#xFF0C;&#x4F46;&#x662F;&#x4F7F;&#x7528;sed&#x9ED8;&#x8BA4;&#x7684;&#x5339;&#x914D;&#x89C4;&#x5219;&#x662F;&#x8D2A;&#x5A6A;&#x5339;&#x914D;&#xFF0C;&#x8FD9;&#x91CC;&#x6211;&#x4EEC;&#x5C31;&#x5BF9;Linux
-shell&#x5B9E;&#x73B0;&#x6700;&#x5C0F;&#x5339;&#x914D;&#x8FDB;&#x884C;&#x7814;&#x7A76;&#x3002;</p>
-<p>sed&#x9ED8;&#x8BA4;&#x662F;&#x8D2A;&#x5A6A;&#x5339;&#x914D;&#xFF0C;&#x4F7F;&#x7528;&#x5982;&#x4E0B;&#x5B57;&#x7B26;&#x4E32;&#x8FDB;&#x884C;&#x4E3E;&#x4F8B;&#xFF1A;</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(aa)bb(cc)</span><br></pre></td></tr></table></figure>
-<p>&#x4F7F;&#x7528;sed&#x5339;&#x914D;:</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">echo &quot;(aa)bb(cc)&quot; | sed &apos;s/(.*)*//g&apos;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>&#x4EE5;&#x4E0A;&#x547D;&#x4EE4;&#x7684;&#x8F93;&#x51FA;&#x7ED3;&#x679C;&#x4E3A;&#x7A7A;&#x3002;&#x4E5F;&#x5C31;&#x662F;&#x8BF4;sed&#x5C06;&#x6700;&#x5927;&#x8303;&#x56F4;&#x7684;(str)&#x90FD;&#x8FDB;&#x884C;&#x4E86;&#x66FF;&#x6362;&#xFF0C;&#x56E0;&#x6B64;sed&#x7684;&#x5339;&#x914D;&#x6A21;&#x5F0F;&#x662F;&#x8D2A;&#x5A6A;&#x5339;&#x914D;&#x3002;</p>
-<h3 id="&#x6700;&#x5C0F;&#x5339;&#x914D;">2.&#x6700;&#x5C0F;&#x5339;&#x914D;</h3>
-<p>&#x6700;&#x5C0F;&#x5339;&#x914D;&#x7684;&#x7ED3;&#x679C;&#x662F;&#x83B7;&#x53D6;&#x6EE1;&#x8DB3;&#x5339;&#x914D;&#x89C4;&#x5219;&#x7684;&#x6700;&#x5C0F;&#x5185;&#x5BB9;&#xFF0C;&#x5982;&#x679C;&#x91C7;&#x7528;&#x6700;&#x5C0F;&#x5339;&#x914D;&#xFF0C;sed&#x7684;&#x5339;&#x914D;&#x7ED3;&#x679C;&#x5E94;&#x8BE5;&#x5982;&#x4E0B;&#xFF1A;</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bb</span><br></pre></td></tr></table></figure>
-<h3 id="&#x4F7F;&#x7528;sed&#x5B9E;&#x73B0;&#x6700;&#x5C0F;&#x5339;&#x914D;">3.&#x4F7F;&#x7528;sed&#x5B9E;&#x73B0;&#x6700;&#x5C0F;&#x5339;&#x914D;</h3>
-<p>sed&#x5B9E;&#x73B0;&#x6700;&#x5C0F;&#x5339;&#x914D;&#x7684;&#x547D;&#x4EE4;&#x5982;&#x4E0B;:</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">echo &apos;(aa)bb(cc)&apos; | sed &apos;s/([^)]*)*//g&apos;</span><br><span class="line">bb</span><br></pre></td></tr></table></figure>
-<h3 id="&#x4F7F;&#x7528;perl&#x5B9E;&#x73B0;&#x6700;&#x5C0F;&#x5339;&#x914D;">4.&#x4F7F;&#x7528;perl&#x5B9E;&#x73B0;&#x6700;&#x5C0F;&#x5339;&#x914D;</h3>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">echo &quot;(aa)bb(cc)&quot; | perl -pe &apos;s/\(.*?\)//g&apos;</span><br><span class="line">bb</span><br></pre></td></tr></table></figure>
-<p>&#x53E6;&#x5916;&#xFF0C;sed&#x652F;&#x6301;&#x7684;&#x5339;&#x914D;&#x89C4;&#x5219;&#x4E0E;perl&#x4E0D;&#x540C;&#xFF0C;&#x5173;&#x4E8E;&#x5B57;&#x7B26;&#x662F;&#x5426;&#x9700;&#x8981;&#x8F6C;&#x4E49;&#x4E5F;&#x662F;&#x4E0D;&#x4E00;&#x6837;&#x3002;&#x4F8B;&#x5982;&#xFF0C;&#x4E3E;&#x4F8B;&#x4E2D;&#x7684;
-&quot;(&quot; &#x548C; &quot;)&quot; &#x5728;sed&#x4E2D;&#x4E0D;&#x9700;&#x8981;&#x8F6C;&#x4E49;&#xFF0C;&#x5728;perl&#x4E2D;&#x5219;&#x9700;&#x8981;&#x8F6C;&#x4E49;&#x3002;</p>
 
       
     </div>
