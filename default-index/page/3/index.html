@@ -85,7 +85,7 @@
   <ul class="main-menu menu">
         <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
         <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">17</span></a></li>
-        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">44</span></a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">46</span></a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -154,7 +154,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">44</span>
+          <span class="site-state-item-count">46</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -195,6 +195,272 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://shenyong.zone/2022/03/19/Docker%E5%AE%89%E8%A3%85/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Yoo Shen">
+      <meta itemprop="description" content="学习、记录、分享">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Yoo shen的博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2022/03/19/Docker%E5%AE%89%E8%A3%85/" class="post-title-link" itemprop="url">Docker安装</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-03-19 22:47:00" itemprop="dateCreated datePublished" datetime="2022-03-19T22:47:00+08:00">2022-03-19</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-06-27 22:37:31" itemprop="dateModified" datetime="2022-06-27T22:37:31+08:00">2022-06-27</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E4%BA%91%E5%8E%9F%E7%94%9F/" itemprop="url" rel="index"><span itemprop="name">-云原生</span></a>
+        </span>
+    </span>
+
+  
+    <span id="/2022/03/19/Docker%E5%AE%89%E8%A3%85/" class="post-meta-item leancloud_visitors" data-flag-title="Docker安装" title="阅读次数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span class="leancloud-visitors-count"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h3 id="&#x4E91;&#x539F;&#x751F;&#x7684;&#x8D77;&#x6E90;">&#x4E91;&#x539F;&#x751F;&#x7684;&#x8D77;&#x6E90;</h3>
+<h3 id="docker&#x7684;&#x8BDE;&#x751F;">Docker&#x7684;&#x8BDE;&#x751F;</h3>
+<p>2008&#x5E74;dotCloud&#x516C;&#x53F8;&#x6210;&#x7ACB;&#xFF0C;&#x8BE5;&#x516C;&#x53F8;&#x4E13;&#x6CE8;&#x4E8E;PaaS&#x5E73;&#x53F0;&#x4E3A;&#x5F00;&#x53D1;&#x8005;&#x6216;&#x7814;&#x53D1;&#x5382;&#x5546;&#x63D0;&#x4F9B;&#x6280;&#x672F;&#x670D;&#x52A1;&#x3002;2013&#x5E74;Docker&#x4F5C;&#x4E3A;&#x516C;&#x5171;&#x9879;&#x76EE;&#x53D1;&#x5E03;&#xFF0C;&#x540C;&#x5E74;dotCloud&#x6539;&#x540D;&#x4E3A;Docker Inc&#xFF0C;&#x8F6C;&#x578B;&#x4E13;&#x6CE8;&#x4E8E;Docker&#x5F15;&#x64CE;&#x548C;Docker&#x751F;&#x6001;&#x7CFB;&#x7EDF;&#x3002;</p>
+<p>&#x5728;Docker&#x7684;&#x5B98;&#x7F51;&#x4E0A;&#x6709;&#x4EE5;&#x4E0B;&#x7684;&#x4ECB;&#x7ECD;&#xFF1A;</p>
+<blockquote>
+<p>Docker takes away repetitive, mundane configuration tasks and is used throughout the development lifecycle for fast, easy and portable application development &#x2013; desktop and cloud. Docker&#x2019;s comprehensive end to end platform includes UIs, CLIs, APIs and security that are engineered to work together across the entire application delivery lifecycle.</p>
+</blockquote>
+<p>&#x5173;&#x4E8E;Docker&#x7684;&#x5176;&#x4ED6;&#x4ECB;&#x7ECD;&#x53EF;&#x4EE5;&#x53C2;&#x89C1;&#x7B14;&#x8005;&#x7684;&#x53E6;&#x5916;&#x4E00;&#x7BC7;&#x535A;&#x5BA2;&#xFF1A;<a target="_blank" rel="noopener" href="https://www.shenyong.zone/2022/03/12/%E4%BA%91%E5%8E%9F%E7%94%9F%E7%AE%80%E4%BB%8B/">&#x4E91;&#x539F;&#x751F;&#x7B80;&#x4ECB;</a>&#x3002;</p>
+<h3 id="docker&#x7684;&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#x652F;&#x6301;">Docker&#x7684;&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#x652F;&#x6301;</h3>
+<p>Docker&#x652F;&#x6301;&#x5728;&#x591A;&#x79CD;&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#x4E0A;&#x7684;&#x5B89;&#x88C5;&#x548C;&#x8FD0;&#x884C;&#x3002;</p>
+<table>
+<colgroup>
+<col style="width: 17%">
+<col style="width: 9%">
+<col style="width: 73%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Docker&#x7C7B;&#x578B;</th>
+<th>&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;</th>
+<th>&#x5B89;&#x88C5;&#x8981;&#x6C42;</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Docker Server</td>
+<td>Linux</td>
+<td>X86&#x67B6;&#x6784;&#xFF1A;CentOS&#x3001;Debian&#x3001;Fedora&#x3001;Ubuntu<br>ARM 64&#x67B6;&#x6784;&#xFF1A;CentOS&#x3001;Debian&#x3001;Fedora&#x3001;Ubuntu<br>ARM 32&#x67B6;&#x6784;&#xFF1A;Debian&#x3001;Raspbian&#x3001;Ubuntu<br>Kernel&#x7248;&#x672C;&gt;=3.10<br>iptables&#x7248;&#x672C;&gt;=1.4</td>
+</tr>
+<tr class="even">
+<td>Docker Desktop</td>
+<td>Windows</td>
+<td>Windows10 64-bit&#x5BB6;&#x5EAD;/&#x4E13;&#x4E1A;&#x7248; 2004 build19041<br>windows10 64-bit&#x4F01;&#x4E1A;/&#x6559;&#x80B2;&#x7248; 1909 build18363<br>WSL2&#x6216;Hyper-V&#x540E;&#x53F0;&#x6A21;&#x5F0F;</td>
+</tr>
+<tr class="odd">
+<td>Docker Desktop</td>
+<td>Mac</td>
+<td>macOS&#x7248;&#x672C;&#x5927;&#x4E8E;10.14<br>&#x4E0D;&#x80FD;&#x540C;&#x65F6;&#x5B89;&#x88C5;VirtualBox&#x7248;&#x672C;4.3.30&#x4EE5;&#x4E0A;<br>4G&#x4EE5;&#x4E0A;&#x5185;&#x5B58;<br>Apple&#x81EA;&#x7814;&#x82AF;&#x7247;&#x7248;&#x672C;&#xFF1A;&#x52A0;&#x88C5;Rosetta 2</td>
+</tr>
+</tbody>
+</table>
+<h3 id="ubuntu&#x4E0A;&#x5B89;&#x88C5;docker">Ubuntu&#x4E0A;&#x5B89;&#x88C5;Docker</h3>
+<p>&#x7B14;&#x8005;&#x4F7F;&#x7528;&#x7684;&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#x662F;Ubuntu 20.04</p>
+<p>&#x5220;&#x9664;&#x5B58;&#x5728;&#x7684;&#x65E7;&#x7248;&#x672C;Docker&#xFF1A;</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get remove docker docker-engine docker.io containerd runc</span><br></pre></td></tr></table></figure>
+<p>&#x5B89;&#x88C5;&#x524D;&#x66F4;&#x65B0;&#x5E76;&#x5B89;&#x88C5;&#x4F9D;&#x8D56;&#xFF1A;</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update</span><br><span class="line">sudo apt install apt-transport-https ca-certificates curl gnupg lsb-release</span><br></pre></td></tr></table></figure>
+<p>&#x4F7F;&#x7528;https&#x83B7;&#x53D6;&#x4ED3;&#x5E93;&#xFF1A;</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install apt-transport-https ca-certificates curl gnupg lsb-release</span><br></pre></td></tr></table></figure>
+<p>&#x6DFB;&#x52A0;Docker&#x5B98;&#x65B9;GPG key</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -</span><br></pre></td></tr></table></figure>
+<p>&#x6DFB;&#x52A0;Docker&#x6E90;&#xFF1A;</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo add-apt-repository <span class="string">&quot;deb [arch=amd64] https://download.docker.com/linux/ubuntu <span class="subst">$(lsb_release -cs)</span> stable&quot;</span></span><br></pre></td></tr></table></figure>
+<p>&#x5B89;&#x88C5;Docker(&#x5B89;&#x88C5;&#x6587;&#x4EF6;&#x8F83;&#x5927;&#xFF0C;&#x9700;&#x8981;&#x4E00;&#x4E9B;&#x65F6;&#x95F4;)&#xFF1A;</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt update</span><br><span class="line">sudo apt-get install docker-ce docker-ce-cli containerd.io</span><br></pre></td></tr></table></figure>
+<p>&#x67E5;&#x770B;docker&#x5BA2;&#x6237;&#x7AEF;&#x7248;&#x672C;</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">sudo docker version</span><br><span class="line"></span><br><span class="line">Client: Docker Engine - Community</span><br><span class="line"> Version:           20.10.13</span><br><span class="line"> API version:       1.41</span><br><span class="line"> Go version:        go1.16.15</span><br><span class="line"> Git commit:        a224086</span><br><span class="line"> Built:             Thu Mar 10 14:07:51 2022</span><br><span class="line"> OS/Arch:           linux/amd64</span><br><span class="line"> Context:           default</span><br><span class="line"> Experimental:      true</span><br><span class="line">Cannot connect to the Docker daemon at unix:///var/run/docker.sock. Is the docker daemon running?</span><br></pre></td></tr></table></figure>
+<p>&#x4E0A;&#x9762;&#x6700;&#x540E;&#x4E00;&#x884C;&#x7684;&#x63D0;&#x793A;&#x662F;&#x56E0;&#x4E3A;Docker&#x670D;&#x52A1;&#x672A;&#x542F;&#x52A8;&#xFF0C;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x4E00;&#x4E0B;&#x547D;&#x4EE4;&#x542F;&#x52A8;docker&#x670D;&#x52A1;</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo service docker start </span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://shenyong.zone/2022/03/12/LLM%E5%AD%A6%E4%B9%A0%E6%B5%81%E7%A8%8B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Yoo Shen">
+      <meta itemprop="description" content="学习、记录、分享">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Yoo shen的博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2022/03/12/LLM%E5%AD%A6%E4%B9%A0%E6%B5%81%E7%A8%8B/" class="post-title-link" itemprop="url">LLM学习流程</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-03-12 23:57:00" itemprop="dateCreated datePublished" datetime="2022-03-12T23:57:00+08:00">2022-03-12</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-02-07 21:21:12" itemprop="dateModified" datetime="2025-02-07T21:21:12+08:00">2025-02-07</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/LLM/" itemprop="url" rel="index"><span itemprop="name">-LLM</span></a>
+        </span>
+    </span>
+
+  
+    <span id="/2022/03/12/LLM%E5%AD%A6%E4%B9%A0%E6%B5%81%E7%A8%8B/" class="post-meta-item leancloud_visitors" data-flag-title="LLM学习流程" title="阅读次数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span class="leancloud-visitors-count"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="&#x5927;&#x8BED;&#x8A00;&#x6A21;&#x578B;&#x6709;&#x4EF7;&#x503C;&#x7684;&#x535A;&#x5BA2;">&#x5927;&#x8BED;&#x8A00;&#x6A21;&#x578B;&#x6709;&#x4EF7;&#x503C;&#x7684;&#x535A;&#x5BA2;</h1>
+<p>&#x968F;&#x7740;chatgpt&#x7684;&#x706B;&#x7206;&#xFF0C;&#x5927;&#x8BED;&#x8A00;&#x6A21;&#x578B;(Large Language Models)&#x6210;&#x4E3A;&#x4E86;AI&#x4E4B;&#x5149;&#xFF0C;AI&#x4E5F;&#x9010;&#x6E10;&#x4ECE;&#x89E3;&#x51B3;&#x67D0;&#x4E00;&#x4E2A;&#x5782;&#x76F4;&#x9886;&#x57DF;&#x95EE;&#x9898;&#x7684;&#x6253;&#x5DE5;&#x4ED4;&#xFF0C;&#x5411;&#x89E3;&#x51B3;&#x901A;&#x7528;&#x95EE;&#x9898;&#x7684;&#x767E;&#x79D1;&#x7BA1;&#x5BB6;&#x7684;&#x901A;&#x7528;&#x6A21;&#x578B;&#x66F4;&#x8FDB;&#x4E00;&#x6B65;&#x3002;</p>
+<p>&#x5982;&#x679C;&#x60F3;&#x66F4;&#x591A;&#x7684;&#x4E86;&#x89E3;&#x5927;&#x8BED;&#x8A00;&#x6A21;&#x578B;&#x4EE5;&#x53CA;&#x66F4;&#x591A;AI&#x4E13;&#x4E1A;&#x77E5;&#x8BC6;&#x53EF;&#x4EE5;&#x5173;&#x6CE8;&#x4EE5;&#x4E0B;&#x535A;&#x5BA2;&#xFF1A;</p>
+<p>1.<a target="_blank" rel="noopener" href="https://magazine.sebastianraschka.com/">AHEAD OF AI(By Sebastian Raschka, PhD)</a></p>
+<p>2.the <a target="_blank" rel="noopener" href="http://jalammar.github.io/illustrated-transformer/">Illustrated Transformer</a> by Jay Alammar</p>
+<p>3.a <a target="_blank" rel="noopener" href="https://lilianweng.github.io/posts/2020-04-07-the-transformer-family/">more technical blog article</a> by Lilian Weng</p>
+<p>4.<a target="_blank" rel="noopener" href="https://amatriain.net/blog/transformer-models-an-introduction-and-catalog-2d1e9039f376/">a catalog and family tree</a> of all major transformers to date by Xavier Amatriain</p>
+<p>5.<a target="_blank" rel="noopener" href="https://github.com/karpathy/nanoGPT">a minimal code implementation</a> of a generative language model for educational purposes by Andrej Karpathy</p>
+<p>6.<a target="_blank" rel="noopener" href="https://sebastianraschka.com/blog/2021/dl-course.html#l19-self-attention-and-transformer-networks">a lecture series</a> and <a target="_blank" rel="noopener" href="https://github.com/rasbt/machine-learning-book/tree/main/ch16">book chapter</a> by yours truly</p>
+<p>&#x5176;&#x4E2D;6&#x662F;Sebastian Raschka&#x7684;&#x4E66;&#x7C4D;&#x5BF9;&#x5E94;&#x7684;&#x89C6;&#x9891;&#x548C;&#x4E66;&#x7C4D;&#x8D44;&#x6599;&#x3002;</p>
+<h1 id="&#x7406;&#x89E3;&#x5927;&#x8BED;&#x8A00;&#x6A21;&#x578B;&#x7684;&#x4E3B;&#x8981;&#x67B6;&#x6784;&#x548C;&#x4EFB;&#x52A1;">&#x7406;&#x89E3;&#x5927;&#x8BED;&#x8A00;&#x6A21;&#x578B;&#x7684;&#x4E3B;&#x8981;&#x67B6;&#x6784;&#x548C;&#x4EFB;&#x52A1;</h1>
+<h2 id="neural-machine-translation-by-jointly-learning-to-align-and-translate">Neural Machine Translation by Jointly Learning to Align and Translate</h2>
+<p>&#x8BBA;&#x6587;&#x4ECB;&#x7ECD;&#x4E86;&#x4E00;&#x79CD;&#x6CE8;&#x610F;&#x529B;&#x673A;&#x5236;&#xFF0C;&#x7528;&#x4E8E;&#x6539;&#x8FDB;&#x5FAA;&#x73AF;&#x795E;&#x7ECF;&#x7F51;&#x7EDC;&#x7684;&#x957F;&#x5E8F;&#x5217;&#x5EFA;&#x6A21;&#x80FD;&#x529B;&#x3002;&#x8FD9;&#x4F7F;&#x5F97;RNN&#x80FD;&#x591F;&#x51C6;&#x786E;&#x7FFB;&#x8BD1;&#x66F4;&#x957F;&#x7684;&#x53E5;&#x5B50;&#xFF0C;&#x8FD9;&#x4E5F;&#x662F;&#x540E;&#x6765;&#x5F00;&#x53D1;Transformer&#x67B6;&#x6784;&#x7684;&#x52A8;&#x673A;&#x3002;</p>
+<p>&#x539F;&#x59CB;&#x8BBA;&#x6587;&#xFF1A;</p>
+<p>https://arxiv.org/abs/1409.0473</p>
+<p>&#x5E73;&#x66FF;&#x535A;&#x5BA2;&#xFF1A;</p>
+<p>https://zhuanlan.zhihu.com/p/37212011 (&#x8BBA;&#x6587;&#x89E3;&#x8BFB;)</p>
+<p>https://blog.51cto.com/u_15995006/6109244 (&#x903B;&#x8F91;&#x89E3;&#x6790;)</p>
+<h2 id="attention-is-all-you-need">Attention Is All You Need</h2>
+<p>&#x8FD9;&#x4E00;&#x7BC7;&#x662F;&#x5F15;&#x7528;&#x6700;&#x4E3A;&#x5E7F;&#x6CDB;&#x7684;&#x7ECF;&#x5178;&#x8BBA;&#x6587;&#xFF0C;&#x4ECB;&#x7ECD;&#x4E86;&#x6700;&#x521D;&#x7684;Transformer&#x67B6;&#x6784;&#xFF0C;&#x5305;&#x62EC;&#x540E;&#x6765;&#x6210;&#x4E3A;&#x5355;&#x72EC;&#x6A21;&#x5757;&#x7684;&#x7F16;&#x7801;&#x5668;&#x548C;&#x89E3;&#x7801;&#x5668;&#x90E8;&#x5206;&#x3002;&#x6B64;&#x5916;&#xFF0C;&#x8FD8;&#x4ECB;&#x7ECD;&#x4E86;&#x7F29;&#x653E;&#x70B9;&#x79EF;&#x6CE8;&#x610F;&#x529B;&#x673A;&#x5236;&#x3001;&#x591A;&#x5934;&#x6CE8;&#x610F;&#x529B;&#x5757;&#x548C;&#x4F4D;&#x7F6E;&#x8F93;&#x5165;&#x7F16;&#x7801;&#x7B49;&#x6982;&#x5FF5;&#xFF0C;&#x8FD9;&#x4E9B;&#x6982;&#x5FF5;&#x4ECD;&#x7136;&#x662F;&#x73B0;&#x4EE3;Transformer&#x7684;&#x57FA;&#x7840;&#x3002;</p>
+<p>&#x539F;&#x59CB;&#x8BBA;&#x6587;&#xFF1A;</p>
+<p>https://arxiv.org/abs/1706.03762</p>
+<p>&#x5E73;&#x66FF;&#x535A;&#x5BA2;&#xFF1A;</p>
+<p>https://zhuanlan.zhihu.com/p/350739760 &#xFF08;&#x8BBA;&#x6587;&#x89E3;&#x8BFB;&#xFF09;</p>
+<p>https://zhuanlan.zhihu.com/p/62397974 &#xFF08;&#x903B;&#x8F91;&#x89E3;&#x6790;&#xFF09;</p>
+<p>https://zhuanlan.zhihu.com/p/44731789 &#xFF08;&#x903B;&#x8F91;&#x89E3;&#x6790;&#xFF09;</p>
+<h2 id="bert-pre-training-of-deep-bidirectional-transformers-for-language-understanding">BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding</h2>
+<p>&#x6CBF;&#x7528;&#x539F;&#x59CB;&#x7684;Transformer&#x67B6;&#x6784;&#xFF0C;&#x5927;&#x578B;&#x8BED;&#x8A00;&#x6A21;&#x578B;&#x7814;&#x7A76;&#x5F00;&#x59CB;&#x5206;&#x4E3A;&#x4E24;&#x4E2A;&#x65B9;&#x5411;&#xFF1A;&#x7F16;&#x7801;&#x5668;&#x98CE;&#x683C;&#x7684;Transformer&#x7528;&#x4E8E;&#x9884;&#x6D4B;&#x5EFA;&#x6A21;&#x4EFB;&#x52A1;&#xFF0C;&#x5982;&#x6587;&#x672C;&#x5206;&#x7C7B;&#xFF0C;&#x89E3;&#x7801;&#x5668;&#x98CE;&#x683C;&#x7684;Transformer&#x7528;&#x4E8E;&#x751F;&#x6210;&#x5EFA;&#x6A21;&#x4EFB;&#x52A1;&#xFF0C;&#x5982;&#x7FFB;&#x8BD1;&#xFF0C;&#x6458;&#x8981;&#x548C;&#x5176;&#x4ED6;&#x5F62;&#x5F0F;&#x7684;&#x6587;&#x672C;&#x521B;&#x4F5C;&#x3002;&#x800C;&#x8FD9;&#x4E00;&#x7BC7;&#x4ECB;&#x7ECD;&#x4E86;BERT&#x63A9;&#x7801;&#x8BED;&#x8A00;&#x5EFA;&#x6A21;&#x7684;&#x539F;&#x59CB;&#x6982;&#x5FF5;&#xFF0C;&#x800C;&#x4E0B;&#x4E00;&#x4E2A;&#x53E5;&#x5B50;&#x7684;&#x9884;&#x6D4B;&#x4ECD;&#x7136;&#x662F;&#x4E00;&#x79CD;&#x6709;&#x5F71;&#x54CD;&#x529B;&#x7684;&#x89E3;&#x7801;&#x5668;&#x98CE;&#x683C;&#x67B6;&#x6784;&#x3002;&#x53EF;&#x4EE5;&#x7EE7;&#x7EED;&#x5173;&#x6CE8;RoBERTa&#xFF0C;&#x5B83;&#x901A;&#x8FC7;&#x5220;&#x9664;&#x4E0B;&#x4E00;&#x4E2A;&#x53E5;&#x5B50;&#x7684;&#x9884;&#x6D4B;&#x4EFB;&#x52A1;&#x7B80;&#x5316;&#x4E86;&#x9884;&#x8BAD;&#x7EC3;&#x76EE;&#x6807;&#x3002;</p>
+<p>&#x539F;&#x59CB;&#x8BBA;&#x6587;&#xFF1A;</p>
+<p>https://arxiv.org/abs/1810.04805</p>
+<p>Code&#xFF1A;</p>
+<p>https://github.com/codertimo/BERT-pytorch</p>
+<p>&#x5E73;&#x66FF;&#x535A;&#x5BA2;&#xFF1A;</p>
+<h1 id="&#x53C2;&#x8003;&#x6587;&#x732E;">&#x53C2;&#x8003;&#x6587;&#x732E;</h1>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/wireless_com/article/details/130798925">&#x7CFB;&#x7EDF;&#x5B66;&#x4E60;&#x5927;&#x6A21;&#x578B;&#x7684;20&#x7BC7;&#x8BBA;&#x6587;</a></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1697,213 +1963,6 @@ SSE(\alpha)=\sum_{t=1}^n(y_t-\hat y_t)^2
 
 
 
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://shenyong.zone/2021/12/31/2021%E5%B9%B4%E6%80%BB%E7%BB%93/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Yoo Shen">
-      <meta itemprop="description" content="学习、记录、分享">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Yoo shen的博客">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/12/31/2021%E5%B9%B4%E6%80%BB%E7%BB%93/" class="post-title-link" itemprop="url">2021年总结</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2021-12-31 22:05:00" itemprop="dateCreated datePublished" datetime="2021-12-31T22:05:00+08:00">2021-12-31</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-06-27 22:37:31" itemprop="dateModified" datetime="2022-06-27T22:37:31+08:00">2022-06-27</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E7%94%9F%E6%B4%BB%E6%84%9F%E6%82%9F-%E5%B9%B4%E5%BA%A6%E6%80%BB%E7%BB%93/" itemprop="url" rel="index"><span itemprop="name">-生活感悟 -年度总结</span></a>
-        </span>
-    </span>
-
-  
-    <span id="/2021/12/31/2021%E5%B9%B4%E6%80%BB%E7%BB%93/" class="post-meta-item leancloud_visitors" data-flag-title="2021年总结" title="阅读次数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-eye"></i>
-      </span>
-      <span class="post-meta-item-text">阅读次数：</span>
-      <span class="leancloud-visitors-count"></span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          Here's something encrypted, password is required to continue reading.
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/12/31/2021%E5%B9%B4%E6%80%BB%E7%BB%93/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://shenyong.zone/2021/10/19/tmux%E6%95%99%E7%A8%8B/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Yoo Shen">
-      <meta itemprop="description" content="学习、记录、分享">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Yoo shen的博客">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/10/19/tmux%E6%95%99%E7%A8%8B/" class="post-title-link" itemprop="url">tmux教程</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2021-10-19 21:20:00" itemprop="dateCreated datePublished" datetime="2021-10-19T21:20:00+08:00">2021-10-19</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-06-27 22:37:31" itemprop="dateModified" datetime="2022-06-27T22:37:31+08:00">2022-06-27</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Linux/" itemprop="url" rel="index"><span itemprop="name">-Linux</span></a>
-        </span>
-    </span>
-
-  
-    <span id="/2021/10/19/tmux%E6%95%99%E7%A8%8B/" class="post-meta-item leancloud_visitors" data-flag-title="tmux教程" title="阅读次数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-eye"></i>
-      </span>
-      <span class="post-meta-item-text">阅读次数：</span>
-      <span class="leancloud-visitors-count"></span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h3 id="&#x5B89;&#x88C5;tmux">&#x5B89;&#x88C5;tmux</h3>
-<p>&#x4EE5;&#x4E0B;&#x4EE5;ubuntu&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#x4E3E;&#x4F8B;&#xFF0C;&#x5176;&#x4ED6;linux&#x7CFB;&#x7EDF;&#x533A;&#x522B;&#x4E0D;&#x5927;&#x3002;</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install tmux</span><br><span class="line">tmux -V                       </span><br><span class="line">sudo apt-get install build-essential           </span><br><span class="line">sudo apt-get install libevent-dev libncurses5-dev        </span><br></pre></td></tr></table></figure>
-<h3 id="&#x542F;&#x52A8;tmux">&#x542F;&#x52A8;tmux</h3>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">tmux                 &#xFF08;&#x542F;&#x52A8;&#x4E00;&#x4E2A;&#x540D;&#x4E3A;&#x201C;session&#x201D;&#x7684;tmux&#xFF09;</span><br><span class="line">exit                     &#xFF08;&#x9000;&#x51FA;&#x5F53;&#x524D;tmux&#xFF09;</span><br></pre></td></tr></table></figure>
-<h3 id="&#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x547D;&#x540D;&#x7684;session">&#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x547D;&#x540D;&#x7684;session</h3>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">tmux new-session -s basic         &#xFF08;&#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x540D;&#x4E3A;&#x201C;basic&#x201D;&#x7684;session&#xFF09;</span><br><span class="line">tmux new -s basic           &#xFF08;&#x7B80;&#x5316;&#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x540D;&#x4E3A;&#x201C;basic&#x201D;&#x7684;session&#xFF09;</span><br><span class="line">exit                     &#xFF08;&#x9000;&#x51FA;&#x5F53;&#x524D;tmux&#xFF09;</span><br></pre></td></tr></table></figure>
-<h3 id="session&#x5206;&#x79BB;">session&#x5206;&#x79BB;</h3>
-<p>Session&#x7684;&#x5206;&#x79BB;&#xFF08;Detaching&#xFF09;&#x4E0D;&#x4F1A;&#x662F;session&#x4E2D;&#x7684;&#x8FDB;&#x7A0B;&#x4E2D;&#x65AD;&#xFF0C;&#x800C;&#x662F;&#x4ECD;&#x5728;&#x540E;&#x53F0;&#x8FD0;&#x884C;&#x4E2D;&#x3002;&#x5982;&#x679C;&#x9700;&#x8981;&#x4F7F;&#x7528;&#xFF0C;&#x53EF;&#x4EE5;&#x8FDE;&#x63A5;&#x5230;&#xFF08;Attaching&#xFF09;&#x5DF2;&#x7ECF;&#x5206;&#x79BB;&#x7684;session&#x4E2D;&#x3002;</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">tmux new -s basic           &#xFF08;&#x7B80;&#x5316;&#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x540D;&#x4E3A;&#x201C;basic&#x201D;&#x7684;session&#xFF09;</span><br><span class="line">top                 &#xFF08;&#x76D1;&#x63A7;&#x5185;&#x5B58;&#x4E0E;cpu&#x7528;&#x9014;&#xFF09;</span><br><span class="line">Ctrl+b &#x27B7; &#x27B9; d&#x27B7;           &#xFF08;&#x4ECE;&#x5F53;&#x524D;&#x7684;session&#x5206;&#x79BB;&#xFF0C;&#x8FD4;&#x56DE;&#x5230;&#x4E3B;&#x9875;&#x9762;&#xFF09;</span><br></pre></td></tr></table></figure>
-<h3 id="&#x91CD;&#x8FDE;&#x4E00;&#x4E2A;&#x5DF2;&#x6709;session">&#x91CD;&#x8FDE;&#x4E00;&#x4E2A;&#x5DF2;&#x6709;session</h3>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">tmux list-sessions                 &#xFF08;&#x5217;&#x51FA;&#x5DF2;&#x6709;&#x7684;session&#xFF09;</span><br><span class="line">tmux ls                     &#xFF08;&#x7B80;&#x5316;&#x5217;&#x51FA;&#x5DF2;&#x6709;&#x7684;session&#xFF09;</span><br><span class="line">tmux attach                 &#xFF08;&#x4EC5;&#x6709;&#x4E00;&#x4E2A;session&#x5B58;&#x5728;&#x65F6;&#x7684;&#x8FDE;&#x63A5;&#x547D;&#x4EE4;&#xFF09;</span><br><span class="line">tmux new -s sessionname -d           &#xFF08;&#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x65B0;tmux&#x5B9E;&#x4F8B;&#xFF09;</span><br><span class="line">tmux attach -t sessionname            &#xFF08;&#x8FDE;&#x63A5;&#x5230;sessionname&#x5B9E;&#x4F8B;&#xFF09;</span><br></pre></td></tr></table></figure>
-<h3 id="&#x5173;&#x95ED;session">&#x5173;&#x95ED;session</h3>
-<p>&#x53EF;&#x4EE5;&#x5728;&#x8FDB;&#x5165;session&#x540E;&#x4F7F;&#x7528;exit&#x5173;&#x95ED;&#x76F8;&#x5173;session&#xFF0C;&#x4E5F;&#x53EF;&#x4EE5;&#x5728;&#x4F7F;&#x7528;&#x547D;&#x4EE4;&#x5173;&#x95ED;&#x3002;</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&amp;      &#xFF08;&#x5173;&#x95ED;&#x540D;&#x4E3A;sessionname&#x7684;session&#xFF09;</span><br></pre></td></tr></table></figure>
-<h3 id="&#x4F7F;&#x7528;windows">&#x4F7F;&#x7528;windows</h3>
-<p>windows&#x662F;&#x6307;&#x5728;session&#x4E2D;&#x521B;&#x5EFA;&#x4E0D;&#x540C;&#x7684;&#x7A97;&#x53E3;</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">tmux new -s windows -n shell         &#xFF08;&#x521B;&#x5EFA;&#x540D;&#x4E3A;windows&#x7684;session&#xFF0C;&#x5E76;&#x4E14;&#x901A;&#x8FC7; &#x2013;n &#x53EF;&#x4EE5;&#x5BF9;window&#x8FDB;&#x884C;&#x547D;&#x540D;&#xFF0C;&#x4EE5;&#x4FBF;&#x4E8E;&#x786E;&#x8BA4;&#x5176;&#x8EAB;&#x4EFD;&#xFF09;</span><br><span class="line">Ctrl+b &#x27B7; &#x27B9; c&#x27B7;             &#xFF08;&#x5728;&#x5F53;&#x524D;session&#x4E0B;&#x521B;&#x5EFA;&#x65B0;&#x7684;window&#xFF09;</span><br><span class="line">Ctrl+b &#x27B7; &#x27B9; &#xFF0C;&#x27B7;          &#xFF08;&#x91CD;&#x547D;&#x540D;&#x5F53;&#x524D;window,&#x201C;&#x7B2C;&#x4E09;&#x4E2A;&#x6309;&#x952E;&#x4E3A;&#x9017;&#x53F7;&#x201D;&#xFF09;</span><br><span class="line">Ctrl+b &#x27B7; &#x27B9; n&#x27B7;           &#xFF08;&#x8FDB;&#x53BB;&#x5F53;&#x524D;session&#x7684;&#x4E0B;&#x4E00;&#x4E2A;window&#xFF09;</span><br><span class="line">Ctrl+b &#x27B7; &#x27B9; p&#x27B7;            &#xFF08;&#x8FDB;&#x5165;&#x6700;&#x8FD1;&#x64CD;&#x4F5C;&#x7684;&#x90A3;&#x4E2A;window&#xFF09;</span><br><span class="line">Ctrl+b &#x27B7; &#x27B9; 0&#x27B7;         &#xFF08;&#x8FDB;&#x53BB;&#x5F53;&#x524D;session&#x4E0B;&#x547D;&#x540D;&#x4E3A;&#x201C;0&#x201D;&#x7684;window&#x4E2D;&#xFF09;</span><br><span class="line">Ctrl+b &#x27B7; &#x27B9; f&#x27B7;         &#xFF08;&#x901A;&#x8FC7;&#x540D;&#x5B57;&#x67E5;&#x627E;&#x5F53;&#x524D;session&#x4E0B;&#x7684;window&#xFF09;</span><br><span class="line">Ctrl+b &#x27B7; &#x27B9; w&#x27B7;        &#xFF08;&#x5C06;&#x5F53;&#x524D;session&#x4E0B;&#x7684;window&#x5217;&#x51FA;&#xFF0C;&#x5E76;&#x9009;&#x62E9;&#x8FDB;&#x5165;&#xFF09;</span><br></pre></td></tr></table></figure>
-<h3 id="&#x5173;&#x95ED;window">&#x5173;&#x95ED;window</h3>
-<p>&#x5173;&#x95ED;window&#x53EF;&#x4EE5;&#x8BA1;&#x5165;&#x76F8;&#x5E94;&#x7684;window&#x4E2D;&#xFF0C;&#x5E76;&#x5728;&#x5176;&#x4E2D;&#x8FD0;&#x884C;exit&#x5173;&#x95ED;&#xFF0C;&#x4E5F;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x5FEB;&#x6377;&#x952E;&#x5173;&#x95ED;&#x3002;</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Ctrl+b &#x27B7; &#x27B9; &amp;&#x27B7;        &#xFF08;&#x5173;&#x95ED;&#x5F53;&#x524D;window&#xFF0C;&#x5176;&#x4E2D;&amp;=shift+7&#xFF09;</span><br></pre></td></tr></table></figure>
-<p>1.5.1&#x4F7F;&#x7528;panes</p>
-<p>&#x521B;&#x5EFA;&#x540D;&#x4E3A;panes&#x7684;session&#xFF0C;&#x4EE5;&#x4FBF;&#x4E8E;&#x7406;&#x89E3;panes&#x662F;&#x5982;&#x4F55;&#x5DE5;&#x4F5C;&#x3002;</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">tmux new -s panes                &#xFF08;&#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x540D;&#x4E3A;panes&#x7684;session&#xFF09;</span><br><span class="line">Ctrl+b &#x27B7; &#x27B9; %&#x27B7; tmux            &#xFF08;&#x5C06;panes&#x5207;&#x4E3A;&#x5DE6;&#x53F3;&#x4E24;&#x4E2A;&#xFF0C;&#x5176;&#x4E2D;%=shift+5&#xFF09;</span><br><span class="line">Ctrl+b &#x27B7; &#x27B9; &#x201C;&#x27B7;            &#xFF08;&#x5C06;panes&#x5207;&#x4E3A;&#x4E0A;&#x4E0B;&#x4E24;&#x4E2A;&#xFF0C;&#x5176;&#x4E2D;%=shift+&#x2019;&#xFF09;</span><br><span class="line">Ctrl+b &#x27B7; &#x27B9; &#x5411;&#x4E0A;&#x27B7;         &#xFF08;&#x5C06;panes&#x5207;&#x6362;&#x5230;&#x4E0A;&#x9762;&#x4E00;&#x4E2A;&#xFF0C;&#x53EF;&#x4E0A;&#x4E0B;&#x5DE6;&#x53F3;&#xFF09;</span><br><span class="line">Ctrl+b+&#x5411;&#x4E0A;&#x27B7;               &#xFF08;&#x5C06;&#x5F53;&#x524D;panes&#x5411;&#x4E0A;&#x6269;&#x5927;&#xFF0C;&#x53EF;&#x4E0A;&#x4E0B;&#x5DE6;&#x53F3;&#xFF09;</span><br><span class="line">Ctrl+b &#x27B7; &#x27B9; o&#x27B7;            &#xFF08;&#x5728;&#x5F53;&#x524D;window&#x4E0B;&#x7684;panes&#x4E4B;&#x95F4;&#x5FAA;&#x73AF;&#xFF09;</span><br><span class="line">Ctrl+b &#x27B7; &#x27B9; &#x7A7A;&#x683C;&#x27B7;          &#xFF08;&#x5728;&#x5F53;&#x524D;window&#x4E0B;&#x7684;panes&#x8FDB;&#x884C;&#x81EA;&#x52A8;&#x5E03;&#x5C40;&#xFF09;</span><br></pre></td></tr></table></figure>
-<h3 id="&#x5173;&#x95ED;panes">&#x5173;&#x95ED;panes</h3>
-<p>&#x5173;&#x95ED;panes&#x53EF;&#x4EE5;&#x8BA1;&#x5165;&#x76F8;&#x5E94;&#x7684;panes&#x4E2D;&#xFF0C;&#x5E76;&#x5728;&#x5176;&#x4E2D;&#x8FD0;&#x884C;exit&#x5173;&#x95ED;&#xFF0C;&#x4E5F;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x5FEB;&#x6377;&#x952E;&#x5173;&#x95ED;&#x3002;</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Ctrl+b &#x27B7; &#x27B9; x&#x27B7;                 &#xFF08;&#x5173;&#x95ED;&#x5F53;&#x524D;panes&#xFF09;</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
   <nav class="pagination">
     <a class="extend prev" rel="prev" href="/default-index/page/2/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/default-index/">1</a><a class="page-number" href="/default-index/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/default-index/page/4/">4</a><a class="page-number" href="/default-index/page/5/">5</a><a class="extend next" rel="next" href="/default-index/page/4/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
@@ -1937,6 +1996,8 @@ SSE(\alpha)=\sum_{t=1}^n(y_t-\hat y_t)^2
 <script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.0/dist/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
 <script src="/js/third-party/search/local-search.js"></script>
 
+  <script class="next-config" data-name="pdf" type="application/json">{"object_url":{"url":"https://cdn.jsdelivr.net/npm/pdfobject@2.2.7/pdfobject.min.js","integrity":"sha256-ph3Dk89VmuTVXG6x/RDzk53SU9LPdAh1tpv0UvnDZ2I="},"url":"/lib/pdf/web/viewer.html"}</script>
+  <script src="/js/third-party/tags/pdf.js"></script>
 
 
 

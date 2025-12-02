@@ -85,7 +85,7 @@
   <ul class="main-menu menu">
         <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
         <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">17</span></a></li>
-        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">44</span></a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">46</span></a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -154,7 +154,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">44</span>
+          <span class="site-state-item-count">46</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -195,6 +195,193 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://shenyong.zone/2018/10/19/shell%E8%BE%93%E5%87%BA%E5%9B%BA%E5%AE%9A%E4%BD%8D%E6%95%B0%E6%95%B4%E6%95%B0%E7%9A%84%E6%96%B9%E6%B3%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Yoo Shen">
+      <meta itemprop="description" content="学习、记录、分享">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Yoo shen的博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2018/10/19/shell%E8%BE%93%E5%87%BA%E5%9B%BA%E5%AE%9A%E4%BD%8D%E6%95%B0%E6%95%B4%E6%95%B0%E7%9A%84%E6%96%B9%E6%B3%95/" class="post-title-link" itemprop="url">shell输出固定位数整数的方法</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2018-10-19 17:22:00" itemprop="dateCreated datePublished" datetime="2018-10-19T17:22:00+08:00">2018-10-19</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-06-27 22:37:31" itemprop="dateModified" datetime="2022-06-27T22:37:31+08:00">2022-06-27</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Linux/" itemprop="url" rel="index"><span itemprop="name">-Linux</span></a>
+        </span>
+    </span>
+
+  
+    <span id="/2018/10/19/shell%E8%BE%93%E5%87%BA%E5%9B%BA%E5%AE%9A%E4%BD%8D%E6%95%B0%E6%95%B4%E6%95%B0%E7%9A%84%E6%96%B9%E6%B3%95/" class="post-meta-item leancloud_visitors" data-flag-title="shell输出固定位数整数的方法" title="阅读次数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span class="leancloud-visitors-count"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>Qos:</p>
+<p>&#x5982;&#x4F55;&#x4F7F;&#x7528;<a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=shell&amp;spm=1001.2101.3001.7020">shell</a>&#x8F93;&#x51FA;&#x4F8B;&#x5982;0001&#x548C;0025&#x8FD9;&#x79CD;&#x56FA;&#x5B9A;&#x4F4D;&#x6570;&#x7684;&#x65B9;&#x6CD5;&#x5462;&#xFF1F;</p>
+<p>Ans&#xFF1A;</p>
+<p>&#x4F8B;&#x5982;&#x9700;&#x8981;&#x8F93;&#x51FA;0001&#xFF0C;&#x5219;&#x53EF;&#x4EE5;&#x5C06;&#x53D8;&#x91CF;&#x8BBE;&#x4E3A;10001&#xFF0C;&#x7136;&#x540E;&#x4E0D;&#x8F93;&#x51FA;&#x7B2C;&#x4E00;&#x4F4D;&#x3002;</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">a=<span class="string">&quot;10001&quot;</span> &amp;&amp; <span class="built_in">echo</span> <span class="string">&quot;<span class="variable">${a:1}</span>&quot;</span></span><br><span class="line">0001</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://shenyong.zone/2018/10/19/grep%E7%9A%84%E5%A4%9A%E8%A1%8C%E5%8C%B9%E9%85%8D%E4%B8%8E%E6%9C%80%E5%B0%8F%E5%8C%B9%E9%85%8D%E9%97%AE%E9%A2%98/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Yoo Shen">
+      <meta itemprop="description" content="学习、记录、分享">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Yoo shen的博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2018/10/19/grep%E7%9A%84%E5%A4%9A%E8%A1%8C%E5%8C%B9%E9%85%8D%E4%B8%8E%E6%9C%80%E5%B0%8F%E5%8C%B9%E9%85%8D%E9%97%AE%E9%A2%98/" class="post-title-link" itemprop="url">grep的多行匹配与最小匹配问题</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2018-10-19 17:22:00" itemprop="dateCreated datePublished" datetime="2018-10-19T17:22:00+08:00">2018-10-19</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-06-27 22:37:31" itemprop="dateModified" datetime="2022-06-27T22:37:31+08:00">2022-06-27</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Linux/" itemprop="url" rel="index"><span itemprop="name">-Linux</span></a>
+        </span>
+    </span>
+
+  
+    <span id="/2018/10/19/grep%E7%9A%84%E5%A4%9A%E8%A1%8C%E5%8C%B9%E9%85%8D%E4%B8%8E%E6%9C%80%E5%B0%8F%E5%8C%B9%E9%85%8D%E9%97%AE%E9%A2%98/" class="post-meta-item leancloud_visitors" data-flag-title="grep的多行匹配与最小匹配问题" title="阅读次数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span class="leancloud-visitors-count"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>grep&#x5339;&#x914D;&#x662F;linux&#x7684;&#x6700;&#x5E38;&#x7528;&#x7684;shell&#x547D;&#x4EE4;&#x4E4B;&#x4E00;&#xFF0C;grep&#x7684;&#x5339;&#x914D;&#x7684;&#x9ED8;&#x8BA4;&#x5339;&#x914D;&#x4E3A;&#x5355;&#x884C;&#x5339;&#x914D;&#x548C;&#x8D2A;&#x5A6A;&#x5339;&#x914D;&#xFF0C;&#x56E0;&#x6B64;&#x9700;&#x8981;&#x7279;&#x6B8A;&#x7684;&#x6280;&#x5DE7;&#x5C06;&#x5176;&#x8F6C;&#x5316;&#x4E3A;&#x591A;&#x884C;&#x5339;&#x914D;&#x548C;&#x6700;&#x5C0F;&#x5339;&#x914D;&#x3002;</p>
+<h3 id="&#x591A;&#x884C;&#x5339;&#x914D;">1.&#x591A;&#x884C;&#x5339;&#x914D;</h3>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">cat aa.txt</span><br><span class="line">aa</span><br><span class="line">bb</span><br><span class="line">aa</span><br><span class="line">ff</span><br><span class="line">cc</span><br><span class="line">dd</span><br><span class="line">ee</span><br><span class="line">ff</span><br><span class="line">aa</span><br><span class="line">bb</span><br></pre></td></tr></table></figure>
+<p>&#x591A;&#x884C;&#x5339;&#x914D;&#xFF1A;</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grep -zoe &quot;start-string.*stop-string&quot; file</span><br></pre></td></tr></table></figure>
+<p>&#x4E3E;&#x4F8B;&#x6765;&#x8BF4;&#xFF1A;</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">grep -zoe &quot;aa.*ff&quot; aa.txt</span><br><span class="line">aa</span><br><span class="line">bb</span><br><span class="line">aa</span><br><span class="line">ff</span><br><span class="line">cc</span><br><span class="line">dd</span><br><span class="line">ee</span><br><span class="line">ff</span><br></pre></td></tr></table></figure>
+<h3 id="grep&#x6700;&#x5C0F;&#x5339;&#x914D;">2.grep&#x6700;&#x5C0F;&#x5339;&#x914D;</h3>
+<p>grep&#x6700;&#x5C0F;&#x5339;&#x914D;&#x7684;&#x65B9;&#x6CD5;&#x4E0E;sed&#x6700;&#x5C0F;&#x5339;&#x914D;&#x7684;&#x65B9;&#x6CD5;&#x76F8;&#x540C;&#xFF1A;</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grep -o &quot;strart-string[^stop-string]*stop-string&quot; file</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -663,6 +850,8 @@
 <script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.0/dist/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
 <script src="/js/third-party/search/local-search.js"></script>
 
+  <script class="next-config" data-name="pdf" type="application/json">{"object_url":{"url":"https://cdn.jsdelivr.net/npm/pdfobject@2.2.7/pdfobject.min.js","integrity":"sha256-ph3Dk89VmuTVXG6x/RDzk53SU9LPdAh1tpv0UvnDZ2I="},"url":"/lib/pdf/web/viewer.html"}</script>
+  <script src="/js/third-party/tags/pdf.js"></script>
 
 
 
